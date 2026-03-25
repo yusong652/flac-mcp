@@ -18,20 +18,15 @@ def register(mcp: FastMCP) -> None:
         code: ConsoleCode,
         timeout: ConsoleTimeoutSeconds = 10,
     ) -> dict[str, Any]:
-        """Execute a Python snippet in the PFC process and return its output.
+        """Execute a Python snippet directly in the running PFC process.
 
-        Use this tool to query model state, read properties, or run short
-        diagnostic operations. This tool is intended for observation only —
-        do not use it to advance the simulation or modify model state;
-        use pfc_execute_task for that.
+        Code executes synchronously in the PFC main thread during the
+        cycle. Consider side effects carefully — any state changes
+        (variable assignments, model modifications) persist in the
+        process. For long-running or simulation-advancing operations,
+        prefer pfc_execute_task.
 
-        The code runs synchronously with a strict timeout, so keep snippets
-        short and focused.
-
-        Examples:
-            - print(it.ball.count())
-            - print(it.ball.find(1).pos())
-            - print(it.cycle())
+        Keep snippets short and focused; a strict timeout applies.
         """
         try:
             client = await get_bridge_client()
