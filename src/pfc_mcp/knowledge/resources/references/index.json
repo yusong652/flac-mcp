@@ -18,6 +18,14 @@
       "index_file": "range-elements/index.json",
       "summary": "Geometric, attribute, and logical range filters",
       "usage": "<command> ... range <element> [params]"
+    },
+    "plot-items": {
+      "name": "Plot Item Keywords",
+      "description": "Configuration keywords for plot item types (ball, wall, contact coloring, cut planes, legend)",
+      "directory": "plot-items",
+      "index_file": "plot-items/index.json",
+      "summary": "Keywords for 'plot item create <type>' — color-by, cut, transparency, legend, etc.",
+      "usage": "plot item create <type> <keyword> <keyword> ..."
     }
   },
 

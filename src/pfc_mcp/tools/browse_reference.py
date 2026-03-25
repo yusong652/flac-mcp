@@ -24,8 +24,9 @@ def register(mcp: FastMCP) -> None:
                 "- 'contact-models linear': Linear model properties\n"
                 "- 'range-elements': Range elements overview (24 elements)\n"
                 "- 'range-elements position': Position range syntax\n"
-                "- 'range-elements cylinder': Cylinder range syntax\n"
-                "- 'range-elements group': Group range syntax"
+                "- 'plot-items': Plot item types (ball, wall, contact keywords)\n"
+                "- 'plot-items ball': Ball overview + available sub-topics\n"
+                "- 'plot-items ball color-by': Ball color-by keyword details"
             ),
         ),
     ) -> dict[str, Any]:
@@ -41,8 +42,10 @@ def register(mcp: FastMCP) -> None:
         When to use:
         - Need contact model property names (kn, ks, fric, pb_*)
         - Need range filtering syntax (position, cylinder, group, id)
+        - Need plot item configuration (color-by, cut plane, transparency, legend)
         - Setting up "contact cmat add model ... property ..." commands
         - Using range filters in any PFC command
+        - Configuring "plot item create" commands
 
         Related tools:
         - pfc_browse_commands: Command syntax (e.g., "ball create")
@@ -58,9 +61,11 @@ def register(mcp: FastMCP) -> None:
 
         if len(parts) == 1:
             payload = _browse_category(category)
+        elif len(parts) == 2:
+            payload = _browse_item(category, parts[1])
         else:
-            item = " ".join(parts[1:])
-            payload = _browse_item(category, item)
+            # 3+ parts: category + item + sub-item (remaining parts joined)
+            payload = _browse_sub_item(category, parts[1], " ".join(parts[2:]))
         return _wrap_payload(payload)
 
 
@@ -114,25 +119,20 @@ def _browse_category(category: str) -> dict[str, Any]:
             },
             "input": {"category": category},
         }
+    raw_items = ReferenceLoader.get_item_list(category)
     items = []
-    if category == "contact-models":
-        for model in cat_index.get("models", []):
-            items.append(
-                {
-                    "name": model.get("name", ""),
-                    "full_name": model.get("full_name"),
-                    "description": model.get("description", ""),
-                }
-            )
-    elif category == "range-elements":
-        for element in cat_index.get("elements", []):
-            items.append(
-                {
-                    "name": element.get("name", ""),
-                    "category": element.get("category"),
-                    "description": element.get("description", ""),
-                }
-            )
+    for item in raw_items:
+        entry: dict[str, Any] = {
+            "name": item.get("name", ""),
+            "description": item.get("description", ""),
+        }
+        if "full_name" in item:
+            entry["full_name"] = item["full_name"]
+        if "category" in item:
+            entry["category"] = item["category"]
+        if "common_use" in item:
+            entry["common_use"] = item["common_use"]
+        items.append(entry)
 
     return build_docs_data(
         source="reference",
@@ -176,6 +176,34 @@ def _browse_item(category: str, item: str) -> dict[str, Any]:
             "available_items": available,
         }
 
+    # Directory-based item: return overview with sub-item list instead of full doc
+    if ReferenceLoader.is_directory_item(category, item):
+        sub_items = item_doc.get("sub_items", [])
+        overview: dict[str, Any] = {
+            "category": category,
+            "item": item,
+            "description": item_doc.get("description", ""),
+            "base_syntax": item_doc.get("base_syntax", ""),
+        }
+        if "basic_keywords" in item_doc:
+            overview["basic_keywords"] = item_doc["basic_keywords"]
+        if "common_usage_patterns" in item_doc:
+            overview["common_usage_patterns"] = item_doc["common_usage_patterns"]
+        overview["sub_items"] = [
+            {"name": s["name"], "description": s.get("description", "")}
+            for s in sub_items
+        ]
+        return build_docs_data(
+            source="reference",
+            action="browse",
+            entries=[overview],
+            summary={
+                "count": 1,
+                "sub_item_count": len(sub_items),
+                "hint": f"Use pfc_browse_reference('{category} {item} <sub_item>') for details",
+            },
+        )
+
     return build_docs_data(
         source="reference",
         action="browse",
@@ -184,6 +212,62 @@ def _browse_item(category: str, item: str) -> dict[str, Any]:
                 "category": category,
                 "item": item,
                 "doc": item_doc,
+            }
+        ],
+        summary={"count": 1},
+    )
+
+
+def _browse_sub_item(category: str, item: str, sub_item: str) -> dict[str, Any]:
+    refs_index = ReferenceLoader.load_index()
+    categories = refs_index.get("categories", {})
+    if category not in categories:
+        return {
+            "source": "reference",
+            "action": "browse",
+            "error": {
+                "code": "category_not_found",
+                "message": f"Category '{category}' not found.",
+            },
+            "input": {"category": category, "item": item, "sub_item": sub_item},
+            "available_categories": sorted(categories.keys()),
+        }
+
+    if not ReferenceLoader.is_directory_item(category, item):
+        return {
+            "source": "reference",
+            "action": "browse",
+            "error": {
+                "code": "no_sub_items",
+                "message": f"Item '{item}' in '{category}' does not have sub-items.",
+            },
+            "input": {"category": category, "item": item, "sub_item": sub_item},
+        }
+
+    sub_doc = ReferenceLoader.load_sub_item_doc(category, item, sub_item)
+    if not sub_doc:
+        item_doc = ReferenceLoader.load_item_doc(category, item)
+        available = [s["name"] for s in (item_doc or {}).get("sub_items", [])]
+        return {
+            "source": "reference",
+            "action": "browse",
+            "error": {
+                "code": "sub_item_not_found",
+                "message": f"Sub-item '{sub_item}' not found in '{category} {item}'.",
+            },
+            "input": {"category": category, "item": item, "sub_item": sub_item},
+            "available_sub_items": available,
+        }
+
+    return build_docs_data(
+        source="reference",
+        action="browse",
+        entries=[
+            {
+                "category": category,
+                "item": item,
+                "sub_item": sub_item,
+                "doc": sub_doc,
             }
         ],
         summary={"count": 1},

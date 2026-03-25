@@ -1,0 +1,24 @@
+{
+  "name": "cut",
+  "parent": "contact",
+  "description": "Cut plane for clipping contact visualization.",
+
+  "syntax": "cut active on type plane surface on front on back off origin (<x>,<y>,<z>) normal (<nx>,<ny>,<nz>)",
+
+  "parameters": [
+    {"name": "active", "values": "on|off", "description": "Enable/disable the cut plane"},
+    {"name": "type", "values": "plane", "description": "Cut type"},
+    {"name": "surface", "values": "on|off", "description": "Show cut surface"},
+    {"name": "front", "values": "on|off", "description": "Show material in front of the plane"},
+    {"name": "back", "values": "on|off", "description": "Show material behind the plane"},
+    {"name": "origin", "values": "(<x>,<y>,<z>)", "description": "A point on the cutting plane"},
+    {"name": "normal", "values": "(<nx>,<ny>,<nz>)", "description": "Plane normal direction"}
+  ],
+
+  "examples": [
+    {
+      "command": "cut active on type plane surface on front on back off origin (0,0,0) normal (0,1,0)",
+      "description": "Show only contacts with y > 0"
+    }
+  ]
+}

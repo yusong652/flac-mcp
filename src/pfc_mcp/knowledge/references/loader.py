@@ -1,11 +1,16 @@
 """Data loading layer for PFC reference documentation.
 
-This module loads reference documentation (contact models, range elements)
-from JSON files with caching for performance.
+This module loads reference documentation from JSON files with caching
+for performance.
+
+Supports two item layouts:
+- File-based: {category}/{item}.json (2-level: category → item)
+- Directory-based: {category}/{item}/index.json (3-level: category → item → sub-item)
 
 Responsibilities:
-- Load references index (2 categories: contact-models, range-elements)
+- Load references index (categories: contact-models, range-elements, plot-items)
 - Load individual reference item documentation
+- Load sub-item documentation for directory-based items
 - Cache loaded data to avoid repeated I/O
 """
 
@@ -112,8 +117,58 @@ class ReferenceLoader:
         cat_data = categories[category]
         directory = cat_data.get("directory", category)
 
-        # Try loading the item file directly
+        # Try file-based item first: {category}/{item}.json
         doc_path = PFC_REFERENCES_ROOT / directory / f"{item_name}.json"
+        if doc_path.exists():
+            with open(doc_path, encoding="utf-8") as f:
+                return cast(dict[str, Any], json.load(f))
+
+        # Try directory-based item: {category}/{item}/index.json
+        dir_index = PFC_REFERENCES_ROOT / directory / item_name / "index.json"
+        if dir_index.exists():
+            with open(dir_index, encoding="utf-8") as f:
+                return cast(dict[str, Any], json.load(f))
+
+        return None
+
+    @staticmethod
+    def is_directory_item(category: str, item_name: str) -> bool:
+        """Check if an item uses directory-based layout (supports sub-items).
+
+        Returns:
+            True if {category}/{item}/index.json exists, False otherwise.
+        """
+        refs_index = ReferenceLoader.load_index()
+        categories = refs_index.get("categories", {})
+        if category not in categories:
+            return False
+        directory = categories[category].get("directory", category)
+        return (PFC_REFERENCES_ROOT / directory / item_name / "index.json").exists()
+
+    @staticmethod
+    def load_sub_item_doc(category: str, item_name: str, sub_item: str) -> dict[str, Any] | None:
+        """Load documentation for a sub-item within a directory-based item.
+
+        Args:
+            category: Category name (e.g., "plot-items")
+            item_name: Item name (e.g., "ball")
+            sub_item: Sub-item name (e.g., "color-by")
+
+        Returns:
+            Sub-item documentation dict or None if not found.
+
+        Example:
+            >>> doc = ReferenceLoader.load_sub_item_doc("plot-items", "ball", "color-by")
+            >>> doc["name"]
+            "color-by"
+        """
+        refs_index = ReferenceLoader.load_index()
+        categories = refs_index.get("categories", {})
+        if category not in categories:
+            return None
+        directory = categories[category].get("directory", category)
+
+        doc_path = PFC_REFERENCES_ROOT / directory / item_name / f"{sub_item}.json"
         if not doc_path.exists():
             return None
 
@@ -142,13 +197,11 @@ class ReferenceLoader:
         if not index:
             return []
 
-        # contact-models uses "models" key, range-elements uses "elements" key
-        if "models" in index:
-            return cast(list[dict[str, Any]], index["models"])
-        elif "elements" in index:
-            return cast(list[dict[str, Any]], index["elements"])
-        else:
-            return []
+        # Each category uses its own list key: "models", "elements", "items", etc.
+        for key, value in index.items():
+            if isinstance(value, list) and value and isinstance(value[0], dict):
+                return cast(list[dict[str, Any]], value)
+        return []
 
     @staticmethod
     def clear_cache() -> None:
