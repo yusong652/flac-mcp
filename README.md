@@ -111,6 +111,27 @@ uv run pytest          # Run tests
 uv run pfc-mcp         # Run server locally
 ```
 
+### Running from Source
+
+To point your MCP client at a local checkout instead of the PyPI release, use `uv run --directory`:
+
+```json
+{
+  "mcpServers": {
+    "pfc": {
+      "command": "uv",
+      "args": ["run", "--directory", "/path/to/pfc-mcp", "pfc-mcp"]
+    }
+  }
+}
+```
+
+To run the bridge from source, use `%run` in the PFC IPython console:
+
+```python
+%run C:/path/to/pfc-mcp/pfc-mcp-bridge/start_bridge.py
+```
+
 ## License
 
 MIT - see [LICENSE](LICENSE).

@@ -107,6 +107,27 @@ uv run pytest          # 运行测试
 uv run pfc-mcp         # 本地启动服务
 ```
 
+### 从源码启动
+
+如需让 MCP 客户端指向本地源码而非 PyPI 发布版，使用 `uv run --directory`：
+
+```json
+{
+  "mcpServers": {
+    "pfc": {
+      "command": "uv",
+      "args": ["run", "--directory", "/path/to/pfc-mcp", "pfc-mcp"]
+    }
+  }
+}
+```
+
+Bridge 从源码启动，在 PFC IPython 控制台中使用 `%run`：
+
+```python
+%run C:/path/to/pfc-mcp/pfc-mcp-bridge/start_bridge.py
+```
+
 ## 许可证
 
 MIT，详见 [LICENSE](LICENSE)。
