@@ -23,6 +23,8 @@ def register(mcp: FastMCP) -> None:
         Returns stdout and an optional result variable immediately.
         Code runs in the PFC main thread; side effects persist.
 
+        Environment: PFC embedded Python 3.6.
+
         Typical uses:
         - Query model state: ball/wall/contact counts, current cycle
         - Create and export plots: itasca.command('plot ...')
