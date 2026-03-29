@@ -7,7 +7,7 @@ Use this guide when an agent needs to set up `pfc-mcp` execution end-to-end on a
 1. MCP client is configured to run `pfc-mcp`.
 2. `pfc-mcp-bridge` is installed in the correct PFC embedded Python environment.
 3. Bridge is started in PFC GUI (via `addon.py` or `pfc_mcp_bridge.start()`).
-4. MCP execution tools are verified with `pfc_list_tasks`.
+4. MCP execution tools are verified with `pfc_execute_code`.
 
 ## Agent Execution Rules
 
@@ -221,7 +221,7 @@ Expected output includes:
 
 Then reconnect MCP client and call:
 
-- `pfc_list_tasks`
+- `pfc_execute_code` with a simple snippet, e.g. `print('hello from PFC')`
 
 If `pfc_*` MCP tools are not visible in the client, ask user to fully restart client session first, then retry.
 
@@ -229,12 +229,15 @@ Success example (shape may vary by client):
 
 ```json
 {
-  "status": "success",
-  "data": []
+  "ok": true,
+  "data": {
+    "stdout": "hello from PFC\n",
+    "result": null
+  }
 }
 ```
 
-`status: success` means verification passed. `data` can be empty or contain existing tasks, both are normal.
+`ok: true` means the full MCP → bridge → PFC pipeline is working.
 
 ## Troubleshooting
 

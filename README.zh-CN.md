@@ -66,7 +66,7 @@ https://raw.githubusercontent.com/yusong652/pfc-mcp/main/docs/agentic/pfc-mcp-bo
 
 ### 验证
 
-重启你的 AI 智能体（Claude Code、Codex CLI、Gemini CLI 等），让它调用 `pfc_list_tasks` 来验证连接是否正常。
+重启你的 AI 智能体（Claude Code、Codex CLI、Gemini CLI 等），让它调用 `pfc_execute_code` 来验证连接是否正常。
 
 ## 功能亮点
 

@@ -66,7 +66,7 @@ Download [`addon.py`](addon.py), then use either of these two flows inside PFC:
 
 ### Verify
 
-Restart your AI agent (Claude Code, Codex CLI, Gemini CLI, etc.) and ask it to call `pfc_list_tasks` to verify the connection.
+Restart your AI agent (Claude Code, Codex CLI, Gemini CLI, etc.) and ask it to call `pfc_execute_code` to verify the connection.
 
 ## Features
 
