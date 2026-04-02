@@ -43,7 +43,7 @@ class PFCBridgeClient:
         async with self._lock:
             if self._websocket is not None:
                 return
-            self._websocket = await websockets.connect(self.url, compression=None)
+            self._websocket = await websockets.connect(self.url, compression=None, max_size=50 * 2**20)
             self._receiver_task = asyncio.create_task(self._receive_loop())
             logger.info("Connected to pfc-mcp-bridge at %s", self.url)
 
