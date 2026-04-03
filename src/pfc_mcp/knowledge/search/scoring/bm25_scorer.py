@@ -113,6 +113,11 @@ class BM25Scorer:
             self.WEIGHT_NAME * name_score + self.WEIGHT_DESCRIPTION * desc_score + self.WEIGHT_KEYWORDS * kw_score
         )
 
+        # 4. Boost exact name matches (e.g., query "BallBallContact" → itasca.BallBallContact)
+        doc_name_lower = document.name.rsplit(".", 1)[-1].lower() if "." in document.name else document.name.lower()
+        if doc_name_lower in query_set:
+            total_score *= 2.0
+
         # 4. Collect all matched terms (union across fields)
         all_matched_terms = set()
         all_matched_terms.update(name_info["exact_matches"])

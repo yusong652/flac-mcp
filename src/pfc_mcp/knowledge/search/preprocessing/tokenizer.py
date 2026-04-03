@@ -176,13 +176,23 @@ class TextTokenizer:
                         tokens.append(part)
             else:
                 # Check if original word is CamelCase and split it
-                # Example: "BallBallContact" → ["ball", "ball", "contact"]
+                # Example: "BallBallContact" → ["ballballcontact", "ball", "ball", "contact"]
                 # Use original_word to preserve CamelCase info
                 camel_parts = self._split_camel_case(original_word)
+
+                # Emit full compound word for exact name matching
+                if len(camel_parts) > 1:
+                    full = original_word.lower()
+                    if self._is_valid_token(full, from_technical_context=False):
+                        tokens.append(full)
 
                 for part in camel_parts:
                     if self._is_valid_token(part, from_technical_context=False):
                         tokens.append(part)
+                        # Add stemmed form
+                        stem = self._stem(part)
+                        if stem and stem != part and self._is_valid_token(stem, from_technical_context=False):
+                            tokens.append(stem)
 
         return tokens
 
@@ -204,8 +214,15 @@ class TextTokenizer:
         """
         return set(self.tokenize(text))
 
+    # Suffixes to strip for stemming
+    _SUFFIX_RULES = [
+        "ment", "ness", "able", "ible",
+        "ious", "ous", "ive", "ful", "less", "ing",
+        "ion", "ity", "ial", "al", "ic", "ly", "er", "ed", "es",
+    ]
+
     def _split_camel_case(self, word: str) -> list[str]:
-        """Split CamelCase word into components.
+        """Split CamelCase word into components, keeping uppercase runs together.
 
         Args:
             word: Word to split (e.g., "BallBallContact", "IterMechanical")
@@ -221,9 +238,9 @@ class TextTokenizer:
             >>> self._split_camel_case("simple")
             ['simple']  # Not CamelCase, return as-is
         """
-        # Pattern: insert space before uppercase letters (except at start)
-        # BallBallContact → Ball Ball Contact
-        spaced = re.sub(r"(?<!^)(?=[A-Z])", " ", word)
+        # Insert space before uppercase-lowercase transitions and between lower-upper
+        spaced = re.sub(r"([A-Z]+)(?=[A-Z][a-z])", r"\1 ", word)
+        spaced = re.sub(r"(?<=[a-z0-9])(?=[A-Z])", " ", spaced)
 
         # Split on spaces and lowercase
         parts = spaced.split()
@@ -233,6 +250,13 @@ class TextTokenizer:
             return [p.lower() for p in parts]
         else:
             return [word.lower()]
+
+    def _stem(self, word: str) -> str | None:
+        """Simple suffix-stripping stemmer for search matching."""
+        for suffix in self._SUFFIX_RULES:
+            if word.endswith(suffix) and len(word) - len(suffix) >= 3:
+                return word[: -len(suffix)]
+        return None
 
     def _is_valid_token(self, word: str, from_technical_context: bool = False) -> bool:
         """Check if a word is a valid token.
