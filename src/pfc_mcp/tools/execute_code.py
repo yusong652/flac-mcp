@@ -40,6 +40,12 @@ def register(mcp: FastMCP) -> None:
 
         Typical uses:
         - Query model state: ball/wall/contact counts, current cycle
+        - Issue PFC commands and read their console output:
+          itasca.command('ball list'), itasca.command('model list
+          information'). Table dumps, list output, and command
+          summaries are captured and interleaved with Python prints
+          in execution order — no need to re-implement queries via
+          the SDK just to see what a command would print
         - Live inspection during a running task: check forces,
           energy, coordination number, contact statistics
         - Live tuning during a running task: modify parameters,

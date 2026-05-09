@@ -34,6 +34,11 @@ def register(mcp: FastMCP) -> None:
         termination via a sentinel variable. Both tools share the same
         __main__ namespace in PFC's main thread.
 
+        Console output from itasca.command() inside the script —
+        table dumps, list output, command summaries — is captured
+        and interleaved with Python prints in the task log, visible
+        through pfc_check_task_status.
+
         This is the async / background execution path: pollable via
         pfc_check_task_status, cancellable via pfc_interrupt_task.
         Submission does not lock parameters — start with reasonable

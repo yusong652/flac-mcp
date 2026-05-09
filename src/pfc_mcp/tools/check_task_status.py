@@ -27,7 +27,13 @@ def register(mcp: FastMCP) -> None:
         filter: FilterText = None,
         wait_seconds: WaitSeconds = 1,
     ) -> dict[str, Any]:
-        """Check status and output for a submitted PFC task."""
+        """Check status and paginated output for a submitted PFC task.
+
+        Output combines Python prints and PFC console output from
+        itasca.command() calls (table dumps, list output, command
+        summaries) interleaved in execution order. Use skip_newest /
+        limit to paginate, or filter to keep only matching lines.
+        """
         try:
             client = await get_bridge_client()
             terminal_states = {"completed", "failed", "interrupted", "not_found"}

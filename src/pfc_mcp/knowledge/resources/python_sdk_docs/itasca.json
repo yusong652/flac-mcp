@@ -19,7 +19,7 @@
         "type": "None",
         "description": "No return value"
       },
-      "limitations": "Cannot return command output. For queries, use specific Python SDK functions or fish variables."
+      "limitations": "Returns None — no Python-level return value. For programmatic results, use specific Python SDK functions or fish variables."
     },
     {
       "name": "cycle",

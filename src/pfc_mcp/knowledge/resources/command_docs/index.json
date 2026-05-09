@@ -540,7 +540,7 @@
           "short_description": "Lists the CMAT (Contact Model Assignment Table)",
           "syntax": "contact cmat list [keyword]",
           "python_available": false,
-          "python_alternative": "itasca.command('contact cmat list') - Python SDK does not provide direct CMAT API, must use command interface. Output goes to console, cannot be captured directly in Python."
+          "python_alternative": "itasca.command('contact cmat list') - Python SDK does not provide direct CMAT API, must use command interface."
         },
         {
           "name": "cmat-modify",
