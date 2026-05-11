@@ -26,7 +26,7 @@
 
 **5 个执行工具** — 交互式 REPL、任务提交、进度监控、中断和历史浏览。需要 bridge。
 
-## 快速开始
+## 首次启动配置
 
 ### 前置条件
 
@@ -69,6 +69,10 @@ https://raw.githubusercontent.com/yusong652/pfc-mcp/main/docs/agentic/pfc-mcp-bo
 ### 验证
 
 重启你的 AI 智能体（Claude Code、Codex CLI、Gemini CLI 等），让它调用 `pfc_execute_code` 来验证连接是否正常。
+
+## 日常启动
+
+完成首次配置之后，每次启动 PFC 只需要把 [`addon.py`](addon.py) 粘进 IPython 控制台运行，bridge 起来后就可以继续用了。MCP 客户端配置会一直保留。
 
 ## 功能亮点
 

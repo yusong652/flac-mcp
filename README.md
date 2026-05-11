@@ -26,7 +26,7 @@
 
 **5 execution tools** — interactive REPL, task submission, progress monitoring, interruption, and history. Requires bridge.
 
-## Quick Start
+## First-time Setup
 
 ### Prerequisites
 
@@ -69,6 +69,10 @@ Download [`addon.py`](addon.py), then use either of these two flows inside PFC:
 ### Verify
 
 Restart your AI agent (Claude Code, Codex CLI, Gemini CLI, etc.) and ask it to call `pfc_execute_code` to verify the connection.
+
+## Daily Startup
+
+Once first-time setup is done, each new PFC session only needs the bridge re-started — paste [`addon.py`](addon.py) into PFC's IPython console and you're back online. The MCP client config persists.
 
 ## Features
 
