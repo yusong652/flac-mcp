@@ -10,7 +10,6 @@ from pfc_mcp.formatting import (
     build_bridge_error,
     build_operation_error,
     format_unix_timestamp,
-    normalize_status,
     paginate_output,
 )
 from pfc_mcp.utils import FilterText, OutputLimit, SkipNewestLines, TaskId, WaitSeconds
@@ -49,7 +48,7 @@ def register(mcp: FastMCP) -> None:
                 limit=limit,
                 filter_text=filter,
             )
-            status = normalize_status(response.get("status", "unknown"))
+            status = response.get("status", "unknown")
 
             if status not in terminal_states and wait_seconds > 0:
                 await client.wait_for_task(task_id, timeout=wait_seconds)
@@ -74,7 +73,6 @@ def register(mcp: FastMCP) -> None:
             )
 
         data = response.get("data") or {}
-        normalized_status = normalize_status(status)
 
         # Prefer bridge-side pagination when available: the bridge sees
         # the full log and reports accurate total_lines / has_older /
@@ -95,7 +93,7 @@ def register(mcp: FastMCP) -> None:
 
         result: dict[str, Any] = {
             "task_id": task_id,
-            "task_status": normalized_status,
+            "task_status": status,
             "start_time": format_unix_timestamp(data.get("start_time")),
             "end_time": format_unix_timestamp(data.get("end_time")),
             "elapsed_time": data.get("elapsed_time"),

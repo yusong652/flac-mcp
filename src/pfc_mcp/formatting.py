@@ -12,16 +12,6 @@ from pfc_mcp.contracts import build_error
 # Task status / output formatting
 # =============================================================================
 
-_LEGACY_STATUS_MAP = {
-    "success": "completed",
-    "error": "failed",
-}
-
-
-def normalize_status(status: str) -> str:
-    """Normalize task status. Maps legacy bridge names for compatibility."""
-    return _LEGACY_STATUS_MAP.get(status, status)
-
 
 def format_unix_timestamp(value: Any) -> str:
     if value is None:

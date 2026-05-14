@@ -2,7 +2,7 @@ import asyncio
 
 from pfc_mcp.formatting import build_bridge_error
 from pfc_mcp.server import mcp
-from pfc_mcp.tools.task_formatting import normalize_status, paginate_output
+from pfc_mcp.tools.task_formatting import paginate_output
 from pfc_mcp.utils import validate_script_path
 
 
@@ -18,10 +18,7 @@ def test_phase2_tools_registered() -> None:
     assert "pfc_execute_code" in tools
 
 
-def test_status_mapping_and_pagination() -> None:
-    assert normalize_status("success") == "completed"
-    assert normalize_status("error") == "failed"
-
+def test_pagination() -> None:
     text, page = paginate_output(
         output="a\nb\nc\nd",
         skip_newest=0,

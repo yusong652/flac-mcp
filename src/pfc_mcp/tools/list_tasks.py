@@ -6,7 +6,7 @@ from fastmcp import FastMCP
 
 from pfc_mcp.bridge import get_bridge_client
 from pfc_mcp.contracts import build_ok
-from pfc_mcp.formatting import build_bridge_error, build_operation_error, format_unix_timestamp, normalize_status
+from pfc_mcp.formatting import build_bridge_error, build_operation_error, format_unix_timestamp
 from pfc_mcp.utils import SkipNewestTasks, TaskListLimit
 
 
@@ -47,7 +47,7 @@ def register(mcp: FastMCP) -> None:
         for task in tasks:
             normalized_task = {
                 "task_id": task.get("task_id"),
-                "status": normalize_status(task.get("status", "unknown")),
+                "status": task.get("status", "unknown"),
                 "source": task.get("source", "agent"),
                 "start_time": format_unix_timestamp(task.get("start_time")),
                 "end_time": format_unix_timestamp(task.get("end_time")),
