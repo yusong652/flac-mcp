@@ -80,21 +80,51 @@ def register(mcp: FastMCP) -> None:
 
         status = response.get("status", "unknown")
         message = response.get("message", "")
+        partial_output = ((response.get("data") or {}).get("output")) or None
+        error_block = response.get("error") or {}
+        error_details = error_block.get("details") or {}
+        termination_method = error_details.get("method")
+
+        if status == "terminated":
+            # Bridge aborted the snippet at the timeout deadline and the
+            # worker thread settled. PFC state may be partially modified.
+            return build_operation_error(
+                "terminated",
+                "Execution aborted by bridge timeout",
+                reason=message,
+                action="PFC state may be partially modified; verify with pfc_execute_code before retrying",
+                output=partial_output,
+            )
 
         if status == "timeout":
+            if termination_method == "stuck_in_c":
+                action = (
+                    "Bridge could not terminate the code (likely stuck "
+                    "in a C extension). It may recover when the C call "
+                    "returns; otherwise restart PFC bridge."
+                )
+            else:
+                action = "Reduce code complexity or increase timeout"
             return build_operation_error(
                 "timeout",
                 "Execution timed out",
                 reason=message,
-                action="Reduce code complexity or increase timeout",
+                action=action,
+                output=partial_output,
+            )
+
+        if status == "interrupted":
+            return build_operation_error(
+                "interrupted",
+                "Execution interrupted",
+                reason=message,
+                output=partial_output,
             )
 
         if status == "error":
-            error = response.get("error") or {}
-            partial_output = ((response.get("data") or {}).get("output")) or None
             return build_operation_error(
-                error.get("code", "execute_code_error"),
-                error.get("message", message),
+                error_block.get("code", "execute_code_error"),
+                error_block.get("message", message),
                 reason=message,
                 output=partial_output,
             )
