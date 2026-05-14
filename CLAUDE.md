@@ -112,18 +112,18 @@ Both packages are published to PyPI via GitHub Actions, triggered by pushing Git
 | Package | Tag pattern | Workflow | Version file | PyPI environment |
 |---------|-------------|----------|--------------|------------------|
 | `pfc-mcp` | `v*` (e.g. `v0.3.5`) | `.github/workflows/publish.yml` | `pyproject.toml` | `pypi` |
-| `pfc-mcp-bridge` | `bridge-v*` (e.g. `bridge-v0.2.3`) | `.github/workflows/publish-bridge.yml` | `pfc-mcp-bridge/pyproject.toml` | `pypi-bridge` |
+| `pfc-mcp-bridge` | `bridge-v*` (e.g. `bridge-v0.2.3`) | `.github/workflows/publish-bridge.yml` | `pfc-mcp-bridge/src/pfc_mcp_bridge/__init__.py` | `pypi-bridge` |
 
 Steps to release:
 
-1. Bump the `version` field in the corresponding `pyproject.toml`.
+1. Bump `__version__` in the corresponding `__init__.py` (both packages use hatch dynamic versioning, so `__init__.py` is the single source of truth).
 2. Commit and push to `main`.
 3. Tag the commit: `git tag v0.x.x` or `git tag bridge-v0.x.x`.
 4. Push the tag: `git push origin <tag>`.
 
 The `pfc-mcp` publish workflow runs tests before publishing; the bridge workflow publishes directly.
 
-**Important**: the tag version and `pyproject.toml` version must match. PyPI rejects uploads for versions that already exist.
+**Important**: the tag version and the `__version__` in `__init__.py` must match. PyPI rejects uploads for versions that already exist.
 
 CI also runs on every push/PR to `main` (`.github/workflows/test.yml`): ruff check, ruff format, mypy, and pytest with coverage.
 
