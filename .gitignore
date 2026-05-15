@@ -31,3 +31,6 @@ workspace/*
 
 # macOS
 .DS_Store
+
+# Windows / MSYS-Cygwin crash dumps
+*.stackdump
