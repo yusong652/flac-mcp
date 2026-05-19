@@ -1,0 +1,216 @@
+{
+  "model": "concrete",
+  "full_name": "Concrete Model",
+  "search_keywords": [
+    "concrete",
+    "constitutive",
+    "bulk",
+    "compression-strength",
+    "compression-initial",
+    "compression-energy-fracture",
+    "compression-length-reference",
+    "compression-d",
+    "dilation",
+    "poisson",
+    "ratio-biaxial",
+    "shear",
+    "tension-strength",
+    "tension-initial",
+    "tension-energy-fracture",
+    "tension-length-reference",
+    "tension-d",
+    "tension-recovery",
+    "young",
+    "compression",
+    "damage",
+    "damage-compression",
+    "damage-tension",
+    "strain-plastic-compression",
+    "strain-plastic-tension",
+    "tension"
+  ],
+  "description": "This concrete model is a plastic-damage model extended and modified from the work in Lublinear et al (1989) and Lee & Fenves (1998) using the concepts of fracture-energy-based damage and modulus degradation in continuum damage mechanics.",
+  "property_groups": [
+    {
+      "name": "Properties",
+      "description": "Material properties for the 'concrete' zone constitutive model. Assign the model with 'zone cmodel assign concrete [range ...]', then set these with 'zone property <keyword> <value> [range cmodel-name concrete]'.",
+      "properties": [
+        {
+          "keyword": "bulk",
+          "symbol": "K",
+          "description": "bulk modulus, K.",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "compression-strength",
+          "symbol": "f_c^m",
+          "description": "uniaxial compression peak/maximum strength, f_c^m.",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "compression-initial",
+          "symbol": "f_{c0}",
+          "description": "uniaxial compression initial yield strength, f_{c0}.",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "compression-energy-fracture",
+          "symbol": "G_c",
+          "description": "fracture energy in uniaxial compression state, G_c.",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "compression-length-reference",
+          "symbol": "l_c",
+          "description": "reference (characteristic) length in uniaxial compression state, l_c.",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "compression-d",
+          "symbol": "d_c",
+          "description": "compression damage parameter, d_c.",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "dilation",
+          "symbol": "\\psi",
+          "description": "dilation angle, \\psi.",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "poisson",
+          "symbol": "\\nu",
+          "description": "Poisson’s ratio, \\nu.",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "ratio-biaxial",
+          "symbol": "f_{b0}/f_{c0}",
+          "description": "strength ratio of biaxial to uniaxial compression initial, usually in a range of (1,1.25], f_{b0}/f_{c0}.",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "shear",
+          "symbol": "G",
+          "description": "shear modulus, G.",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "tension-strength",
+          "symbol": "f_t^m",
+          "description": "uniaxial tension peak/maximum strength, f_t^m.",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "tension-initial",
+          "symbol": "f_{t0}",
+          "description": "uniaxial tension initial yield strength, f_{t0}. Usually, f_{t0} = f_t^m.",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "tension-energy-fracture",
+          "symbol": "G_t",
+          "description": "fracture energy in uniaxial compression state, G_t.",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "tension-length-reference",
+          "symbol": "l_t",
+          "description": "reference (characteristic) length in uniaxial tension state, l_t.",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "tension-d",
+          "symbol": "d_t",
+          "description": "tension damage parameter, d_t.",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "tension-recovery",
+          "symbol": "s_0",
+          "description": "stiffness recovery parameter for tension, typical value is 0.2, s_0.",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "young",
+          "symbol": "E",
+          "description": "Young’s modulus, E.",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "compression",
+          "symbol": "\\sigma_c",
+          "description": "Current compression strength, \\sigma_c.",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "damage",
+          "symbol": "D",
+          "description": "Current total damage, D.",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "damage-compression",
+          "symbol": "D_c",
+          "description": "Current damage in compression, D_c.",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "damage-tension",
+          "symbol": "D_t",
+          "description": "Current damage in tension, D_t.",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "strain-plastic-compression",
+          "symbol": "\\epsilon^p_c",
+          "description": "Current plastic strain in compression, \\epsilon^p_c.",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "strain-plastic-tension",
+          "symbol": "\\epsilon^p_t",
+          "description": "Current plastic strain in tension, \\epsilon^p_t.",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "tension",
+          "symbol": "\\sigma_t",
+          "description": "Current tension strength, \\sigma_t.",
+          "type": "FLT",
+          "default": ""
+        }
+      ]
+    }
+  ],
+  "typical_applications": [],
+  "notes": [],
+  "source": "https://docs.itascacg.com/itasca900/common/models/concrete/doc/modelconcrete.html",
+  "usage": {
+    "assign": "zone cmodel assign concrete [range ...]",
+    "property": "zone property <keyword> <value> [range cmodel-name concrete]"
+  }
+}

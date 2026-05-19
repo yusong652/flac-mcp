@@ -1,0 +1,186 @@
+{
+  "model": "wipp-drucker",
+  "full_name": "WIPP-Drucker Model",
+  "search_keywords": [
+    "wipp",
+    "drucker",
+    "wipp-drucker",
+    "constitutive",
+    "activation-energy",
+    "bulk",
+    "cohesion-drucker",
+    "constant-a",
+    "constant-b",
+    "constant-d",
+    "constant-gas",
+    "creep-rate-critical",
+    "dilation-drucker",
+    "exponent",
+    "friction-drucker",
+    "temperature",
+    "poisson",
+    "shear",
+    "tension",
+    "young",
+    "creep-strain-primary",
+    "creep-rate-primary",
+    "strain-shear-plastic",
+    "strain-tension-plastic"
+  ],
+  "description": "Viscoplasticity is also modeled in FLAC3D or 3DEC by combining the viscoelastic WIPP model with the elasto-plastic Drucker-Prager model . Of the plasticity models currently embodied in FLAC3D / 3DEC , the Drucker-Prager model is the most compatible with the WIPP model , because both models are formulated in terms of the second invariant of the deviatoric stress tensor. Viewed in the \\(\\pi\\) -plane, both models exhibit responses that depend only on radial distance from the isotropic-stress locus. The response of the Mohr-Coulomb model , on the other hand, is not isotropic, because the intermedi",
+  "property_groups": [
+    {
+      "name": "Properties",
+      "description": "Material properties for the 'wipp-drucker' zone constitutive model. Assign the model with 'zone cmodel assign wipp-drucker [range ...]', then set these with 'zone property <keyword> <value> [range cmodel-name wipp-drucker]'.",
+      "properties": [
+        {
+          "keyword": "activation-energy",
+          "symbol": "Q",
+          "description": "activation energy, Q",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "bulk",
+          "symbol": "K",
+          "description": "bulk modulus, K",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "cohesion-drucker",
+          "symbol": "k_ϕ",
+          "description": "material parameter, k_ϕ",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "constant-a",
+          "symbol": "A",
+          "description": "WIPP model constant, A",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "constant-b",
+          "symbol": "B",
+          "description": "WIPP model constant, B",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "constant-d",
+          "symbol": "D",
+          "description": "WIPP model constant, D",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "constant-gas",
+          "symbol": "R",
+          "description": "gas constant, R",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "creep-rate-critical",
+          "symbol": "ε̇^*_{ss}",
+          "description": "critical steady-state creep rate, ε̇^*_{ss}",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "dilation-drucker",
+          "symbol": "q_k",
+          "description": "material parameter, q_k",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "exponent",
+          "symbol": "n",
+          "description": "WIPP model exponent, n",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "friction-drucker",
+          "symbol": "q_ϕ",
+          "description": "material parameter, q_ϕ",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "temperature",
+          "symbol": "T",
+          "description": "zone temperature, T",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "poisson",
+          "symbol": "v",
+          "description": "Poisson’s ratio, v",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "shear",
+          "symbol": "G",
+          "description": "shear modulus, G",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "tension",
+          "symbol": "σ^t",
+          "description": "tension limit, σ^t. The default is 0.0.",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "young",
+          "symbol": "E",
+          "description": "Young’s modulus, E",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "creep-strain-primary",
+          "symbol": "ε̇_s",
+          "description": "primary creep strain, ε̇_s",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "creep-rate-primary",
+          "symbol": "ε_s",
+          "description": "primary creep rate, ε_s",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "strain-shear-plastic",
+          "symbol": "",
+          "description": "accumulated plastic shear strain",
+          "type": "FLT",
+          "default": ""
+        },
+        {
+          "keyword": "strain-tension-plastic",
+          "symbol": "",
+          "description": "accumulated plastic tensile strain",
+          "type": "FLT",
+          "default": ""
+        }
+      ]
+    }
+  ],
+  "typical_applications": [],
+  "notes": [],
+  "source": "https://docs.itascacg.com/itasca900/common/models/pwipp/doc/modelpwipp.html",
+  "usage": {
+    "assign": "zone cmodel assign wipp-drucker [range ...]",
+    "property": "zone property <keyword> <value> [range cmodel-name wipp-drucker]"
+  }
+}

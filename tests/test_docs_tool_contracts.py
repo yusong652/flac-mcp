@@ -155,3 +155,60 @@ async def test_browse_reference_root_contract() -> None:
     assert data["action"] == "browse"
     assert data["summary"]["count"] >= 1
     assert isinstance(data["entries"], list)
+    names = {e["name"] for e in data["entries"]}
+    assert "constitutive-models" in names
+
+
+@pytest.mark.asyncio
+async def test_browse_reference_constitutive_models_category_contract() -> None:
+    # No version arg: constitutive-models is version-agnostic, so the
+    # reference tool's default (7.0) must NOT filter the FLAC 9.0 models out.
+    result = await mcp._tool_manager.call_tool("flac_browse_reference", {"topic": "constitutive-models"})
+    payload = _parse_tool_payload(result)
+    data = payload["data"]
+
+    assert payload["ok"] is True
+    assert data["source"] == "reference"
+    assert data["summary"]["count"] >= 30
+    names = {e["name"] for e in data["entries"]}
+    assert {"mohr-coulomb", "drucker-prager", "null"} <= names
+
+
+@pytest.mark.asyncio
+async def test_browse_reference_constitutive_model_item_contract() -> None:
+    result = await mcp._tool_manager.call_tool("flac_browse_reference", {"topic": "constitutive-models mohr-coulomb"})
+    payload = _parse_tool_payload(result)
+    data = payload["data"]
+
+    assert payload["ok"] is True
+    assert payload.get("error") is None
+    doc = data["entries"][0]["doc"]
+    assert doc["model"] == "mohr-coulomb"
+    props = doc["property_groups"][0]["properties"]
+    keywords = {p["keyword"] for p in props}
+    # The exact gap the e2e exposed: 'zone property' vocabulary discoverable.
+    assert {"young", "poisson", "cohesion", "friction", "tension"} <= keywords
+    assert doc["usage"]["assign"].startswith("zone cmodel assign mohr-coulomb")
+    # Dimension-agnostic model: no property carries a `dim` tag (absence
+    # means valid in both FLAC2D and FLAC3D).
+    assert all("dim" not in p for p in props)
+
+
+@pytest.mark.asyncio
+async def test_browse_reference_dim_tag_scoped_to_orientation_pair() -> None:
+    # e2e found dip/dip-direction are FLAC3D-only (FLAC2D uses `angle`) but,
+    # unlike xz/yz/-z, that is not evident from the keyword text — so only
+    # this pair is tagged dim=3D; the 2D alternative and self-evident
+    # out-of-plane keywords stay untagged.
+    result = await mcp._tool_manager.call_tool(
+        "flac_browse_reference", {"topic": "constitutive-models ubiquitous-joint"}
+    )
+    payload = _parse_tool_payload(result)
+    assert payload["ok"] is True
+    props = {p["keyword"]: p for p in payload["data"]["entries"][0]["doc"]["property_groups"][0]["properties"]}
+
+    assert props["dip"]["dim"] == "3D"
+    assert props["dip-direction"]["dim"] == "3D"
+    # FLAC2D alternative and self-evidently-3D keyword are NOT tagged.
+    assert "dim" not in props["angle"]
+    assert "dim" not in props["normal-z"]

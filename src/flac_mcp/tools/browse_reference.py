@@ -24,6 +24,9 @@ def register(mcp: FastMCP) -> None:
             description=(
                 "Reference topic to browse (space-separated path). Examples:\n"
                 "- None or '': List all reference categories\n"
+                "- 'constitutive-models': List all FLAC zone material models\n"
+                "- 'constitutive-models mohr-coulomb': Mohr-Coulomb zone "
+                "property keywords (for 'zone property')\n"
                 "- 'contact-models': List all contact models\n"
                 "- 'contact-models linear': Linear model properties\n"
                 "- 'range-elements': Range elements overview (24 elements)\n"
@@ -38,7 +41,8 @@ def register(mcp: FastMCP) -> None:
             description=(
                 "FLAC documentation version (6.0/7.0/9.0). Defaults to 7.0. "
                 "Filters contact models by version availability; "
-                "range-elements and plot-items are version-agnostic."
+                "constitutive-models, range-elements and plot-items are "
+                "version-agnostic."
             ),
         ),
     ) -> dict[str, Any]:
@@ -52,6 +56,9 @@ def register(mcp: FastMCP) -> None:
         - Full path (e.g., "contact-models linear"): Full documentation
 
         When to use:
+        - Need FLAC zone constitutive model property names
+          (mohr-coulomb: young/poisson/cohesion/friction/...; cysoil; etc.)
+          before a 'zone property' / 'zone cmodel assign' command
         - Need contact model property names (kn, ks, fric, pb_*)
         - Need range filtering syntax (position, cylinder, group, id)
         - Need plot item configuration (color-by, cut plane, transparency, legend)
