@@ -1,0 +1,68 @@
+{
+  "module": "itasca.gridpoint",
+  "description": "Gridpoint object management — nodes of the FLAC continuum grid",
+  "import_statement": "import itasca",
+  "functions": [
+    {
+      "name": "count",
+      "signature": "itasca.gridpoint.count() -> int",
+      "description": "Get the number of gridpoints.",
+      "returns": {
+        "type": "int",
+        "description": ""
+      }
+    },
+    {
+      "name": "find",
+      "signature": "itasca.gridpoint.find(id: int) -> Gridpoint object",
+      "description": "Get the gridpoint object with the given ID number.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "int",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": {
+        "type": "Gridpoint object",
+        "description": ""
+      }
+    },
+    {
+      "name": "list",
+      "signature": "itasca.gridpoint.list() -> Gridpoint iterator object",
+      "description": "Get a gridpoint iterator object.",
+      "returns": {
+        "type": "Gridpoint iterator object",
+        "description": ""
+      }
+    },
+    {
+      "name": "maxid",
+      "signature": "itasca.gridpoint.maxid() -> int",
+      "description": "Get the maximum gridpoint ID.",
+      "returns": {
+        "type": "int",
+        "description": ""
+      }
+    },
+    {
+      "name": "near",
+      "signature": "itasca.gridpoint.near(point: vec) -> Gridpoint object",
+      "description": "Find the closest gridpoint to a point.",
+      "parameters": [
+        {
+          "name": "point",
+          "type": "vec",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": {
+        "type": "Gridpoint object",
+        "description": ""
+      }
+    }
+  ]
+}

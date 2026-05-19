@@ -31,4 +31,6 @@ CLASS_TO_MODULE = {
     "Template": "clump.template",  # Template is under clump.template submodule
     "RBlock": "rblock",  # RBlock is under rblock module
     "RBlockTemplate": "rblock.template",  # RBlock template object is under rblock.template submodule
+    "Zone": "zone",  # FLAC continuum: itasca.zone.Zone.*
+    "Gridpoint": "gridpoint",  # FLAC continuum: itasca.gridpoint.Gridpoint.*
 }
