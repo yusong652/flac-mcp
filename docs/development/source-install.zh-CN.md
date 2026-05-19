@@ -9,13 +9,25 @@
 - `flac-mcp`
   位于 [`src/flac_mcp`](../../src/flac_mcp) 的 MCP 服务端包，运行在标准 Python `>=3.10`
 - `itasca-mcp-bridge`
-  位于 [`itasca-mcp-bridge`](../../itasca-mcp-bridge) 的 bridge 包，运行在 FLAC 内嵌 Python 中
+  位于 [`itasca-mcp-bridge`](../../itasca-mcp-bridge) 的 bridge 包，运行在 FLAC 内嵌 Python 中。这个目录是一个 **git submodule**：它有自己独立的仓库（[`yusong652/itasca-mcp-bridge`](https://github.com/yusong652/itasca-mcp-bridge)）和独立的发版周期。`flac-mcp` 只记录“用 bridge 的哪个 commit”，并不跟踪 bridge 的源文件。
 
-虽然它们在同一个仓库里，但安装和验证时应当视为两个独立目标。
+虽然它们出现在同一个工作区里，但安装和验证时应当视为两个独立目标。
 
 ## 1. 克隆仓库并安装开发依赖
 
-在仓库根目录执行：
+克隆时带上 bridge submodule（第 3–7 步需要它）：
+
+```bash
+git clone --recurse-submodules https://github.com/yusong652/flac-mcp.git
+```
+
+已经克隆过、但当时没加 `--recurse-submodules`？此时 `itasca-mcp-bridge/` 是空的，需要初始化：
+
+```bash
+git submodule update --init --recursive
+```
+
+然后在仓库根目录执行：
 
 ```bash
 uv sync --group dev
@@ -26,6 +38,25 @@ uv sync --group dev
 ```bash
 uv run pytest tests
 ```
+
+### 与 bridge submodule 协作
+
+`itasca-mcp-bridge/` 是一个被钉住的指针（gitlink，模式 `160000`），指向独立仓库 [`yusong652/itasca-mcp-bridge`](https://github.com/yusong652/itasca-mcp-bridge) 的某一个 commit —— `flac-mcp` 在这个路径下只跟踪一个 SHA，而不是 bridge 的源文件。由此带来几点实务：
+
+- **pull `flac-mcp` 之后**，要重新同步指针（submodule 工作区不会自动跟着移动）：
+
+  ```bash
+  git submodule update --init --recursive
+  ```
+
+- **要升级 bridge 版本**，先在 `itasca-mcp-bridge/` 里 checkout 到目标 commit，然后回到 `flac-mcp` 显式提交这个移动后的指针：
+
+  ```bash
+  git add itasca-mcp-bridge && git commit -m "chore: bump itasca-mcp-bridge pin"
+  ```
+
+- **推送顺序很重要**：先推 bridge 仓库。被钉住的 commit 必须已经存在于 bridge 公共仓库，否则别人 clone 拉不到。
+- `git status` 出现 `modified: itasca-mcp-bridge (untracked content)` 通常只是说 submodule 工作区相对锁定的 commit 有本地/未跟踪文件 —— 并不是 `flac-mcp` 在跟踪 bridge 源码。只有在你确实想升级时才去动这个指针。
 
 ## 2. 让 MCP 客户端指向本地源码
 

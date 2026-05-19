@@ -9,13 +9,25 @@ This repository contains two separate runtimes:
 - `flac-mcp`
   The MCP server package under [`src/flac_mcp`](../../src/flac_mcp), running on standard Python `>=3.10`
 - `itasca-mcp-bridge`
-  The bridge package under [`itasca-mcp-bridge`](../../itasca-mcp-bridge), running inside FLAC embedded Python
+  The bridge package under [`itasca-mcp-bridge`](../../itasca-mcp-bridge), running inside FLAC embedded Python. This directory is a **git submodule**: its own repository ([`yusong652/itasca-mcp-bridge`](https://github.com/yusong652/itasca-mcp-bridge)) with an independent release cycle. `flac-mcp` only records *which* bridge commit to use, not the bridge's files.
 
-Treat them as separate installation targets even though they live in the same repository.
+Treat them as separate installation targets even though they appear in the same working tree.
 
 ## 1. Clone and Install Dev Dependencies
 
-From the repository root:
+Clone with the bridge submodule (it is required for Steps 3–7):
+
+```bash
+git clone --recurse-submodules https://github.com/yusong652/flac-mcp.git
+```
+
+Already cloned without `--recurse-submodules`? `itasca-mcp-bridge/` is empty until you initialize it:
+
+```bash
+git submodule update --init --recursive
+```
+
+Then, from the repository root:
 
 ```bash
 uv sync --group dev
@@ -26,6 +38,25 @@ Run tests:
 ```bash
 uv run pytest tests
 ```
+
+### Working with the bridge submodule
+
+`itasca-mcp-bridge/` is a pinned pointer (a gitlink, mode `160000`) to one commit of the separate [`yusong652/itasca-mcp-bridge`](https://github.com/yusong652/itasca-mcp-bridge) repo — `flac-mcp` tracks a single SHA there, not the bridge's source files. Practical consequences:
+
+- **After pulling `flac-mcp`**, re-sync the pin — the submodule working tree does not move on its own:
+
+  ```bash
+  git submodule update --init --recursive
+  ```
+
+- **To bump the bridge version**, check out the desired commit inside `itasca-mcp-bridge/`, then stage the moved pointer explicitly in `flac-mcp`:
+
+  ```bash
+  git add itasca-mcp-bridge && git commit -m "chore: bump itasca-mcp-bridge pin"
+  ```
+
+- **Push order matters**: push the bridge repo first. The pinned commit must already exist on the public bridge repo, or other clones cannot fetch it.
+- `git status` showing `modified: itasca-mcp-bridge (untracked content)` usually just means the submodule working tree has local/untracked files relative to the pin — not that `flac-mcp` is tracking bridge sources. Bump the pin only when you intend to.
 
 ## 2. Point Your MCP Client at the Local Checkout
 
