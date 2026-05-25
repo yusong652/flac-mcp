@@ -6,9 +6,9 @@ from typing import Any
 
 from flac_mcp.knowledge.python_api.loader import DocumentationLoader
 from flac_mcp.knowledge.python_api.product_index import (
-    PYTHON_API_SOURCES,
     SUPPORTED_PYTHON_API_PRODUCTS,
     SUPPORTED_PYTHON_API_VERSIONS,
+    source_info,
 )
 
 SUPPORTED_PRODUCTS = SUPPORTED_PYTHON_API_PRODUCTS
@@ -58,9 +58,11 @@ def build_python_api_coverage() -> dict[str, Any]:
         for version, expected_modules in versions.items():
             product_index = DocumentationLoader.load_index(product, version)
             product_modules = set(product_index.get("modules", {}).keys())
+            if not expected_modules and product_modules:
+                expected_modules = product_modules
             present = sorted(expected_modules & product_modules)
             missing = sorted(expected_modules - product_modules)
-            source = PYTHON_API_SOURCES.get(product, {}).get(version, {})
+            source = source_info(product, version)
             matrix[product][version] = {
                 "expected_modules": sorted(expected_modules),
                 "present_modules": present,
@@ -82,11 +84,19 @@ def build_python_api_coverage() -> dict[str, Any]:
         },
         "matrix": matrix,
         "known_limits": [
-            "The bundled product-scoped Python API index is currently complete for FLAC 9.0.",
-            "FLAC3D 6.0/7.0 official Python API pages exist, but this package does not yet bundle separate snapshots.",
+            "FLAC3D Python API snapshots are bundled for 6.0, 7.0, and 9.0.",
+            "FLAC2D product-scoped Python API is represented for 9.0 from the official shared FLAC docs.",
             "FLAC2D 6.0/7.0 are marked not applicable in the bundled source matrix.",
         ],
         "sources": [
+            {
+                "label": "FLAC3D 6.0 Python API index",
+                "url": "https://docs.itascacg.com/pfc600/flac3d/docproject/source/options/python/itasca.html",
+            },
+            {
+                "label": "FLAC3D 7.0 Python scripting index",
+                "url": "https://docs.itascacg.com/flac3d700/common/docproject/source/manual/scripting/python/python.html",
+            },
             {
                 "label": "ITASCA 9.0 FLAC3D Python API index",
                 "url": "https://docs.itascacg.com/itasca900/common/docproject/source/manual/scripting/python/python_flac3d.html",

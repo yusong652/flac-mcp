@@ -24,6 +24,7 @@ from flac_mcp.knowledge.python_api.product_index import (
     is_api_available,
     normalize_api_version,
     source_info,
+    versioned_docs_dir,
 )
 
 
@@ -35,10 +36,19 @@ class DocumentationLoader:
     """
 
     @staticmethod
-    @lru_cache(maxsize=1)
-    def _load_base_index() -> dict[str, Any]:
+    def _docs_dir(product: str, version: str) -> Path:
+        """Return the docs directory for a product/version API snapshot."""
+        versioned = versioned_docs_dir(product, version)
+        if versioned.exists():
+            return versioned
+        return FLAC_DOCS_SOURCE
+
+    @staticmethod
+    @lru_cache(maxsize=8)
+    def _load_base_index(docs_dir: str) -> dict[str, Any]:
         """Load the unfiltered main index file with caching."""
-        index_path = FLAC_DOCS_SOURCE / "index.json"
+        docs_path = Path(docs_dir)
+        index_path = docs_path / "index.json"
         if not index_path.exists():
             raise FileNotFoundError(f"Index file not found: {index_path}")
 
@@ -71,7 +81,9 @@ class DocumentationLoader:
         """
         product_value = normalize_product(product)
         version_value = normalize_api_version(version)
-        base_index = deepcopy(DocumentationLoader._load_base_index())
+        docs_dir = DocumentationLoader._docs_dir(product_value, version_value)
+        base_index = deepcopy(DocumentationLoader._load_base_index(str(docs_dir)))
+        base_index["_docs_dir"] = str(docs_dir)
         if product_value == FLACProduct.ANY.value:
             base_index["product"] = product_value
             base_index["version"] = version_value
@@ -96,7 +108,8 @@ class DocumentationLoader:
         quick_ref = index.get("quick_ref", {})
         allowed_quick_ref: dict[str, str] = {}
         for api_name, file_ref in quick_ref.items():
-            api_doc = DocumentationLoader._load_api_doc_from_ref(file_ref)
+            docs_dir = Path(str(index.get("_docs_dir", FLAC_DOCS_SOURCE)))
+            api_doc = DocumentationLoader._load_api_doc_from_ref(file_ref, docs_dir)
             if api_doc and is_api_available(api_name, api_doc, product, version):
                 allowed_quick_ref[api_name] = file_ref
 
@@ -183,18 +196,22 @@ class DocumentationLoader:
         all_keywords: defaultdict[str, list[str]] = defaultdict(list)
 
         # Load itasca top-level keywords
-        itasca_keywords_path = FLAC_DOCS_SOURCE / "itasca_keywords.json"
+        product_value = normalize_product(product)
+        version_value = normalize_api_version(version)
+        docs_dir = DocumentationLoader._docs_dir(product_value, version_value)
+
+        itasca_keywords_path = docs_dir / "itasca_keywords.json"
         if itasca_keywords_path.exists():
             with open(itasca_keywords_path, encoding="utf-8") as f:
                 data = json.load(f)
                 DocumentationLoader._merge_keywords(all_keywords, data.get("keywords", {}))
 
         # Load keywords from all sub-modules (recursive)
-        modules_dir = FLAC_DOCS_SOURCE / "modules"
+        modules_dir = docs_dir / "modules"
         if modules_dir.exists():
             DocumentationLoader._load_keywords_recursive(modules_dir, all_keywords)
 
-        product_index = DocumentationLoader.load_index(product, version)
+        product_index = DocumentationLoader.load_index(product_value, version_value)
         allowed_apis = set(product_index.get("quick_ref", {}))
 
         filtered_keywords: dict[str, list[str]] = {}
@@ -264,18 +281,19 @@ class DocumentationLoader:
             # Not found in either quick_ref or modules
             return None
 
-        doc = DocumentationLoader._load_api_doc_from_ref(ref)
+        docs_dir = Path(str(index.get("_docs_dir", FLAC_DOCS_SOURCE)))
+        doc = DocumentationLoader._load_api_doc_from_ref(ref, docs_dir)
         if doc:
             return annotate_api_doc(api_name, doc, product_value, version_value)
         return None
 
     @staticmethod
-    def _load_api_doc_from_ref(ref: str) -> dict[str, Any] | None:
+    def _load_api_doc_from_ref(ref: str, docs_dir: Path) -> dict[str, Any] | None:
         """Load an API documentation entry from a quick_ref file reference."""
         # Parse file path and anchor
         # Format: "file_name.json#function_name"
         file_name, anchor = ref.split("#")
-        doc_path = FLAC_DOCS_SOURCE / file_name
+        doc_path = docs_dir / file_name
 
         if not doc_path.exists():
             return None
@@ -512,7 +530,8 @@ class DocumentationLoader:
             }
 
         # Load full module documentation
-        doc_path = FLAC_DOCS_SOURCE / file_path
+        docs_dir = Path(str(index.get("_docs_dir", FLAC_DOCS_SOURCE)))
+        doc_path = docs_dir / file_path
         if not doc_path.exists():
             # Return basic info from index
             return {
@@ -626,7 +645,8 @@ class DocumentationLoader:
             return cast(dict[str, Any], object_info)
 
         # Load full object documentation
-        doc_path = FLAC_DOCS_SOURCE / file_path
+        docs_dir = Path(str(index.get("_docs_dir", FLAC_DOCS_SOURCE)))
+        doc_path = docs_dir / file_path
         if not doc_path.exists():
             return cast(dict[str, Any], object_info)
 

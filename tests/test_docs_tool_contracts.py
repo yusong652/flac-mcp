@@ -197,6 +197,24 @@ async def test_python_api_coverage_reports_missing_modules() -> None:
     assert "flac3d" in data["products"]
     assert data["matrix"]["flac3d"]["9.0"]["complete"] is True
     assert data["matrix"]["flac3d"]["9.0"]["missing_modules"] == []
+    assert data["matrix"]["flac3d"]["7.0"]["complete"] is True
+    assert data["matrix"]["flac3d"]["7.0"]["api_entry_count"] >= 500
+    assert data["matrix"]["flac3d"]["6.0"]["complete"] is True
+    assert data["matrix"]["flac3d"]["6.0"]["api_entry_count"] >= 350
+
+
+@pytest.mark.asyncio
+async def test_browse_python_api_versioned_flac3d_contract() -> None:
+    result = await mcp._tool_manager.call_tool(
+        "flac_browse_python_api",
+        {"api": "itasca.zone.Zone.flow_z", "product": "flac3d", "version": "7.0"},
+    )
+    payload = _parse_tool_payload(result)
+    data = payload["data"]
+
+    assert payload["ok"] is True
+    assert data["summary"]["version"] == "7.0"
+    assert data["entries"][0]["method"] == "flow_z"
 
 
 @pytest.mark.asyncio

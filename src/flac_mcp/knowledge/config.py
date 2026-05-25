@@ -13,6 +13,10 @@ _RESOURCES_DIR = Path(__file__).parent / "resources"
 # Contains FLAC/Itasca Python SDK API documentation exported from official docs
 FLAC_DOCS_SOURCE = _RESOURCES_DIR / "python_sdk_docs"
 
+# Optional product/version-specific Python API snapshots. The legacy
+# python_sdk_docs directory remains the default bundled 9.0 snapshot.
+FLAC_PYTHON_API_DOCS_VERSION_ROOT = _RESOURCES_DIR / "python_sdk_docs_versions"
+
 # Command documentation root (version-controlled, JSON format)
 # Contains versioned FLAC command documentation and command index metadata
 FLAC_COMMAND_DOCS_ROOT = _RESOURCES_DIR / "command_docs"

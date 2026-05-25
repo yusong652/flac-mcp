@@ -86,6 +86,7 @@ print(it.command("model list information"))
 ## 功能亮点
 
 - **多版本 FLAC 支持** — 通过 `version` 参数查阅 FLAC 6.0、7.0、9.0 的命令文档
+- **版本化 Python API 快照** — 内置 FLAC3D 6.0、7.0、9.0 的 Python API 文档
 - **按产品区分 Python API 文档** — Python API 浏览/搜索通过 `product` 和 `version` 使用 FLAC2D 或 FLAC3D API 索引
 - **FLAC2D/FLAC3D 过滤** — 命令和参考文档工具支持 `product`，减少维度不匹配
 - **扩展的 FLAC 9.0 Python API** — 内置 attach、array、interface、zone、gridpoint、vec 等 API 文档

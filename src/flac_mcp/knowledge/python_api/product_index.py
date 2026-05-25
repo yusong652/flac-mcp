@@ -5,9 +5,11 @@ from __future__ import annotations
 import json
 import re
 from copy import deepcopy
+from pathlib import Path
 from typing import Any
 
 from flac_mcp.knowledge.compatibility import FLACProduct, normalize_product
+from flac_mcp.knowledge.config import FLAC_PYTHON_API_DOCS_VERSION_ROOT
 
 SUPPORTED_PYTHON_API_PRODUCTS = ("flac2d", "flac3d")
 SUPPORTED_PYTHON_API_VERSIONS = ("6.0", "7.0", "9.0")
@@ -35,13 +37,13 @@ PYTHON_API_SOURCES: dict[str, dict[str, dict[str, Any]]] = {
         "6.0": {
             "applicable": True,
             "bundled": False,
-            "source": "Official FLAC3D 6.0 Python API exists, but this package bundles the 9.0 API snapshot.",
+            "source": "Official FLAC3D 6.0 Python API pages.",
             "url": "https://docs.itascacg.com/pfc600/flac3d/docproject/source/options/python/itasca.html",
         },
         "7.0": {
             "applicable": True,
             "bundled": False,
-            "source": "Official FLAC3D 7.0 Python API exists, but this package bundles the 9.0 API snapshot.",
+            "source": "Official FLAC3D 7.0 Python API pages.",
             "url": "https://docs.itascacg.com/flac3d700/common/docproject/source/manual/scripting/python/python.html",
         },
         "9.0": {
@@ -86,6 +88,11 @@ def normalize_api_version(value: str | None) -> str:
     return normalized
 
 
+def versioned_docs_dir(product: str, version: str) -> Path:
+    """Return the optional versioned Python API docs directory."""
+    return FLAC_PYTHON_API_DOCS_VERSION_ROOT / normalize_product(product) / normalize_api_version(version)
+
+
 def source_info(product: str, version: str) -> dict[str, Any]:
     """Return source metadata for a product/version API index."""
     product_value = normalize_product(product)
@@ -96,7 +103,11 @@ def source_info(product: str, version: str) -> dict[str, Any]:
             "bundled": True,
             "source": "Combined bundled Python API index.",
         }
-    return dict(PYTHON_API_SOURCES.get(product_value, {}).get(version_value, {"applicable": False, "bundled": False}))
+    info = dict(PYTHON_API_SOURCES.get(product_value, {}).get(version_value, {"applicable": False, "bundled": False}))
+    if info.get("applicable") and versioned_docs_dir(product_value, version_value).exists():
+        info["bundled"] = True
+        info["docs_dir"] = str(versioned_docs_dir(product_value, version_value))
+    return info
 
 
 def is_source_available(product: str, version: str) -> bool:

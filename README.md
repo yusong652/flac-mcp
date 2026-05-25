@@ -86,6 +86,7 @@ Once first-time setup is done, each new FLAC session only needs the bridge re-st
 ## Features
 
 - **Multi-version FLAC support** - command docs for FLAC 6.0, 7.0, and 9.0 via the `version` parameter
+- **Versioned Python API snapshots** - FLAC3D Python API docs for 6.0, 7.0, and 9.0 are bundled
 - **Product-scoped Python API docs** - Python API browse/search use FLAC2D or FLAC3D API indexes via `product` and `version`
 - **FLAC2D/FLAC3D filtering** - command and reference tools accept `product` to avoid dimension-specific mismatches
 - **Expanded FLAC 9.0 Python API** - bundled docs include attach, array, interface, zone, gridpoint, and vec APIs
