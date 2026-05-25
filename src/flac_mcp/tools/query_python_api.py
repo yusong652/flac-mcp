@@ -3,11 +3,14 @@
 from typing import Any
 
 from fastmcp import FastMCP
+from pydantic import Field
 
 from flac_mcp.contracts import build_docs_data, build_ok
+from flac_mcp.knowledge.compatibility import FLACProduct, normalize_product
 from flac_mcp.knowledge.python_api import APIDocFormatter, DocumentationLoader
+from flac_mcp.knowledge.python_api.product_index import normalize_api_version
 from flac_mcp.knowledge.query import APISearch
-from flac_mcp.utils import PythonAPISearchQuery, SearchLimit
+from flac_mcp.utils import CommandDocVersion, PythonAPISearchQuery, SearchLimit
 
 
 def register(mcp: FastMCP) -> None:
@@ -17,6 +20,16 @@ def register(mcp: FastMCP) -> None:
     def flac_query_python_api(
         query: PythonAPISearchQuery,
         limit: SearchLimit = 10,
+        product: FLACProduct = Field(
+            FLACProduct.ANY,
+            description=(
+                "FLAC product/dimension API index. Use 'flac2d' to search only the FLAC2D API set."
+            ),
+        ),
+        version: CommandDocVersion = Field(
+            CommandDocVersion.V9_0,
+            description="FLAC Python API documentation version. Bundled product-scoped API data is currently 9.0.",
+        ),
     ) -> dict[str, Any]:
         """Search FLAC Python SDK documentation by keywords (like grep).
 
@@ -30,7 +43,9 @@ def register(mcp: FastMCP) -> None:
         - flac_browse_python_api: Get full documentation for a known API path
         - flac_query_command: Search FLAC commands by keywords
         """
-        matches = APISearch.search(query, top_k=limit)
+        product_value = normalize_product(product)
+        version_value = normalize_api_version(str(version.value if hasattr(version, "value") else version))
+        matches = APISearch.search(query, top_k=limit, product=product_value, version=version_value)
         results_payload: list[dict[str, Any]] = []
         for result in matches:
             api_path = result.document.name
@@ -44,6 +59,7 @@ def register(mcp: FastMCP) -> None:
                     "score": round(result.score, 2),
                     "rank": result.rank,
                     "metadata": result.document.metadata,
+                    "availability": result.document.metadata.get("availability", {}),
                 }
             )
 
@@ -53,11 +69,13 @@ def register(mcp: FastMCP) -> None:
             entries=results_payload,
             summary={
                 "count": len(results_payload),
+                "product": product_value,
+                "version": version_value,
             },
         )
 
         if not results_payload:
-            index = DocumentationLoader.load_index()
+            index = DocumentationLoader.load_index(product_value, version_value)
             hints = []
             for hint_key, hint_msg in index.get("fallback_hints", {}).items():
                 if hint_key in query.lower():

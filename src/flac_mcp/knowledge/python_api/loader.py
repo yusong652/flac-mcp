@@ -12,11 +12,19 @@ Responsibilities:
 
 import json
 from collections import defaultdict
+from copy import deepcopy
 from functools import lru_cache
 from pathlib import Path
 from typing import Any, cast
 
+from flac_mcp.knowledge.compatibility import FLACProduct, normalize_product
 from flac_mcp.knowledge.config import FLAC_DOCS_SOURCE
+from flac_mcp.knowledge.python_api.product_index import (
+    annotate_api_doc,
+    is_api_available,
+    normalize_api_version,
+    source_info,
+)
 
 
 class DocumentationLoader:
@@ -28,8 +36,21 @@ class DocumentationLoader:
 
     @staticmethod
     @lru_cache(maxsize=1)
-    def load_index() -> dict[str, Any]:
-        """Load the main index file with caching.
+    def _load_base_index() -> dict[str, Any]:
+        """Load the unfiltered main index file with caching."""
+        index_path = FLAC_DOCS_SOURCE / "index.json"
+        if not index_path.exists():
+            raise FileNotFoundError(f"Index file not found: {index_path}")
+
+        with open(index_path, encoding="utf-8") as f:
+            index = json.load(f)
+
+        return DocumentationLoader._expand_object_methods(index)
+
+    @staticmethod
+    @lru_cache(maxsize=32)
+    def load_index(product: str | FLACProduct | None = FLACProduct.ANY.value, version: str | None = "9.0") -> dict[str, Any]:
+        """Load a product/version-scoped Python API index.
 
         The index file contains:
         - quick_ref: Direct API name to file reference mapping
@@ -48,21 +69,99 @@ class DocumentationLoader:
             >>> "itasca.zone.list" in quick_ref
             True
         """
-        index_path = FLAC_DOCS_SOURCE / "index.json"
-        if not index_path.exists():
-            raise FileNotFoundError(f"Index file not found: {index_path}")
+        product_value = normalize_product(product)
+        version_value = normalize_api_version(version)
+        base_index = deepcopy(DocumentationLoader._load_base_index())
+        if product_value == FLACProduct.ANY.value:
+            base_index["product"] = product_value
+            base_index["version"] = version_value
+            base_index["source"] = source_info(product_value, version_value)
+            return base_index
+        return DocumentationLoader._build_product_index(base_index, product_value, version_value)
 
-        with open(index_path, encoding="utf-8") as f:
-            index = json.load(f)
+    @staticmethod
+    def _build_product_index(index: dict[str, Any], product: str, version: str) -> dict[str, Any]:
+        """Build a product/version API index before browse/search sees it."""
+        source = source_info(product, version)
+        index["product"] = product
+        index["version"] = version
+        index["source"] = source
 
-        # Expand object methods to full official paths
-        index = DocumentationLoader._expand_object_methods(index)
+        if not source.get("applicable") or not source.get("bundled"):
+            index["modules"] = {}
+            index["objects"] = {}
+            index["quick_ref"] = {}
+            return index
 
+        quick_ref = index.get("quick_ref", {})
+        allowed_quick_ref: dict[str, str] = {}
+        for api_name, file_ref in quick_ref.items():
+            api_doc = DocumentationLoader._load_api_doc_from_ref(file_ref)
+            if api_doc and is_api_available(api_name, api_doc, product, version):
+                allowed_quick_ref[api_name] = file_ref
+
+        index["quick_ref"] = allowed_quick_ref
+        index["modules"] = DocumentationLoader._filter_modules(index.get("modules", {}), allowed_quick_ref)
+        index["objects"] = DocumentationLoader._filter_objects(index.get("objects", {}), allowed_quick_ref)
         return index
 
     @staticmethod
-    @lru_cache(maxsize=1)
-    def load_all_keywords() -> dict[str, list[str]]:
+    def _filter_modules(modules: dict[str, Any], quick_ref: dict[str, str]) -> dict[str, Any]:
+        filtered: dict[str, Any] = {}
+        for module_key, module_info in modules.items():
+            full_prefix = "itasca" if module_key == "itasca" else f"itasca.{module_key}"
+            functions = module_info.get("functions", [])
+            function_names = [
+                str(func.get("name") if isinstance(func, dict) else func)
+                for func in functions
+                if f"{full_prefix}.{func.get('name') if isinstance(func, dict) else func}" in quick_ref
+            ]
+            if function_names or module_key == "vec":
+                filtered[module_key] = {**module_info, "functions": function_names}
+        return filtered
+
+    @staticmethod
+    def _filter_objects(objects: dict[str, Any], quick_ref: dict[str, str]) -> dict[str, Any]:
+        filtered: dict[str, Any] = {}
+        for object_name, object_info in objects.items():
+            file_path = object_info.get("file", "")
+            if not file_path:
+                continue
+            allowed_methods = sorted(
+                api_name.rsplit(".", 1)[-1]
+                for api_name, file_ref in quick_ref.items()
+                if file_ref.startswith(f"{file_path}#")
+            )
+            if not allowed_methods:
+                continue
+            entry = {**object_info}
+            method_groups = object_info.get("method_groups", {})
+            if isinstance(method_groups, dict):
+                entry["method_groups"] = DocumentationLoader._filter_method_groups(method_groups, set(allowed_methods))
+            filtered[object_name] = entry
+        return filtered
+
+    @staticmethod
+    def _filter_method_groups(method_groups: dict[str, Any], allowed_methods: set[str]) -> dict[str, Any]:
+        filtered: dict[str, Any] = {}
+        for group, methods in method_groups.items():
+            if isinstance(methods, str):
+                names = [name.strip() for name in methods.split(",")]
+            elif isinstance(methods, list):
+                names = [str(name) for name in methods]
+            else:
+                continue
+            kept = [name for name in names if name in allowed_methods]
+            if kept:
+                filtered[group] = kept
+        return filtered
+
+    @staticmethod
+    @lru_cache(maxsize=32)
+    def load_all_keywords(
+        product: str | FLACProduct | None = FLACProduct.ANY.value,
+        version: str | None = "9.0",
+    ) -> dict[str, list[str]]:
         """Load keywords from all modules with caching and merging.
 
         Aggregates keywords from:
@@ -95,11 +194,23 @@ class DocumentationLoader:
         if modules_dir.exists():
             DocumentationLoader._load_keywords_recursive(modules_dir, all_keywords)
 
-        # Convert defaultdict back to regular dict for return
-        return dict(all_keywords)
+        product_index = DocumentationLoader.load_index(product, version)
+        allowed_apis = set(product_index.get("quick_ref", {}))
+
+        filtered_keywords: dict[str, list[str]] = {}
+        for keyword, api_names in all_keywords.items():
+            kept = [api_name for api_name in api_names if api_name in allowed_apis]
+            if kept:
+                filtered_keywords[keyword] = kept
+
+        return filtered_keywords
 
     @staticmethod
-    def load_api_doc(api_name: str) -> dict[str, Any] | None:
+    def load_api_doc(
+        api_name: str,
+        product: str | FLACProduct | None = FLACProduct.ANY.value,
+        version: str | None = "9.0",
+    ) -> dict[str, Any] | None:
         """Load documentation for a specific API or module.
 
         Args:
@@ -139,18 +250,28 @@ class DocumentationLoader:
             >>> doc["type"]
             "module"
         """
-        index = DocumentationLoader.load_index()
+        product_value = normalize_product(product)
+        version_value = normalize_api_version(version)
+        index = DocumentationLoader.load_index(product_value, version_value)
 
         # Try 1: Get file reference from quick_ref (functions/methods)
         ref = index["quick_ref"].get(api_name)
         if not ref:
             # Try 2: Check if it's a module name
-            module_doc = DocumentationLoader._load_module_doc(api_name, index)
+            module_doc = DocumentationLoader._load_module_doc(api_name, index, product_value, version_value)
             if module_doc:
                 return module_doc
             # Not found in either quick_ref or modules
             return None
 
+        doc = DocumentationLoader._load_api_doc_from_ref(ref)
+        if doc:
+            return annotate_api_doc(api_name, doc, product_value, version_value)
+        return None
+
+    @staticmethod
+    def _load_api_doc_from_ref(ref: str) -> dict[str, Any] | None:
+        """Load an API documentation entry from a quick_ref file reference."""
         # Parse file path and anchor
         # Format: "file_name.json#function_name"
         file_name, anchor = ref.split("#")
@@ -233,7 +354,12 @@ class DocumentationLoader:
         return index
 
     @staticmethod
-    def _load_module_doc(api_name: str, index: dict[str, Any]) -> dict[str, Any] | None:
+    def _load_module_doc(
+        api_name: str,
+        index: dict[str, Any],
+        product: str,
+        version: str,
+    ) -> dict[str, Any] | None:
         """Load module-level documentation.
 
         Args:
@@ -279,6 +405,15 @@ class DocumentationLoader:
             "signature": f"{api_name} (module - {func_count} function{'s' if func_count != 1 else ''} available)",
             "description": module_info.get("description", f"{module_name} module"),
             "available_functions": available_functions,
+            "availability": {
+                "products": (
+                    [product]
+                    if product != FLACProduct.ANY.value
+                    else [FLACProduct.FLAC2D.value, FLACProduct.FLAC3D.value]
+                ),
+                "version": version,
+                "source": source_info(product, version),
+            },
             "usage_note": (
                 f"Query specific functions (e.g., '{available_functions[0] if available_functions else 'function_name'}') "
                 "for detailed documentation including parameters, return types, and examples."
@@ -331,7 +466,11 @@ class DocumentationLoader:
                 DocumentationLoader._load_keywords_recursive(item, all_keywords)
 
     @staticmethod
-    def load_module(module_key: str) -> dict[str, Any] | None:
+    def load_module(
+        module_key: str,
+        product: str | FLACProduct | None = FLACProduct.ANY.value,
+        version: str | None = "9.0",
+    ) -> dict[str, Any] | None:
         """Load module documentation by index key.
 
         Args:
@@ -352,7 +491,9 @@ class DocumentationLoader:
             >>> len(doc["functions"])
             9
         """
-        index = DocumentationLoader.load_index()
+        product_value = normalize_product(product)
+        version_value = normalize_api_version(version)
+        index = DocumentationLoader.load_index(product_value, version_value)
         modules = index.get("modules", {})
 
         if module_key not in modules:
@@ -367,6 +508,7 @@ class DocumentationLoader:
                 "module": f"itasca.{module_key}" if module_key != "itasca" else "itasca",
                 "description": module_info.get("description", ""),
                 "functions": module_info.get("functions", []),
+                "availability": {"product": product_value, "version": version_value, "source": index.get("source", {})},
             }
 
         # Load full module documentation
@@ -377,13 +519,36 @@ class DocumentationLoader:
                 "module": f"itasca.{module_key}" if module_key != "itasca" else "itasca",
                 "description": module_info.get("description", ""),
                 "functions": module_info.get("functions", []),
+                "availability": {"product": product_value, "version": version_value, "source": index.get("source", {})},
             }
 
         with open(doc_path, encoding="utf-8") as f:
-            return cast(dict[str, Any], json.load(f))
+            doc = cast(dict[str, Any], json.load(f))
+
+        allowed_names = set(module_info.get("functions", []))
+        module_prefix = "itasca" if module_key == "itasca" else f"itasca.{module_key}"
+        functions = doc.get("functions", [])
+        if isinstance(functions, list):
+            doc["functions"] = [
+                annotate_api_doc(
+                    f"{module_prefix}.{func['name']}",
+                    func,
+                    product_value,
+                    version_value,
+                )
+                for func in functions
+                if isinstance(func, dict) and func.get("name") in allowed_names
+            ]
+        doc["availability"] = {"product": product_value, "version": version_value, "source": index.get("source", {})}
+        return doc
 
     @staticmethod
-    def load_function(module_key: str, func_name: str) -> dict[str, Any] | None:
+    def load_function(
+        module_key: str,
+        func_name: str,
+        product: str | FLACProduct | None = FLACProduct.ANY.value,
+        version: str | None = "9.0",
+    ) -> dict[str, Any] | None:
         """Load function documentation from a module.
 
         Args:
@@ -406,7 +571,7 @@ class DocumentationLoader:
             >>> doc["signature"]
             "itasca.zone.create(radius: float, centroid: vec, id: int = None) -> Zone"
         """
-        module_doc = DocumentationLoader.load_module(module_key)
+        module_doc = DocumentationLoader.load_module(module_key, product, version)
         if not module_doc:
             return None
 
@@ -418,7 +583,11 @@ class DocumentationLoader:
         return None
 
     @staticmethod
-    def load_object(object_name: str) -> dict[str, Any] | None:
+    def load_object(
+        object_name: str,
+        product: str | FLACProduct | None = FLACProduct.ANY.value,
+        version: str | None = "9.0",
+    ) -> dict[str, Any] | None:
         """Load object documentation by class name.
 
         Args:
@@ -441,7 +610,9 @@ class DocumentationLoader:
             >>> "position" in doc["method_groups"]
             True
         """
-        index = DocumentationLoader.load_index()
+        product_value = normalize_product(product)
+        version_value = normalize_api_version(version)
+        index = DocumentationLoader.load_index(product_value, version_value)
         objects = index.get("objects", {})
 
         if object_name not in objects:
@@ -460,10 +631,52 @@ class DocumentationLoader:
             return cast(dict[str, Any], object_info)
 
         with open(doc_path, encoding="utf-8") as f:
-            return cast(dict[str, Any], json.load(f))
+            doc = cast(dict[str, Any], json.load(f))
+
+        allowed_names = DocumentationLoader._method_names_from_groups(object_info.get("method_groups", {}))
+        quick_ref = index.get("quick_ref", {})
+        methods = doc.get("methods", [])
+        if isinstance(methods, list):
+            filtered_methods = []
+            for method in methods:
+                if not isinstance(method, dict) or method.get("name") not in allowed_names:
+                    continue
+                api_path = DocumentationLoader._api_name_for_ref(
+                    quick_ref,
+                    f"{file_path}#{method['name']}",
+                )
+                filtered_methods.append(annotate_api_doc(api_path or method["name"], method, product_value, version_value))
+            doc["methods"] = filtered_methods
+        doc["method_groups"] = object_info.get("method_groups", {})
+        doc["availability"] = {"product": product_value, "version": version_value, "source": index.get("source", {})}
+        return doc
 
     @staticmethod
-    def load_method(object_name: str, method_name: str) -> dict[str, Any] | None:
+    def _method_names_from_groups(method_groups: Any) -> set[str]:
+        names: set[str] = set()
+        if not isinstance(method_groups, dict):
+            return names
+        for methods in method_groups.values():
+            if isinstance(methods, str):
+                names.update(name.strip() for name in methods.split(",") if name.strip())
+            elif isinstance(methods, list):
+                names.update(str(name) for name in methods)
+        return names
+
+    @staticmethod
+    def _api_name_for_ref(quick_ref: dict[str, str], expected_ref: str) -> str | None:
+        for api_name, file_ref in quick_ref.items():
+            if file_ref == expected_ref:
+                return api_name
+        return None
+
+    @staticmethod
+    def load_method(
+        object_name: str,
+        method_name: str,
+        product: str | FLACProduct | None = FLACProduct.ANY.value,
+        version: str | None = "9.0",
+    ) -> dict[str, Any] | None:
         """Load method documentation from an object.
 
         Args:
@@ -485,7 +698,7 @@ class DocumentationLoader:
             >>> doc["signature"]
             "zone.pos() -> vec"
         """
-        object_doc = DocumentationLoader.load_object(object_name)
+        object_doc = DocumentationLoader.load_object(object_name, product, version)
         if not object_doc:
             return None
 
@@ -502,5 +715,6 @@ class DocumentationLoader:
 
         Useful for testing or when documentation files are updated.
         """
+        DocumentationLoader._load_base_index.cache_clear()
         DocumentationLoader.load_index.cache_clear()
         DocumentationLoader.load_all_keywords.cache_clear()

@@ -1,5 +1,6 @@
 """Python API document adapter for FLAC search."""
 
+from flac_mcp.knowledge.compatibility import FLACProduct
 from flac_mcp.knowledge.models.document import DocumentType, SearchDocument
 from flac_mcp.knowledge.python_api.loader import DocumentationLoader
 from flac_mcp.knowledge.python_api.types.mappings import CLASS_TO_MODULE
@@ -9,15 +10,18 @@ class APIDocumentAdapter:
     """Convert Python SDK API docs into unified search documents."""
 
     @staticmethod
-    def load_all() -> list[SearchDocument]:
+    def load_all(
+        product: str | FLACProduct | None = FLACProduct.ANY.value,
+        version: str | None = "9.0",
+    ) -> list[SearchDocument]:
         """Load all function and method API documents."""
         documents = []
-        index = DocumentationLoader.load_index()
+        index = DocumentationLoader.load_index(product, version)
         quick_ref = index.get("quick_ref", {})
-        all_keywords = DocumentationLoader.load_all_keywords()
+        all_keywords = DocumentationLoader.load_all_keywords(product, version)
 
         for api_name, file_ref in quick_ref.items():
-            api_doc = DocumentationLoader.load_api_doc(api_name)
+            api_doc = DocumentationLoader.load_api_doc(api_name, product, version)
             if not api_doc or api_doc.get("type") == "module":
                 continue
 
@@ -43,6 +47,7 @@ class APIDocumentAdapter:
                         "limitations": api_doc.get("limitations", []),
                         "fallback_commands": api_doc.get("fallback_commands", []),
                         "see_also": api_doc.get("see_also", []),
+                        "availability": api_doc.get("availability", {}),
                     },
                 )
             )
@@ -62,9 +67,13 @@ class APIDocumentAdapter:
         return parts[0] if parts else "unknown"
 
     @staticmethod
-    def load_by_id(doc_id: str) -> SearchDocument | None:
+    def load_by_id(
+        doc_id: str,
+        product: str | FLACProduct | None = FLACProduct.ANY.value,
+        version: str | None = "9.0",
+    ) -> SearchDocument | None:
         """Load a specific API document by ID."""
-        api_doc = DocumentationLoader.load_api_doc(doc_id)
+        api_doc = DocumentationLoader.load_api_doc(doc_id, product, version)
         if not api_doc or api_doc.get("type") == "module":
             return None
 
@@ -74,7 +83,9 @@ class APIDocumentAdapter:
             description += "\n\nParameters: " + ", ".join(p.get("name", "") for p in parameters)
 
         keywords = [
-            keyword for keyword, api_list in DocumentationLoader.load_all_keywords().items() if doc_id in api_list
+            keyword
+            for keyword, api_list in DocumentationLoader.load_all_keywords(product, version).items()
+            if doc_id in api_list
         ]
         return SearchDocument(
             name=doc_id,
@@ -89,5 +100,6 @@ class APIDocumentAdapter:
                 "returns": api_doc.get("returns", ""),
                 "limitations": api_doc.get("limitations", []),
                 "see_also": api_doc.get("see_also", []),
+                "availability": api_doc.get("availability", {}),
             },
         )

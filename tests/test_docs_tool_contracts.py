@@ -175,6 +175,18 @@ async def test_browse_python_api_generated_attach_method_contract() -> None:
 
 
 @pytest.mark.asyncio
+async def test_browse_python_api_filters_3d_api_for_flac2d() -> None:
+    result = await mcp._tool_manager.call_tool(
+        "flac_browse_python_api",
+        {"api": "itasca.gravity_z", "product": "flac2d"},
+    )
+    payload = _parse_tool_payload(result)
+
+    assert payload["ok"] is False
+    assert payload["error"]["code"] == "api_unavailable_for_product"
+
+
+@pytest.mark.asyncio
 async def test_python_api_coverage_reports_missing_modules() -> None:
     result = await mcp._tool_manager.call_tool("flac_python_api_coverage", {})
     payload = _parse_tool_payload(result)
@@ -201,6 +213,32 @@ async def test_query_python_api_no_results_contract() -> None:
     assert data["action"] == "query"
     assert data["summary"]["count"] == 0
     assert data["entries"] == []
+
+
+@pytest.mark.asyncio
+async def test_query_python_api_filters_3d_api_for_flac2d() -> None:
+    result = await mcp._tool_manager.call_tool(
+        "flac_query_python_api",
+        {"query": "gravity_z", "limit": 5, "product": "flac2d"},
+    )
+    payload = _parse_tool_payload(result)
+    paths = {entry["api_path"] for entry in payload["data"]["entries"]}
+
+    assert payload["ok"] is True
+    assert "itasca.gravity_z" not in paths
+
+
+@pytest.mark.asyncio
+async def test_query_python_api_keeps_3d_api_for_flac3d() -> None:
+    result = await mcp._tool_manager.call_tool(
+        "flac_query_python_api",
+        {"query": "gravity_z", "limit": 5, "product": "flac3d"},
+    )
+    payload = _parse_tool_payload(result)
+    paths = {entry["api_path"] for entry in payload["data"]["entries"]}
+
+    assert payload["ok"] is True
+    assert "itasca.gravity_z" in paths
 
 
 @pytest.mark.asyncio
@@ -271,3 +309,15 @@ async def test_browse_reference_dim_tag_scoped_to_orientation_pair() -> None:
     # FLAC2D alternative and self-evidently-3D keyword are NOT tagged.
     assert "dim" not in props["angle"]
     assert "dim" not in props["normal-z"]
+
+
+@pytest.mark.asyncio
+async def test_browse_reference_filters_z_position_for_flac2d() -> None:
+    result = await mcp._tool_manager.call_tool(
+        "flac_browse_reference",
+        {"topic": "range-elements position-z", "version": "9.0", "product": "flac2d"},
+    )
+    payload = _parse_tool_payload(result)
+
+    assert payload["ok"] is False
+    assert payload["error"]["code"] == "item_unavailable_for_product"

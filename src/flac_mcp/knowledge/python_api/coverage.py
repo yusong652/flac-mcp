@@ -5,9 +5,14 @@ from __future__ import annotations
 from typing import Any
 
 from flac_mcp.knowledge.python_api.loader import DocumentationLoader
+from flac_mcp.knowledge.python_api.product_index import (
+    PYTHON_API_SOURCES,
+    SUPPORTED_PYTHON_API_PRODUCTS,
+    SUPPORTED_PYTHON_API_VERSIONS,
+)
 
-SUPPORTED_PRODUCTS = ("flac2d", "flac3d")
-SUPPORTED_VERSIONS = ("6.0", "7.0", "9.0")
+SUPPORTED_PRODUCTS = SUPPORTED_PYTHON_API_PRODUCTS
+SUPPORTED_VERSIONS = SUPPORTED_PYTHON_API_VERSIONS
 
 # Official ITASCA 9.0 FLAC Python index lists these FLAC API modules. The
 # pages are shared across FLAC2D/FLAC3D where the API itself is dimension-aware.
@@ -27,33 +32,42 @@ EXPECTED_FLAC_9_MODULES = {
 }
 
 EXPECTED_BY_PRODUCT_VERSION: dict[str, dict[str, set[str]]] = {
-    product: {
-        "6.0": {"itasca", "zone", "gridpoint"},
-        "7.0": {"itasca", "zone", "gridpoint"},
+    "flac2d": {
+        "6.0": set(),
+        "7.0": set(),
         "9.0": EXPECTED_FLAC_9_MODULES,
-    }
-    for product in SUPPORTED_PRODUCTS
+    },
+    "flac3d": {
+        "6.0": set(),
+        "7.0": set(),
+        "9.0": EXPECTED_FLAC_9_MODULES,
+    },
 }
 
 
 def build_python_api_coverage() -> dict[str, Any]:
     """Return a structured coverage report for bundled Python API docs."""
-    index = DocumentationLoader.load_index()
-    modules = set(index.get("modules", {}).keys())
-    objects = set(index.get("objects", {}).keys())
-    quick_ref = index.get("quick_ref", {})
+    base_index = DocumentationLoader.load_index()
+    modules = set(base_index.get("modules", {}).keys())
+    objects = set(base_index.get("objects", {}).keys())
+    quick_ref = base_index.get("quick_ref", {})
 
     matrix: dict[str, dict[str, Any]] = {}
     for product, versions in EXPECTED_BY_PRODUCT_VERSION.items():
         matrix[product] = {}
         for version, expected_modules in versions.items():
-            present = sorted(expected_modules & modules)
-            missing = sorted(expected_modules - modules)
+            product_index = DocumentationLoader.load_index(product, version)
+            product_modules = set(product_index.get("modules", {}).keys())
+            present = sorted(expected_modules & product_modules)
+            missing = sorted(expected_modules - product_modules)
+            source = PYTHON_API_SOURCES.get(product, {}).get(version, {})
             matrix[product][version] = {
                 "expected_modules": sorted(expected_modules),
                 "present_modules": present,
                 "missing_modules": missing,
-                "complete": not missing,
+                "api_entry_count": len(product_index.get("quick_ref", {})),
+                "source": source,
+                "complete": bool(source.get("bundled")) and not missing,
             }
 
     return {
@@ -68,9 +82,9 @@ def build_python_api_coverage() -> dict[str, Any]:
         },
         "matrix": matrix,
         "known_limits": [
-            "Command docs are versioned for 6.0/7.0/9.0; Python API docs are currently a bundled snapshot.",
-            "FLAC2D/FLAC3D dimension differences are partly represented in signatures/descriptions, not as a first-class filter.",
-            "Use extract_flac_api.py inside each target FLAC runtime to regenerate ground-truth API docs.",
+            "The bundled product-scoped Python API index is currently complete for FLAC 9.0.",
+            "FLAC3D 6.0/7.0 official Python API pages exist, but this package does not yet bundle separate snapshots.",
+            "FLAC2D 6.0/7.0 are marked not applicable in the bundled source matrix.",
         ],
         "sources": [
             {

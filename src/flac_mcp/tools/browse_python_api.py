@@ -6,7 +6,10 @@ from fastmcp import FastMCP
 from pydantic import Field
 
 from flac_mcp.contracts import build_docs_data, build_error, build_ok
+from flac_mcp.knowledge.compatibility import FLACProduct, normalize_product
 from flac_mcp.knowledge.python_api import APILoader
+from flac_mcp.knowledge.python_api.product_index import normalize_api_version
+from flac_mcp.utils import CommandDocVersion
 
 
 def register(mcp: FastMCP) -> None:
@@ -27,32 +30,46 @@ def register(mcp: FastMCP) -> None:
                 "- 'itasca.gridpoint.Gridpoint': Gridpoint object method groups"
             ),
         ),
+        product: FLACProduct = Field(
+            FLACProduct.ANY,
+            description=(
+                "FLAC product/dimension API index. Use 'flac2d' to browse the FLAC2D API set."
+            ),
+        ),
+        version: CommandDocVersion = Field(
+            CommandDocVersion.V9_0,
+            description="FLAC Python API documentation version. Bundled product-scoped API data is currently 9.0.",
+        ),
     ) -> dict[str, Any]:
         """Browse FLAC Python SDK documentation by path (like glob + cat)."""
         normalized = _normalize_api_path(api)
+        product_value = normalize_product(product)
+        version_value = normalize_api_version(str(version.value if hasattr(version, "value") else version))
 
         if not normalized:
-            return build_ok(_browse_root())
+            return build_ok(_browse_root(product_value, version_value))
 
         if normalized == "itasca":
-            return _wrap_payload(_browse_module("itasca"))
+            return _wrap_payload(_browse_module("itasca", product_value, version_value))
 
-        parsed = _parse_api_path(normalized)
+        parsed = _parse_api_path(normalized, product_value, version_value)
 
         if parsed["type"] == "error":
-            return _wrap_payload(_browse_with_fallback(parsed, normalized))
+            return _wrap_payload(_browse_with_fallback(parsed, normalized, product_value, version_value))
 
         if parsed["type"] == "module":
-            payload = _browse_module(parsed["module_path"])
+            payload = _browse_module(parsed["module_path"], product_value, version_value)
             return _wrap_payload(payload)
         if parsed["type"] == "function":
-            payload = _browse_function(parsed["module_path"], parsed["name"])
+            payload = _browse_function(parsed["module_path"], parsed["name"], product_value, version_value)
             return _wrap_payload(payload)
         if parsed["type"] == "object":
             payload = _browse_object(
                 parsed["module_path"],
                 parsed["name"],
                 parsed.get("display_name"),
+                product_value,
+                version_value,
             )
             return _wrap_payload(payload)
         if parsed["type"] == "method":
@@ -61,6 +78,8 @@ def register(mcp: FastMCP) -> None:
                 parsed["object_name"],
                 parsed["name"],
                 parsed.get("display_name"),
+                product_value,
+                version_value,
             )
             return _wrap_payload(payload)
 
@@ -77,7 +96,7 @@ def _normalize_api_path(api: str | None) -> str:
     return api.strip()
 
 
-def _parse_api_path(api: str) -> dict[str, Any]:
+def _parse_api_path(api: str, product: str, version: str) -> dict[str, Any]:
     if not api.startswith("itasca"):
         return {
             "type": "error",
@@ -86,7 +105,7 @@ def _parse_api_path(api: str) -> dict[str, Any]:
         }
 
     parts = api.split(".")
-    index = APILoader.load_index()
+    index = APILoader.load_index(product, version)
     modules = index.get("modules", {})
     objects = index.get("objects", {})
 
@@ -176,8 +195,8 @@ def _extract_function_names(functions: list[Any]) -> list[str]:
     return names
 
 
-def _browse_root() -> dict[str, Any]:
-    index = APILoader.load_index()
+def _browse_root(product: str, version: str) -> dict[str, Any]:
+    index = APILoader.load_index(product, version)
     modules = index.get("modules", {})
     objects = index.get("objects", {})
 
@@ -213,13 +232,16 @@ def _browse_root() -> dict[str, Any]:
             "count": len(entries),
             "total_modules": len(module_items),
             "total_objects": len(object_items),
+            "product": product,
+            "version": version,
+            "source": index.get("source", {}),
         },
     )
 
 
-def _browse_module(module_path: str) -> dict[str, Any]:
+def _browse_module(module_path: str, product: str, version: str) -> dict[str, Any]:
     index_key = _path_to_index_key(module_path)
-    module_data = APILoader.load_module(index_key)
+    module_data = APILoader.load_module(index_key, product, version)
 
     if not module_data:
         return {
@@ -232,7 +254,7 @@ def _browse_module(module_path: str) -> dict[str, Any]:
             "input": {"module_path": module_path},
         }
 
-    index = APILoader.load_index()
+    index = APILoader.load_index(product, version)
     objects = index.get("objects", {})
     related_objects = []
     for obj_name, obj_data in objects.items():
@@ -240,8 +262,7 @@ def _browse_module(module_path: str) -> dict[str, Any]:
         if index_key in file_path or (index_key == "itasca" and "/" not in file_path):
             related_objects.append(obj_name)
 
-    functions = module_data.get("functions", [])
-    function_names = _extract_function_names(functions)
+    function_names = _extract_function_names(module_data.get("functions", []))
 
     return build_docs_data(
         source="python_api",
@@ -252,16 +273,25 @@ def _browse_module(module_path: str) -> dict[str, Any]:
             "module_path": module_path,
             "module": module_data,
             "related_objects": sorted(related_objects),
+            "product": product,
+            "version": version,
+            "source": index.get("source", {}),
         },
     )
 
 
-def _browse_function(module_path: str, func_name: str) -> dict[str, Any]:
+def _browse_function(module_path: str, func_name: str, product: str, version: str) -> dict[str, Any]:
     index_key = _path_to_index_key(module_path)
-    func_doc = APILoader.load_function(index_key, func_name)
+    func_doc = APILoader.load_function(index_key, func_name, product, version)
 
     if not func_doc:
-        module_data = APILoader.load_module(index_key) or {}
+        if product != FLACProduct.ANY.value and APILoader.load_function(index_key, func_name):
+            return _api_unavailable_payload(
+                "Function",
+                func_name,
+                {"module_path": module_path, "function": func_name, "product": product, "version": version},
+            )
+        module_data = APILoader.load_module(index_key, product, version) or {}
         available_functions = _extract_function_names(module_data.get("functions", []))
         return {
             "source": "python_api",
@@ -281,19 +311,26 @@ def _browse_function(module_path: str, func_name: str) -> dict[str, Any]:
             {
                 "module_path": module_path,
                 "function": func_name,
+                "availability": func_doc.get("availability", {}),
                 "doc": func_doc,
             }
         ],
-        summary={"count": 1},
+        summary={"count": 1, "product": product, "version": version},
     )
 
 
-def _browse_object(module_path: str, object_name: str, display_name: str | None = None) -> dict[str, Any]:
-    object_doc = APILoader.load_object(object_name)
+def _browse_object(
+    module_path: str,
+    object_name: str,
+    display_name: str | None = None,
+    product: str = FLACProduct.ANY.value,
+    version: str = "9.0",
+) -> dict[str, Any]:
+    object_doc = APILoader.load_object(object_name, product, version)
     shown_name = display_name or object_name
 
     if not object_doc:
-        index = APILoader.load_index()
+        index = APILoader.load_index(product, version)
         available_objects = sorted(index.get("objects", {}).keys())
         return {
             "source": "python_api",
@@ -314,10 +351,11 @@ def _browse_object(module_path: str, object_name: str, display_name: str | None 
                 "module_path": module_path,
                 "object": shown_name,
                 "actual_object": object_name,
+                "availability": object_doc.get("availability", {}),
                 "doc": object_doc,
             }
         ],
-        summary={"count": 1},
+        summary={"count": 1, "product": product, "version": version},
     )
 
 
@@ -326,12 +364,27 @@ def _browse_method(
     object_name: str,
     method_name: str,
     display_name: str | None = None,
+    product: str = FLACProduct.ANY.value,
+    version: str = "9.0",
 ) -> dict[str, Any]:
-    method_doc = APILoader.load_method(object_name, method_name)
+    method_doc = APILoader.load_method(object_name, method_name, product, version)
     shown_name = display_name or object_name
 
     if not method_doc:
-        object_doc = APILoader.load_object(object_name) or {}
+        if product != FLACProduct.ANY.value and APILoader.load_method(object_name, method_name):
+            return _api_unavailable_payload(
+                "Method",
+                method_name,
+                {
+                    "module_path": module_path,
+                    "object": shown_name,
+                    "actual_object": object_name,
+                    "method": method_name,
+                    "product": product,
+                    "version": version,
+                },
+            )
+        object_doc = APILoader.load_object(object_name, product, version) or {}
         method_names = _extract_function_names(object_doc.get("methods", []))
         return {
             "source": "python_api",
@@ -358,18 +411,31 @@ def _browse_method(
                 "object": shown_name,
                 "actual_object": object_name,
                 "method": method_name,
+                "availability": method_doc.get("availability", {}),
                 "doc": method_doc,
             }
         ],
-        summary={"count": 1},
+        summary={"count": 1, "product": product, "version": version},
     )
 
 
-def _browse_with_fallback(parsed: dict[str, Any], requested_api: str) -> dict[str, Any]:
+def _api_unavailable_payload(kind: str, name: str, input_data: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "source": "python_api",
+        "action": "browse",
+        "error": {
+            "code": "api_unavailable_for_product",
+            "message": f"{kind} '{name}' is not in the requested product/version API index.",
+        },
+        "input": input_data,
+    }
+
+
+def _browse_with_fallback(parsed: dict[str, Any], requested_api: str, product: str, version: str) -> dict[str, Any]:
     error_msg = parsed.get("error", "Unknown error")
     fallback_path = parsed.get("fallback_path", "")
 
-    index = APILoader.load_index()
+    index = APILoader.load_index(product, version)
     modules = index.get("modules", {})
     available_modules = sorted(_format_module_path(module_key) for module_key in modules)
 

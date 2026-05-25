@@ -21,6 +21,15 @@ _THREE_D_PATTERNS = (
     re.compile(r"\b3D\s+only\b", re.IGNORECASE),
     re.compile(r"\bFLAC3D[-\s]only\b", re.IGNORECASE),
     re.compile(r"\bnot\s+available\s+in\s+FLAC2D\b", re.IGNORECASE),
+    re.compile(
+        r"(?<![A-Za-z0-9])("
+        r"position-z|velocity-z|displacement-z|stress-xz|stress-yz|stress-zz|"
+        r"normal-z|gravity_z|set_gravity_z|domain_min_z|domain_max_z|"
+        r"set_domain_min_z|set_domain_max_z|pos_z|pos_z_set|vel_z|vel_z_set|"
+        r"normal_z|stress_shear_z|disp_shear_z|stress_prin_z"
+        r")(?![A-Za-z0-9])",
+        re.IGNORECASE,
+    ),
 )
 _TWO_D_PATTERNS = (
     re.compile(r"\b2D\s+ONLY\b", re.IGNORECASE),
