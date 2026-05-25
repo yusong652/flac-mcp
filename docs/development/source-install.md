@@ -153,7 +153,29 @@ Then start the bridge in FLAC and verify from your MCP client:
 2. Restart the MCP client session
 3. Call `flac_list_tasks`
 
-## 7. Recommended Dev Loop
+## 7. Regenerate Python API Docs from a FLAC Runtime
+
+The bundled Python API docs are generated from the actual `itasca` module
+docstrings. Run the extractor inside each FLAC runtime you want to certify
+(for example FLAC2D 7.0, FLAC3D 9.0), then patch the local index:
+
+```python
+p = r"C:/path/to/flac-mcp/src/flac_mcp/knowledge/resources/python_sdk_docs/extract_flac_api.py"
+g = {"__file__": p}
+exec(compile(open(p).read(), p, "exec"), g)
+g["introspect_and_write"]()
+```
+
+Then locally:
+
+```bash
+uv run python src/flac_mcp/knowledge/resources/python_sdk_docs/extract_flac_api.py --patch-index
+uv run pytest tests/test_docs_tool_contracts.py
+```
+
+Use `flac_python_api_coverage` to see which bundled modules are still missing.
+
+## 8. Recommended Dev Loop
 
 For most day-to-day work:
 

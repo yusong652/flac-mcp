@@ -128,6 +128,19 @@ async def test_browse_python_api_root_contract() -> None:
 
 
 @pytest.mark.asyncio
+async def test_python_api_coverage_reports_missing_modules() -> None:
+    result = await mcp._tool_manager.call_tool("flac_python_api_coverage", {})
+    payload = _parse_tool_payload(result)
+    data = payload["data"]
+
+    assert payload["ok"] is True
+    assert "flac2d" in data["products"]
+    assert "flac3d" in data["products"]
+    assert data["matrix"]["flac3d"]["9.0"]["complete"] is False
+    assert "zonearray" in data["matrix"]["flac3d"]["9.0"]["missing_modules"]
+
+
+@pytest.mark.asyncio
 async def test_query_python_api_no_results_contract() -> None:
     result = await mcp._tool_manager.call_tool(
         "flac_query_python_api",

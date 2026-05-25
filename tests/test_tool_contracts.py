@@ -115,15 +115,29 @@ async def _mock_bridge_handler(websocket):
             }
 
         elif msg_type == "execute_code":
+            if "platform.platform" in req.get("code", ""):
+                data = {
+                    "output": '{"dimension": 3, "flac_version": "9.0", "product": "flac3d"}\n',
+                    "result": {
+                        "product": "flac3d",
+                        "dimension": 3,
+                        "flac_version": "9.0",
+                        "python_version": "3.10.5",
+                        "python_executable": "C:/Program Files/Itasca/ItascaSoftware900/flac3d9_gui.exe",
+                        "platform": "Windows",
+                    },
+                }
+            else:
+                data = {
+                    "output": "42\n",
+                    "result": 42,
+                }
             resp = {
                 "type": "execute_code_result",
                 "request_id": req_id,
                 "status": "success",
                 "message": "Code executed",
-                "data": {
-                    "output": "42\n",
-                    "result": 42,
-                },
+                "data": data,
             }
 
         else:
@@ -350,7 +364,20 @@ async def test_execute_code_success_fields(mock_bridge):
         data = parsed["data"]
         assert "output" in data
         assert "result" in data
-        assert data["result"] == 42
+    assert data["result"] == 42
+
+
+@pytest.mark.asyncio
+async def test_get_runtime_info_success_fields(mock_bridge):
+    result = await mcp._tool_manager.call_tool("flac_get_runtime_info", {})
+    text = result.content[0].text
+    payload = json.loads(text)
+
+    assert payload["ok"] is True
+    data = payload["data"]
+    assert data["product"] == "flac3d"
+    assert data["dimension"] == 3
+    assert data["flac_version"] == "9.0"
 
 
 # ── flac_list_tasks (continued) ──────────────────────────

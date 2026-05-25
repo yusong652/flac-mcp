@@ -19,8 +19,10 @@ from flac_mcp.tools import (
     execute_task,
     interrupt_task,
     list_tasks,
+    python_api_coverage,
     query_command,
     query_python_api,
+    runtime_info,
 )
 
 mcp = FastMCP(
@@ -41,6 +43,7 @@ browse_python_api.register(mcp)
 browse_reference.register(mcp)
 query_command.register(mcp)
 query_python_api.register(mcp)
+python_api_coverage.register(mcp)
 
 # Register execution tools
 execute_task.register(mcp)
@@ -48,6 +51,7 @@ check_task_status.register(mcp)
 list_tasks.register(mcp)
 interrupt_task.register(mcp)
 execute_code.register(mcp)
+runtime_info.register(mcp)
 
 
 def main() -> None:

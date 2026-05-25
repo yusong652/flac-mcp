@@ -14,11 +14,11 @@
 
 `flac3d>model solve ;LLM solves.`
 
-## 工具（10）
+## 工具（12）
 
-**5 个文档工具** — 浏览和搜索 FLAC 命令、Python API 及参考文档。无需 bridge。
+**6 个文档工具** — 浏览和搜索 FLAC 命令、Python API、参考文档，并审计内置 Python API 覆盖率。无需 bridge。
 
-**5 个执行工具** — 交互式 REPL、任务提交、进度监控、中断和历史浏览。需要 bridge。
+**6 个执行工具** — 运行时识别、交互式 REPL、任务提交、进度监控、中断和历史浏览。需要 bridge。
 
 ## 运行方式
 
@@ -27,7 +27,7 @@
 - MCP 服务端运行在普通 Python 环境中，通过 `uvx flac-mcp` 启动。
 - bridge 运行在 FLAC 内嵌 Python 中，通过 [`addon.py`](addon.py) 启动，并监听 `ws://localhost:9001`。
 
-文档工具只要 MCP 服务端注册好就能用。执行工具需要连接 bridge，因为只有 FLAC 内嵌 Python 能 `import itasca` 并操作当前模型。
+文档工具只要 MCP 服务端注册好就能用。执行工具需要连接 bridge，因为只有 FLAC 内嵌 Python 能 `import itasca` 并操作当前模型。每个会话开始时建议先调用 `flac_get_runtime_info`，确认当前连接的是 FLAC2D/FLAC3D、模型维度和内嵌 Python 信息。
 
 ## 首次启动配置
 

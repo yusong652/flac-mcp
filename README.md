@@ -14,11 +14,11 @@
 
 `flac3d>model solve ;LLM solves.`
 
-## Tools (10)
+## Tools (12)
 
-**5 documentation tools** — browse and search FLAC commands, Python API, and reference docs. No bridge required.
+**6 documentation tools** — browse and search FLAC commands, Python API, reference docs, and bundled Python API coverage. No bridge required.
 
-**5 execution tools** — interactive REPL, task submission, progress monitoring, interruption, and history. Requires bridge.
+**6 execution tools** — runtime inspection, interactive REPL, task submission, progress monitoring, interruption, and history. Requires bridge.
 
 ## How It Runs
 
@@ -27,7 +27,7 @@
 - The MCP server runs on your normal Python environment through `uvx flac-mcp`.
 - The bridge runs inside FLAC's embedded Python through [`addon.py`](addon.py) and listens on `ws://localhost:9001`.
 
-Documentation tools work as soon as the MCP server is registered. Execution tools connect through the bridge, because only FLAC's embedded Python can `import itasca` and operate on the active model.
+Documentation tools work as soon as the MCP server is registered. Execution tools connect through the bridge, because only FLAC's embedded Python can `import itasca` and operate on the active model. Use `flac_get_runtime_info` at the start of a session to detect FLAC2D/FLAC3D, model dimension, and embedded Python details.
 
 ## First-time Setup
 

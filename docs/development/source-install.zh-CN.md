@@ -153,7 +153,28 @@ bridge 包会自动拉取匹配的 `websockets` 版本：
 2. 重启 MCP 客户端会话
 3. 调用 `flac_list_tasks`
 
-## 7. 推荐开发循环
+## 7. 从 FLAC 运行时重新生成 Python API 文档
+
+内置 Python API 文档来自真实 `itasca` 模块的 docstring。要认证某个
+FLAC 运行时（例如 FLAC2D 7.0、FLAC3D 9.0），先在对应 FLAC 中执行抽取器：
+
+```python
+p = r"C:/path/to/flac-mcp/src/flac_mcp/knowledge/resources/python_sdk_docs/extract_flac_api.py"
+g = {"__file__": p}
+exec(compile(open(p).read(), p, "exec"), g)
+g["introspect_and_write"]()
+```
+
+然后回到本地执行：
+
+```bash
+uv run python src/flac_mcp/knowledge/resources/python_sdk_docs/extract_flac_api.py --patch-index
+uv run pytest tests/test_docs_tool_contracts.py
+```
+
+可以用 `flac_python_api_coverage` 查看当前内置文档还缺哪些模块。
+
+## 8. 推荐开发循环
 
 对于大多数日常开发，推荐这样做：
 
