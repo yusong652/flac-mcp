@@ -39,8 +39,7 @@
           "syntax": "top-right",
           "description": "The origin of the path is translated to the top-right of the set"
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

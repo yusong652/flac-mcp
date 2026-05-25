@@ -1,6 +1,6 @@
-"""Markdown formatter for PFC reference documentation.
+"""Markdown formatter for FLAC reference documentation.
 
-This module formats reference documentation (contact models, range elements)
+This module formats reference documentation (zone models, range elements)
 as markdown for LLM consumption.
 
 Formatting Goals:
@@ -13,9 +13,9 @@ from typing import Any
 
 
 class ReferenceFormatter:
-    """Format PFC reference documentation as markdown.
+    """Format FLAC reference documentation as markdown.
 
-    This class provides static methods for formatting contact models and
+    This class provides static methods for formatting zone models and
     range elements in a consistent, LLM-friendly markdown format.
     """
 
@@ -47,7 +47,7 @@ class ReferenceFormatter:
         """
         parts = []
 
-        parts.append("## PFC Reference Documentation")
+        parts.append("## FLAC Reference Documentation")
         parts.append("")
         parts.append(f"Total: {len(categories)} categories")
         parts.append("")
@@ -67,10 +67,10 @@ class ReferenceFormatter:
     def format_index(category: str, index: dict[str, Any]) -> str:
         """Format a reference category index as markdown.
 
-        Unified formatter for both contact-models and range-elements indexes.
+        Unified formatter for constitutive-models and range-elements indexes.
 
         Args:
-            category: Category name (e.g., "contact-models", "range-elements")
+            category: Category name (e.g., "constitutive-models", "range-elements")
             index: Category index dict (contains "models" or "elements" list)
 
         Returns:
@@ -82,12 +82,12 @@ class ReferenceFormatter:
         if "models" in index:
             items = index["models"]
             item_type = "model"
-            title = "PFC Contact Models"
-            intro = "Contact models define mechanical behavior at contact points."
+            title = "FLAC Constitutive Models"
+            intro = "Constitutive models define material behavior for zones."
         elif "elements" in index:
             items = index["elements"]
             item_type = "element"
-            title = "PFC Range Elements"
+            title = "FLAC Range Elements"
             intro = "Range elements filter objects by geometric regions, attributes, or logical conditions."
         else:
             return "Unknown reference index format."
@@ -109,7 +109,7 @@ class ReferenceFormatter:
                 parts.append(f"**{cat_name}**: {', '.join(cat_elements)}")
             parts.append("")
         else:
-            # Simple list display for contact-models
+            # Simple list display for constitutive-models
             for item in items:
                 name = item.get("name", "")
                 # Handle different field names
@@ -127,8 +127,8 @@ class ReferenceFormatter:
         return "\n".join(parts)
 
     @staticmethod
-    def format_contact_model(doc: dict[str, Any]) -> str:
-        """Format a complete contact model documentation as markdown.
+    def format_zone_model(doc: dict[str, Any]) -> str:
+        """Format a complete zone model documentation as markdown.
 
         Args:
             doc: Model documentation dict with all properties
@@ -147,7 +147,7 @@ class ReferenceFormatter:
         availability = doc.get("availability")
         if isinstance(availability, dict):
             avail_in = [v for v, ok in availability.items() if ok]
-            parts.append(f"*Available in PFC: {', '.join(avail_in) or 'none'}*")
+            parts.append(f"*Available in FLAC: {', '.join(avail_in) or 'none'}*")
         parts.append("")
 
         # Description
@@ -212,9 +212,9 @@ class ReferenceFormatter:
         # Usage Examples
         parts.append("## Usage")
         parts.append("Set properties for this model using:")
-        parts.append(f"- Command: `contact cmat add model {model_name} property <prop> <value>`")
-        parts.append("- Command: `contact property <prop> <value> range ...`")
-        parts.append("- Python: `contact.set_prop('<prop>', value)`")
+        parts.append(f"- Command: `zone cmat add model {model_name} property <prop> <value>`")
+        parts.append("- Command: `zone property <prop> <value> range ...`")
+        parts.append("- Python: `zone.set_prop('<prop>', value)`")
         parts.append("")
 
         return "\n".join(parts)
@@ -308,7 +308,7 @@ class ReferenceFormatter:
 
     @staticmethod
     def format_model_property(doc: dict[str, Any], property_keyword: str) -> str:
-        """Format a contact model property documentation as markdown.
+        """Format a zone model property documentation as markdown.
 
         Args:
             doc: Model documentation dict (full model with property_groups)
@@ -373,7 +373,7 @@ class ReferenceFormatter:
         parts.append(f"- **Inheritable**: {'Yes' if inheritable else 'No'}")
         since = target_property.get("since")
         if since:
-            parts.append(f"- **Since**: PFC {since}")
+            parts.append(f"- **Since**: FLAC {since}")
         parts.append("")
 
         # Notes
@@ -386,9 +386,9 @@ class ReferenceFormatter:
         # Usage context
         parts.append("## Usage")
         parts.append("Set this property using:")
-        parts.append(f"- Command: `contact cmat add ... property {property_keyword} <value>`")
-        parts.append(f"- Command: `contact property {property_keyword} <value> range ...`")
-        parts.append(f"- Python: `contact.set_prop('{property_keyword}', value)`")
+        parts.append(f"- Command: `zone cmat add ... property {property_keyword} <value>`")
+        parts.append(f"- Command: `zone property {property_keyword} <value> range ...`")
+        parts.append(f"- Python: `zone.set_prop('{property_keyword}', value)`")
         parts.append("")
 
         # Model context

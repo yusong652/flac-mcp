@@ -1,4 +1,4 @@
-"""Shared models for PFC search system.
+"""Shared models for FLAC search system.
 
 This package provides unified data models for the search infrastructure,
 enabling consistent handling of different document types (commands, APIs, etc.).

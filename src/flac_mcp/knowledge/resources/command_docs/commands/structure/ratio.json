@@ -33,8 +33,7 @@
           "syntax": "convergence",
           "description": "The ratio is defined as the maximum convergence of all the nodes in the model, with the convergence of a node defined as the local ratio divided by the target ratio. The ratio used is scaled by 1e-5 to make it mean approximately the same as average ."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

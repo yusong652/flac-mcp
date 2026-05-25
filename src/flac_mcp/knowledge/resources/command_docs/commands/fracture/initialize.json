@@ -4,29 +4,21 @@
     "initialize"
   ],
   "description": "Modify fracture attributes.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
       "command": "fracture initialize",
-      "syntax": "fracture initialize keyword [range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "fracture initialize keyword [range]"
     },
     "7.0": {
       "command": "fracture initialize",
-      "syntax": "fracture initialize keyword [range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "fracture initialize keyword [range]"
     },
     "9.0": {
       "command": "fracture initialize",
-      "syntax": "fracture initialize keyword [range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "fracture initialize keyword [range]"
     }
   }
 }

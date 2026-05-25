@@ -4,28 +4,21 @@
     "results"
   ],
   "description": "Specify whether history information is stored in subsequent results files. By default this value is off .",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
       "command": "history results",
-      "syntax": "history results active <b>",
-      "keywords": [],
-      "examples": []
+      "syntax": "history results active <b>"
     },
     "7.0": {
       "command": "history results",
-      "syntax": "history results active <b>",
-      "keywords": []
+      "syntax": "history results active <b>"
     },
     "9.0": {
       "command": "history results",
-      "syntax": "history results active <b>",
-      "keywords": [],
-      "examples": []
+      "syntax": "history results active <b>"
     }
   }
 }

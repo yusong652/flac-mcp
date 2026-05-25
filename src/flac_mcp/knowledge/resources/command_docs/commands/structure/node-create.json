@@ -12,9 +12,7 @@
   "versions": {
     "9.0": {
       "command": "structure node create",
-      "syntax": "structure node create <v>[group <s1>[slot <s2>]]",
-      "keywords": [],
-      "examples": []
+      "syntax": "structure node create <v>[group <s1>[slot <s2>]]"
     }
   }
 }

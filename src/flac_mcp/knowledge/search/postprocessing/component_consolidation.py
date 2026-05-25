@@ -31,38 +31,38 @@ def consolidate_component_apis(results: list[SearchResult]) -> list[SearchResult
 
     Example:
         Before consolidation (15 results):
-            1. itasca.BallBallContact.force_global (score: 3.89)
-            2. itasca.BallBallContact.force_local (score: 3.63)
-            3. itasca.BallBallContact.force_global_x (score: 3.44)
-            4. itasca.BallBallContact.force_global_y (score: 3.44)
-            5. itasca.BallBallContact.force_global_z (score: 3.44)
-            6. itasca.wall.Wall.force_contact (score: 3.90)
-            7. itasca.wall.Wall.force_contact_x (score: 3.64)
-            8. itasca.wall.Wall.force_contact_y (score: 3.64)
-            9. itasca.wall.Wall.force_contact_z (score: 3.64)
+            1. itasca.ZoneZoneContact.force_global (score: 3.89)
+            2. itasca.ZoneZoneContact.force_local (score: 3.63)
+            3. itasca.ZoneZoneContact.force_global_x (score: 3.44)
+            4. itasca.ZoneZoneContact.force_global_y (score: 3.44)
+            5. itasca.ZoneZoneContact.force_global_z (score: 3.44)
+            6. itasca.gridpoint.Gridpoint.force_zone (score: 3.90)
+            7. itasca.gridpoint.Gridpoint.force_zone_x (score: 3.64)
+            8. itasca.gridpoint.Gridpoint.force_zone_y (score: 3.64)
+            9. itasca.gridpoint.Gridpoint.force_zone_z (score: 3.64)
             ...
 
         After consolidation (6 results):
-            1. itasca.BallBallContact.force_global (score: 3.89)
+            1. itasca.ZoneZoneContact.force_global (score: 3.89)
                metadata['has_components'] = ['x', 'y', 'z']
-            2. itasca.BallBallContact.force_local (score: 3.63)
+            2. itasca.ZoneZoneContact.force_local (score: 3.63)
                (no metadata - no components in results)
-            3. itasca.wall.Wall.force_contact (score: 3.90)
+            3. itasca.gridpoint.Gridpoint.force_zone (score: 3.90)
                metadata['has_components'] = ['x', 'y', 'z']
             ...
 
     Usage:
         >>> from flac_mcp.knowledge.query import APISearch
         >>> from flac_mcp.knowledge.search.postprocessing import (
-        ...     consolidate_contact_apis,
+        ...     consolidate_zone_apis,
         ...     consolidate_component_apis
         ... )
         >>>
-        >>> results = APISearch.search("contact force", top_k=30)
+        >>> results = APISearch.search("zone force", top_k=30)
         >>> len(results)
         30  # May contain many component APIs
         >>>
-        >>> consolidated = consolidate_contact_apis(results)
+        >>> consolidated = consolidate_zone_apis(results)
         >>> consolidated = consolidate_component_apis(consolidated)
         >>> len(consolidated)
         10  # Much cleaner! Only base methods

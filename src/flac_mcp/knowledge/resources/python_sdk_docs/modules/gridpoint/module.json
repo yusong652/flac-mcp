@@ -8,8 +8,7 @@
       "signature": "itasca.gridpoint.count() -> int",
       "description": "Get the number of gridpoints.",
       "returns": {
-        "type": "int",
-        "description": ""
+        "type": "int"
       }
     },
     {
@@ -20,13 +19,11 @@
         {
           "name": "id",
           "type": "int",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "Gridpoint object",
-        "description": ""
+        "type": "Gridpoint object"
       }
     },
     {
@@ -34,8 +31,7 @@
       "signature": "itasca.gridpoint.list() -> Gridpoint iterator object",
       "description": "Get a gridpoint iterator object.",
       "returns": {
-        "type": "Gridpoint iterator object",
-        "description": ""
+        "type": "Gridpoint iterator object"
       }
     },
     {
@@ -43,8 +39,7 @@
       "signature": "itasca.gridpoint.maxid() -> int",
       "description": "Get the maximum gridpoint ID.",
       "returns": {
-        "type": "int",
-        "description": ""
+        "type": "int"
       }
     },
     {
@@ -55,13 +50,11 @@
         {
           "name": "point",
           "type": "vec",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "Gridpoint object",
-        "description": ""
+        "type": "Gridpoint object"
       }
     }
   ]

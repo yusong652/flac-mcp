@@ -179,8 +179,7 @@
           "syntax": "position <v>",
           "description": "the particular node is identified by ( v ) coordinates (the nearest node is taken). If this keyword is used, component-id should not be used."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

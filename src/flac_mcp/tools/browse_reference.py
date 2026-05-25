@@ -27,22 +27,15 @@ def register(mcp: FastMCP) -> None:
                 "- 'constitutive-models': List all FLAC zone material models\n"
                 "- 'constitutive-models mohr-coulomb': Mohr-Coulomb zone "
                 "property keywords (for 'zone property')\n"
-                "- 'contact-models': List all contact models\n"
-                "- 'contact-models linear': Linear model properties\n"
                 "- 'range-elements': Range elements overview (24 elements)\n"
-                "- 'range-elements position': Position range syntax\n"
-                "- 'plot-items': Plot item types (ball, wall, contact keywords)\n"
-                "- 'plot-items ball': Ball overview + available sub-topics\n"
-                "- 'plot-items ball color-by': Ball color-by keyword details"
+                "- 'range-elements position': Position range syntax"
             ),
         ),
         version: CommandDocVersion = Field(
             CommandDocVersion.V7_0,
             description=(
                 "FLAC documentation version (6.0/7.0/9.0). Defaults to 7.0. "
-                "Filters contact models by version availability; "
-                "constitutive-models, range-elements and plot-items are "
-                "version-agnostic."
+                "constitutive-models and range-elements are version-agnostic."
             ),
         ),
     ) -> dict[str, Any]:
@@ -52,22 +45,18 @@ def register(mcp: FastMCP) -> None:
 
         Navigation levels:
         - No topic: All reference categories
-        - Category (e.g., "contact-models"): List items in category
-        - Full path (e.g., "contact-models linear"): Full documentation
+        - Category (e.g., "constitutive-models"): List items in category
+        - Full path (e.g., "constitutive-models mohr-coulomb"): Full documentation
 
         When to use:
         - Need FLAC zone constitutive model property names
           (mohr-coulomb: young/poisson/cohesion/friction/...; cysoil; etc.)
           before a 'zone property' / 'zone cmodel assign' command
-        - Need contact model property names (kn, ks, fric, pb_*)
         - Need range filtering syntax (position, cylinder, group, id)
-        - Need plot item configuration (color-by, cut plane, transparency, legend)
-        - Setting up "contact cmat add model ... property ..." commands
         - Using range filters in any FLAC command
-        - Configuring "plot item create" commands
 
         Related tools:
-        - flac_browse_commands: Command syntax (e.g., "ball create")
+        - flac_browse_commands: Command syntax (e.g., "zone cmodel assign")
         - flac_query_command: Search commands by keywords
         """
         topic_str = normalize_input(topic, lowercase=True)

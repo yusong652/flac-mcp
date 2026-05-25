@@ -4,29 +4,21 @@
     "refine"
   ],
   "description": "Refine the triangular or quadrilateral polygons in the geometric set into smaller versions.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
       "command": "geometry refine",
-      "syntax": "geometry refine [<i>] [range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "geometry refine [<i>] [range]"
     },
     "7.0": {
       "command": "geometry refine",
-      "syntax": "geometry refine [<i>] [set <s>] [range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "geometry refine [<i>] [set <s>] [range]"
     },
     "9.0": {
       "command": "geometry refine",
-      "syntax": "geometry refine [<i>] [set <s>] [range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "geometry refine [<i>] [set <s>] [range]"
     }
   }
 }

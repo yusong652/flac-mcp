@@ -4,10 +4,8 @@
     "load"
   ],
   "description": "Load a compatible DLL.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -20,9 +18,7 @@
           "description": "Load constitutive model DLLs. The plugin file prefix is model . The additional model will appear in the list of available models by executing the zone cmodel list command in FLAC3D ."
         },
         {
-          "name": "contactmodelmechanical",
-          "syntax": "contactmodelmechanical",
-          "description": "Load mechanical contact model DLLs. The plugin file prefix is contactmodelmechanical3d in 3d and contanctmodelmechanical2d in 2d. As these contact models apply to contacts between balls, pebbles, and wall facets, the PFC module must first be loaded (see the module keyword)."
+          "description": "Load mechanical contact model DLLs."
         },
         {
           "name": "function",
@@ -59,8 +55,7 @@
           "syntax": "directory <sd>",
           "description": "Specify the directory to scan when using automatic . All subdirectories will also be scanned. The default directory is “exe64/plugins” directory of the installation location."
         }
-      ],
-      "examples": []
+      ]
     },
     "7.0": {
       "command": "program load",
@@ -72,9 +67,7 @@
           "description": "Load constitutive model DLLs. The plugin file prefix is model . The additional model will appear in the list of available models by executing the zone cmodel list command in FLAC3D ."
         },
         {
-          "name": "contactmodelmechanical",
-          "syntax": "contactmodelmechanical",
-          "description": "Load mechanical contact model DLLs. The plugin file prefix is contactmodelmechanical3d in 3d and contanctmodelmechanical2d in 2d. As these contact models apply to contacts between balls, pebbles, and wall facets, the PFC module must first be loaded (see the module keyword)."
+          "description": "Load mechanical contact model DLLs."
         },
         {
           "name": "function",
@@ -123,9 +116,7 @@
           "description": "Load constitutive model DLLs. The plugin file prefix is model . The additional model will appear in the list of available models by executing the zone cmodel list command in FLAC3D ."
         },
         {
-          "name": "contactmodelmechanical",
-          "syntax": "contactmodelmechanical [loadoptions]",
-          "description": "Load mechanical contact model DLLs. The plugin file prefix is contactmodelmechanical3d in 3d and contanctmodelmechanical2d in 2d. As these contact models apply to contacts between balls, pebbles, and wall facets, the PFC module must first be loaded (see the module keyword)."
+          "description": "Load mechanical contact model DLLs."
         },
         {
           "name": "function",
@@ -162,8 +153,7 @@
           "syntax": "directory <sd>",
           "description": "Specify the directory to scan when using automatic . All subdirectories will also be scanned. The default directory is “exe64/plugins” directory of the installation location."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

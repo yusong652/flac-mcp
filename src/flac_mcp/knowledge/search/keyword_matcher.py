@@ -31,18 +31,18 @@ def calculate_relevance_score(keyword_words: set[str], query_words: set[str], ma
         - Match count: 1-10 points (tie-breaker)
 
     Examples:
-        >>> # Exact match: query="create ball", keyword="create ball"
+        >>> # Exact match: query="create zone", keyword="create zone"
         >>> calculate_relevance_score(
-        ...     {"create", "ball"},
-        ...     {"create", "ball"},
-        ...     {"create", "ball"}
+        ...     {"create", "zone"},
+        ...     {"create", "zone"},
+        ...     {"create", "zone"}
         ... )
         1104  # 1000 (full coverage) + 100 (perfect precision) + 4 (2 exact matches × 2)
 
-        >>> # Partial match: query="pos", keyword="ball position"
+        >>> # Partial match: query="pos", keyword="zone position"
         >>> # (Assuming find_partial_matches found "pos" → "position" with quality 0.8)
         >>> calculate_relevance_score(
-        ...     {"ball", "position"},
+        ...     {"zone", "position"},
         ...     {"pos"},
         ...     set()  # No exact matches, partial handled separately
         ... )

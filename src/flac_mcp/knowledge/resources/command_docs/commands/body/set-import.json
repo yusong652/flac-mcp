@@ -24,8 +24,7 @@
           "syntax": "sketch [to-set <s>] [<v>]",
           "description": "Import building blocks from the current set in the Sketch Pane . If the to-set s option is used, the destination will be the building blocks set with the name s . If not, the destination will be the current building blocks set. When < v > is supplied the coordinates of all the points of imported blocks will be shifted by that vector."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

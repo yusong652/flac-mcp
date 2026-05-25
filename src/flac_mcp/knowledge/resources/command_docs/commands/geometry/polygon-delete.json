@@ -4,17 +4,13 @@
     "polygon-delete"
   ],
   "description": "Delete geometric polygons. All objects that depend on a given object will be deleted. For instance, if a node is deleted, all edges connected to it will be deleted. If an object’s deletion causes data structures to be “orphaned” (i.e., no other objects refer to them), then these objects are automatically deleted as well, unless the retain keyword is given. If the set keyword is not given, then the current set is used.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
       "command": "geometry polygon delete",
-      "syntax": "geometry polygon delete [retain] [range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "geometry polygon delete [retain] [range]"
     },
     "7.0": {
       "command": "geometry polygon delete",
@@ -30,8 +26,7 @@
           "syntax": "set <s>",
           "description": "Specify the geometry set."
         }
-      ],
-      "examples": []
+      ]
     },
     "9.0": {
       "command": "geometry polygon delete",
@@ -47,8 +42,7 @@
           "syntax": "set <s>",
           "description": "Specify the geometry set."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

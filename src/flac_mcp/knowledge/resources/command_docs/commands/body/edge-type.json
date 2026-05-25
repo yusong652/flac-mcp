@@ -29,8 +29,7 @@
           "syntax": "polyline",
           "description": "Specify a polyline edge (the is the default type )."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

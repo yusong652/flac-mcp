@@ -4,12 +4,12 @@ Bridge-introspection-led: ITASCA's embedded Python API carries high-quality
 docstrings shaped as ``(params) -> return. Description`` which are
 ground-truth for what is actually callable. This extractor is **purely
 additive** — it writes only the FLAC-unique modules (``modules/zone/``,
-``modules/gridpoint/``) and merges index.json without touching existing PFC
+``modules/gridpoint/``) and merges index.json without touching existing FLAC
 API docs.
 
 No ``keywords.json`` is generated: mechanically decomposing API names into
 tokens injects low-value short tokens (e.g. ``init`` from ``model_init``)
-that degrade BM25 precision via the partial matcher. The PFC modules ship
+that degrade BM25 precision via the partial matcher. The FLAC modules ship
 *hand-curated* natural-language keywords; FLAC relies on the (rich) API
 name + docstring description fields, which give strong search signal on
 their own. Curated FLAC keywords can be added later if needed.

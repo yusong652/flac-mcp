@@ -14,9 +14,7 @@
   "versions": {
     "9.0": {
       "command": "building-blocks set validate-all",
-      "syntax": "building-blocks set validate-all",
-      "keywords": [],
-      "examples": []
+      "syntax": "building-blocks set validate-all"
     }
   }
 }

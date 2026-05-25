@@ -20,12 +20,11 @@ def register(mcp: FastMCP) -> None:
                 "FLAC Python API path to browse (dot-separated, starting from itasca). Examples:\n"
                 "- None or '': Root overview - all modules and objects\n"
                 "- 'itasca': Core module functions (command, cycle, gravity, etc.)\n"
-                "- 'itasca.ball': Ball module functions (create, find, list, etc.)\n"
-                "- 'itasca.ball.create': Specific function documentation\n"
-                "- 'itasca.ball.Ball': Ball object method groups\n"
-                "- 'itasca.ball.Ball.pos': Specific method documentation\n"
-                "- 'itasca.wall.facet': Nested submodule\n"
-                "- 'itasca.wall.facet.Facet': Facet object in wall.facet module"
+                "- 'itasca.zone': Zone module functions (find, list, count, etc.)\n"
+                "- 'itasca.zone.list': Specific function documentation\n"
+                "- 'itasca.zone.Zone': Zone object method groups\n"
+                "- 'itasca.zone.Zone.stress': Specific method documentation\n"
+                "- 'itasca.gridpoint.Gridpoint': Gridpoint object method groups"
             ),
         ),
     ) -> dict[str, Any]:
@@ -102,24 +101,18 @@ def _parse_api_path(api: str) -> dict[str, Any]:
         module_path = ".".join(module_parts)
         object_name = parts[object_index]
 
-        actual_object_name = object_name
         if object_name not in objects:
-            contact_data = objects.get("Contact", {})
-            contact_types = contact_data.get("types", [])
-            if object_name in contact_types:
-                actual_object_name = "Contact"
-            else:
-                return {
-                    "type": "error",
-                    "error": f"Object '{object_name}' not found",
-                    "fallback_path": module_path,
-                }
+            return {
+                "type": "error",
+                "error": f"Object '{object_name}' not found",
+                "fallback_path": module_path,
+            }
 
         if len(parts) == object_index + 1:
             return {
                 "type": "object",
                 "module_path": module_path,
-                "name": actual_object_name,
+                "name": object_name,
                 "display_name": object_name,
             }
 
@@ -127,7 +120,7 @@ def _parse_api_path(api: str) -> dict[str, Any]:
         return {
             "type": "method",
             "module_path": module_path,
-            "object_name": actual_object_name,
+            "object_name": object_name,
             "display_name": object_name,
             "name": method_name,
         }

@@ -4,10 +4,8 @@
     "list"
   ],
   "description": "Print program information.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -69,8 +67,7 @@
           "syntax": "version",
           "description": "List the full program version information. This information should be reported if a problem arises while using the code."
         }
-      ],
-      "examples": []
+      ]
     },
     "7.0": {
       "command": "program list",
@@ -182,8 +179,7 @@
           "syntax": "version",
           "description": "List the full program version information. This information should be reported if a problem arises while using the code."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

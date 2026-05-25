@@ -1,4 +1,4 @@
-"""Scoring algorithms for PFC search system."""
+"""Scoring algorithms for FLAC search system."""
 
 from flac_mcp.knowledge.search.scoring.bm25_scorer import BM25Scorer
 

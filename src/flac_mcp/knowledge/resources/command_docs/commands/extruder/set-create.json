@@ -12,9 +12,7 @@
   "versions": {
     "9.0": {
       "command": "sketch set create",
-      "syntax": "sketch set create <s>",
-      "keywords": [],
-      "examples": []
+      "syntax": "sketch set create <s>"
     }
   }
 }

@@ -12,9 +12,7 @@
   "versions": {
     "9.0": {
       "command": "sketch block delete",
-      "syntax": "sketch block delete [range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "sketch block delete [range]"
     }
   }
 }

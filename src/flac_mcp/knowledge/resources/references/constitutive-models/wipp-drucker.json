@@ -37,147 +37,123 @@
           "keyword": "activation-energy",
           "symbol": "Q",
           "description": "activation energy, Q",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "bulk",
           "symbol": "K",
           "description": "bulk modulus, K",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "cohesion-drucker",
           "symbol": "k_ϕ",
           "description": "material parameter, k_ϕ",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "constant-a",
           "symbol": "A",
           "description": "WIPP model constant, A",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "constant-b",
           "symbol": "B",
           "description": "WIPP model constant, B",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "constant-d",
           "symbol": "D",
           "description": "WIPP model constant, D",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "constant-gas",
           "symbol": "R",
           "description": "gas constant, R",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "creep-rate-critical",
           "symbol": "ε̇^*_{ss}",
           "description": "critical steady-state creep rate, ε̇^*_{ss}",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "dilation-drucker",
           "symbol": "q_k",
           "description": "material parameter, q_k",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "exponent",
           "symbol": "n",
           "description": "WIPP model exponent, n",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "friction-drucker",
           "symbol": "q_ϕ",
           "description": "material parameter, q_ϕ",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "temperature",
           "symbol": "T",
           "description": "zone temperature, T",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "poisson",
           "symbol": "v",
           "description": "Poisson’s ratio, v",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "shear",
           "symbol": "G",
           "description": "shear modulus, G",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "tension",
           "symbol": "σ^t",
           "description": "tension limit, σ^t. The default is 0.0.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "young",
           "symbol": "E",
           "description": "Young’s modulus, E",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "creep-strain-primary",
           "symbol": "ε̇_s",
           "description": "primary creep strain, ε̇_s",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "creep-rate-primary",
           "symbol": "ε_s",
           "description": "primary creep rate, ε_s",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "strain-shear-plastic",
-          "symbol": "",
           "description": "accumulated plastic shear strain",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "strain-tension-plastic",
-          "symbol": "",
           "description": "accumulated plastic tensile strain",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         }
       ]
     }
   ],
-  "typical_applications": [],
-  "notes": [],
   "source": "https://docs.itascacg.com/itasca900/common/models/pwipp/doc/modelpwipp.html",
   "usage": {
     "assign": "zone cmodel assign wipp-drucker [range ...]",

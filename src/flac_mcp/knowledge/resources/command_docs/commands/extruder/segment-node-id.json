@@ -26,8 +26,7 @@
           "syntax": "move-to <v>[merge-tolerance <f>]",
           "description": "Moves the node to location v , 3D coordinate vector ( \\(u,v,w\\) ). If supplied, merge-tolerance f will be used as a tolerance for merging nodes during moving."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

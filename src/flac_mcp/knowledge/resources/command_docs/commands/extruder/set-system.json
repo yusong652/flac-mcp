@@ -34,8 +34,7 @@
           "syntax": "v-axis <v>",
           "description": "Sets the v-axis (2D or 3D vector v ). This axis is the direction of \\(y\\) from the 2D coordinate system if the model is extruded into 3D (3D only)."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

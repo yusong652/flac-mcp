@@ -1,4 +1,4 @@
-"""BM25-based search engine for PFC documentation with multi-field support.
+"""BM25-based search engine for FLAC documentation with multi-field support.
 
 This module implements a complete search engine using BM25 algorithm with
 multi-field scoring, providing a high-level interface for document search.
@@ -39,7 +39,7 @@ class BM25SearchEngine(BaseSearchEngine):
         >>> from flac_mcp.knowledge.adapters.command_adapter import CommandDocumentAdapter
         >>> engine = BM25SearchEngine(document_loader=CommandDocumentAdapter.load_all)
         >>> engine.build()
-        >>> results = engine.search("Ball.vel", top_k=5)
+        >>> results = engine.search("Zone.vel", top_k=5)
         >>> for result in results:
         ...     print(f"{result.document.name}: {result.score:.3f}")
         ...     print(f"  Field scores: {result.match_info['field_scores']}")
@@ -99,7 +99,7 @@ class BM25SearchEngine(BaseSearchEngine):
 
         Args:
             query: Search query string
-                  Examples: "ball porosity", "contact gap", "pos"
+                  Examples: "zone porosity", "zone stress", "pos"
             top_k: Maximum number of results to return (default: 10)
             filters: Optional filters:
                     - doc_type: Filter by DocumentType
@@ -114,15 +114,15 @@ class BM25SearchEngine(BaseSearchEngine):
 
         Example:
             >>> engine.build()
-            >>> results = engine.search("ball create", top_k=5)
+            >>> results = engine.search("zone create", top_k=5)
             >>> results[0].document.title
-            "ball create"
+            "zone create"
             >>> results[0].score
             15.234
 
             >>> # With filters
             >>> results = engine.search(
-            ...     "contact",
+            ...     "zone",
             ...     top_k=10,
             ...     filters={"doc_type": "command", "min_score": 5.0}
             ... )

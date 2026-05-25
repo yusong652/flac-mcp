@@ -34,126 +34,105 @@
           "keyword": "bulk",
           "symbol": "K",
           "description": "bulk modulus, K",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "cohesion",
           "symbol": "c",
           "description": "cohesion, c",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "dilation",
           "symbol": "ψ",
           "description": "dilation angle in degrees, ψ",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "friction",
           "symbol": "ϕ",
           "description": "internal friction angle in degrees, ϕ",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "shear-kelvin",
           "symbol": "G^K",
           "description": "Kelvin shear modulus, G^K",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "shear-maxwell",
           "symbol": "G^M",
           "description": "shear modulus, G^M",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "strain-kelvin-xx",
           "symbol": "e^K_{xx}",
           "description": "Kelvin strain, e^K_{xx}",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "strain-kelvin-xy",
           "symbol": "e^K_{xy}",
           "description": "Kelvin strain, e^K_{xy}",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "strain-kelvin-xz",
           "symbol": "e^K_{xz}",
           "description": "Kelvin strain, e^K_{xz}",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "strain-kelvin-yy",
           "symbol": "e^K_{yy}",
           "description": "Kelvin strain, e^K_{yy}",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "strain-kelvin-yz",
           "symbol": "e^K_{yz}",
           "description": "Kelvin strain, e^K_{yz}",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "strain-kelvin-zz",
           "symbol": "e^K_{zz}",
           "description": "Kelvin strain, e^K_{zz}",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "tension",
           "symbol": "σ^t",
           "description": "tension limit σ^t. The default is zero.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "viscosity-kelvin",
           "symbol": "η^K",
           "description": "Kelvin viscosity, η^K",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "viscosity-maxwell",
           "symbol": "η^M",
           "description": "Maxwell dynamic viscosity, η^M",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "strain-shear-plastic",
-          "symbol": "",
           "description": "accumulated plastic shear strain",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "strain-tensile-plastic",
-          "symbol": "",
           "description": "accumulated plastic tensile strain",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         }
       ]
     }
   ],
-  "typical_applications": [],
-  "notes": [],
   "source": "https://docs.itascacg.com/itasca900/common/models/cvisc/doc/modelcvisc.html",
   "usage": {
     "assign": "zone cmodel assign burgers-mohr [range ...]",

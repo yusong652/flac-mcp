@@ -4,29 +4,21 @@
     "vector-delete"
   ],
   "description": "Delete vector data objets in the range.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
       "command": "data vector delete",
-      "syntax": "data vector delete [range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "data vector delete [range]"
     },
     "7.0": {
       "command": "data vector delete",
-      "syntax": "data vector delete [range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "data vector delete [range]"
     },
     "9.0": {
       "command": "data vector delete",
-      "syntax": "data vector delete [range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "data vector delete [range]"
     }
   }
 }

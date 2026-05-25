@@ -4,29 +4,21 @@
     "label-list"
   ],
   "description": "List label information. If the optional keyword name is specified, then only the information for that label is listed. Otherwise, information from all labels is listed.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
       "command": "data label list",
-      "syntax": "data label list [name <s>]",
-      "keywords": [],
-      "examples": []
+      "syntax": "data label list [name <s>]"
     },
     "7.0": {
       "command": "data label list",
-      "syntax": "data label list [name <s>]",
-      "keywords": [],
-      "examples": []
+      "syntax": "data label list [name <s>]"
     },
     "9.0": {
       "command": "data label list",
-      "syntax": "data label list [name <s>]",
-      "keywords": [],
-      "examples": []
+      "syntax": "data label list [name <s>]"
     }
   }
 }

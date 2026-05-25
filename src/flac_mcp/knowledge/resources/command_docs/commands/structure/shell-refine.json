@@ -12,9 +12,7 @@
   "versions": {
     "9.0": {
       "command": "structure shell refine",
-      "syntax": "structure shell refine <i>[range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "structure shell refine <i>[range]"
     }
   }
 }

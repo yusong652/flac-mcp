@@ -1,4 +1,4 @@
-"""Search result model for PFC search system.
+"""Search result model for FLAC search system.
 
 This module defines the structure of search results returned by search engines,
 including relevance scores, ranking information, and match details for
@@ -40,7 +40,7 @@ class SearchResult:
         ...     document=doc,
         ...     score=85.3,
         ...     match_info={
-        ...         "matching_words": ["create", "ball"],
+        ...         "matching_words": ["create", "zone"],
         ...         "partial_matches": [("pos", "position", 0.8)]
         ...     },
         ...     rank=1
@@ -89,9 +89,9 @@ class SearchResult:
 
         Example:
             >>> result.match_info = {"matching_words": ["create"]}
-            >>> result.document.title = "ball create"
+            >>> result.document.title = "zone create"
             >>> result.get_highlighted_title()
-            'ball **create**'
+            'zone **create**'
         """
         title = self.document.title
         matching_words = self.match_info.get("matching_words", [])

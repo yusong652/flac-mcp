@@ -14,9 +14,7 @@
   "versions": {
     "9.0": {
       "command": "building-blocks set arrest-triangle",
-      "syntax": "building-blocks set arrest-triangle <b>",
-      "keywords": [],
-      "examples": []
+      "syntax": "building-blocks set arrest-triangle <b>"
     }
   }
 }

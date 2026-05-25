@@ -14,9 +14,7 @@
   "versions": {
     "9.0": {
       "command": "structure liner gap-factor",
-      "syntax": "structure liner gap-factor <f>",
-      "keywords": [],
-      "examples": []
+      "syntax": "structure liner gap-factor <f>"
     }
   }
 }

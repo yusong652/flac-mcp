@@ -4,10 +4,8 @@
     "triangulate"
   ],
   "description": "Triangulate planar polygons. The planar polygons in the current geometry set are triangulated. This may be useful for plotting polygons that have concavities. Polygons, that are triangles, are created in the current set by default. See the to-set keyword to output the polygons to different geometry sets.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -24,8 +22,7 @@
           "syntax": "to-set <s>",
           "description": "Place the resulting polygons in the set with name s . This set is created if it does not exist."
         }
-      ],
-      "examples": []
+      ]
     },
     "7.0": {
       "command": "geometry triangulate",
@@ -46,8 +43,7 @@
           "syntax": "to-set <s>",
           "description": "Place the resulting polygons in the set with name s . This set is created if it does not exist."
         }
-      ],
-      "examples": []
+      ]
     },
     "9.0": {
       "command": "geometry triangulate",
@@ -68,8 +64,7 @@
           "syntax": "to-set <s>",
           "description": "Place the resulting polygons in the set with name s . This set is created if it does not exist."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

@@ -29,8 +29,7 @@
           "syntax": "undo",
           "description": "Reverse the operation of the last structure liner select command. The program keeps a maximum undo stack of size 12."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

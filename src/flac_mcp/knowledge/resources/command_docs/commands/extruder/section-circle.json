@@ -24,8 +24,7 @@
           "syntax": "point-1 <v1>point-2 <v2>[keyword]",
           "description": "Create a circle through two points on the circumference. .. kwd:: quad-split f Add a square block inside the circle. The square helps improve the shape of the zones inside the circle."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

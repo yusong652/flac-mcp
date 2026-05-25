@@ -1,7 +1,7 @@
-"""PFC Command Documentation System.
+"""FLAC Command Documentation System.
 
 This module provides command documentation loading and formatting capabilities
-for PFC commands.
+for FLAC commands.
 
 Components:
     - CommandLoader: Load command docs from JSON files
@@ -12,7 +12,7 @@ Data Models:
     - DocumentType: Enum for command vs model_property distinction
 
 Note:
-    For reference documentation (contact models, range elements), use:
+    For reference documentation (zone models, range elements), use:
     - flac_mcp.knowledge.references
 
     For command search functionality, use the unified search system:

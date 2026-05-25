@@ -26,8 +26,7 @@
           "syntax": "remove",
           "description": "Remove the specified group/slot assignment."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

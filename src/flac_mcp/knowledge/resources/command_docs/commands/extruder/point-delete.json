@@ -12,9 +12,7 @@
   "versions": {
     "9.0": {
       "command": "sketch point delete",
-      "syntax": "sketch point delete [invalid] [range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "sketch point delete [invalid] [range]"
     }
   }
 }

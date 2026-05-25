@@ -4,10 +4,8 @@
     "pause"
   ],
   "description": "Pause command processing.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -24,8 +22,7 @@
           "syntax": "time <f>",
           "description": "If the optional keyword time is specified, processing of the data file will stop for f seconds and then resume. If Shift + Esc is pressed before f seconds have elapsed, all processing will be aborted (including the processing of any data files that had been paused), and the program will enter interactive-command mode. If the space bar is pressed, processing of the data file will continue."
         }
-      ],
-      "examples": []
+      ]
     },
     "7.0": {
       "command": "program pause",
@@ -57,8 +54,7 @@
           "syntax": "time <f>",
           "description": "If the optional keyword time is specified, processing of the data file will stop for f seconds and then resume. If Shift + Esc is pressed before f seconds have elapsed, all processing will be aborted (including the processing of any data files that had been paused), and the program will enter interactive-command mode. If the space bar is pressed, processing of the data file will continue."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

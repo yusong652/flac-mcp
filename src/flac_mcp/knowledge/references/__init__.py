@@ -1,7 +1,7 @@
-"""PFC Reference Documentation System.
+"""FLAC Reference Documentation System.
 
 This module provides reference documentation loading and formatting capabilities
-for PFC reference items (contact models, range elements).
+for FLAC reference items (zone models, range elements).
 
 Components:
     - ReferenceLoader: Load reference docs from JSON files

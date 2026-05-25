@@ -14,7 +14,6 @@
     "Deterministic mode sacrifices efficiency and memory for repeatability",
     "FLAC3D is ALWAYS deterministic - setting determinism off is ignored",
     "Turning determinism OFF effects:",
-    "  - PFC runs ~15% faster",
     "  - 3DEC runs ~10% faster",
     "  - FLAC3D: no effect (always deterministic)",
     "  - Results NOT repeatable - small changes can propagate to very different results",

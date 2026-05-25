@@ -32,9 +32,9 @@ class SearchStrategy(ABC):
             >>> # Note: Direct strategy use is deprecated
             >>> # Use APISearch.search() instead for unified BM25 search
             >>> from flac_mcp.knowledge.query import APISearch
-            >>> results = APISearch.search("itasca.ball.create")
+            >>> results = APISearch.search("itasca.zone.create")
             >>> results[0].document.name
-            "itasca.ball.create"
+            "itasca.zone.create"
         """
         pass
 
@@ -52,7 +52,7 @@ class SearchStrategy(ABC):
             >>> # Note: Direct strategy use is deprecated
             >>> # BM25 search handles all query types automatically
             >>> from flac_mcp.knowledge.query import APISearch
-            >>> APISearch.search("itasca.ball.create")  # Path query
-            >>> APISearch.search("create a ball")  # Natural language query
+            >>> APISearch.search("itasca.zone.create")  # Path query
+            >>> APISearch.search("create a zone")  # Natural language query
         """
         pass

@@ -39,161 +39,137 @@
           "keyword": "activation-energy",
           "symbol": "Q",
           "description": "activation energy, Q",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "bulk",
           "symbol": "K",
           "description": "bulk modulus, K",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "bulk-final",
           "symbol": "K_f",
           "description": "final, intact salt, bulk modulus, K_f",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "constant-a",
           "symbol": "A",
           "description": "WIPP model constant, A",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "constant-b",
           "symbol": "B",
           "description": "WIPP model constant, B",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "constant-d",
           "symbol": "D",
           "description": "WIPP model constant, D",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "constant-gas",
           "symbol": "R",
           "description": "gas constant, R",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "compaction-0",
           "symbol": "B_0",
           "description": "creep compaction parameter, B_0",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "compaction-1",
           "symbol": "B_1",
           "description": "creep compaction parameter, B_1",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "compaction-2",
           "symbol": "B_2",
           "description": "creep compaction parameter, B_2",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "creep-rate-critical",
           "symbol": "ε̇^*_{ss}",
           "description": "critical steady-state creep rate, ε̇^*_{ss}",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "density-final",
           "symbol": "ρ_f",
           "description": "final, intact salt, density, ρ_f",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "density-salt",
           "symbol": "ρ",
           "description": "density, ρ",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "exponent",
           "symbol": "n",
           "description": "WIPP model exponent, n",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "poisson",
           "symbol": "v",
           "description": "Poisson’s ratio, v",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "shear",
           "symbol": "G",
           "description": "elastic shear modulus, G",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "shear-final",
           "symbol": "G_f",
           "description": "final, intact salt, shear modulus, G_f",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "temperature",
           "symbol": "T",
           "description": "zone temperature, T",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "young",
           "symbol": "E",
           "description": "Young’s modulus, E",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "compaction-bulk",
           "symbol": "K",
           "description": "creep compaction parameter, K",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "compaction-shear",
           "symbol": "G",
           "description": "creep compaction parameter, G",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "density-fractional",
           "symbol": "F_d",
           "description": "current fractional density, F_d",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         }
       ]
     }
   ],
-  "typical_applications": [],
-  "notes": [],
   "source": "https://docs.itascacg.com/itasca900/common/models/cwipp/doc/modelcwipp.html",
   "usage": {
     "assign": "zone cmodel assign wipp-salt [range ...]",

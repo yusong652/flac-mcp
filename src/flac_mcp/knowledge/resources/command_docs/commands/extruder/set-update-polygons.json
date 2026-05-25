@@ -21,8 +21,7 @@
           "syntax": "no-warning <f>",
           "description": "Suppress any warning issued during polygons search and update."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

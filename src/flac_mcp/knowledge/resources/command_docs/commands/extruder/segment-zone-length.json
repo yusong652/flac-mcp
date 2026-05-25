@@ -14,9 +14,7 @@
   "versions": {
     "9.0": {
       "command": "sketch segment zone-length",
-      "syntax": "sketch segment zone-length <f>[range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "sketch segment zone-length <f>[range]"
     }
   }
 }

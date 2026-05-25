@@ -1,4 +1,4 @@
-"""Stopwords list for PFC technical documentation.
+"""Stopwords list for FLAC technical documentation.
 
 This module provides a curated stopwords list optimized for scientific and
 technical documentation, preserving technical terms while filtering common
@@ -125,19 +125,18 @@ STOPWORDS = {
 }
 
 # Technical terms to PRESERVE (not stopwords)
-# These are often confused with stopwords but are meaningful in PFC context
+# These are often confused with stopwords but are meaningful in FLAC context
 TECHNICAL_PRESERVE = {
     "set",  # set property, set value
     "get",  # get value, get property
-    "command",  # PFC command
-    "generate",  # generate balls
+    "command",  # FLAC command
+    "generate",  # generate zones
     "create",  # create objects
     "delete",  # delete objects
     "property",  # model property
-    "model",  # contact model
-    "contact",  # contact mechanics
-    "ball",  # ball object
-    "wall",  # wall object
+    "model",  # zone model
+    "zone",  # zone mechanics/object
+    "gridpoint",  # gridpoint object
     "cycle",  # simulation cycle
     "range",  # range specification
     "group",  # object group
@@ -145,7 +144,6 @@ TECHNICAL_PRESERVE = {
     "list",  # list objects
     "find",  # find objects
     "near",  # near neighbors
-    "zone",  # zone element
     "node",  # node element
     "face",  # facet face
     "edge",  # edge element
@@ -178,7 +176,7 @@ def is_stopword(word: str) -> bool:
     Example:
         >>> is_stopword('the')
         True
-        >>> is_stopword('ball')  # Technical term
+        >>> is_stopword('zone')  # Technical term
         False
         >>> is_stopword('SET')   # Case insensitive
         False  # Preserved technical term

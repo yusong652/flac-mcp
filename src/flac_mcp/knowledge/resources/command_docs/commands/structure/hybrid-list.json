@@ -41,8 +41,7 @@
         },
         {
           "name": "grout",
-          "syntax": "grout",
-          "description": "information about the grout that is modeled as coupling springs that connect the bolt to the target object (zones in FLAC3D and 3DEC, and particles in PFC3D): confinement, displacement, stress, yield state and average axial direction"
+          "syntax": "grout"
         },
         {
           "name": "information",
@@ -74,8 +73,7 @@
           "syntax": "yield",
           "description": "yield state indicating whether or not the hybrid bolt element has yielded"
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

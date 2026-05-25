@@ -4,10 +4,8 @@
     "move-to"
   ],
   "description": "Move nodes. Position components ( \\(x\\) , \\(y\\) , or \\(z\\) ) of nodes in the < range >, if supplied, are moved to the value f ; all nodes are moved if no range is supplied. If final position of the node is in within some tolerance of another node, they are be merged.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -29,8 +27,7 @@
           "syntax": "z",
           "description": "Set the \\(z\\) -component of the point(s)."
         }
-      ],
-      "examples": []
+      ]
     },
     "7.0": {
       "command": "geometry move-to",
@@ -56,8 +53,7 @@
           "syntax": "z <f>[tolerance <ft>]",
           "description": "Set the \\(z\\) -component of the point(s)."
         }
-      ],
-      "examples": []
+      ]
     },
     "9.0": {
       "command": "geometry move-to",
@@ -83,8 +79,7 @@
           "syntax": "z <f>[tolerance <ft>]",
           "description": "Set the \\(z\\) -component of the point(s)."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

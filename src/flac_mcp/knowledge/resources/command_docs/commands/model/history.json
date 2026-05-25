@@ -17,7 +17,6 @@
     "  - Analyze equilibrium state evolution",
     "Most history quantities are process-specific (mechanical, thermal, creep, dynamic, fluid)",
     "DEPRECATED: mechanical cycle keyword - use cycles-total instead",
-    "PFC energy partitions: adhesive, body, boundary, damp, dashpot, kinetic, pbstrain, rrslip, rrstrain, slip, strain",
     "3DEC energy quantities: block-kinetic, block-potential, joint-friction, etc.",
     "Common usage: track ratio-average to monitor equilibrium convergence",
     "Histories can be exported, plotted, or queried via FISH",
@@ -60,7 +59,7 @@
         {
           "name": "unbalanced-maximum",
           "syntax": "unbalanced-maximum",
-          "description": "Values associated with the mechanical process. The current mechanical value of convergence (see model solve mechanical convergence ). The total number of mechanical cycles. (Deprecated; use cycles-total .) The number of cycles this process has taken in this model solve command. The total number of cycles accumulated while this process is active. The value of an energy partition in PFC . Adhesive energy stored contacts. Body based work energy. Wall based work energy. Local damping energy of bodies. Viscous dashpot energy stored in contacts. Kinetic energy of bodies. Parallel bond strain energy stored in contacts. Rolling resistance slip energy stored in contacts. Rolling resistance strain energy stored in contacts. Slip energy stored in contacts. Strain energy stored in contacts. The value of the ratio currently being used. See the definition of ratios in ref-equilibrium-. this and and next three need to be checked with DR closer to release!!!! The value of the average force ratio. See the definition of ratios in ref-equilibrium-. The value of the local force ratio. See the definition of ratios in ref-equilibrium-. The value of the maximum force ratio. See the definition of ratios in ref-equilibrium-. The accumulated time this process has done in this model solve command. The total accumulated time while this process is active. The maximum unbalanced force in any object."
+          "description": "Values associated with the mechanical process. The current mechanical value of convergence (see model solve mechanical convergence ). The total number of mechanical cycles. (Deprecated; use cycles-total .) The number of cycles this process has taken in this model solve command. The total number of cycles accumulated while this process is active. Adhesive energy stored contacts. Body based work energy. Local damping energy of bodies. Viscous dashpot energy stored in contacts. Kinetic energy of bodies. Parallel bond strain energy stored in contacts. Rolling resistance slip energy stored in contacts. Rolling resistance strain energy stored in contacts. Slip energy stored in contacts. Strain energy stored in contacts. The value of the ratio currently being used. See the definition of ratios in ref-equilibrium-. this and and next three need to be checked with DR closer to release!!!! The value of the average force ratio. See the definition of ratios in ref-equilibrium-. The value of the local force ratio. See the definition of ratios in ref-equilibrium-. The value of the maximum force ratio. See the definition of ratios in ref-equilibrium-. The accumulated time this process has done in this model solve command. The total accumulated time while this process is active. The maximum unbalanced force in any object."
         },
         {
           "name": "time-total",
@@ -95,12 +94,10 @@
           "description": "Monitor active timestep during cycling"
         },
         {
-          "command": "model history mechanical energy energy-kinetic",
-          "description": "Track kinetic energy in PFC"
+          "command": "model history mechanical energy energy-kinetic"
         },
         {
-          "command": "model history mechanical energy energy-strain",
-          "description": "Monitor strain energy stored in contacts (PFC)"
+          "command": "model history mechanical energy energy-strain"
         },
         {
           "command": "model history name 'mech_time' mechanical time-total",
@@ -150,7 +147,7 @@
         {
           "name": "unbalanced-average",
           "syntax": "unbalanced-average",
-          "description": "Values associated with the fluid process. The total number of cycles accumulated while this process is active. The value of an energy partition in PFC . Adhesive energy stored contacts. Body based work energy. Wall based work energy. Local damping energy of bodies. Viscous dashpot energy stored in contacts. Kinetic energy of bodies. Parallel bond strain energy stored in contacts. Rolling resistance slip energy stored in contacts. Rolling resistance strain energy stored in contacts. Slip energy stored in contacts. Strain energy stored in contacts. The value of the ratio currently being used. See the definition of ratios in ref-equilibrium-. this and and next three need to be checked with DR closer to release!!!! The value of the average force ratio. See the definition of ratios in ref-equilibrium-. The value of the local force ratio. See the definition of ratios in ref-equilibrium-. The value of the maximum force ratio. See the definition of ratios in ref-equilibrium-. The total accumulated time while this process is active. The maximum unbalanced force in any object. The average unbalanced force over all objects."
+          "description": "Values associated with the fluid process. The total number of cycles accumulated while this process is active. Adhesive energy stored contacts. Body based work energy. Local damping energy of bodies. Viscous dashpot energy stored in contacts. Kinetic energy of bodies. Parallel bond strain energy stored in contacts. Rolling resistance slip energy stored in contacts. Rolling resistance strain energy stored in contacts. Slip energy stored in contacts. Strain energy stored in contacts. The value of the ratio currently being used. See the definition of ratios in ref-equilibrium-. this and and next three need to be checked with DR closer to release!!!! The value of the average force ratio. See the definition of ratios in ref-equilibrium-. The value of the local force ratio. See the definition of ratios in ref-equilibrium-. The value of the maximum force ratio. See the definition of ratios in ref-equilibrium-. The total accumulated time while this process is active. The maximum unbalanced force in any object. The average unbalanced force over all objects."
         },
         {
           "name": "time-total",
@@ -185,12 +182,10 @@
           "description": "Monitor active timestep during cycling"
         },
         {
-          "command": "model history mechanical energy energy-kinetic",
-          "description": "Track kinetic energy in PFC"
+          "command": "model history mechanical energy energy-kinetic"
         },
         {
-          "command": "model history mechanical energy energy-strain",
-          "description": "Monitor strain energy stored in contacts (PFC)"
+          "command": "model history mechanical energy energy-strain"
         },
         {
           "command": "model history name 'mech_time' mechanical time-total",
@@ -250,7 +245,7 @@
         {
           "name": "unbalanced-maximum",
           "syntax": "unbalanced-maximum",
-          "description": "Values associated with the mechanical process. The current mechanical value of convergence (see model solve mechanical convergence ). The total number of mechanical cycles. (Deprecated; use cycles-total .) The number of cycles this process has taken in this model solve command. The total number of cycles accumulated while this process is active. The value of an energy partition in PFC . Adhesive energy stored contacts. Body based work energy. Wall based work energy. Local damping energy of bodies. Viscous dashpot energy stored in contacts. Kinetic energy of bodies. Parallel bond strain energy stored in contacts. Rolling resistance slip energy stored in contacts. Rolling resistance strain energy stored in contacts. Slip energy stored in contacts. Strain energy stored in contacts. The value of the ratio currently being used. See the definition of ratios in ref-equilibrium-. this and and next three need to be checked with DR closer to release!!!! The value of the average force ratio. See the definition of ratios in ref-equilibrium-. The value of the local force ratio. See the definition of ratios in ref-equilibrium-. The value of the maximum force ratio. See the definition of ratios in ref-equilibrium-. The accumulated time this process has done in this model solve command. The total accumulated time while this process is active. The maximum unbalanced force in any object."
+          "description": "Values associated with the mechanical process. The current mechanical value of convergence (see model solve mechanical convergence ). The total number of mechanical cycles. (Deprecated; use cycles-total .) The number of cycles this process has taken in this model solve command. The total number of cycles accumulated while this process is active. Adhesive energy stored contacts. Body based work energy. Local damping energy of bodies. Viscous dashpot energy stored in contacts. Kinetic energy of bodies. Parallel bond strain energy stored in contacts. Rolling resistance slip energy stored in contacts. Rolling resistance strain energy stored in contacts. Slip energy stored in contacts. Strain energy stored in contacts. The value of the ratio currently being used. See the definition of ratios in ref-equilibrium-. this and and next three need to be checked with DR closer to release!!!! The value of the average force ratio. See the definition of ratios in ref-equilibrium-. The value of the local force ratio. See the definition of ratios in ref-equilibrium-. The value of the maximum force ratio. See the definition of ratios in ref-equilibrium-. The accumulated time this process has done in this model solve command. The total accumulated time while this process is active. The maximum unbalanced force in any object."
         },
         {
           "name": "time-total",
@@ -285,12 +280,10 @@
           "description": "Monitor active timestep during cycling"
         },
         {
-          "command": "model history mechanical energy energy-kinetic",
-          "description": "Track kinetic energy in PFC"
+          "command": "model history mechanical energy energy-kinetic"
         },
         {
-          "command": "model history mechanical energy energy-strain",
-          "description": "Monitor strain energy stored in contacts (PFC)"
+          "command": "model history mechanical energy energy-strain"
         },
         {
           "command": "model history name 'mech_time' mechanical time-total",

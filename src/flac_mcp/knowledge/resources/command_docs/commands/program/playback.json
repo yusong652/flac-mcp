@@ -4,28 +4,21 @@
     "playback"
   ],
   "description": "Play back a record file.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
       "command": "program playback",
-      "syntax": "program playback <s>",
-      "keywords": [],
-      "examples": []
+      "syntax": "program playback <s>"
     },
     "7.0": {
       "command": "program playback",
-      "syntax": "program playback <s>",
-      "keywords": []
+      "syntax": "program playback <s>"
     },
     "9.0": {
       "command": "program playback",
-      "syntax": "program playback <s>",
-      "keywords": [],
-      "examples": []
+      "syntax": "program playback <s>"
     }
   }
 }

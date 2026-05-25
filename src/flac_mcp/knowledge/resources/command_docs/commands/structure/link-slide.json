@@ -12,9 +12,7 @@
   "versions": {
     "9.0": {
       "command": "structure link slide",
-      "syntax": "structure link slide <b>[range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "structure link slide <b>[range]"
     }
   }
 }

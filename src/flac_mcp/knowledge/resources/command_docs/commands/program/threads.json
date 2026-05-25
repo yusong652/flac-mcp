@@ -4,10 +4,8 @@
     "threads"
   ],
   "description": "Set the number of threads for calculations and plotting.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -24,8 +22,7 @@
           "syntax": "<i>",
           "description": "Use i processors."
         }
-      ],
-      "examples": []
+      ]
     },
     "7.0": {
       "command": "program threads",
@@ -57,8 +54,7 @@
           "syntax": "automatic",
           "description": "The number of threads reported by the operating system is used. Note that if hyper-threading is active, this can be twice the actual number of processors and cores available."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

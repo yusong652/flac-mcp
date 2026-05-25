@@ -24,8 +24,7 @@
           "syntax": "slot <s>",
           "description": "Assign the group to the slot named s . The default slot name is Default ."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

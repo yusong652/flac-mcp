@@ -24,8 +24,7 @@
           "syntax": "remove",
           "description": "The specified group is removed from the specified slot. If no slot is specified, then the group will be removed from any and all slots it is in."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

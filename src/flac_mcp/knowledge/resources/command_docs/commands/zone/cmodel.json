@@ -28,8 +28,7 @@
           "syntax": "load [<s>]",
           "description": "Attempts to dynamically load a DLL version of a constitutive model, identified by s . Once loaded, the DLL model can be assigned to zones in the grid using the zone cmodel assign command and range keywords. See Writing New Constitutive Models for a guide to creating user-defined models as DLLs. zone cmodel load can only be applied if model configure plugins is invoked. Also see the zone cmodel load command. s can either be the keyword used by the model, which should expand into the model dll name as modelname007.dll (where ‘name’ is the name provided by s ), or it can be full name of the dll. If a relative filename is given, both the current directory and the directory FLAC3D is installed in will be searched, including subdirectories."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

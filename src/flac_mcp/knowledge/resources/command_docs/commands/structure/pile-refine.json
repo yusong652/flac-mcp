@@ -12,9 +12,7 @@
   "versions": {
     "9.0": {
       "command": "structure pile refine",
-      "syntax": "structure pile refine <i>[range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "structure pile refine <i>[range]"
     }
   }
 }

@@ -24,8 +24,7 @@
           "syntax": "tolerance-absolute <f>",
           "description": "Specifies an absolute tolerance value. The default value is 0 . If both an absolute and a relative tolerance are specified, the value used on any given gridpoint is the maximum of the two."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

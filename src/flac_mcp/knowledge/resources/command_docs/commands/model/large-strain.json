@@ -27,7 +27,6 @@
     "7.0": {
       "command": "model large-strain",
       "syntax": "model large-strain <b>",
-      "keywords": [],
       "examples": [
         {
           "command": "model large-strain on",
@@ -38,7 +37,6 @@
           "description": "Disable large-strain mode (use small-strain formulation - default)"
         },
         {
-          "command": "model large-strain on\nmodel domain extent -10 10\nball generate number 1000 radius 0.5\nmodel gravity 9.81\nmodel cycle 10000",
           "description": "Enable large-strain before setup for granular flow simulation"
         },
         {
@@ -50,7 +48,6 @@
     "6.0": {
       "command": "model largestrain",
       "syntax": "model largestrain <b>",
-      "keywords": [],
       "examples": [
         {
           "command": "model large-strain on",
@@ -61,7 +58,6 @@
           "description": "Disable large-strain mode (use small-strain formulation - default)"
         },
         {
-          "command": "model large-strain on\nmodel domain extent -10 10\nball generate number 1000 radius 0.5\nmodel gravity 9.81\nmodel cycle 10000",
           "description": "Enable large-strain before setup for granular flow simulation"
         },
         {
@@ -73,7 +69,6 @@
     "9.0": {
       "command": "model large-strain",
       "syntax": "model large-strain <b>",
-      "keywords": [],
       "examples": [
         {
           "command": "model large-strain on",
@@ -84,7 +79,6 @@
           "description": "Disable large-strain mode (use small-strain formulation - default)"
         },
         {
-          "command": "model large-strain on\nmodel domain extent -10 10\nball generate number 1000 radius 0.5\nmodel gravity 9.81\nmodel cycle 10000",
           "description": "Enable large-strain before setup for granular flow simulation"
         },
         {

@@ -4,10 +4,8 @@
     "structure"
   ],
   "description": "Define a new FISH structure. The structure will be named s , and must be a valid FISH name. Tokens following are assumed to be member names of the structure. Please see FISH Scripting Reference , and specifically Structures .",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -15,14 +13,11 @@
     },
     "7.0": {
       "command": "fish structure",
-      "syntax": "fish structure <s>...",
-      "keywords": []
+      "syntax": "fish structure <s>..."
     },
     "9.0": {
       "command": "fish structure",
-      "syntax": "fish structure <s>...",
-      "keywords": [],
-      "examples": []
+      "syntax": "fish structure <s>..."
     }
   }
 }

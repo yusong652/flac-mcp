@@ -39,8 +39,7 @@
           "syntax": "height <f>",
           "description": "height of the water in the reservoir"
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

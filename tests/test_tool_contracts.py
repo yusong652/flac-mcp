@@ -12,7 +12,7 @@ from pathlib import Path
 import pytest
 import websockets
 
-from flac_mcp.bridge.client import close_bridge_client
+from flac_mcp.bridge.client import TASK_SUBMIT_MESSAGE_TYPE, close_bridge_client
 from flac_mcp.server import mcp
 
 # ── Mock Bridge ──────────────────────────────────────────
@@ -26,9 +26,9 @@ async def _mock_bridge_handler(websocket):
     async for raw in websocket:
         req = json.loads(raw)
         req_id = req.get("request_id", "unknown")
-        msg_type = req.get("type", "pfc_task")
+        msg_type = req.get("type", TASK_SUBMIT_MESSAGE_TYPE)
 
-        if msg_type == "pfc_task":
+        if msg_type == TASK_SUBMIT_MESSAGE_TYPE:
             task_id = req.get("task_id", "000000")
             TASK_STORE[task_id] = {
                 "status": "running",

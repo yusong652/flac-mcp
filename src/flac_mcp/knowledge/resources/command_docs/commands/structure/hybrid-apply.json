@@ -19,8 +19,7 @@
           "syntax": "value <f>",
           "description": "assign a specific axial tension value in the hybrid bolt element that will be maintained during cycling. Incomplete sentence follows: This is intended as a way to pre-tension hybrid bolts, but applying the pre-tension force as a tension to the end element(s), that are generally ungrouted. [DR: why is this flagged?] Note that this setting will override the normal force-displacement law for the element as long as it is active. Removing the condition will not remove the force, but from then on, the element forces will evolve naturally. The following keywords are available: make the tensile apply condition active or inactive. If active, the last specified value of tension is used, which is 0.0 by default. set the axial tensile force applied to the element f . This makes the condition active automatically."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

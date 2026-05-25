@@ -1,6 +1,6 @@
 """High-level command search interface.
 
-This module provides a simple, user-friendly API for searching PFC commands.
+This module provides a simple, user-friendly API for searching FLAC commands.
 Model properties are handled separately via flac_browse_reference tool.
 """
 
@@ -13,9 +13,9 @@ from flac_mcp.knowledge.search.engines.bm25_engine import BM25SearchEngine
 
 
 class CommandSearch:
-    """Command search interface for PFC documentation.
+    """Command search interface for FLAC documentation.
 
-    This class provides a high-level API for searching PFC commands
+    This class provides a high-level API for searching FLAC commands
     using BM25 algorithm with multi-field scoring.
 
     Features:
@@ -24,18 +24,18 @@ class CommandSearch:
     - Support for filtering by category
     - BM25 with multi-field scoring (name=0.5, keywords=0.3, description=0.2)
 
-    Note: For contact model properties, use flac_browse_reference tool directly.
+    Note: For zone model properties, use flac_browse_reference tool directly.
 
     Usage:
         >>> # Basic search
-        >>> results = CommandSearch.search("ball create", top_k=5)
+        >>> results = CommandSearch.search("zone create", top_k=5)
         >>> results[0].document.title
-        "ball create"
+        "zone create"
 
         >>> # With category filter
-        >>> results = CommandSearch.search("create", category="ball")
+        >>> results = CommandSearch.search("create", category="zone")
         >>> results[0].document.category
-        "ball"
+        "zone"
     """
 
     # Singleton instance
@@ -65,14 +65,14 @@ class CommandSearch:
         min_score: float | None = None,
         version: str = CommandLoader.DEFAULT_VERSION,
     ) -> list[SearchResult]:
-        """Search for PFC commands.
+        """Search for FLAC commands.
 
         Args:
             query: Search query string
-                  Examples: "ball create", "contact property", "model solve"
+                  Examples: "zone create", "zone property", "model solve"
             top_k: Maximum number of results to return (default: 10)
             category: Optional category filter
-                     Examples: "ball", "contact", "model"
+                     Examples: "zone", "model", "structure"
             min_score: Optional minimum score threshold
 
         Returns:
@@ -80,13 +80,13 @@ class CommandSearch:
             Empty list if no matches found
 
         Example:
-            >>> results = CommandSearch.search("ball create")
+            >>> results = CommandSearch.search("zone create")
             >>> results[0].document.title
-            "ball create"
+            "zone create"
 
-            >>> results = CommandSearch.search("create", category="ball")
+            >>> results = CommandSearch.search("create", category="zone")
             >>> results[0].document.category
-            "ball"
+            "zone"
         """
         engine = cls._get_engine(version)
 
@@ -136,15 +136,15 @@ class CommandSearch:
         """Get all commands in a specific category.
 
         Args:
-            category: Category name (e.g., "ball", "contact", "model")
+            category: Category name (e.g., "zone", "model", "structure")
             top_k: Maximum number of results (default: 20)
 
         Returns:
             List of SearchResult objects in the category
 
         Example:
-            >>> results = CommandSearch.get_by_category("ball")
-            >>> all(r.document.category == "ball" for r in results)
+            >>> results = CommandSearch.get_by_category("zone")
+            >>> all(r.document.category == "zone" for r in results)
             True
         """
         return cls.search(query=category, top_k=top_k, category=category, version=version)

@@ -12,9 +12,7 @@
   "versions": {
     "9.0": {
       "command": "structure cable delete",
-      "syntax": "structure cable delete [range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "structure cable delete [range]"
     }
   }
 }

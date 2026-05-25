@@ -12,9 +12,7 @@
   "versions": {
     "9.0": {
       "command": "structure hybrid delete",
-      "syntax": "structure hybrid delete [range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "structure hybrid delete [range]"
     }
   }
 }

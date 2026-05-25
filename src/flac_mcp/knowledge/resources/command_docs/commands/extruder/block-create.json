@@ -34,8 +34,7 @@
           "syntax": "group <s1>[slot <s2>]",
           "description": "Create a block from the points specified IDs i1 i2 i3 … Order of points is irrelevant. Points must be connected by edges. For polygons with internal boundaries, only the points on the external boundary need be specified. Assign the created block the group name s1 (in slot s2 if provided, in slot Default if not)."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

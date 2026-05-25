@@ -12,9 +12,7 @@
   "versions": {
     "9.0": {
       "command": "zone interface effective",
-      "syntax": "zone interface [<s>] effective <b>[range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "zone interface [<s>] effective <b>[range]"
     }
   }
 }

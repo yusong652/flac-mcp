@@ -20,10 +20,10 @@ def register(mcp: FastMCP) -> None:
             description=(
                 "FLAC command to browse (space-separated, matching FLAC syntax). Examples:\n"
                 "- None or '': List all command categories\n"
-                "- 'ball': List all ball commands\n"
-                "- 'ball create': Get ball create documentation\n"
-                "- 'contact': List all contact commands\n"
-                "- 'contact property': Get contact property command documentation"
+                "- 'zone': List all zone commands\n"
+                "- 'zone cmodel assign': Get zone cmodel assignment documentation\n"
+                "- 'structure': List all structural-element commands\n"
+                "- 'model solve': Get model solve command documentation"
             ),
         ),
         version: CommandDocVersion = Field(
@@ -31,7 +31,7 @@ def register(mcp: FastMCP) -> None:
             description=(
                 "FLAC documentation version to browse. Defaults to 9.0 "
                 "(current ITASCA Software release; covers FLAC continuum + "
-                "structural-element commands). Use 7.0/6.0 for legacy PFC."
+                "structural-element commands). Use 7.0/6.0 for legacy documentation."
             ),
         ),
     ) -> dict[str, Any]:
@@ -39,8 +39,8 @@ def register(mcp: FastMCP) -> None:
 
         Navigation levels:
         - No command: All command categories overview
-        - Category only (e.g., "ball"): List commands in category
-        - Full command (e.g., "ball create"): Full documentation
+        - Category only (e.g., "zone"): List commands in category
+        - Full command (e.g., "zone cmodel assign"): Full documentation
 
         When to use:
         - You know the command category or exact command
@@ -48,7 +48,7 @@ def register(mcp: FastMCP) -> None:
 
         Related tools:
         - flac_query_command: Search commands by keywords (when path unknown)
-        - flac_browse_reference: Browse reference docs (e.g., "contact-models linear")
+        - flac_browse_reference: Browse reference docs (e.g., "constitutive-models mohr-coulomb")
         """
         cmd = normalize_input(command)
         version_value = normalize_command_doc_version(version)

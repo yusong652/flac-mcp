@@ -45,8 +45,7 @@
           "syntax": "well",
           "description": "Remove the volume rate of flow applied to each zone (i.e., remove a zone apply well condition)."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

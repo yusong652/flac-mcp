@@ -103,8 +103,7 @@
           "syntax": "water <b>",
           "description": "All water table information."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

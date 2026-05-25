@@ -1,4 +1,4 @@
-"""Indexing utilities for PFC search system."""
+"""Indexing utilities for FLAC search system."""
 
 from flac_mcp.knowledge.search.indexing.bm25_indexer import BM25Indexer
 

@@ -1,4 +1,4 @@
-"""Data loading layer for PFC reference documentation.
+"""Data loading layer for FLAC reference documentation.
 
 This module loads reference documentation from JSON files with caching
 for performance.
@@ -8,7 +8,7 @@ Supports two item layouts:
 - Directory-based: {category}/{item}/index.json (3-level: category → item → sub-item)
 
 Responsibilities:
-- Load references index (categories: contact-models, range-elements, plot-items)
+- Load references index (categories: constitutive-models, range-elements)
 - Load individual reference item documentation
 - Load sub-item documentation for directory-based items
 - Cache loaded data to avoid repeated I/O
@@ -18,14 +18,14 @@ import json
 from functools import lru_cache
 from typing import Any, cast
 
-from flac_mcp.knowledge.config import PFC_REFERENCES_ROOT
+from flac_mcp.knowledge.config import FLAC_REFERENCES_ROOT
 
 
 class ReferenceLoader:
-    """Loads and caches PFC reference documentation.
+    """Loads and caches FLAC reference documentation.
 
     This class provides static methods for loading reference docs
-    (contact models, range elements). All methods use caching
+    (zone models, range elements). All methods use caching
     to avoid repeated file I/O.
     """
 
@@ -43,10 +43,10 @@ class ReferenceLoader:
         Example:
             >>> index = ReferenceLoader.load_index()
             >>> categories = index["categories"]
-            >>> "contact-models" in categories
+            >>> "constitutive-models" in categories
             True
         """
-        index_path = PFC_REFERENCES_ROOT / "index.json"
+        index_path = FLAC_REFERENCES_ROOT / "index.json"
         if not index_path.exists():
             return {}
 
@@ -58,13 +58,13 @@ class ReferenceLoader:
         """Load index for a specific reference category.
 
         Args:
-            category: Category name (e.g., "contact-models", "range-elements")
+            category: Category name (e.g., "constitutive-models", "range-elements")
 
         Returns:
             Category index dict or None if not found
 
         Example:
-            >>> index = ReferenceLoader.load_category_index("contact-models")
+            >>> index = ReferenceLoader.load_category_index("constitutive-models")
             >>> len(index["models"])
             5
             >>> index = ReferenceLoader.load_category_index("range-elements")
@@ -82,7 +82,7 @@ class ReferenceLoader:
         if not index_file:
             return None
 
-        index_path = PFC_REFERENCES_ROOT / index_file
+        index_path = FLAC_REFERENCES_ROOT / index_file
         if not index_path.exists():
             return None
 
@@ -94,14 +94,14 @@ class ReferenceLoader:
         """Load documentation for a specific reference item.
 
         Args:
-            category: Category name (e.g., "contact-models", "range-elements")
+            category: Category name (e.g., "constitutive-models", "range-elements")
             item_name: Item name (e.g., "linear", "cylinder", "group")
 
         Returns:
             Item documentation dict or None if not found
 
         Example:
-            >>> doc = ReferenceLoader.load_item_doc("contact-models", "linear")
+            >>> doc = ReferenceLoader.load_item_doc("constitutive-models", "linear")
             >>> doc["full_name"]
             "Linear Model"
             >>> doc = ReferenceLoader.load_item_doc("range-elements", "cylinder")
@@ -118,13 +118,13 @@ class ReferenceLoader:
         directory = cat_data.get("directory", category)
 
         # Try file-based item first: {category}/{item}.json
-        doc_path = PFC_REFERENCES_ROOT / directory / f"{item_name}.json"
+        doc_path = FLAC_REFERENCES_ROOT / directory / f"{item_name}.json"
         if doc_path.exists():
             with open(doc_path, encoding="utf-8") as f:
                 return cast(dict[str, Any], json.load(f))
 
         # Try directory-based item: {category}/{item}/index.json
-        dir_index = PFC_REFERENCES_ROOT / directory / item_name / "index.json"
+        dir_index = FLAC_REFERENCES_ROOT / directory / item_name / "index.json"
         if dir_index.exists():
             with open(dir_index, encoding="utf-8") as f:
                 return cast(dict[str, Any], json.load(f))
@@ -145,22 +145,22 @@ class ReferenceLoader:
         category_meta = categories[category]
         raw_directory = category_meta.get("directory") if isinstance(category_meta, dict) else None
         directory = raw_directory if isinstance(raw_directory, str) and raw_directory else category
-        return (PFC_REFERENCES_ROOT / directory / item_name / "index.json").exists()
+        return (FLAC_REFERENCES_ROOT / directory / item_name / "index.json").exists()
 
     @staticmethod
     def load_sub_item_doc(category: str, item_name: str, sub_item: str) -> dict[str, Any] | None:
         """Load documentation for a sub-item within a directory-based item.
 
         Args:
-            category: Category name (e.g., "plot-items")
-            item_name: Item name (e.g., "ball")
+            category: Category name (e.g., "range-elements")
+            item_name: Item name (e.g., "zone")
             sub_item: Sub-item name (e.g., "color-by")
 
         Returns:
             Sub-item documentation dict or None if not found.
 
         Example:
-            >>> doc = ReferenceLoader.load_sub_item_doc("plot-items", "ball", "color-by")
+            >>> doc = ReferenceLoader.load_sub_item_doc("plot-items", "zone", "color-by")
             >>> doc["name"]
             "color-by"
         """
@@ -170,7 +170,7 @@ class ReferenceLoader:
             return None
         directory = categories[category].get("directory", category)
 
-        doc_path = PFC_REFERENCES_ROOT / directory / item_name / f"{sub_item}.json"
+        doc_path = FLAC_REFERENCES_ROOT / directory / item_name / f"{sub_item}.json"
         if not doc_path.exists():
             return None
 
@@ -196,8 +196,8 @@ class ReferenceLoader:
         """Get list of items in a reference category.
 
         Args:
-            category: Category name (e.g., "contact-models", "range-elements")
-            version: Optional PFC version (e.g. "6.0"). When given, items
+            category: Category name (e.g., "constitutive-models", "range-elements")
+            version: Optional FLAC version (e.g. "6.0"). When given, items
                 whose ``availability`` map excludes that version are filtered
                 out. Items without an ``availability`` map are kept.
 
@@ -205,7 +205,7 @@ class ReferenceLoader:
             List of item metadata dicts
 
         Example:
-            >>> items = ReferenceLoader.get_item_list("contact-models")
+            >>> items = ReferenceLoader.get_item_list("constitutive-models")
             >>> len(items) >= 5
             True
             >>> items = ReferenceLoader.get_item_list("range-elements")

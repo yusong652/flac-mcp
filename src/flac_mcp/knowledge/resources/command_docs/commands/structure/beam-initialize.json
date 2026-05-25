@@ -19,8 +19,7 @@
           "syntax": "coupling",
           "description": "Find any deformable links attached to the element and attempt to initialize the force to match the stress state of the link target."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

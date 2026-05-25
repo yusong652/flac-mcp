@@ -5,7 +5,7 @@
     "import",
     "structure"
   ],
-  "description": "Create a geogrid as a collection of shell finite elements, where the elements are obtained from an outside source. Newly created nodes will attach to the first valid object (e.g., zones in FLAC3D and 3DEC , particles in PFC3D ) found at their location, with attachment conditions appropriate to a geogrid . A geogrid can also be created by the structure geogrid create command.",
+  "description": "Create a geogrid as a collection of shell finite elements, where the elements are obtained from an outside source. A geogrid can also be created by the structure geogrid create command.",
   "python_sdk_alternative": {
     "available": false
   },
@@ -69,8 +69,7 @@
           "syntax": "segments <i>",
           "description": "Break the element into i equal segments, creating new nodes as needed. The default value is 1 , indicating that only one element will be created."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

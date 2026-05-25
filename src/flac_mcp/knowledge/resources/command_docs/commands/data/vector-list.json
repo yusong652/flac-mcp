@@ -4,10 +4,8 @@
     "vector-list"
   ],
   "description": "List vector information.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -39,8 +37,7 @@
           "syntax": "value",
           "description": "List the vector values."
         }
-      ],
-      "examples": []
+      ]
     },
     "7.0": {
       "command": "data vector list",
@@ -71,8 +68,7 @@
           "syntax": "value",
           "description": "List the vector values."
         }
-      ],
-      "examples": []
+      ]
     },
     "9.0": {
       "command": "data vector list",
@@ -103,8 +99,7 @@
           "syntax": "value",
           "description": "List the vector values."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

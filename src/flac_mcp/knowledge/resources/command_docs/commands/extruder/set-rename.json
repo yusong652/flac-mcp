@@ -12,9 +12,7 @@
   "versions": {
     "9.0": {
       "command": "sketch set rename",
-      "syntax": "sketch set <s1>rename <s2>",
-      "keywords": [],
-      "examples": []
+      "syntax": "sketch set <s1>rename <s2>"
     }
   }
 }

@@ -29,105 +29,89 @@
           "keyword": "activation-energy",
           "symbol": "Q",
           "description": "activation energy, Q",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "bulk",
           "symbol": "K",
           "description": "bulk modulus, K",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "constant-a",
           "symbol": "A",
           "description": "WIPP model constant, A",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "constant-b",
           "symbol": "B",
           "description": "WIPP model constant, B",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "constant-d",
           "symbol": "D",
           "description": "WIPP model constant, D",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "constant-gas",
           "symbol": "R",
           "description": "gas constant, R",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "creep-rate-critical",
           "symbol": "ε̇ ^*_{ss}",
           "description": "critical steady-state creep rate, ε̇ ^*_{ss}",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "exponent",
           "symbol": "n",
           "description": "WIPP model exponent, n",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "poisson",
           "symbol": "v",
           "description": "Poisson’s ratio, v",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "shear",
           "symbol": "G",
           "description": "shear modulus, G",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "temperature",
           "symbol": "T",
           "description": "zone temperature, T",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "young",
           "symbol": "E",
           "description": "Young’s modulus, E",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "creep-strain-primary",
           "symbol": "ε̇_s",
           "description": "accumulated primary creep strain, ε̇_s",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "creep-rate-primary",
           "symbol": "ε_s",
           "description": "accumulated primary creep strain rate, ε_s",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         }
       ]
     }
   ],
-  "typical_applications": [],
-  "notes": [],
   "source": "https://docs.itascacg.com/itasca900/common/models/wipp/doc/modelwipp.html",
   "usage": {
     "assign": "zone cmodel assign wipp [range ...]",

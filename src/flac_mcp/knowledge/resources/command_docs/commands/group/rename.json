@@ -4,29 +4,21 @@
     "rename"
   ],
   "description": "Rename a group. The group named sold is renamed to snew . All references to group sold , in all objects and slots, now instead refer to snew .",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
       "command": "group.rename",
-      "syntax": "group rename <sold><snew>",
-      "keywords": [],
-      "examples": []
+      "syntax": "group rename <sold><snew>"
     },
     "7.0": {
       "command": "group.rename",
-      "syntax": "group rename <sold><snew>",
-      "keywords": [],
-      "examples": []
+      "syntax": "group rename <sold><snew>"
     },
     "9.0": {
       "command": "group.rename",
-      "syntax": "group rename <sold><snew>",
-      "keywords": [],
-      "examples": []
+      "syntax": "group rename <sold><snew>"
     }
   }
 }

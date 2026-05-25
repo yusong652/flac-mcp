@@ -4,10 +4,8 @@
     "energy"
   ],
   "description": "Specify the energy tracking state. Currently only mechanical energies can be tracked.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -44,8 +42,7 @@
           "syntax": "thermal <b>",
           "description": "Set the energy tracking state of the thermal process to b ."
         }
-      ],
-      "examples": []
+      ]
     },
     "7.0": {
       "command": "model energy",
@@ -67,8 +64,7 @@
           "syntax": "mechanical <b>",
           "description": "Specify the energy tracking state for the mechanical process."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

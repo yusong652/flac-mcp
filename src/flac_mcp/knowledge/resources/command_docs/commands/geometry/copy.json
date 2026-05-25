@@ -4,10 +4,8 @@
     "copy"
   ],
   "description": "Copy geometric data. All geometric data from the source set s1 (or the current default, if not specified) are copied to the target geometric set s2 . The target set is created if it does not exist. The optional range can be used to filter which geometric objects are included in the copy. By default, all nodes, edges and polygons in the range are copied unless the type to be copied is restricted with a keyword.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -34,8 +32,7 @@
           "syntax": "polygons",
           "description": "If specified, only polygons and dependent edges and nodes will be copied."
         }
-      ],
-      "examples": []
+      ]
     },
     "7.0": {
       "command": "geometry copy",
@@ -61,8 +58,7 @@
           "syntax": "polygons",
           "description": "If specified, only polygons and dependent edges and nodes will be copied."
         }
-      ],
-      "examples": []
+      ]
     },
     "9.0": {
       "command": "geometry copy",
@@ -88,8 +84,7 @@
           "syntax": "polygons",
           "description": "If specified, only polygons and dependent edges and nodes will be copied."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

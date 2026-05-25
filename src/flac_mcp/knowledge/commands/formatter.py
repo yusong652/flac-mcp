@@ -1,4 +1,4 @@
-"""Markdown formatter for PFC command documentation.
+"""Markdown formatter for FLAC command documentation.
 
 This module formats command documentation and model properties as markdown
 for LLM consumption.
@@ -16,7 +16,7 @@ from flac_mcp.knowledge.commands.models import CommandSearchResult, DocumentType
 
 
 class CommandFormatter:
-    """Format PFC command documentation as markdown.
+    """Format FLAC command documentation as markdown.
 
     This class provides static methods for formatting commands and model
     properties in a consistent, LLM-friendly markdown format.
@@ -52,7 +52,7 @@ class CommandFormatter:
 
         total_commands = sum(len(cat_data.get("commands", [])) for cat_data in categories.values())
 
-        parts.append("## PFC Command Documentation")
+        parts.append("## FLAC Command Documentation")
         parts.append("")
         parts.append(f"Total: {len(categories)} categories, {total_commands} commands")
         parts.append("")
@@ -122,14 +122,14 @@ class CommandFormatter:
 
         Args:
             doc: Command documentation dict
-            category: Command category (e.g., "ball", "contact")
+            category: Command category (e.g., "zone", "model")
 
         Returns:
             Formatted markdown string
 
         Example:
-            >>> doc = {"command": "ball create", "syntax": "...", ...}
-            >>> md = CommandFormatter.format_command(doc, "ball")
+            >>> doc = {"command": "zone create", "syntax": "...", ...}
+            >>> md = CommandFormatter.format_command(doc, "zone")
             >>> "## Syntax" in md
             True
         """
@@ -288,9 +288,9 @@ class CommandFormatter:
         Returns:
             Formatted markdown string with suggestions
         """
-        return f"""No PFC command documentation found for '{query}'.
+        return f"""No FLAC command documentation found for '{query}'.
 
 Suggestions:
-- Try simpler keywords (e.g., "ball create" instead of "how to create a ball")
-- Command categories: ball, wall, clump, contact, model, fragment, measure, plot, brick, rblock
+- Try simpler keywords (e.g., "zone create" instead of "how to create a zone")
+- Command categories: zone, model, structure, geometry, history, fish, table, plot
 """

@@ -22,7 +22,7 @@
         {
           "name": "coupling",
           "syntax": "coupling",
-          "description": "information about the shear coupling springs connecting the geogrid to the target object (zones in FLAC3D and 3DEC, and particles in PFC3D): confinement, displacement, stress, yield state and shear direction. Displacement and stress are always positive and act in the geogrid tangent plane; and shear direction is given as a unit vector in the global system."
+          "description": "Displacement and stress are always positive and act in the geogrid tangent plane; and shear direction is given as a unit vector in the global system."
         },
         {
           "name": "depth-factor",
@@ -99,8 +99,7 @@
           "syntax": "system-material",
           "description": "element material coordinate system (used if the element has orthotropic or anisotropic elastic material properties)"
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

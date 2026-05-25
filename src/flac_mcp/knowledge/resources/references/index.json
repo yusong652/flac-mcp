@@ -10,14 +10,6 @@
       "summary": "38 FLAC zone material models (version-agnostic): elastic/plastic/cap/creep families — the property keywords for 'zone cmodel assign' + 'zone property'",
       "usage": "zone cmodel assign <name> ; zone property <prop> <value> [range cmodel-name <name>]"
     },
-    "contact-models": {
-      "name": "Contact Models",
-      "description": "Contact model properties (mechanical & thermal) — kn, ks, fric, bond/joint params, etc.",
-      "directory": "contact-models",
-      "index_file": "contact-models/index.json",
-      "summary": "22 contact models across PFC 6.0/7.0/9.0 (version-filtered): linear, flatjoint, smoothjoint, softbond, hertz, mohr, springnetwork, and more",
-      "usage": "contact cmat add model <name> property <prop> <value>"
-    },
     "range-elements": {
       "name": "Range Elements",
       "description": "Range filtering syntax (position, cylinder, group, id, etc.)",
@@ -25,20 +17,12 @@
       "index_file": "range-elements/index.json",
       "summary": "Geometric, attribute, and logical range filters",
       "usage": "<command> ... range <element> [params]"
-    },
-    "plot-items": {
-      "name": "Plot Item Keywords",
-      "description": "Configuration keywords for plot item types (ball, wall, contact coloring, cut planes, legend)",
-      "directory": "plot-items",
-      "index_file": "plot-items/index.json",
-      "summary": "Keywords for 'plot item create <type>' — color-by, cut, transparency, legend, etc.",
-      "usage": "plot item create <type> <keyword> <keyword> ..."
     }
   },
   "navigation": {
     "root": "List all reference categories",
-    "category": "List items in category (e.g., 'contact-models')",
-    "item": "Full documentation (e.g., 'contact-models linear')"
+    "category": "List items in category (e.g., 'constitutive-models')",
+    "item": "Full documentation (e.g., 'constitutive-models mohr-coulomb')"
   },
   "notes": [
     "References are syntax elements used within commands, not standalone commands",

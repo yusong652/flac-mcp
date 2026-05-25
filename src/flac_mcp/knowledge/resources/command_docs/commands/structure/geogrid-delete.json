@@ -12,9 +12,7 @@
   "versions": {
     "9.0": {
       "command": "structure geogrid delete",
-      "syntax": "structure geogrid delete [range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "structure geogrid delete [range]"
     }
   }
 }

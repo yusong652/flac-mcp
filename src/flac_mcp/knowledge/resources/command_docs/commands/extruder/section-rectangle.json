@@ -24,8 +24,7 @@
           "syntax": "point-1 <v1>point-2 <v2>[point-3 <v3>]",
           "description": "if the first two points are specified, create a rectangle using two opposite corners. if the third point is specified, create a rectangle using two adjacent corners and a point on the opposite side."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

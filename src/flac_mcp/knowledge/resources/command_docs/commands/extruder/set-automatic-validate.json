@@ -21,8 +21,7 @@
           "syntax": "tolerance <f>",
           "description": "The optional tolerance value f changes the tolerance used in this check. The default value is 1e-6."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

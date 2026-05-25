@@ -1,6 +1,6 @@
-"""PFC SDK Documentation System - Direct Access Interface.
+"""FLAC SDK Documentation System - Direct Access Interface.
 
-This module provides direct access to the PFC Python SDK documentation
+This module provides direct access to the FLAC Python SDK documentation
 components without wrapper layers.
 
 Usage:
@@ -11,7 +11,7 @@ Usage:
 
     # For API search, use the unified search system:
     from flac_mcp.knowledge.query import APISearch
-    results = APISearch.search("create ball")
+    results = APISearch.search("create zone")
 
     # Load and format documentation
     for result in results:

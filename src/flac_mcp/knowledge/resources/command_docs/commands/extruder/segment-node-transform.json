@@ -41,8 +41,7 @@
           "syntax": "control-point <b>",
           "description": "Move/freeze control points. When true (the default), control points are moved when the points they are associated with are moved. Control points will be “frozen” when false ."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

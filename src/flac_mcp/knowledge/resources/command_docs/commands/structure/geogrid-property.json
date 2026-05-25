@@ -54,8 +54,7 @@
           "syntax": "slide-tolerance <f>",
           "description": "large-strain sliding tolerance"
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

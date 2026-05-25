@@ -1,8 +1,8 @@
-"""Unified document model for PFC search system.
+"""Unified document model for FLAC search system.
 
 This module provides a unified representation of different document types
 (commands, model properties, Python API) to enable consistent search operations
-across the entire PFC documentation system.
+across the entire FLAC documentation system.
 """
 
 from dataclasses import dataclass, field
@@ -13,10 +13,10 @@ from typing import Any
 class DocumentType(Enum):
     """Document type enumeration.
 
-    Defines the types of searchable documents in the PFC system:
-    - COMMAND: PFC command documentation (e.g., "ball create", "contact property")
-    - MODEL_PROPERTY: Contact model property documentation (e.g., "linear", "hertz")
-    - PYTHON_API: Python SDK API documentation (e.g., "itasca.ball.create")
+    Defines the types of searchable documents in the FLAC system:
+    - COMMAND: FLAC command documentation (e.g., "zone create", "zone property")
+    - MODEL_PROPERTY: Constitutive model property documentation (e.g., "mohr-coulomb", "elastic")
+    - PYTHON_API: Python SDK API documentation (e.g., "itasca.zone.create")
 
     Search Strategy:
     - COMMAND + MODEL_PROPERTY: Unified search via CommandSearch
@@ -43,15 +43,15 @@ class SearchDocument:
     Attributes:
         name: Unique document name/identifier
             Examples:
-            - COMMAND: "ball create", "contact property"
-            - MODEL_PROPERTY: "linear", "hertz"
-            - PYTHON_API: "itasca.ball.create", "Ball.vel"
+            - COMMAND: "zone create", "zone property"
+            - MODEL_PROPERTY: "mohr-coulomb", "elastic"
+            - PYTHON_API: "itasca.zone.create", "Zone.vel"
         doc_type: Type of document (COMMAND/MODEL_PROPERTY/PYTHON_API)
         title: Display title for search results
         description: Full text description for BM25 search
         keywords: Human-curated search keywords for exact/partial matching
         category: Document category for filtering
-            Examples: "ball" (commands), "contact" (model), "itasca.ball" (API)
+            Examples: "zone" (commands), "constitutive-models" (model), "itasca.zone" (API)
         syntax: Command/function syntax for display
         examples: Usage examples list
         metadata: Extensible metadata dictionary for custom fields
@@ -64,23 +64,23 @@ class SearchDocument:
     Usage:
         >>> # Command document
         >>> cmd_doc = SearchDocument(
-        ...     name="ball create",
+        ...     name="zone create",
         ...     doc_type=DocumentType.COMMAND,
-        ...     title="ball create",
-        ...     description="Create a new ball object...",
-        ...     keywords=["create", "ball", "generate"],
-        ...     category="ball",
-        ...     syntax="ball create <keyword> ..."
+        ...     title="zone create",
+        ...     description="Create a new zone object...",
+        ...     keywords=["create", "zone", "generate"],
+        ...     category="zone",
+        ...     syntax="zone create <keyword> ..."
         ... )
 
         >>> # Model property document
         >>> model_doc = SearchDocument(
         ...     name="linear",
         ...     doc_type=DocumentType.MODEL_PROPERTY,
-        ...     title="Linear Contact Model",
-        ...     description="Linear elastic contact model...",
-        ...     keywords=["linear", "contact model", "stiffness"],
-        ...     category="contact",
+        ...     title="Mohr-Coulomb Model",
+        ...     description="Mohr-Coulomb zone constitutive model...",
+        ...     keywords=["mohr-coulomb", "zone model", "cohesion"],
+        ...     category="constitutive-models",
         ...     metadata={"priority": "high", "property_count": 8}
         ... )
     """
@@ -117,7 +117,7 @@ class SearchDocument:
         Args:
             filters: Dictionary of filter conditions
                 Supported keys:
-                - category: Filter by category (e.g., "ball", "contact")
+                - category: Filter by category (e.g., "zone", "constitutive-models")
                 - doc_type: Filter by document type
                 - Any metadata key: Filter by metadata values
 
@@ -125,7 +125,7 @@ class SearchDocument:
             True if document matches all filters, False otherwise
 
         Example:
-            >>> doc.matches_filters({"category": "ball"})
+            >>> doc.matches_filters({"category": "zone"})
             True
             >>> doc.matches_filters({"doc_type": DocumentType.MODEL_PROPERTY})
             False

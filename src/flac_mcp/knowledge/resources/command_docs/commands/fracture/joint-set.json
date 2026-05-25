@@ -4,10 +4,8 @@
     "joint-set"
   ],
   "description": "Create a set of sub-parallel fractures, or joint set, with specified origin, size, and spacing.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -72,8 +70,7 @@
           "syntax": "spacing <f1>[<f2>]",
           "description": "Set the spacing between joints of the set. A random, uniform deviation is specified optionally with f2 ."
         }
-      ],
-      "examples": []
+      ]
     },
     "9.0": {
       "command": "fracture joint-set",
@@ -134,8 +131,7 @@
           "syntax": "spacing <f1>[<f2>]",
           "description": "Set the spacing between joints of the set. A random, uniform deviation is specified optionally with f2 ."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

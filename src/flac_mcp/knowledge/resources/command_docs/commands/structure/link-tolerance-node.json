@@ -14,9 +14,7 @@
   "versions": {
     "9.0": {
       "command": "structure link tolerance-node",
-      "syntax": "structure link tolerance-node <f>",
-      "keywords": [],
-      "examples": []
+      "syntax": "structure link tolerance-node <f>"
     }
   }
 }

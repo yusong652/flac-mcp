@@ -4,10 +4,8 @@
     "create"
   ],
   "description": "Create a deterministic fracture.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -64,8 +62,7 @@
           "syntax": "skip-errors",
           "description": "Indicate that the command will return a warning instead of an error if the fracture creation fails. When this keyword is given, the fracture position is not required to fall within the model domain."
         }
-      ],
-      "examples": []
+      ]
     },
     "7.0": {
       "command": "fracture create",
@@ -121,8 +118,7 @@
           "syntax": "skip-errors",
           "description": "Indicate that the command will return a warning instead of an error if the fracture creation fails. When this keyword is given, the fracture position is not required to fall within the model domain."
         }
-      ],
-      "examples": []
+      ]
     },
     "9.0": {
       "command": "fracture create",
@@ -178,8 +174,7 @@
           "syntax": "skip-errors",
           "description": "Indicate that the command will return a warning instead of an error if the fracture creation fails. When this keyword is given, the fracture position is not required to fall within the model domain."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

@@ -38,8 +38,7 @@
           "syntax": "list [range]",
           "description": "List information on all attach conditions in the range. This information includes the follower gridpoints, the leader targets, and the weighting factors if appropriate."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

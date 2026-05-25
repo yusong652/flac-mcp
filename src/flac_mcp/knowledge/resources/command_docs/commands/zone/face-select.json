@@ -59,8 +59,7 @@
           "syntax": "use-hidden-zones",
           "description": "Include faces on zones that are within the specified range but also hidden. If this keyword is not supplied, faces on zones that are hidden will not be included in the operation of the command, even if they otherwise exist within the range specified."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

@@ -4,10 +4,8 @@
     "log"
   ],
   "description": "Turn on/off logging. By default this setting is off .",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -24,8 +22,7 @@
           "syntax": "truncate",
           "description": "Any existing log file is cleared before new information is added."
         }
-      ],
-      "examples": []
+      ]
     },
     "7.0": {
       "command": "program log",
@@ -67,8 +64,7 @@
           "syntax": "truncate",
           "description": "Any existing log file is cleared before new information is added."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

@@ -84,8 +84,8 @@ SearchQuery = Annotated[
         ...,
         min_length=1,
         description=(
-            "Search keywords for FLAC commands. Examples: 'ball create', "
-            "'contact property', 'model solve'. Case-insensitive."
+            "Search keywords for FLAC commands. Examples: 'zone create', "
+            "'zone cmodel assign', 'model solve'. Case-insensitive."
         ),
     ),
 ]
@@ -98,8 +98,8 @@ PythonAPISearchQuery = Annotated[
         ...,
         min_length=1,
         description=(
-            "Search keywords for FLAC Python SDK API. Examples: 'ball pos', "
-            "'contact force', 'model solve'. Case-insensitive."
+            "Search keywords for FLAC Python SDK API. Examples: 'zone stress', "
+            "'gridpoint displacement', 'model solve'. Case-insensitive."
         ),
     ),
 ]

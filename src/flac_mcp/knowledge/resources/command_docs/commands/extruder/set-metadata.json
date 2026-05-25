@@ -29,8 +29,7 @@
           "syntax": "list",
           "description": "List all metadata assigned to the sketch set."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

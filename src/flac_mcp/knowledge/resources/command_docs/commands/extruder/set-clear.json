@@ -12,9 +12,7 @@
   "versions": {
     "9.0": {
       "command": "sketch set clear",
-      "syntax": "sketch set clear",
-      "keywords": [],
-      "examples": []
+      "syntax": "sketch set clear"
     }
   }
 }

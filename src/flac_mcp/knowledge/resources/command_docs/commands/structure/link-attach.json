@@ -79,8 +79,7 @@
           "syntax": "shear-yield",
           "description": "shear yield deformable spring (only available in translational degrees-of-freedom)"
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

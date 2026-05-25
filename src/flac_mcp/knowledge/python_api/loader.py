@@ -1,4 +1,4 @@
-"""Data loading layer for PFC SDK documentation.
+"""Data loading layer for FLAC SDK documentation.
 
 This module is responsible for loading documentation data from JSON files
 and providing cached access to avoid repeated I/O operations.
@@ -16,7 +16,7 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Any, cast
 
-from flac_mcp.knowledge.config import PFC_DOCS_SOURCE
+from flac_mcp.knowledge.config import FLAC_DOCS_SOURCE
 
 
 class DocumentationLoader:
@@ -36,10 +36,6 @@ class DocumentationLoader:
         - keywords: Keyword to API list mapping (if present)
         - fallback_hints: Suggestions when SDK doesn't support operation
 
-        Post-processing:
-        - Expands Contact.* entries to all Contact type variants
-          (BallBallContact, BallFacetContact, etc.)
-
         Returns:
             Dict containing index data structure
 
@@ -49,20 +45,15 @@ class DocumentationLoader:
         Example:
             >>> index = DocumentationLoader.load_index()
             >>> quick_ref = index["quick_ref"]
-            >>> "itasca.ball.create" in quick_ref
-            True
-            >>> "BallBallContact.gap" in quick_ref  # Expanded from Contact.gap
+            >>> "itasca.zone.list" in quick_ref
             True
         """
-        index_path = PFC_DOCS_SOURCE / "index.json"
+        index_path = FLAC_DOCS_SOURCE / "index.json"
         if not index_path.exists():
             raise FileNotFoundError(f"Index file not found: {index_path}")
 
         with open(index_path, encoding="utf-8") as f:
             index = json.load(f)
-
-        # Expand Contact.* entries to all Contact type variants
-        index = DocumentationLoader._expand_contact_types(index)
 
         # Expand object methods to full official paths
         index = DocumentationLoader._expand_object_methods(index)
@@ -81,39 +72,28 @@ class DocumentationLoader:
         Uses merge strategy: when multiple modules define the same keyword,
         all associated APIs are collected (not overwritten).
 
-        Post-processing:
-        - Expands itasca.contact.Contact.* entries to all Contact type variants
-          (same expansion as index loading for consistency)
-
         Returns:
             Dict mapping keywords to list of API names
 
         Example:
             >>> keywords = DocumentationLoader.load_all_keywords()
-            >>> keywords["create ball"]
-            ["itasca.ball.create"]
-            >>> keywords["normal vector"]  # Merged from multiple modules
-            ["Facet.normal", "Contact.normal"]
-            >>> keywords["contact gap"]  # Expanded to all Contact types
-            ["itasca.BallBallContact.gap", "itasca.BallFacetContact.gap", ...]
+            >>> keywords["zone stress"]
+            ["itasca.zone.Zone.stress"]
         """
         # Use defaultdict to automatically handle merging
         all_keywords: defaultdict[str, list[str]] = defaultdict(list)
 
         # Load itasca top-level keywords
-        itasca_keywords_path = PFC_DOCS_SOURCE / "itasca_keywords.json"
+        itasca_keywords_path = FLAC_DOCS_SOURCE / "itasca_keywords.json"
         if itasca_keywords_path.exists():
             with open(itasca_keywords_path, encoding="utf-8") as f:
                 data = json.load(f)
                 DocumentationLoader._merge_keywords(all_keywords, data.get("keywords", {}))
 
         # Load keywords from all sub-modules (recursive)
-        modules_dir = PFC_DOCS_SOURCE / "modules"
+        modules_dir = FLAC_DOCS_SOURCE / "modules"
         if modules_dir.exists():
             DocumentationLoader._load_keywords_recursive(modules_dir, all_keywords)
-
-        # Expand Contact.* entries to all Contact type variants
-        all_keywords = DocumentationLoader._expand_contact_keywords(all_keywords)
 
         # Convert defaultdict back to regular dict for return
         return dict(all_keywords)
@@ -123,8 +103,8 @@ class DocumentationLoader:
         """Load documentation for a specific API or module.
 
         Args:
-            api_name: Full API name like "itasca.ball.create" or "Ball.vel"
-                     or module name like "itasca.ball"
+            api_name: Full API name like "itasca.zone.list" or "Zone.stress"
+                     or module name like "itasca.zone"
 
         Returns:
             API documentation dict with fields:
@@ -151,15 +131,13 @@ class DocumentationLoader:
             Returns None if API not found.
 
         Example:
-            >>> doc = DocumentationLoader.load_api_doc("itasca.ball.create")
+            >>> doc = DocumentationLoader.load_api_doc("itasca.zone.list")
             >>> doc["signature"]
-            "itasca.ball.create(radius, pos=None)"
+            "itasca.zone.list() -> tuple of Zone objects."
 
-            >>> doc = DocumentationLoader.load_api_doc("itasca.ball")
+            >>> doc = DocumentationLoader.load_api_doc("itasca.zone")
             >>> doc["type"]
             "module"
-            >>> len(doc["available_functions"])
-            9
         """
         index = DocumentationLoader.load_index()
 
@@ -176,7 +154,7 @@ class DocumentationLoader:
         # Parse file path and anchor
         # Format: "file_name.json#function_name"
         file_name, anchor = ref.split("#")
-        doc_path = PFC_DOCS_SOURCE / file_name
+        doc_path = FLAC_DOCS_SOURCE / file_name
 
         if not doc_path.exists():
             return None
@@ -199,74 +177,12 @@ class DocumentationLoader:
         return None
 
     @staticmethod
-    def _expand_contact_types(index: dict[str, Any]) -> dict[str, Any]:
-        """Expand Contact.* entries to all Contact type variants.
-
-        PFC has multiple Contact types (BallBallContact, BallFacetContact, etc.)
-        that share the same interface documented as "Contact". This method
-        expands each Contact.* entry to all Contact type variants so that
-        LLM can search using official API paths.
-
-        Args:
-            index: Loaded index dictionary
-
-        Returns:
-            Modified index with expanded Contact entries
-
-        Example:
-            Input quick_ref:
-                "Contact.gap": "modules/contact/Contact.json#gap"
-
-            Output quick_ref:
-                "BallBallContact.gap": "modules/contact/Contact.json#gap"
-                "BallFacetContact.gap": "modules/contact/Contact.json#gap"
-                "BallPebbleContact.gap": "modules/contact/Contact.json#gap"
-                "PebblePebbleContact.gap": "modules/contact/Contact.json#gap"
-                "PebbleFacetContact.gap": "modules/contact/Contact.json#gap"
-        """
-        from flac_mcp.knowledge.python_api.types.contact import CONTACT_TYPES
-
-        quick_ref = index.get("quick_ref", {})
-
-        # Find all Contact.* entries
-        contact_entries = {}
-        entries_to_remove = []
-
-        for api_name, file_ref in quick_ref.items():
-            # Format 1: Short format "Contact.gap" (legacy)
-            if api_name.startswith("Contact."):
-                # Extract method name
-                method_name = api_name.split(".", 1)[1]
-                contact_entries[method_name] = file_ref
-                entries_to_remove.append(api_name)
-            # Format 2: Unified format "itasca.contact.Contact.gap" (preferred)
-            elif api_name.startswith("itasca.contact.Contact."):
-                # Extract method name after "itasca.contact.Contact."
-                method_name = api_name.split(".", 3)[3]
-                contact_entries[method_name] = file_ref
-                entries_to_remove.append(api_name)
-
-        # Expand each Contact.* entry to all Contact types
-        for method_name, file_ref in contact_entries.items():
-            for contact_type in CONTACT_TYPES:
-                # Create only full official paths: itasca.BallBallContact.gap
-                # This eliminates the need for PathResolver to add "itasca." prefix
-                full_path = f"itasca.{contact_type}.{method_name}"
-                quick_ref[full_path] = file_ref
-
-        # Remove original Contact.* entries (they're now replaced by specific types)
-        for api_name in entries_to_remove:
-            del quick_ref[api_name]
-
-        return index
-
-    @staticmethod
     def _expand_object_methods(index: dict[str, Any]) -> dict[str, Any]:
         """Expand object method entries to full official paths.
 
-        Object methods like "Ball.vel", "Wall.pos" are stored in index as short paths.
-        This method expands them to full official paths like "itasca.ball.Ball.vel",
-        "itasca.wall.Wall.pos", eliminating the need for runtime path resolution.
+        Object methods like "Zone.stress" are stored in index as short paths.
+        This method expands them to full official paths like
+        "itasca.zone.Zone.stress", eliminating the need for runtime path resolution.
 
         Args:
             index: Loaded index dictionary
@@ -276,12 +192,10 @@ class DocumentationLoader:
 
         Example:
             Input quick_ref:
-                "Ball.vel": "modules/ball/Ball.json#vel"
-                "Wall.pos": "modules/wall/Wall.json#pos"
+                "Zone.stress": "modules/zone/Zone.json#stress"
 
             Output quick_ref:
-                "itasca.ball.Ball.vel": "modules/ball/Ball.json#vel"
-                "itasca.wall.Wall.pos": "modules/wall/Wall.json#pos"
+                "itasca.zone.Zone.stress": "modules/zone/Zone.json#stress"
         """
         from flac_mcp.knowledge.python_api.types.mappings import CLASS_TO_MODULE
 
@@ -308,7 +222,7 @@ class DocumentationLoader:
         for short_path, file_ref in object_methods.items():
             class_name = short_path.split(".")[0]
             module_name = CLASS_TO_MODULE[class_name]
-            # Create full official path: Ball.vel → itasca.ball.Ball.vel
+            # Create full official path: Zone.vel → itasca.zone.Zone.vel
             full_path = f"itasca.{module_name}.{short_path}"
             quick_ref[full_path] = file_ref
 
@@ -323,26 +237,26 @@ class DocumentationLoader:
         """Load module-level documentation.
 
         Args:
-            api_name: API name that might be a module (e.g., "itasca.ball", "itasca.clump")
+            api_name: API name that might be a module (e.g., "itasca.zone", "itasca.gridpoint")
             index: Loaded index dictionary
 
         Returns:
             Module documentation dict or None if not a module
 
         Example:
-            Input: "itasca.ball"
+            Input: "itasca.zone"
             Output: {
                 "type": "module",
-                "signature": "itasca.ball (module - 9 functions available)",
-                "description": "Ball object management...",
-                "available_functions": ["itasca.ball.create", ...]
+                "signature": "itasca.zone (module - 20 functions available)",
+                "description": "Zone object management...",
+                "available_functions": ["itasca.zone.list", ...]
             }
         """
         modules = index.get("modules", {})
 
         # Extract module name from API name
-        # "itasca.ball" -> "ball"
-        # "itasca.clump.template" -> "clump.template"
+        # "itasca.zone" -> "zone"
+        # "itasca.gridpoint" -> "gridpoint"
         if not api_name.startswith("itasca."):
             return None
 
@@ -370,57 +284,6 @@ class DocumentationLoader:
                 "for detailed documentation including parameters, return types, and examples."
             ),
         }
-
-    @staticmethod
-    def _expand_contact_keywords(all_keywords: defaultdict[str, list[str]]) -> defaultdict[str, list[str]]:
-        """Expand itasca.contact.Contact.* entries in keywords to all Contact type variants.
-
-        This ensures keywords.json entries like "itasca.contact.Contact.gap" are
-        expanded to all specific Contact types, matching the behavior of index expansion.
-
-        Args:
-            all_keywords: Dictionary mapping keywords to API lists
-
-        Returns:
-            Modified dictionary with expanded Contact entries
-
-        Example:
-            Input:
-                {"contact gap": ["itasca.contact.Contact.gap"]}
-
-            Output:
-                {"contact gap": [
-                    "itasca.BallBallContact.gap",
-                    "itasca.BallFacetContact.gap",
-                    "itasca.BallPebbleContact.gap",
-                    "itasca.PebblePebbleContact.gap",
-                    "itasca.PebbleFacetContact.gap"
-                ]}
-        """
-        from flac_mcp.knowledge.python_api.types.contact import CONTACT_TYPES
-
-        # Create a new dict to store expanded results
-        expanded_keywords = defaultdict(list)
-
-        for keyword, api_list in all_keywords.items():
-            expanded_apis = []
-
-            for api_name in api_list:
-                # Check if this is a Contact abstract path
-                if api_name.startswith("itasca.contact.Contact."):
-                    # Extract method name after "itasca.contact.Contact."
-                    method_name = api_name.split(".", 3)[3]
-
-                    # Expand to all Contact types
-                    for contact_type in CONTACT_TYPES:
-                        expanded_apis.append(f"itasca.{contact_type}.{method_name}")
-                else:
-                    # Keep non-Contact APIs as-is
-                    expanded_apis.append(api_name)
-
-            expanded_keywords[keyword] = expanded_apis
-
-        return expanded_keywords
 
     @staticmethod
     def _merge_keywords(target: defaultdict[str, list[str]], source: dict[str, list[str]]) -> None:
@@ -472,7 +335,7 @@ class DocumentationLoader:
         """Load module documentation by index key.
 
         Args:
-            module_key: Module key from index (e.g., "itasca", "ball", "wall.facet")
+            module_key: Module key from index (e.g., "itasca", "zone", "gridpoint.facet")
 
         Returns:
             Module documentation dict with:
@@ -483,9 +346,9 @@ class DocumentationLoader:
             Returns None if module not found.
 
         Example:
-            >>> doc = DocumentationLoader.load_module("ball")
+            >>> doc = DocumentationLoader.load_module("zone")
             >>> doc["module"]
-            "itasca.ball"
+            "itasca.zone"
             >>> len(doc["functions"])
             9
         """
@@ -507,7 +370,7 @@ class DocumentationLoader:
             }
 
         # Load full module documentation
-        doc_path = PFC_DOCS_SOURCE / file_path
+        doc_path = FLAC_DOCS_SOURCE / file_path
         if not doc_path.exists():
             # Return basic info from index
             return {
@@ -524,7 +387,7 @@ class DocumentationLoader:
         """Load function documentation from a module.
 
         Args:
-            module_key: Module key from index (e.g., "itasca", "ball")
+            module_key: Module key from index (e.g., "itasca", "zone")
             func_name: Function name (e.g., "create", "cycle")
 
         Returns:
@@ -539,9 +402,9 @@ class DocumentationLoader:
             Returns None if function not found.
 
         Example:
-            >>> doc = DocumentationLoader.load_function("ball", "create")
+            >>> doc = DocumentationLoader.load_function("zone", "create")
             >>> doc["signature"]
-            "itasca.ball.create(radius: float, centroid: vec, id: int = None) -> Ball"
+            "itasca.zone.create(radius: float, centroid: vec, id: int = None) -> Zone"
         """
         module_doc = DocumentationLoader.load_module(module_key)
         if not module_doc:
@@ -559,7 +422,7 @@ class DocumentationLoader:
         """Load object documentation by class name.
 
         Args:
-            object_name: Object class name (e.g., "Ball", "Contact", "Wall")
+            object_name: Object class name (e.g., "Zone", "Contact", "Gridpoint")
 
         Returns:
             Object documentation dict with:
@@ -572,9 +435,9 @@ class DocumentationLoader:
             Returns None if object not found.
 
         Example:
-            >>> doc = DocumentationLoader.load_object("Ball")
+            >>> doc = DocumentationLoader.load_object("Zone")
             >>> doc["class"]
-            "Ball"
+            "Zone"
             >>> "position" in doc["method_groups"]
             True
         """
@@ -592,7 +455,7 @@ class DocumentationLoader:
             return cast(dict[str, Any], object_info)
 
         # Load full object documentation
-        doc_path = PFC_DOCS_SOURCE / file_path
+        doc_path = FLAC_DOCS_SOURCE / file_path
         if not doc_path.exists():
             return cast(dict[str, Any], object_info)
 
@@ -604,7 +467,7 @@ class DocumentationLoader:
         """Load method documentation from an object.
 
         Args:
-            object_name: Object class name (e.g., "Ball", "Wall")
+            object_name: Object class name (e.g., "Zone", "Gridpoint")
             method_name: Method name (e.g., "pos", "vel")
 
         Returns:
@@ -618,9 +481,9 @@ class DocumentationLoader:
             Returns None if method not found.
 
         Example:
-            >>> doc = DocumentationLoader.load_method("Ball", "pos")
+            >>> doc = DocumentationLoader.load_method("Zone", "pos")
             >>> doc["signature"]
-            "ball.pos() -> vec"
+            "zone.pos() -> vec"
         """
         object_doc = DocumentationLoader.load_object(object_name)
         if not object_doc:

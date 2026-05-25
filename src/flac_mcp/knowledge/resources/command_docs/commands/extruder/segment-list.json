@@ -34,8 +34,7 @@
           "syntax": "type",
           "description": "Print information about curve type of the segment and control points."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

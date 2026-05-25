@@ -14,9 +14,7 @@
   "versions": {
     "9.0": {
       "command": "building-blocks set auto-tolerance",
-      "syntax": "building-blocks set auto-tolerance <b>",
-      "keywords": [],
-      "examples": []
+      "syntax": "building-blocks set auto-tolerance <b>"
     }
   }
 }

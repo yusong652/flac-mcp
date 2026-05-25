@@ -12,9 +12,7 @@
   "versions": {
     "9.0": {
       "command": "structure link delete",
-      "syntax": "structure link delete [range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "structure link delete [range]"
     }
   }
 }

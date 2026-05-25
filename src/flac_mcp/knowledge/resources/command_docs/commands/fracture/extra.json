@@ -4,29 +4,21 @@
     "extra"
   ],
   "description": "Set fracture extra variables. The extra variable a can be of any type, and is associated with the index i as if stored in an array.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
       "command": "fracture extra",
-      "syntax": "fracture extra <i>a[range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "fracture extra <i>a[range]"
     },
     "7.0": {
       "command": "fracture extra",
-      "syntax": "fracture extra <i><a>[range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "fracture extra <i><a>[range]"
     },
     "9.0": {
       "command": "fracture extra",
-      "syntax": "fracture extra <i><a>[range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "fracture extra <i><a>[range]"
     }
   }
 }

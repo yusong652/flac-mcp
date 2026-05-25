@@ -1,4 +1,4 @@
-"""Data loading layer for PFC command documentation.
+"""Data loading layer for FLAC command documentation.
 
 This module loads command documentation from JSON files with caching
 for performance.
@@ -14,17 +14,17 @@ import json
 from functools import lru_cache
 from typing import Any, cast
 
-from flac_mcp.knowledge.config import PFC_COMMAND_DOCS_ROOT
+from flac_mcp.knowledge.config import FLAC_COMMAND_DOCS_ROOT
 
 
 class CommandLoader:
-    """Loads and caches PFC command documentation.
+    """Loads and caches FLAC command documentation.
 
     This class provides static methods for loading command docs.
     All methods use caching to avoid repeated file I/O.
     """
 
-    DEFAULT_VERSION = "7.0"
+    DEFAULT_VERSION = "9.0"
 
     @staticmethod
     @lru_cache(maxsize=1)
@@ -48,10 +48,10 @@ class CommandLoader:
             >>> categories = index["categories"]
             >>> len(categories)
             7
-            >>> "ball" in categories
+            >>> "zone" in categories
             True
         """
-        index_path = PFC_COMMAND_DOCS_ROOT / "index.json"
+        index_path = FLAC_COMMAND_DOCS_ROOT / "index.json"
         if not index_path.exists():
             raise FileNotFoundError(f"Command index file not found: {index_path}")
 
@@ -62,7 +62,7 @@ class CommandLoader:
     @lru_cache(maxsize=256)
     def _load_doc_file(command_file: str) -> dict[str, Any] | None:
         """Load a raw command documentation file by relative path."""
-        doc_path = PFC_COMMAND_DOCS_ROOT / command_file
+        doc_path = FLAC_COMMAND_DOCS_ROOT / command_file
         if not doc_path.exists():
             return None
 
@@ -104,9 +104,9 @@ class CommandLoader:
         """Load documentation for a specific command.
 
         Args:
-            category: Command category (e.g., "ball", "contact", "model")
-            command_name: Command name (e.g., "create", "property", "cycle")
-            version: PFC version string to resolve (defaults to 7.0)
+            category: Command category (e.g., "zone", "model")
+            command_name: Command name (e.g., "create", "cycle")
+            version: FLAC documentation version string to resolve (defaults to 9.0)
 
         Returns:
             Command documentation dict with fields:
@@ -127,9 +127,9 @@ class CommandLoader:
             KeyError: If the requested version is not present in the command doc
 
         Example:
-            >>> doc = CommandLoader.load_command_doc("ball", "create")
+            >>> doc = CommandLoader.load_command_doc("zone", "create")
             >>> doc["syntax"]
-            "ball create <keyword> ..."
+            "zone create keyword"
             >>> "description" in doc
             True
         """
@@ -177,7 +177,7 @@ class CommandLoader:
             >>> commands = CommandLoader.get_all_commands()
             >>> len(commands)
             115
-            >>> commands[0]["category"] in ["ball", "wall", "clump", ...]
+            >>> commands[0]["category"] in ["zone", "model", "structure", ...]
             True
         """
         index = CommandLoader.load_index()

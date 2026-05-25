@@ -4,10 +4,8 @@
     "results"
   ],
   "description": "Specify whether fracture information is stored in subsequent results files. By default this value is off .",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -15,15 +13,11 @@
     },
     "7.0": {
       "command": "fracture results",
-      "syntax": "fracture results active <b>",
-      "keywords": [],
-      "examples": []
+      "syntax": "fracture results active <b>"
     },
     "9.0": {
       "command": "fracture results",
-      "syntax": "fracture results active <b>",
-      "keywords": [],
-      "examples": []
+      "syntax": "fracture results active <b>"
     }
   }
 }

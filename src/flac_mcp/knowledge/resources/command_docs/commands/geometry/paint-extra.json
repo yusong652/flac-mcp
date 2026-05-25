@@ -4,10 +4,8 @@
     "paint-extra"
   ],
   "description": "“Paint” a scalar value from a zone field. The value is painted onto nodes in the current geometric set. The values are placed in the extra variable index i on each node. The range selects which nodes of the geometric set are painted.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -217,7 +215,7 @@
         {
           "name": "zz",
           "syntax": "zz",
-          "description": "This keyword selects which scalar to retrieve from a symmetric tensor type value, such as stress or strain. If the value type is not a tensor, this setting is ignored. The available options are: Get the intermediate principal stress. Get the maximum (most positive) value of principal stress. [CS: doc needs to be added for this to work in PFC] Note that in -flac3d- ref-compressive stresses are negative <stresssignconventions>-. Get the mean pressure value, defined as the trace of the tensor divided by 3. For stresses this is most often referred to as the pressure. Get the minimum (most negative) principal stress. [CS: doc needs to be added for this to work in PFC] Note that in -flac3d- ref-compressive stresses are negative <stresssignconventions>-. Get the norm of the strain rate. [CS: again, we need a doc from FLAC3D for this to work in PFC]; see the equation in ref-sec_zonefielddatanames-. Get octahedral stress. [CS: again, we need a doc from FLAC3D for this to work in PFC]; see the equation in ref-sec_zonefielddatanames-. Get the maximum shear stress. Get the distance of tensor value to the origin in principal space. Get the volumetric change, or trace. Get the Von Mises measure. [CS: again, we need a doc from FLAC3D for this to work in PFC]; see the equation in ref-sec_zonefielddatanames-. Get the xx -component of the tensor. Get the xy -component of the tensor. Get the xz -component of the tensor. Get the yy -component of the tensor. Get the yz -component of the tensor. Get the zz -component of the tensor."
+          "description": "This keyword selects which scalar to retrieve from a symmetric tensor type value, such as stress or strain. If the value type is not a tensor, this setting is ignored. The available options are: Get the intermediate principal stress. Get the maximum (most positive) value of principal stress. Get the mean pressure value, defined as the trace of the tensor divided by 3. For stresses this is most often referred to as the pressure. Get the minimum (most negative) principal stress. Get the norm of the strain rate. Get octahedral stress. Get the maximum shear stress. Get the distance of tensor value to the origin in principal space. Get the volumetric change, or trace. Get the Von Mises measure. Get the xx -component of the tensor. Get the xy -component of the tensor. Get the xz -component of the tensor. Get the yy -component of the tensor. Get the yz -component of the tensor. Get the zz -component of the tensor."
         },
         {
           "name": "zone",
@@ -234,8 +232,7 @@
           "syntax": "tensor",
           "description": "In certain cases the type (scalar, vector, or tensor) of the value cannot necessarily be determined ahead of time. Extra variables, for example, can hold values of all three types. This keyword allows one to specify which type it is assumed to be. If the original value type does not match, 0.0 is returned. Set type to scalar float. This is the default. Set type to vector. Set type to tensor."
         }
-      ],
-      "examples": []
+      ]
     },
     "7.0": {
       "command": "geometry paint-extra",
@@ -599,7 +596,7 @@
         {
           "name": "zz",
           "syntax": "zz",
-          "description": "This keyword selects which scalar to retrieve from a symmetric tensor type value, such as stress or strain. If the value type is not a tensor, this setting is ignored. The available options are: Get the intermediate principal stress. Get the maximum (most positive) value of principal stress. [CS: doc needs to be added for this to work in PFC] Note that in -flac3d- ref-compressive stresses are negative <stresssignconventions>-. Get the mean pressure value, defined as the trace of the tensor divided by 3. For stresses this is most often referred to as the pressure. Get the minimum (most negative) principal stress. [CS: doc needs to be added for this to work in PFC] Note that in -flac3d- ref-compressive stresses are negative <stresssignconventions>-. Get the norm of the strain rate. [CS: again, we need a doc from FLAC3D for this to work in PFC]; see the equation in ref-sec_zonefielddatanames-. Get octahedral stress. [CS: again, we need a doc from FLAC3D for this to work in PFC]; see the equation in ref-sec_zonefielddatanames-. Get the maximum shear stress. Get the distance of tensor value to the origin in principal space. Get the volumetric change, or trace. Get the Von Mises measure. [CS: again, we need a doc from FLAC3D for this to work in PFC]; see the equation in ref-sec_zonefielddatanames-. Get the xx -component of the tensor. Get the xy -component of the tensor. Get the xz -component of the tensor. Get the yy -component of the tensor. Get the yz -component of the tensor. Get the zz -component of the tensor."
+          "description": "This keyword selects which scalar to retrieve from a symmetric tensor type value, such as stress or strain. If the value type is not a tensor, this setting is ignored. The available options are: Get the intermediate principal stress. Get the maximum (most positive) value of principal stress. Get the mean pressure value, defined as the trace of the tensor divided by 3. For stresses this is most often referred to as the pressure. Get the minimum (most negative) principal stress. Get the norm of the strain rate. Get octahedral stress. Get the maximum shear stress. Get the distance of tensor value to the origin in principal space. Get the volumetric change, or trace. Get the Von Mises measure. Get the xx -component of the tensor. Get the xy -component of the tensor. Get the xz -component of the tensor. Get the yy -component of the tensor. Get the yz -component of the tensor. Get the zz -component of the tensor."
         },
         {
           "name": "zone",
@@ -621,8 +618,7 @@
           "syntax": "velocity-limit <f>",
           "description": "Specifies the velocity limit used to determine if an object is stable or not for the factor-of-safety value. The default value is 1e-4 ."
         }
-      ],
-      "examples": []
+      ]
     },
     "9.0": {
       "command": "geometry paint-extra",
@@ -986,7 +982,7 @@
         {
           "name": "zz",
           "syntax": "zz",
-          "description": "This keyword selects which scalar to retrieve from a symmetric tensor type value, such as stress or strain. If the value type is not a tensor, this setting is ignored. The available options are: Get the intermediate principal stress. Get the maximum (most positive) value of principal stress. [CS: doc needs to be added for this to work in PFC] Note that in -flac3d- ref-compressive stresses are negative <stresssignconventions>-. Get the mean pressure value, defined as the trace of the tensor divided by 3. For stresses this is most often referred to as the pressure. Get the minimum (most negative) principal stress. [CS: doc needs to be added for this to work in PFC] Note that in -flac3d- ref-compressive stresses are negative <stresssignconventions>-. Get the norm of the strain rate. [CS: again, we need a doc from FLAC3D for this to work in PFC]; see the equation in ref-sec_zonefielddatanames-. Get octahedral stress. [CS: again, we need a doc from FLAC3D for this to work in PFC]; see the equation in ref-sec_zonefielddatanames-. Get the maximum shear stress. Get the distance of tensor value to the origin in principal space. Get the volumetric change, or trace. Get the Von Mises measure. [CS: again, we need a doc from FLAC3D for this to work in PFC]; see the equation in ref-sec_zonefielddatanames-. Get the xx -component of the tensor. Get the xy -component of the tensor. Get the xz -component of the tensor. Get the yy -component of the tensor. Get the yz -component of the tensor. Get the zz -component of the tensor."
+          "description": "This keyword selects which scalar to retrieve from a symmetric tensor type value, such as stress or strain. If the value type is not a tensor, this setting is ignored. The available options are: Get the intermediate principal stress. Get the maximum (most positive) value of principal stress. Get the mean pressure value, defined as the trace of the tensor divided by 3. For stresses this is most often referred to as the pressure. Get the minimum (most negative) principal stress. Get the norm of the strain rate. Get octahedral stress. Get the maximum shear stress. Get the distance of tensor value to the origin in principal space. Get the volumetric change, or trace. Get the Von Mises measure. Get the xx -component of the tensor. Get the xy -component of the tensor. Get the xz -component of the tensor. Get the yy -component of the tensor. Get the yz -component of the tensor. Get the zz -component of the tensor."
         },
         {
           "name": "zone",
@@ -1008,8 +1004,7 @@
           "syntax": "velocity-limit <f>",
           "description": "Specifies the velocity limit used to determine if an object is stable or not for the factor-of-safety value. The default value is 1e-4 ."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

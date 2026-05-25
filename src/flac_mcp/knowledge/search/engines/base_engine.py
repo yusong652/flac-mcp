@@ -1,4 +1,4 @@
-"""Base search engine interface for PFC documentation search.
+"""Base search engine interface for FLAC documentation search.
 
 This module defines the abstract interface that all search engines must implement,
 ensuring consistent behavior across different search algorithms.
@@ -31,7 +31,7 @@ class BaseSearchEngine(ABC):
 
     Usage:
         >>> engine = BM25SearchEngine(document_loader=load_docs)
-        >>> results = engine.search("ball porosity", top_k=5)
+        >>> results = engine.search("zone porosity", top_k=5)
         >>> for result in results:
         ...     print(f"{result.document.title}: {result.score}")
     """
@@ -76,11 +76,11 @@ class BaseSearchEngine(ABC):
         """Execute search query with optional filtering.
 
         Args:
-            query: Search query string (e.g., "ball porosity", "create contact")
+            query: Search query string (e.g., "zone porosity", "create zone")
             top_k: Maximum number of results to return (default: 10)
             filters: Optional filters to apply:
                     - doc_type: Filter by DocumentType (e.g., "command", "python_api")
-                    - category: Filter by category (e.g., "ball", "contact")
+                    - category: Filter by category (e.g., "zone", "zone")
                     - min_score: Minimum score threshold
 
         Returns:
@@ -91,14 +91,14 @@ class BaseSearchEngine(ABC):
             ValueError: If engine not built (call build() first)
 
         Example:
-            >>> results = engine.search("ball create", top_k=5)
+            >>> results = engine.search("zone create", top_k=5)
             >>> results[0].document.title
-            "ball create"
+            "zone create"
 
             >>> results = engine.search(
-            ...     "contact",
+            ...     "zone",
             ...     top_k=10,
-            ...     filters={"doc_type": "command", "category": "contact"}
+            ...     filters={"doc_type": "command", "category": "zone"}
             ... )
         """
         pass
@@ -175,7 +175,7 @@ class BaseSearchEngine(ABC):
 
         # Filter by category
         # Supports both exact match and partial match
-        # Examples: "ball" matches "itasca.ball", "contact" matches "itasca.contact"
+        # Examples: "zone" matches "itasca.zone", "zone" matches "itasca.zone"
         if "category" in filters:
             category_filter = filters["category"].lower()
             filtered = [

@@ -39,8 +39,7 @@
           "syntax": "type",
           "description": "Print information about curve type of the edge and control points."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

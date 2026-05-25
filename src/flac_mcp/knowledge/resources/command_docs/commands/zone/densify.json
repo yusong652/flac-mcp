@@ -53,8 +53,7 @@
           "syntax": "repeat [<i>]",
           "description": "Repeats the densification i times, causing a recursive application of the range and densification settings. This can, for example, be used to create an octree grid. Note that if no number is given, then FLAC will repeat until the edge-limit is reached, applying the division specified in segments each time."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

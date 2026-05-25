@@ -24,7 +24,7 @@ def register(mcp: FastMCP) -> None:
 
         When to use:
         - You have keywords but don't know exact API path
-        - Example: "ball velocity", "create", "contact force"
+        - Example: "zone stress", "gridpoint displacement", "create"
 
         Related tools:
         - flac_browse_python_api: Get full documentation for a known API path

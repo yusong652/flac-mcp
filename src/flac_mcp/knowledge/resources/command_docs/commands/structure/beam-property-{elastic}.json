@@ -17,16 +17,14 @@
       "keywords": [
         {
           "name": "young",
-          "syntax": "young <f>",
-          "description": ""
+          "syntax": "young <f>"
         },
         {
           "name": "poisson",
           "syntax": "poisson <f>",
           "description": "Poisson’s ratio, \\(\\nu\\)"
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

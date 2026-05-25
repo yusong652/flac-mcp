@@ -12,9 +12,7 @@
   "versions": {
     "9.0": {
       "command": "building-blocks edge delete",
-      "syntax": "building-blocks edge delete [range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "building-blocks edge delete [range]"
     }
   }
 }

@@ -29,8 +29,7 @@
           "syntax": "undo",
           "description": "this will reverse the operation of the last structure cable select` . FLAC3D keeps a maximum undo stack of size 12."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

@@ -99,8 +99,7 @@
           "syntax": "local",
           "description": "translational and rotational velocity. The following keywords, if present, specify the coordinate system in which these values are expressed. values are expressed in the global system values are expressed in the node-local system. This is the default if no keyword is specified."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

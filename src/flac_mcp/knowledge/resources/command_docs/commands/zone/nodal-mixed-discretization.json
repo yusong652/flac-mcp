@@ -14,9 +14,7 @@
   "versions": {
     "9.0": {
       "command": "zone nodal-mixed-discretization",
-      "syntax": "zone nodal-mixed-discretization <b>",
-      "keywords": [],
-      "examples": []
+      "syntax": "zone nodal-mixed-discretization <b>"
     }
   }
 }

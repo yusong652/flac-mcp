@@ -4,10 +4,8 @@
     "callback"
   ],
   "description": "Add/remove functions to be executed in response to callback events.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -24,8 +22,7 @@
           "syntax": "event <s>",
           "description": "Removes a FISH function callback. If no further keywords are specified, the function will be removed wherever it is found. The first callback found at location f in the cycle is removed. If the function has been entered multiple times only one entry will be removed. The first callback found associated with the event s is removed. If the function has been entered multiple times only one entry will be removed."
         }
-      ],
-      "examples": []
+      ]
     },
     "7.0": {
       "command": "fish callback",
@@ -40,36 +37,6 @@
           "name": "event",
           "syntax": "event",
           "description": "Removes sym from the list of callbacks in the system. If no event name or location is specified then the symbol will be removed wherever it is found. The following keywords and options are available: The first instance of a callback to symbol sym found at location f in the cycle is removed. If the function has been entered multiple times only one entry will be removed. The first callback to symbol sym found associated with the event is removed. If the function has been entered multiple times only one entry will be removed."
-        },
-        {
-          "name": "kwd:ball_create",
-          "syntax": "ball_create",
-          "description": "Ball creation event."
-        },
-        {
-          "name": "kwd:ball_delete",
-          "syntax": "ball_delete",
-          "description": "Ball deletion event."
-        },
-        {
-          "name": "kwd:ballcfd_create",
-          "syntax": "ballcfd_create",
-          "description": "Ball CFD creation event."
-        },
-        {
-          "name": "kwd:ballcfd_delete",
-          "syntax": "ballcfd_delete",
-          "description": "Ball CFD deletion event."
-        },
-        {
-          "name": "kwd:ballthermal_create",
-          "syntax": "ballthermal_create",
-          "description": "Ball thermal creation event."
-        },
-        {
-          "name": "kwd:ballthermal_delete",
-          "syntax": "ballthermal_delete",
-          "description": "Ball thermal deletion event."
         },
         {
           "name": "kwd:block_create",
@@ -107,36 +74,6 @@
           "description": "Before CFD porosities have been updated."
         },
         {
-          "name": "kwd:clump_create",
-          "syntax": "clump_create",
-          "description": "Clump creation event."
-        },
-        {
-          "name": "kwd:clump_delete",
-          "syntax": "clump_delete",
-          "description": "Clump deletion event."
-        },
-        {
-          "name": "kwd:clumpcfd_create",
-          "syntax": "clumpcfd_create",
-          "description": "Clump CFD creation event."
-        },
-        {
-          "name": "kwd:clumpcfd_delete",
-          "syntax": "clumpcfd_delete",
-          "description": "Clump CFD deletion event."
-        },
-        {
-          "name": "kwd:clumpthermal_create",
-          "syntax": "clumpthermal_create",
-          "description": "Clump thermal creation event."
-        },
-        {
-          "name": "kwd:clumpthermal_delete",
-          "syntax": "clumpthermal_delete",
-          "description": "Clump thermal deletion event."
-        },
-        {
           "name": "kwd:contact_activated",
           "syntax": "contact_activated",
           "description": "Contact activation event."
@@ -163,13 +100,11 @@
         },
         {
           "name": "kwd:facet_create",
-          "syntax": "facet_create",
-          "description": "Wall facet creation event."
+          "syntax": "facet_create"
         },
         {
           "name": "kwd:facet_delete",
-          "syntax": "facet_delete",
-          "description": "Wall facet deletion event."
+          "syntax": "facet_delete"
         },
         {
           "name": "kwd:fos_complete",
@@ -180,26 +115,6 @@
           "name": "kwd:fos_start",
           "syntax": "fos_start",
           "description": "A factor of safety solution has started. The global.fos intrinsic will return the current factor of safety. The model will have been restored from the initial state and automatic strength reduction applied. This can be used to customized strength reduction at a given factor of safety."
-        },
-        {
-          "name": "kwd:rblock_create",
-          "syntax": "rblock_create",
-          "description": "RBlock creation event."
-        },
-        {
-          "name": "kwd:rblock_delete",
-          "syntax": "rblock_delete",
-          "description": "RBlock deletion event."
-        },
-        {
-          "name": "kwd:rblockthermal_create",
-          "syntax": "rblockthermal_create",
-          "description": "RBlock thermal creation event."
-        },
-        {
-          "name": "kwd:rblockthermal_delete",
-          "syntax": "rblockthermal_delete",
-          "description": "RBlock thermal deletion event."
         },
         {
           "name": "kwd:slip_change",
@@ -290,26 +205,6 @@
           "name": "kwd:subcontact_state_change",
           "syntax": "subcontact_state_change",
           "description": "Subcontact change of failure state. Arguments to called fish function will be the subcontact pointer and the old state (integer)."
-        },
-        {
-          "name": "kwd:wall_create",
-          "syntax": "wall_create",
-          "description": "Wall creation event."
-        },
-        {
-          "name": "kwd:wall_delete",
-          "syntax": "wall_delete",
-          "description": "Wall deletion event."
-        },
-        {
-          "name": "kwd:wallthermal_create",
-          "syntax": "wallthermal_create",
-          "description": "Wall thermal creation event."
-        },
-        {
-          "name": "kwd:wallthermal_delete",
-          "syntax": "wallthermal_delete",
-          "description": "Wall thermal deletion event."
         },
         {
           "name": "kwd:zone_eom",
@@ -358,36 +253,6 @@
           "description": "Removes sym from the list of callbacks in the system. If no event name or location is specified then the symbol will be removed wherever it is found. The following keywords and options are available: The first instance of a callback to symbol sym found at location f in the cycle is removed. If the function has been entered multiple times only one entry will be removed. The first callback to symbol sym found associated with the event is removed. If the function has been entered multiple times only one entry will be removed."
         },
         {
-          "name": "kwd:ball_create",
-          "syntax": "ball_create",
-          "description": "Ball creation event."
-        },
-        {
-          "name": "kwd:ball_delete",
-          "syntax": "ball_delete",
-          "description": "Ball deletion event."
-        },
-        {
-          "name": "kwd:ballcfd_create",
-          "syntax": "ballcfd_create",
-          "description": "Ball CFD creation event."
-        },
-        {
-          "name": "kwd:ballcfd_delete",
-          "syntax": "ballcfd_delete",
-          "description": "Ball CFD deletion event."
-        },
-        {
-          "name": "kwd:ballthermal_create",
-          "syntax": "ballthermal_create",
-          "description": "Ball thermal creation event."
-        },
-        {
-          "name": "kwd:ballthermal_delete",
-          "syntax": "ballthermal_delete",
-          "description": "Ball thermal deletion event."
-        },
-        {
           "name": "kwd:block_create",
           "syntax": "block_create",
           "description": "Block creation event. Argument to called fish function will be the pointer to the new block."
@@ -428,36 +293,6 @@
           "description": "Before CFD porosities have been updated."
         },
         {
-          "name": "kwd:clump_create",
-          "syntax": "clump_create",
-          "description": "Clump creation event."
-        },
-        {
-          "name": "kwd:clump_delete",
-          "syntax": "clump_delete",
-          "description": "Clump deletion event."
-        },
-        {
-          "name": "kwd:clumpcfd_create",
-          "syntax": "clumpcfd_create",
-          "description": "Clump CFD creation event."
-        },
-        {
-          "name": "kwd:clumpcfd_delete",
-          "syntax": "clumpcfd_delete",
-          "description": "Clump CFD deletion event."
-        },
-        {
-          "name": "kwd:clumpthermal_create",
-          "syntax": "clumpthermal_create",
-          "description": "Clump thermal creation event."
-        },
-        {
-          "name": "kwd:clumpthermal_delete",
-          "syntax": "clumpthermal_delete",
-          "description": "Clump thermal deletion event."
-        },
-        {
           "name": "kwd:contact_activated",
           "syntax": "contact_activated",
           "description": "Contact activation event."
@@ -484,13 +319,11 @@
         },
         {
           "name": "kwd:facet_create",
-          "syntax": "facet_create",
-          "description": "Wall facet creation event."
+          "syntax": "facet_create"
         },
         {
           "name": "kwd:facet_delete",
-          "syntax": "facet_delete",
-          "description": "Wall facet deletion event."
+          "syntax": "facet_delete"
         },
         {
           "name": "kwd:fos_complete",
@@ -501,26 +334,6 @@
           "name": "kwd:fos_start",
           "syntax": "fos_start",
           "description": "A factor of safety solution has started. The global.fos intrinsic will return the current factor of safety. The model will have been restored from the initial state and automatic strength reduction applied. This can be used to customized strength reduction at a given factor of safety."
-        },
-        {
-          "name": "kwd:rblock_create",
-          "syntax": "rblock_create",
-          "description": "RBlock creation event."
-        },
-        {
-          "name": "kwd:rblock_delete",
-          "syntax": "rblock_delete",
-          "description": "RBlock deletion event."
-        },
-        {
-          "name": "kwd:rblockthermal_create",
-          "syntax": "rblockthermal_create",
-          "description": "RBlock thermal creation event."
-        },
-        {
-          "name": "kwd:rblockthermal_delete",
-          "syntax": "rblockthermal_delete",
-          "description": "RBlock thermal deletion event."
         },
         {
           "name": "kwd:slip_change",
@@ -613,26 +426,6 @@
           "description": "Subcontact change of failure state. Arguments to called fish function will be the subcontact pointer and the old state (integer)."
         },
         {
-          "name": "kwd:wall_create",
-          "syntax": "wall_create",
-          "description": "Wall creation event."
-        },
-        {
-          "name": "kwd:wall_delete",
-          "syntax": "wall_delete",
-          "description": "Wall deletion event."
-        },
-        {
-          "name": "kwd:wallthermal_create",
-          "syntax": "wallthermal_create",
-          "description": "Wall thermal creation event."
-        },
-        {
-          "name": "kwd:wallthermal_delete",
-          "syntax": "wallthermal_delete",
-          "description": "Wall thermal deletion event."
-        },
-        {
           "name": "kwd:zone_eom",
           "syntax": "zone_eom",
           "description": "Just before zone grid point equations of motion are performed."
@@ -662,8 +455,7 @@
           "syntax": "zone_update_complete",
           "description": "Just after zone geometry update. Done at the start of cycling and in large strain mode every update interval."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

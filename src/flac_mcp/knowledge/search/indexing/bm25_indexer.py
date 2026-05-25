@@ -1,4 +1,4 @@
-"""BM25 inverted index builder for PFC search system with multi-field support.
+"""BM25 inverted index builder for FLAC search system with multi-field support.
 
 This module implements BM25 indexing using only Python standard library
 (no NumPy dependency), optimized for technical documentation search.
@@ -47,10 +47,10 @@ class BM25Indexer:
         >>> indexer.build(documents)
         >>>
         >>> # Get IDF for a term in the name field
-        >>> name_idf = indexer.get_idf("ball", field="name")
+        >>> name_idf = indexer.get_idf("zone", field="name")
         >>>
         >>> # Get term frequency in description field
-        >>> desc_tf = indexer.get_term_freq("itasca.ball.Ball.vel", "velocity", field="description")
+        >>> desc_tf = indexer.get_term_freq("itasca.zone.Zone.vel", "velocity", field="description")
     """
 
     def __init__(self) -> None:
@@ -162,10 +162,10 @@ class BM25Indexer:
             IDF score (>= 0)
 
         Example:
-            >>> indexer.get_idf("ball", field="name")
-            2.456  # "ball" is rare in name field
-            >>> indexer.get_idf("ball", field="description")
-            0.823  # "ball" is common in description field
+            >>> indexer.get_idf("zone", field="name")
+            2.456  # "zone" is rare in name field
+            >>> indexer.get_idf("zone", field="description")
+            0.823  # "zone" is common in description field
         """
         # Select appropriate term_doc_freq dict
         if field == "name":
@@ -199,9 +199,9 @@ class BM25Indexer:
             Term frequency (0 if not found)
 
         Example:
-            >>> indexer.get_term_freq("itasca.ball.Ball.vel", "ball", field="name")
-            2  # "ball" appears twice in name
-            >>> indexer.get_term_freq("itasca.ball.Ball.vel", "velocity", field="description")
+            >>> indexer.get_term_freq("itasca.zone.Zone.vel", "zone", field="name")
+            2  # "zone" appears twice in name
+            >>> indexer.get_term_freq("itasca.zone.Zone.vel", "velocity", field="description")
             3  # "velocity" appears 3 times in description
         """
         if field == "name":
@@ -226,9 +226,9 @@ class BM25Indexer:
             Document length
 
         Example:
-            >>> indexer.get_doc_length("itasca.ball.Ball.vel", field="name")
+            >>> indexer.get_doc_length("itasca.zone.Zone.vel", field="name")
             4  # Real token count in name
-            >>> indexer.get_doc_length("itasca.ball.Ball.vel", field="description")
+            >>> indexer.get_doc_length("itasca.zone.Zone.vel", field="description")
             18  # Real token count in description
         """
         if field == "name":
@@ -277,8 +277,8 @@ class BM25Indexer:
             List of tokens (empty list if not found)
 
         Example:
-            >>> indexer.get_field_tokens("itasca.ball.Ball.vel", field="name")
-            ['itasca', 'ball', 'ball', 'vel']
+            >>> indexer.get_field_tokens("itasca.zone.Zone.vel", field="name")
+            ['itasca', 'zone', 'zone', 'vel']
         """
         if field == "name":
             return self.name_documents.get(doc_id, [])
@@ -297,7 +297,7 @@ class BM25Indexer:
 
         Example:
             >>> indexer.get_all_doc_ids()
-            {'itasca.ball.Ball.vel', 'itasca.wall.create', ...}
+            {'itasca.zone.Zone.vel', 'itasca.gridpoint.create', ...}
         """
         return set(self.name_documents.keys())
 

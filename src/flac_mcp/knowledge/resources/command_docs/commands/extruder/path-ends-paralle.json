@@ -14,9 +14,7 @@
   "versions": {
     "9.0": {
       "command": "sketch path ends-paralle",
-      "syntax": "sketch path ends-paralle <b>",
-      "keywords": [],
-      "examples": []
+      "syntax": "sketch path ends-paralle <b>"
     }
   }
 }

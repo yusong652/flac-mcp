@@ -12,9 +12,7 @@
   "versions": {
     "9.0": {
       "command": "structure liner apply",
-      "syntax": "structure liner apply <f>[range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "structure liner apply <f>[range]"
     }
   }
 }

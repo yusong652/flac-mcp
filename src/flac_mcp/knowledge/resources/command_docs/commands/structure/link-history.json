@@ -99,8 +99,7 @@
           "syntax": "side <i>",
           "description": "Specify which side of the node indicated in position should be used to find the link. By default, side 1 is used."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

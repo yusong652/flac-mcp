@@ -25,63 +25,53 @@
           "keyword": "bulk",
           "symbol": "K",
           "description": "bulk modulus, K",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "cohesion-drucker",
           "symbol": "k_{\\phi}",
           "description": "material parameter, k_{\\phi}",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "dilation-drucker",
           "symbol": "q_{\\psi}",
           "description": "material parameter, q_{\\psi}. The default is 0.0.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "friction-drucker",
           "symbol": "q_{\\phi}",
           "description": "material parameter, q_{\\phi}",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "poisson",
           "symbol": "\\nu",
           "description": "Poisson’s ratio, \\nu",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "shear",
           "symbol": "G",
           "description": "shear modulus, G",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "tension",
           "symbol": "{\\sigma}^t",
           "description": "tension limit, {\\sigma}^t. The default is 0.0.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "young",
           "symbol": "E",
           "description": "Young’s modulus, E",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         }
       ]
     }
   ],
-  "typical_applications": [],
-  "notes": [],
   "source": "https://docs.itascacg.com/itasca900/common/models/drucker/doc/modeldrucker.html",
   "usage": {
     "assign": "zone cmodel assign drucker-prager [range ...]",

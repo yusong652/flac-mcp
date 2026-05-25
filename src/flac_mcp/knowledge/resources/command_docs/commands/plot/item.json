@@ -6,8 +6,6 @@
     "delete",
     "modify",
     "axes",
-    "ball",
-    "wall",
     "contact",
     "geometry",
     "chart",
@@ -196,7 +194,6 @@
     }
   ],
   "notes": [
-    "Plot item configuration keywords (color-by, cut, transparency, legend) are documented in references: use pfc_browse_reference('plot-items') to list available item types, then pfc_browse_reference('plot-items ball') for full keyword documentation",
     "Additional plot items can be added by plug-ins"
   ],
   "python_sdk_alternative": {

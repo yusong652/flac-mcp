@@ -12,9 +12,7 @@
   "versions": {
     "9.0": {
       "command": "building-blocks edge factor",
-      "syntax": "building-blocks edge factor <f>[range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "building-blocks edge factor <f>[range]"
     }
   }
 }

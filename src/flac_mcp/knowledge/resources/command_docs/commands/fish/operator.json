@@ -4,10 +4,8 @@
     "operator"
   ],
   "description": "Define a new FISH operator. An operator is a special class of FISH function that is designed to be safe to use in a multi-threaded environment.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -15,14 +13,11 @@
     },
     "7.0": {
       "command": "fish operator",
-      "syntax": "fish operator <s>...",
-      "keywords": []
+      "syntax": "fish operator <s>..."
     },
     "9.0": {
       "command": "fish operator",
-      "syntax": "fish operator <s>...",
-      "keywords": [],
-      "examples": []
+      "syntax": "fish operator <s>..."
     }
   }
 }

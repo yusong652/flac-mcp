@@ -5,7 +5,7 @@
     "create",
     "structure"
   ],
-  "description": "Create a geogrid consisting of a collection of shell finite elements. The five main keywords articulate five creation techniques: (1) create a single element from three existing nodes ( by-nodeids ); (2) create a collection of elements from a quadrilateral shape ( by-quadrilateral ); (3) create a collection of elements from a triangular shape ( by-triangle ); and (4) create a collection of elements from a set of zone faces ( by-zone-face ). For techniques 2, 3 and 4, newly created nodes will attach to the first valid object (e.g., zones in FLAC3D and particles in PFC3D ) found at their location, with attachment conditions appropriate to a geogrid (see this table in the topic Structural Element Links ). For technique 1, newly created nodes will remain unattached. If you wish to attach them to a target object, position them with the structure node initialize position command. A geogrid can also be created by the structure geogrid import command.",
+  "description": "Create a geogrid consisting of a collection of shell finite elements. The five main keywords articulate five creation techniques: (1) create a single element from three existing nodes ( by-nodeids ); (2) create a collection of elements from a quadrilateral shape ( by-quadrilateral ); (3) create a collection of elements from a triangular shape ( by-triangle ); and (4) create a collection of elements from a set of zone faces ( by-zone-face ). For technique 1, newly created nodes will remain unattached. If you wish to attach them to a target object, position them with the structure node initialize position command. A geogrid can also be created by the structure geogrid import command.",
   "python_sdk_alternative": {
     "available": false
   },
@@ -84,8 +84,7 @@
           "syntax": "size <i1><i2>",
           "description": "This keyword only applies if the by-quadrilateral option was used. Increases the number of elements created by subdividing the quadrilateral into i1 segments along the first edge and i2 segments along the second. By default, only one quad is created."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

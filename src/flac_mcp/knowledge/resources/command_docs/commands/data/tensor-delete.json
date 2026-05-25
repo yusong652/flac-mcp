@@ -4,29 +4,21 @@
     "tensor-delete"
   ],
   "description": "Delete tensors in the range.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
       "command": "data tensor delete",
-      "syntax": "data tensor delete [range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "data tensor delete [range]"
     },
     "7.0": {
       "command": "data tensor delete",
-      "syntax": "data tensor delete [range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "data tensor delete [range]"
     },
     "9.0": {
       "command": "data tensor delete",
-      "syntax": "data tensor delete [range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "data tensor delete [range]"
     }
   }
 }

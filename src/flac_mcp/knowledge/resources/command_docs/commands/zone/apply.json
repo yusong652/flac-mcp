@@ -73,8 +73,7 @@
           "syntax": "vary <v>",
           "description": "Apply a linear variation to the scalar-value provided. The position used in this calculation is the zone centroid. Another way of assigning a linear gradient is with the gradient modifier."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

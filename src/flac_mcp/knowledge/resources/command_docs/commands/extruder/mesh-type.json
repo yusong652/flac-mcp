@@ -24,8 +24,7 @@
           "syntax": "unstructured",
           "description": "Use unstructured mesh for all blocks. If this option is used and mesh mode (see sketch mesh mode ) is set to quad, triangular blocks will be meshed with quadrilaterals only (the amount of zones per perimeter should be even)."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

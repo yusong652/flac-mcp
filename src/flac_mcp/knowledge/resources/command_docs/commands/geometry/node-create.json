@@ -4,10 +4,8 @@
     "node-create"
   ],
   "description": "Create a node at the position v in the current geometry set. If the set keyword is given then the node is created in that set.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -24,8 +22,7 @@
           "syntax": "group <s1>[slot <s2>]",
           "description": "Optionally assign the group name s1 to slot s2 ."
         }
-      ],
-      "examples": []
+      ]
     },
     "7.0": {
       "command": "geometry node create",
@@ -46,8 +43,7 @@
           "syntax": "set <s>",
           "description": "Create the node in the set s ."
         }
-      ],
-      "examples": []
+      ]
     },
     "9.0": {
       "command": "geometry node create",
@@ -68,8 +64,7 @@
           "syntax": "set <s>",
           "description": "Create the node in the set s ."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

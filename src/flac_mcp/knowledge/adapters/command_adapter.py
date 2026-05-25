@@ -1,6 +1,6 @@
-"""Command document adapter for PFC search system.
+"""Command document adapter for FLAC search system.
 
-This module converts PFC command documentation from the CommandLoader format
+This module converts FLAC command documentation from the CommandLoader format
 into unified SearchDocument models for search.
 
 Note: Model properties are handled separately via flac_browse_reference tool.
@@ -11,14 +11,14 @@ from flac_mcp.knowledge.models import DocumentType, SearchDocument
 
 
 class CommandDocumentAdapter:
-    """Adapter for PFC command documentation.
+    """Adapter for FLAC command documentation.
 
     Converts command data from CommandLoader into unified SearchDocument format.
     This enables:
     - Consistent interface for search engines
     - Separation of data loading and search logic
 
-    Note: For contact model properties, use flac_browse_reference tool directly.
+    Note: For zone model properties, use flac_browse_reference tool directly.
 
     Usage:
         >>> documents = CommandDocumentAdapter.load_commands()
@@ -28,7 +28,7 @@ class CommandDocumentAdapter:
 
     @staticmethod
     def load_commands(version: str = CommandLoader.DEFAULT_VERSION) -> list[SearchDocument]:
-        """Load all PFC command documents.
+        """Load all FLAC command documents.
 
         Returns:
             List of SearchDocument instances for all commands
@@ -37,7 +37,7 @@ class CommandDocumentAdapter:
             >>> docs = CommandDocumentAdapter.load_commands()
             >>> doc = docs[0]
             >>> doc.name
-            'ball create'
+            'zone create'
             >>> doc.doc_type
             <DocumentType.COMMAND: 'command'>
         """
@@ -89,15 +89,15 @@ class CommandDocumentAdapter:
         """Load a specific command document by ID.
 
         Args:
-            doc_id: Document ID in "category command" format (e.g., "ball create")
+            doc_id: Document ID in "category command" format (e.g., "zone create")
 
         Returns:
             SearchDocument instance or None if not found
 
         Example:
-            >>> doc = CommandDocumentAdapter.load_by_id("ball create")
+            >>> doc = CommandDocumentAdapter.load_by_id("zone create")
             >>> doc.title
-            'ball create'
+            'zone create'
         """
         if " " not in doc_id:
             return None

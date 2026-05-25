@@ -1,4 +1,4 @@
-"""Text tokenization for PFC search system.
+"""Text tokenization for FLAC search system.
 
 This module provides tokenization functionality optimized for technical
 documentation, handling special cases like hyphenated terms, numbers,
@@ -15,7 +15,7 @@ class TextTokenizer:
 
     Features:
     - Preserves technical terms and numbers
-    - Handles hyphenated terms (e.g., "ball-ball" → ["ball", "ball"])
+    - Handles hyphenated terms (e.g., "grid-point" -> ["grid", "point"])
     - Handles underscored terms (e.g., "vel_x" → ["vel", "x"])
     - Smart dot splitting for API paths vs. decimals
     - Removes stopwords while preserving technical vocabulary
@@ -30,23 +30,23 @@ class TextTokenizer:
 
     Usage:
         >>> tokenizer = TextTokenizer()
-        >>> tokenizer.tokenize("Create ball with radius 1.5")
-        ['create', 'ball', 'radius', '1.5']
+        >>> tokenizer.tokenize("Create zone with radius 1.5")
+        ['create', 'zone', 'radius', '1.5']
 
-        >>> tokenizer.tokenize("Ball.vel velocity")
-        ['ball', 'vel', 'velocity']
+        >>> tokenizer.tokenize("Zone.vel velocity")
+        ['zone', 'vel', 'velocity']
 
-        >>> tokenizer.tokenize("itasca.ball.Ball.vel")
-        ['itasca', 'ball', 'ball', 'vel']
+        >>> tokenizer.tokenize("itasca.zone.Zone.vel")
+        ['itasca', 'zone', 'zone', 'vel']
 
-        >>> tokenizer.tokenize("ball-ball contact model")
-        ['ball', 'ball', 'contact', 'model']
+        >>> tokenizer.tokenize("grid-point zone model")
+        ['grid', 'point', 'zone', 'model']
 
         >>> tokenizer.tokenize("velocity vel_x component")
         ['velocity', 'vel', 'x', 'component']
 
-        >>> tokenizer.tokenize("BallBallContact")
-        ['ball', 'ball', 'contact']
+        >>> tokenizer.tokenize("ZoneGridpointPair")
+        ['zone', 'gridpoint', 'pair']
 
         >>> tokenizer.tokenize("IterMechanical system")
         ['iter', 'mechanical', 'system']
@@ -98,14 +98,14 @@ class TextTokenizer:
 
         Example:
             >>> tokenizer = TextTokenizer()
-            >>> tokenizer.tokenize("Distribute balls with overlaps")
-            ['distribute', 'balls', 'overlaps']
+            >>> tokenizer.tokenize("Distribute zones with overlaps")
+            ['distribute', 'zones', 'overlaps']
 
-            >>> tokenizer.tokenize("2D simulation with PFC")
-            ['2d', 'simulation', 'pfc']
+            >>> tokenizer.tokenize("2D simulation with FLAC")
+            ['2d', 'simulation', 'flac']
 
-            >>> tokenizer.tokenize("ball-ball contact")
-            ['ball', 'ball', 'contact']
+            >>> tokenizer.tokenize("grid-point zone")
+            ['grid', 'point', 'zone']
         """
         if not text:
             return []
@@ -121,7 +121,7 @@ class TextTokenizer:
         tokens = []
         for original_word, word in zip(original_words, lowercase_words):
             # Handle dotted terms (smart split: API paths vs. decimals)
-            # Context: API paths like "itasca.ball.Ball.vel" vs. decimals like "1.5"
+            # Context: API paths like "itasca.zone.Zone.vel" vs. decimals like "1.5"
             if "." in word:
                 # Check if it's a numeric value (decimal or scientific notation)
                 if self.NUMERIC_PATTERN.match(word):
@@ -130,7 +130,7 @@ class TextTokenizer:
                         tokens.append(word)
                 else:
                     # API path - split on dots
-                    # "itasca.ball.Ball.vel" → ["itasca", "ball", "ball", "vel"]
+                    # "itasca.zone.Zone.vel" → ["itasca", "zone", "zone", "vel"]
                     # Split both original and lowercase to preserve CamelCase info
                     original_parts = original_word.split(".")
                     lowercase_parts = word.split(".")
@@ -145,20 +145,20 @@ class TextTokenizer:
                                     tokens.append(subpart)
                         elif "-" in part:
                             # Handle hyphens within path components
-                            # "ball-ball" → ["ball", "ball"]
+                            # "grid-point" -> ["grid", "point"]
                             subparts = part.split("-")
                             for subpart in subparts:
                                 if self._is_valid_token(subpart, from_technical_context=True):
                                     tokens.append(subpart)
                         else:
                             # Simple path component - check for CamelCase
-                            # Example: "Ball" in "itasca.ball.Ball.vel"
+                            # Example: "Zone" in "itasca.zone.Zone.vel"
                             camel_parts = self._split_camel_case(original_part)
                             for camel_part in camel_parts:
                                 if self._is_valid_token(camel_part, from_technical_context=True):
                                     tokens.append(camel_part)
             # Handle hyphenated terms (split and keep parts)
-            # Context: technical compound terms like "ball-ball"
+            # Context: technical compound terms like "grid-point"
             elif "-" in word:
                 parts = word.split("-")
                 for part in parts:
@@ -176,7 +176,7 @@ class TextTokenizer:
                         tokens.append(part)
             else:
                 # Check if original word is CamelCase and split it
-                # Example: "BallBallContact" → ["ballballcontact", "ball", "ball", "contact"]
+                # Example: "ZoneGridpointPair" -> ["zonegridpointpair", "zone", "gridpoint", "pair"]
                 # Use original_word to preserve CamelCase info
                 camel_parts = self._split_camel_case(original_word)
 
@@ -209,8 +209,8 @@ class TextTokenizer:
 
         Example:
             >>> tokenizer = TextTokenizer()
-            >>> tokenizer.tokenize_to_set("ball ball contact")
-            {'ball', 'contact'}
+            >>> tokenizer.tokenize_to_set("grid point zone")
+            {'grid', 'point', 'zone'}
         """
         return set(self.tokenize(text))
 
@@ -241,14 +241,14 @@ class TextTokenizer:
         """Split CamelCase word into components, keeping uppercase runs together.
 
         Args:
-            word: Word to split (e.g., "BallBallContact", "IterMechanical")
+            word: Word to split (e.g., "ZoneZoneContact", "IterMechanical")
 
         Returns:
             List of lowercase components
 
         Example:
-            >>> self._split_camel_case("BallBallContact")
-            ['ball', 'ball', 'contact']
+            >>> self._split_camel_case("ZoneZoneContact")
+            ['zone', 'zone', 'zone']
             >>> self._split_camel_case("IterMechanical")
             ['iter', 'mechanical']
             >>> self._split_camel_case("simple")
@@ -300,7 +300,7 @@ class TextTokenizer:
             return True
 
         # ALWAYS preserve technical single characters (regardless of context)
-        # This is critical for keywords like "force global y", "contact force x"
+        # This is critical for keywords like "force global y", "zone force x"
         # where x/y/z are semantically important but not in underscore/hyphen context
         if len(word) == 1 and word.lower() in self.TECHNICAL_SINGLE_CHARS:
             return True
@@ -330,8 +330,8 @@ class TextTokenizer:
             Normalized query (lowercase, whitespace normalized)
 
         Example:
-            >>> TextTokenizer.normalize_query("  Create   Ball  ")
-            'create ball'
+            >>> TextTokenizer.normalize_query("  Create   Zone  ")
+            'create zone'
         """
         # Remove extra whitespace and lowercase
         query = " ".join(query.split())

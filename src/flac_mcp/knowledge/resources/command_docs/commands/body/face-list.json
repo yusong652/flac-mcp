@@ -44,8 +44,7 @@
           "syntax": "nodes",
           "description": "Print IDs for the nodes of the face(s)."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

@@ -12,9 +12,7 @@
   "versions": {
     "9.0": {
       "command": "building-blocks edge group",
-      "syntax": "building-blocks edge group <s>[slot <s>] [remove] [range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "building-blocks edge group <s>[slot <s>] [remove] [range]"
     }
   }
 }

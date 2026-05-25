@@ -12,9 +12,7 @@
   "versions": {
     "9.0": {
       "command": "sketch segment ratio",
-      "syntax": "sketch segment ratio <f>[range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "sketch segment ratio <f>[range]"
     }
   }
 }

@@ -39,15 +39,15 @@ def register(mcp: FastMCP) -> None:
         FLAC900). When unsure, write code compatible with Python 3.6+.
 
         Typical uses:
-        - Query model state: ball/wall/contact counts, current cycle
+        - Query model state: zone/gridpoint/structure counts, current cycle
         - Issue FLAC commands and read their console output:
-          itasca.command('ball list'), itasca.command('model list
+          itasca.command('zone list'), itasca.command('model list
           information'). Table dumps, list output, and command
           summaries are captured and interleaved with Python prints
           in execution order — no need to re-implement queries via
           the SDK just to see what a command would print
-        - Live inspection during a running task: check forces,
-          energy, coordination number, contact statistics
+        - Live inspection during a running task: check stresses,
+          displacements, histories, convergence ratios, and energy
         - Live tuning during a running task: modify parameters,
           swap callbacks, or set sentinel variables that the task
           reads each cycle (e.g. change a servo target, adjust

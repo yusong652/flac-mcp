@@ -5,7 +5,7 @@
     "create",
     "structure"
   ],
-  "description": "Create a liner consisting of a collection of shell finite elements. The five main keywords articulate five creation techniques: (1) create a collection of elements from a set of block faces ( by-block-face ); (2) create a single element from three existing nodes ( by-nodeids ); (3) create a collection of elements from a quadrilateral shape ( by-quadrilateral ); (4) create a collection of elements from a triangular shape ( by-triangle ); and (5) create a collection of elements from a set of zone faces ( by-zone-face ). For techniques 1, 3, 4 and 5, newly created nodes will attach to the first valid object (e.g., zones in FLAC3D and 3DEC , particles in PFC3D ) found at their location, with attachment conditions appropriate to a liner (see this table in the topic Structural Element Links ). For technique 2, newly created nodes will remain unattached. If you wish to attach them to a target object, position them with the structure node initialize position command. If the liner is on the outer surface of an object (i.e., not an embedded liner), then the z-axes of the elements must point away from the body to which the liner is attached. This condition is only enforced automatically for techniques 1 and 5; thus, it may be necessary to reverse the direction of the element normals if using one of the other techniques. The direction of the element normals can be viewed with the liner plot item by setting the System attribute to Element. A liner can also be created by the structure liner import command.",
+  "description": "Create a liner consisting of a collection of shell finite elements. The five main keywords articulate five creation techniques: (1) create a collection of elements from a set of block faces ( by-block-face ); (2) create a single element from three existing nodes ( by-nodeids ); (3) create a collection of elements from a quadrilateral shape ( by-quadrilateral ); (4) create a collection of elements from a triangular shape ( by-triangle ); and (5) create a collection of elements from a set of zone faces ( by-zone-face ). For technique 2, newly created nodes will remain unattached. If you wish to attach them to a target object, position them with the structure node initialize position command. If the liner is on the outer surface of an object (i.e., not an embedded liner), then the z-axes of the elements must point away from the body to which the liner is attached. This condition is only enforced automatically for techniques 1 and 5; thus, it may be necessary to reverse the direction of the element normals if using one of the other techniques. The direction of the element normals can be viewed with the liner plot item by setting the System attribute to Element. A liner can also be created by the structure liner import command.",
   "python_sdk_alternative": {
     "available": false
   },
@@ -99,8 +99,7 @@
           "syntax": "size <i1><i2>",
           "description": "This keyword only applies if the by-quadrilateral option was used. Increases the number of elements created by subdividing the quadrilateral into i1 segments along the first edge and i2 segments along the second. By default, only one quad is created."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

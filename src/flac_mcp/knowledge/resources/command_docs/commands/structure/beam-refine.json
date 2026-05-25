@@ -12,9 +12,7 @@
   "versions": {
     "9.0": {
       "command": "structure beam refine",
-      "syntax": "structure beam refine <i>[range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "structure beam refine <i>[range]"
     }
   }
 }

@@ -4,28 +4,21 @@
     "notice"
   ],
   "description": "Set the notice state.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
       "command": "program notice",
-      "syntax": "program notice <b>",
-      "keywords": [],
-      "examples": []
+      "syntax": "program notice <b>"
     },
     "7.0": {
       "command": "program notice",
-      "syntax": "program notice <b>",
-      "keywords": []
+      "syntax": "program notice <b>"
     },
     "9.0": {
       "command": "program notice",
-      "syntax": "program notice <b>",
-      "keywords": [],
-      "examples": []
+      "syntax": "program notice <b>"
     }
   }
 }

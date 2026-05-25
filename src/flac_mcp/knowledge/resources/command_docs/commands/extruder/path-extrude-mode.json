@@ -31,8 +31,7 @@
           "syntax": "adjusted",
           "description": "Keep rotated cross-sections (adjusted to the next segment) and constant in size."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

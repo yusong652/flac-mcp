@@ -12,9 +12,7 @@
   "versions": {
     "9.0": {
       "command": "sketch path continuous",
-      "syntax": "sketch path continuous <b>",
-      "keywords": [],
-      "examples": []
+      "syntax": "sketch path continuous <b>"
     }
   }
 }

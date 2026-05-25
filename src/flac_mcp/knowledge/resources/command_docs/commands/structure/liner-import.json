@@ -5,7 +5,7 @@
     "import",
     "structure"
   ],
-  "description": "Create a liner as a collection of shell finite elements, where the elements are obtained from an outside source. Newly created nodes will attach to the first valid object (e.g., zones in FLAC3D and 3DEC , particles in PFC3D ) found at their location, with attachment conditions appropriate to a liner (see this table in the topic Structural Element Links ). If the liner is on the outer surface of an object (i.e., not an embedded liner), then the z-axes of the elements must point away from the body to which the liner is attached. This condition is NOT enforced automatically; thus, it may be necessary to reverse the direction of the element normals. The direction of the element normals can be viewed with the liner plot item by setting the System attribute to Element. A liner can also be created by the structure liner create command.",
+  "description": "Create a liner as a collection of shell finite elements, where the elements are obtained from an outside source. If the liner is on the outer surface of an object (i.e., not an embedded liner), then the z-axes of the elements must point away from the body to which the liner is attached. This condition is NOT enforced automatically; thus, it may be necessary to reverse the direction of the element normals. The direction of the element normals can be viewed with the liner plot item by setting the System attribute to Element. A liner can also be created by the structure liner create command.",
   "python_sdk_alternative": {
     "available": false
   },
@@ -74,8 +74,7 @@
           "syntax": "segments <i>",
           "description": "Break the element into i equal segments, creating new nodes as needed. The default value is 1 , indicating that only one element will be created."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

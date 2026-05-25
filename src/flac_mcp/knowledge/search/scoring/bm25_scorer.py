@@ -1,4 +1,4 @@
-"""BM25 scoring algorithm for PFC search system with multi-field support.
+"""BM25 scoring algorithm for FLAC search system with multi-field support.
 
 This module implements BM25 ranking with multi-field scoring and weighted combination,
 using only Python standard library (no NumPy dependency).
@@ -39,14 +39,14 @@ class BM25Scorer:
         >>> indexer = BM25Indexer()
         >>> indexer.build(documents)
         >>> scorer = BM25Scorer(indexer)
-        >>> score, info = scorer.score("Ball.vel", doc)
+        >>> score, info = scorer.score("Zone.vel", doc)
         >>> score
         15.8  # High score for exact name match
         >>> info
         {
             'field_scores': {'name': 12.5, 'description': 2.1, 'keywords': 1.2},
             'total_score': 15.8,
-            'matched_terms': ['ball', 'vel'],
+            'matched_terms': ['zone', 'vel'],
             ...
         }
     """
@@ -89,7 +89,7 @@ class BM25Scorer:
             - match_info: Dict with field-specific scores and matched terms
 
         Example:
-            >>> score, info = scorer.score("Ball.contacts", doc)
+            >>> score, info = scorer.score("Zone.zones", doc)
             >>> score
             18.5
             >>> info['field_scores']
@@ -113,7 +113,7 @@ class BM25Scorer:
             self.WEIGHT_NAME * name_score + self.WEIGHT_DESCRIPTION * desc_score + self.WEIGHT_KEYWORDS * kw_score
         )
 
-        # 4. Boost exact name matches (e.g., query "BallBallContact" → itasca.BallBallContact)
+        # 4. Boost exact name matches (e.g., query "ZoneZoneContact" → itasca.ZoneZoneContact)
         doc_name_lower = document.name.rsplit(".", 1)[-1].lower() if "." in document.name else document.name.lower()
         if doc_name_lower in query_set:
             total_score *= 2.0
@@ -155,11 +155,11 @@ class BM25Scorer:
             Tuple of (field_score, field_match_info)
 
         Example:
-            >>> score, info = scorer._score_field({'ball', 'vel'}, doc_id, field="name")
+            >>> score, info = scorer._score_field({'zone', 'vel'}, doc_id, field="name")
             >>> score
             8.5
             >>> info['exact_matches']
-            ['ball', 'vel']
+            ['zone', 'vel']
         """
         # 1. Get document tokens for this field
         doc_tokens = set(self.indexer.get_field_tokens(doc_id, field=field))
@@ -227,9 +227,9 @@ class BM25Scorer:
             BM25 score contribution for this term in this field
 
         Example:
-            >>> scorer._score_term("ball", doc_id, field="name")
+            >>> scorer._score_term("zone", doc_id, field="name")
             4.5  # High IDF in name field
-            >>> scorer._score_term("ball", doc_id, field="description")
+            >>> scorer._score_term("zone", doc_id, field="description")
             1.2  # Lower IDF in description field
         """
         # 1. Get field-specific IDF
@@ -271,7 +271,7 @@ class BM25Scorer:
             List of (document, score, match_info) tuples for documents with score > 0
 
         Example:
-            >>> results = scorer.batch_score("Ball.vel", documents)
+            >>> results = scorer.batch_score("Zone.vel", documents)
             >>> len(results)
             15  # 15 documents matched
             >>> results[0][1]  # Top score

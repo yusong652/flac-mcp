@@ -123,8 +123,7 @@
           "syntax": "sweep-axis",
           "description": "When this keyword is given, edge point 0 - point 2 is used as an axis about which edges point 1 - point 4 and point 3 - point 5 are swept. Without this keyword, the grid faces fall on the ( point 0 , point 1 , point 3 ) and ( point 2 , point 4 , point 5 ) planes. This keyword can only be used with the following keywords of the zone create command: cylinder , and cylindrical-shell ."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

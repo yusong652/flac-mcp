@@ -24,8 +24,7 @@
           "syntax": "tolerance <f>",
           "description": "Specifies the tolerance of original polyline approximation by the new spline-type edge. The tolerance f can vary from 0.001 to 0.999, with a default value of 0.1. The smaller the tolerance value the more control points are inserted on the new single edge."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

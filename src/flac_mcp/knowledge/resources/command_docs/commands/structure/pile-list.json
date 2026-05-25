@@ -26,13 +26,11 @@
         },
         {
           "name": "coupling-normal",
-          "syntax": "coupling-normal",
-          "description": "information about the normal coupling springs connecting the pile to the target object (zones in FLAC3D and 3DEC, and particles in PFC3D): displacement, stress and normal direction"
+          "syntax": "coupling-normal"
         },
         {
           "name": "coupling-shear",
-          "syntax": "coupling-shear",
-          "description": "information about the shear coupling springs connecting the pile to the target object (zones in FLAC3D and 3DEC, and particles in PFC3D): displacement, stress and shear direction"
+          "syntax": "coupling-shear"
         },
         {
           "name": "coupling-yield",
@@ -94,8 +92,7 @@
           "syntax": "system-local",
           "description": "element local coordinate system"
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }
