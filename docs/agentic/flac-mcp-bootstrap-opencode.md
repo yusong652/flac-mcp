@@ -48,6 +48,10 @@ opencode mcp list
 
 Confirm `flac-mcp` is listed and enabled.
 
+[USER ACTION REQUIRED]
+
+Always close and reopen the OpenCode session before continuing.
+
 ## Continue with common bootstrap
 
 After Step 1, continue from Step 2 in:

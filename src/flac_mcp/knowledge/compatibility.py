@@ -16,9 +16,31 @@ class FLACProduct(str, Enum):
     FLAC3D = "flac3d"
 
 
+PRODUCT_VERSION_SOURCES: dict[str, dict[str, dict[str, Any]]] = {
+    FLACProduct.FLAC2D.value: {
+        "6.0": {
+            "applicable": False,
+            "reason": "FLAC2D is represented in the bundled documentation matrix starting with 9.0.",
+        },
+        "7.0": {
+            "applicable": False,
+            "reason": "FLAC2D is represented in the bundled documentation matrix starting with 9.0.",
+        },
+        "9.0": {"applicable": True},
+    },
+    FLACProduct.FLAC3D.value: {
+        "6.0": {"applicable": True},
+        "7.0": {"applicable": True},
+        "9.0": {"applicable": True},
+    },
+}
+
+
 _THREE_D_PATTERNS = (
     re.compile(r"\b3D\s+ONLY\b", re.IGNORECASE),
     re.compile(r"\b3D\s+only\b", re.IGNORECASE),
+    re.compile(r"\b3D\s+zone[-\s]filled\b", re.IGNORECASE),
+    re.compile(r"\b3D\s+zones?\b", re.IGNORECASE),
     re.compile(r"\bFLAC3D[-\s]only\b", re.IGNORECASE),
     re.compile(r"\bnot\s+available\s+in\s+FLAC2D\b", re.IGNORECASE),
     re.compile(
@@ -51,6 +73,39 @@ def normalize_product(value: FLACProduct | str | None) -> str:
     if normalized in {"", "all", "both", "auto"}:
         return FLACProduct.ANY.value
     return normalized
+
+
+def product_version_info(product: FLACProduct | str | None, version: str) -> dict[str, Any]:
+    """Return product/version applicability metadata."""
+    product_value = normalize_product(product)
+    if product_value == FLACProduct.ANY.value:
+        return {"applicable": True}
+    return dict(
+        PRODUCT_VERSION_SOURCES.get(product_value, {}).get(
+            str(version),
+            {"applicable": False, "reason": f"Unsupported FLAC product/version combination: {product_value} {version}."},
+        )
+    )
+
+
+def is_product_version_applicable(product: FLACProduct | str | None, version: str) -> bool:
+    """Whether the product/version combination is valid in this documentation matrix."""
+    return bool(product_version_info(product, version).get("applicable"))
+
+
+def product_version_error_payload(source: str, action: str, product: str, version: str) -> dict[str, Any]:
+    """Build a structured docs-tool error for invalid product/version pairs."""
+    info = product_version_info(product, version)
+    return {
+        "source": source,
+        "action": action,
+        "error": {
+            "code": "product_version_not_applicable",
+            "message": f"{product} {version} is not applicable in the bundled FLAC documentation matrix.",
+        },
+        "input": {"product": product, "version": version},
+        "availability": info,
+    }
 
 
 def infer_dimension(doc: Any) -> str:

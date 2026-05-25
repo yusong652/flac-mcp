@@ -39,7 +39,7 @@ If `uvx` is unavailable, fallback to:
 
 Always close and reopen Gemini CLI session before continuing.
 
-Then continue to Step 2 and verify with `flac_list_tasks` at the end of bootstrap.
+Then continue to Step 2 and verify with `flac_get_runtime_info` and `flac_execute_code` at the end of bootstrap.
 
 ## Continue with common bootstrap
 

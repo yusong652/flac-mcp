@@ -8,7 +8,7 @@
 #
 # After it boots:
 #   - GUI in browser:  http://localhost:6080/vnc.html
-#   - Bridge socket:   ws://localhost:9001
+#   - Bridge socket:   ws://localhost:9002
 #
 # Stop with Ctrl-C (or `docker compose down` from another terminal).
 
@@ -33,7 +33,7 @@ services:
     environment:
       FLAC_GUI: "${FLAC_GUI:-}"
     ports:
-      - "9001:9001"   # itasca-mcp-bridge WebSocket
+      - "9002:9002"   # itasca-mcp-bridge WebSocket
       - "6080:6080"   # noVNC HTML5 viewer (GUI mode only)
     volumes:
       # Live-edit bridge source: host changes apply immediately, paired with

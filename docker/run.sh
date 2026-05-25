@@ -28,7 +28,7 @@ echo "[run.sh] Bringing up flac-mcp..."
 if [ "${FLAC_GUI:-}" = "1" ]; then
     echo "  GUI:    http://localhost:6080/vnc.html"
 fi
-echo "  bridge: ws://localhost:9001"
+echo "  bridge: ws://localhost:9002"
 echo "  stop with Ctrl-C"
 echo ""
 

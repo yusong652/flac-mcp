@@ -111,6 +111,18 @@ async def test_browse_commands_filters_by_product() -> None:
 
 
 @pytest.mark.asyncio
+async def test_browse_commands_filters_3d_zone_create_for_flac2d() -> None:
+    result = await mcp._tool_manager.call_tool(
+        "flac_browse_commands",
+        {"command": "zone create", "version": "9.0", "product": "flac2d"},
+    )
+    payload = _parse_tool_payload(result)
+
+    assert payload["ok"] is False
+    assert payload["error"]["code"] == "command_unavailable_for_product"
+
+
+@pytest.mark.asyncio
 async def test_query_command_filters_by_product() -> None:
     result = await mcp._tool_manager.call_tool(
         "flac_query_command",
@@ -121,6 +133,30 @@ async def test_query_command_filters_by_product() -> None:
 
     assert payload["ok"] is True
     assert "zone create2d" not in names
+
+
+@pytest.mark.asyncio
+async def test_browse_commands_rejects_non_applicable_flac2d_legacy_version() -> None:
+    result = await mcp._tool_manager.call_tool(
+        "flac_browse_commands",
+        {"command": "model new", "version": "7.0", "product": "flac2d"},
+    )
+    payload = _parse_tool_payload(result)
+
+    assert payload["ok"] is False
+    assert payload["error"]["code"] == "product_version_not_applicable"
+
+
+@pytest.mark.asyncio
+async def test_query_command_rejects_non_applicable_flac2d_legacy_version() -> None:
+    result = await mcp._tool_manager.call_tool(
+        "flac_query_command",
+        {"query": "model new", "version": "7.0", "product": "flac2d"},
+    )
+    payload = _parse_tool_payload(result)
+
+    assert payload["ok"] is False
+    assert payload["error"]["code"] == "product_version_not_applicable"
 
 
 @pytest.mark.asyncio
@@ -187,6 +223,18 @@ async def test_browse_python_api_filters_3d_api_for_flac2d() -> None:
 
 
 @pytest.mark.asyncio
+async def test_browse_python_api_rejects_non_applicable_flac2d_legacy_version() -> None:
+    result = await mcp._tool_manager.call_tool(
+        "flac_browse_python_api",
+        {"api": "itasca", "version": "7.0", "product": "flac2d"},
+    )
+    payload = _parse_tool_payload(result)
+
+    assert payload["ok"] is False
+    assert payload["error"]["code"] == "product_version_not_applicable"
+
+
+@pytest.mark.asyncio
 async def test_python_api_coverage_reports_missing_modules() -> None:
     result = await mcp._tool_manager.call_tool("flac_python_api_coverage", {})
     payload = _parse_tool_payload(result)
@@ -201,6 +249,26 @@ async def test_python_api_coverage_reports_missing_modules() -> None:
     assert data["matrix"]["flac3d"]["7.0"]["api_entry_count"] >= 500
     assert data["matrix"]["flac3d"]["6.0"]["complete"] is True
     assert data["matrix"]["flac3d"]["6.0"]["api_entry_count"] >= 350
+
+
+@pytest.mark.asyncio
+async def test_command_coverage_reports_product_version_matrix() -> None:
+    result = await mcp._tool_manager.call_tool("flac_command_coverage", {})
+    payload = _parse_tool_payload(result)
+    data = payload["data"]
+
+    assert payload["ok"] is True
+    assert "flac2d" in data["products"]
+    assert "flac3d" in data["products"]
+    assert data["bundled"]["command_count"] >= 500
+    assert data["matrix"]["flac3d"]["9.0"]["complete"] is True
+    assert data["matrix"]["flac3d"]["9.0"]["available_for_product_count"] >= 500
+    assert data["matrix"]["flac2d"]["9.0"]["filtered_by_product_count"] >= 1
+    assert data["matrix"]["flac2d"]["6.0"]["applicable"] is False
+    assert data["matrix"]["flac2d"]["6.0"]["missing_version_count"] == 0
+    assert data["matrix"]["flac2d"]["7.0"]["applicable"] is False
+    assert data["matrix"]["flac2d"]["7.0"]["missing_version_count"] == 0
+    assert data["matrix"]["flac3d"]["6.0"]["missing_version_count"] >= 1
 
 
 @pytest.mark.asyncio
@@ -244,6 +312,18 @@ async def test_query_python_api_filters_3d_api_for_flac2d() -> None:
 
     assert payload["ok"] is True
     assert "itasca.gravity_z" not in paths
+
+
+@pytest.mark.asyncio
+async def test_query_python_api_rejects_non_applicable_flac2d_legacy_version() -> None:
+    result = await mcp._tool_manager.call_tool(
+        "flac_query_python_api",
+        {"query": "zone", "version": "7.0", "product": "flac2d"},
+    )
+    payload = _parse_tool_payload(result)
+
+    assert payload["ok"] is False
+    assert payload["error"]["code"] == "product_version_not_applicable"
 
 
 @pytest.mark.asyncio

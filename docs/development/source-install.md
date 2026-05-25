@@ -77,13 +77,13 @@ If you want your MCP client to use local source instead of the published PyPI pa
   "mcpServers": {
     "flac-mcp": {
       "command": "uv",
-      "args": ["run", "--directory", "/path/to/flac-mcp", "flac-mcp", "--bridge-url", "ws://localhost:9001"]
+      "args": ["run", "--directory", "/path/to/flac-mcp", "flac-mcp", "--bridge-url", "ws://localhost:9002"]
     }
   }
 }
 ```
 
-The `--bridge-url` argument is optional (defaults to `ws://localhost:9001`). Use it to connect to a bridge on a different port.
+The `--bridge-url` argument is optional (defaults to `ws://localhost:9002`). Use it to connect to a bridge on a different port.
 
 This is the simplest way to test MCP-side changes without building or publishing packages.
 
@@ -157,7 +157,7 @@ Then start the bridge in FLAC and verify from your MCP client:
 
 The bundled Python API docs are generated from the actual `itasca` module
 docstrings. Run the extractor inside each FLAC runtime you want to certify
-(for example FLAC2D 7.0, FLAC3D 9.0), then patch the local index:
+(for example FLAC2D 9.0, FLAC3D 7.0, or FLAC3D 9.0), then patch the local index:
 
 ```python
 p = r"C:/path/to/flac-mcp/src/flac_mcp/knowledge/resources/python_sdk_docs/extract_flac_api.py"
@@ -173,7 +173,7 @@ uv run python src/flac_mcp/knowledge/resources/python_sdk_docs/extract_flac_api.
 uv run pytest tests/test_docs_tool_contracts.py
 ```
 
-Use `flac_python_api_coverage` to see which bundled modules are still missing.
+Use `flac_command_coverage` and `flac_python_api_coverage` to see which bundled command/API docs are still missing.
 
 ## 8. Recommended Dev Loop
 

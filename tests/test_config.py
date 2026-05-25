@@ -1,6 +1,14 @@
 from flac_mcp.config import get_bridge_config
 
 
+def test_bridge_config_defaults_to_flac_port_9002(monkeypatch) -> None:
+    monkeypatch.delenv("FLAC_MCP_BRIDGE_URL", raising=False)
+
+    config = get_bridge_config()
+
+    assert config.url == "ws://localhost:9002"
+
+
 def test_bridge_config_uses_flac_env(monkeypatch) -> None:
     monkeypatch.setenv("FLAC_MCP_RECONNECT_INTERVAL_S", "1.25")
     monkeypatch.setenv("FLAC_MCP_MAX_RETRIES", "4")

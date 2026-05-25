@@ -39,6 +39,8 @@ If `uvx` is unavailable, fallback to:
 
 Always close and restart the Copilot CLI session before continuing. Exit the current session and start a new one.
 
+Verify at the end of bootstrap with `flac_get_runtime_info` and `flac_execute_code`.
+
 ## Continue with common bootstrap
 
 After Step 1, continue from Step 2 in:

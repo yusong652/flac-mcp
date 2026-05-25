@@ -14,9 +14,9 @@
 
 `flac3d>model solve ;LLM solves.`
 
-## 工具（12）
+## 工具（13）
 
-**6 个文档工具** — 浏览和搜索 FLAC 命令、Python API、参考文档，并审计内置 Python API 覆盖率。无需 bridge。
+**7 个文档工具** — 浏览和搜索 FLAC 命令、Python API、参考文档，并审计内置命令/Python API 覆盖率。无需 bridge。
 
 **6 个执行工具** — 运行时识别、交互式 REPL、任务提交、进度监控、中断和历史浏览。需要 bridge。
 
@@ -25,7 +25,7 @@
 `flac-mcp` 由两个进程组成：
 
 - MCP 服务端运行在普通 Python 环境中，通过 `uvx flac-mcp` 启动。
-- bridge 运行在 FLAC 内嵌 Python 中，通过 [`addon.py`](addon.py) 启动，并监听 `ws://localhost:9001`。
+- bridge 运行在 FLAC 内嵌 Python 中，通过 [`addon.py`](addon.py) 启动，并监听 `ws://localhost:9002`。
 
 文档工具只要 MCP 服务端注册好就能用。执行工具需要连接 bridge，因为只有 FLAC 内嵌 Python 能 `import itasca` 并操作当前模型。每个会话开始时建议先调用 `flac_get_runtime_info`，确认当前连接的是 FLAC2D/FLAC3D、模型维度和内嵌 Python 信息。
 
@@ -38,11 +38,13 @@
 
 ### 智能体自动配置（推荐）
 
-将以下文本复制给你的 AI 智能体，让它自动完成配置：
+将以下文本复制给你的 AI 智能体，让它自动完成配置。已知目标产品/版本时一起写明：
 
 ```text
 Fetch and follow this bootstrap guide end-to-end:
 https://raw.githubusercontent.com/yusong652/flac-mcp/main/docs/agentic/flac-mcp-bootstrap.md
+
+Target runtime: FLAC2D 9.0, or FLAC3D 6.0/7.0/9.0.
 ```
 
 ### 手动配置
@@ -69,7 +71,7 @@ https://raw.githubusercontent.com/yusong652/flac-mcp/main/docs/agentic/flac-mcp-
 
 ### 验证
 
-重启你的 AI 智能体（Claude Code、Codex CLI、Gemini CLI 等），让它调用 `flac_execute_code` 执行：
+重启你的 AI 智能体（Claude Code、Codex CLI、Gemini CLI 等）。先调用 `flac_get_runtime_info`，确认返回的产品和维度符合当前 FLAC GUI；然后让它调用 `flac_execute_code` 执行：
 
 ```python
 import itasca as it
@@ -103,6 +105,8 @@ print(it.command("model list information"))
 ## 开发
 
 详见 [开发者指南：从源码安装与运行](docs/development/source-install.zh-CN.md)。
+
+真实 FLAC 软件验证流程见 [FLAC Runtime Validation Checklist](docs/validation/flac-runtime-validation.md)。
 
 源码开发建议克隆时带上 submodule：
 

@@ -17,6 +17,7 @@ def test_phase2_tools_registered() -> None:
     assert expected.issubset(set(tools.keys()))
     assert "flac_execute_code" in tools
     assert "flac_get_runtime_info" in tools
+    assert "flac_command_coverage" in tools
     assert "flac_python_api_coverage" in tools
 
 
@@ -52,6 +53,6 @@ def test_bridge_error_message_is_friendly() -> None:
     assert envelope["ok"] is False
     error = envelope["error"]
     assert error["code"] == "bridge_unavailable"
-    assert error["message"] == "FLAC3D bridge unavailable"
+    assert error["message"] == "FLAC bridge unavailable"
     assert error["details"]["reason"] == "cannot connect to bridge service"
-    assert error["details"]["action"] == "start itasca-mcp-bridge in FLAC3D, then retry"
+    assert error["details"]["action"] == "start itasca-mcp-bridge in the intended FLAC GUI, then retry"

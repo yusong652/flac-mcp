@@ -43,7 +43,7 @@ class BridgeConfig:
 def get_bridge_config() -> BridgeConfig:
     """Load bridge config from environment variables."""
     return BridgeConfig(
-        url=os.getenv("FLAC_MCP_BRIDGE_URL", "ws://localhost:9001"),
+        url=os.getenv("FLAC_MCP_BRIDGE_URL", "ws://localhost:9002"),
         reconnect_interval_s=_env_float("FLAC_MCP_RECONNECT_INTERVAL_S", 0.5),
         max_retries=max(0, _env_int("FLAC_MCP_MAX_RETRIES", 2)),
         request_timeout_s=max(

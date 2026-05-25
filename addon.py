@@ -21,10 +21,23 @@ Notes
 """
 
 import importlib
+import os
 import sys
 
 PACKAGE = "itasca-mcp-bridge"
 MODULE = "itasca_mcp_bridge"
+DEFAULT_BRIDGE_PORT = 9002
+
+
+def _bridge_port():
+    value = os.environ.get("FLAC_MCP_BRIDGE_PORT")
+    if not value:
+        return DEFAULT_BRIDGE_PORT
+    try:
+        return int(value)
+    except ValueError:
+        print(f"[addon] Invalid FLAC_MCP_BRIDGE_PORT={value!r}; using {DEFAULT_BRIDGE_PORT}.")
+        return DEFAULT_BRIDGE_PORT
 
 
 def _resolve_pip_main():
@@ -89,8 +102,9 @@ def main():
             "        Run this inside FLAC's Python, with network access on "
             "first use, then retry."
         ) from exc
-    print("[addon] Starting bridge (ws://localhost:9001) ...")
-    bridge.start()
+    port = _bridge_port()
+    print(f"[addon] Starting bridge (ws://localhost:{port}) ...")
+    bridge.start(port=port)
 
 
 if __name__ == "__main__":

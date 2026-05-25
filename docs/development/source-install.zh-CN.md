@@ -77,13 +77,13 @@ uv run pytest tests
   "mcpServers": {
     "flac-mcp": {
       "command": "uv",
-      "args": ["run", "--directory", "/path/to/flac-mcp", "flac-mcp", "--bridge-url", "ws://localhost:9001"]
+      "args": ["run", "--directory", "/path/to/flac-mcp", "flac-mcp", "--bridge-url", "ws://localhost:9002"]
     }
   }
 }
 ```
 
-`--bridge-url` 参数是可选的（默认 `ws://localhost:9001`），用于连接不同端口上的 bridge。
+`--bridge-url` 参数是可选的（默认 `ws://localhost:9002`），用于连接不同端口上的 bridge。
 
 这是验证 MCP 侧改动最简单的方式，不需要先构建或发布包。
 
@@ -156,7 +156,7 @@ bridge 包会自动拉取匹配的 `websockets` 版本：
 ## 7. 从 FLAC 运行时重新生成 Python API 文档
 
 内置 Python API 文档来自真实 `itasca` 模块的 docstring。要认证某个
-FLAC 运行时（例如 FLAC2D 7.0、FLAC3D 9.0），先在对应 FLAC 中执行抽取器：
+FLAC 运行时（例如 FLAC2D 9.0、FLAC3D 7.0 或 FLAC3D 9.0），先在对应 FLAC 中执行抽取器：
 
 ```python
 p = r"C:/path/to/flac-mcp/src/flac_mcp/knowledge/resources/python_sdk_docs/extract_flac_api.py"
@@ -172,7 +172,7 @@ uv run python src/flac_mcp/knowledge/resources/python_sdk_docs/extract_flac_api.
 uv run pytest tests/test_docs_tool_contracts.py
 ```
 
-可以用 `flac_python_api_coverage` 查看当前内置文档还缺哪些模块。
+可以用 `flac_command_coverage` 和 `flac_python_api_coverage` 查看当前内置命令/API 文档还缺哪些内容。
 
 ## 8. 推荐开发循环
 

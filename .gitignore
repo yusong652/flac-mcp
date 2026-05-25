@@ -21,6 +21,8 @@ build/
 
 # Local runtime/temp artifacts
 .pfc-mcp-bridge/
+.itasca-mcp-bridge/
+*.log
 .tmp/
 .pytest_tmp/
 

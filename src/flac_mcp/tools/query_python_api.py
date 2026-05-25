@@ -5,10 +5,10 @@ from typing import Any
 from fastmcp import FastMCP
 from pydantic import Field
 
-from flac_mcp.contracts import build_docs_data, build_ok
+from flac_mcp.contracts import build_docs_data, build_error, build_ok
 from flac_mcp.knowledge.compatibility import FLACProduct, normalize_product
 from flac_mcp.knowledge.python_api import APIDocFormatter, DocumentationLoader
-from flac_mcp.knowledge.python_api.product_index import normalize_api_version
+from flac_mcp.knowledge.python_api.product_index import normalize_api_version, source_info
 from flac_mcp.knowledge.query import APISearch
 from flac_mcp.utils import CommandDocVersion, PythonAPISearchQuery, SearchLimit
 
@@ -45,6 +45,19 @@ def register(mcp: FastMCP) -> None:
         """
         product_value = normalize_product(product)
         version_value = normalize_api_version(str(version.value if hasattr(version, "value") else version))
+        source = source_info(product_value, version_value)
+        if product_value != FLACProduct.ANY.value and not source.get("applicable", False):
+            return build_error(
+                code="product_version_not_applicable",
+                message=f"{product_value} {version_value} is not applicable in the bundled FLAC Python API matrix.",
+                details={
+                    "source": "python_api",
+                    "action": "query",
+                    "input": {"product": product_value, "version": version_value},
+                    "availability": source,
+                },
+            )
+
         matches = APISearch.search(query, top_k=limit, product=product_value, version=version_value)
         results_payload: list[dict[str, Any]] = []
         for result in matches:

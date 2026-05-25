@@ -11,7 +11,9 @@ from flac_mcp.knowledge.compatibility import (
     FLACProduct,
     compatibility_summary,
     is_compatible_with_product,
+    is_product_version_applicable,
     normalize_product,
+    product_version_error_payload,
 )
 from flac_mcp.utils import CommandDocVersion, normalize_command_doc_version, normalize_input
 
@@ -66,6 +68,8 @@ def register(mcp: FastMCP) -> None:
         cmd = normalize_input(command)
         version_value = normalize_command_doc_version(version)
         product_value = normalize_product(product)
+        if not is_product_version_applicable(product_value, version_value):
+            return _wrap_payload(product_version_error_payload("commands", "browse", product_value, version_value))
 
         if not cmd:
             return build_ok(_browse_root(version_value, product_value))

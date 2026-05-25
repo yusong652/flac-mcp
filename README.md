@@ -14,9 +14,9 @@
 
 `flac3d>model solve ;LLM solves.`
 
-## Tools (12)
+## Tools (13)
 
-**6 documentation tools** — browse and search FLAC commands, Python API, reference docs, and bundled Python API coverage. No bridge required.
+**7 documentation tools** — browse and search FLAC commands, Python API, reference docs, and audit bundled command/Python API coverage. No bridge required.
 
 **6 execution tools** — runtime inspection, interactive REPL, task submission, progress monitoring, interruption, and history. Requires bridge.
 
@@ -25,7 +25,7 @@
 `flac-mcp` has two processes:
 
 - The MCP server runs on your normal Python environment through `uvx flac-mcp`.
-- The bridge runs inside FLAC's embedded Python through [`addon.py`](addon.py) and listens on `ws://localhost:9001`.
+- The bridge runs inside FLAC's embedded Python through [`addon.py`](addon.py) and listens on `ws://localhost:9002`.
 
 Documentation tools work as soon as the MCP server is registered. Execution tools connect through the bridge, because only FLAC's embedded Python can `import itasca` and operate on the active model. Use `flac_get_runtime_info` at the start of a session to detect FLAC2D/FLAC3D, model dimension, and embedded Python details.
 
@@ -38,11 +38,13 @@ Documentation tools work as soon as the MCP server is registered. Execution tool
 
 ### Agentic Setup (Recommended)
 
-Copy this to your AI agent and let it self-configure:
+Copy this to your AI agent and let it self-configure. Include your target product/version when you know it:
 
 ```text
 Fetch and follow this bootstrap guide end-to-end:
 https://raw.githubusercontent.com/yusong652/flac-mcp/main/docs/agentic/flac-mcp-bootstrap.md
+
+Target runtime: FLAC2D 9.0, or FLAC3D 6.0/7.0/9.0.
 ```
 
 ### Manual Setup
@@ -69,7 +71,7 @@ Download [`addon.py`](addon.py), then use either of these two flows inside FLAC:
 
 ### Verify
 
-Restart your AI agent (Claude Code, Codex CLI, Gemini CLI, etc.) and ask it to call `flac_execute_code` with:
+Restart your AI agent (Claude Code, Codex CLI, Gemini CLI, etc.). First call `flac_get_runtime_info` and confirm the reported product/dimension matches the FLAC GUI you intended to use. Then call `flac_execute_code` with:
 
 ```python
 import itasca as it
@@ -103,6 +105,8 @@ See [Troubleshooting](docs/agentic/flac-mcp-bootstrap.md#troubleshooting) in the
 ## Development
 
 See [Developer Guide: Install and Run from Source](docs/development/source-install.md).
+
+For real FLAC software validation, use [FLAC Runtime Validation Checklist](docs/validation/flac-runtime-validation.md).
 
 For a source checkout, clone with submodules:
 

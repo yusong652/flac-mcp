@@ -3,7 +3,7 @@
 #
 # Default (console mode, lighter):
 #   flac3d9_console + bridge with blocking task pump.
-#   No X stack started -- ws://localhost:9001 only.
+#   No X stack started -- ws://localhost:9002 only.
 #
 # GUI mode (set FLAC_GUI=1):
 #   In-container X stack (Xvfb + fluxbox + x11vnc + noVNC) + flac3d9_gui
@@ -24,7 +24,7 @@ cd /workspace 2>/dev/null || true
 BOOTSTRAP=/tmp/itasca_mcp_bridge_start.py
 cat > "$BOOTSTRAP" << 'PYEOF'
 import itasca_mcp_bridge
-itasca_mcp_bridge.start(host="0.0.0.0", port=9001, mode="auto")
+itasca_mcp_bridge.start(host="0.0.0.0", port=9002, mode="auto")
 PYEOF
 
 # ── GUI mode ──────────────────────────────────────────────────
@@ -56,7 +56,7 @@ if [ "${FLAC_GUI:-}" = "1" ]; then
 
     echo "================================================================"
     echo "  GUI:     http://localhost:6080/vnc.html"
-    echo "  bridge:  ws://localhost:9001"
+    echo "  bridge:  ws://localhost:9002"
     echo "================================================================"
 
     if [ "$#" -eq 0 ]; then
@@ -68,7 +68,7 @@ fi
 
 # ── Console mode (default) ────────────────────────────────────
 echo "================================================================"
-echo "  bridge:  ws://localhost:9001"
+echo "  bridge:  ws://localhost:9002"
 echo "  (set FLAC_GUI=1 to also expose the GUI via noVNC)"
 echo "================================================================"
 

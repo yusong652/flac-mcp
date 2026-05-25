@@ -21,7 +21,7 @@
 #       -t flac-mcp:dev -f docker/Dockerfile .
 #
 # Run, exposing the bridge WS port to the host:
-#   docker run --rm -it --platform=linux/amd64 -p 9001:9001 flac-mcp:dev
+#   docker run --rm -it --platform=linux/amd64 -p 9002:9002 flac-mcp:dev
 
 # ---------- Stage 1: install FLAC engine ----------
 # Ubuntu 22.04 is required because the Itasca binaries link against glibc 2.32+
@@ -114,6 +114,6 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 # they go to the host-mounted user workspace, not the bridge install dir.
 WORKDIR /workspace
 
-EXPOSE 9001 6080
+EXPOSE 9002 6080
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

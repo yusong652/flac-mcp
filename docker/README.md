@@ -52,7 +52,7 @@ Endpoints:
 
 | URL | When | What it is |
 | --- | --- | --- |
-| `ws://localhost:9001` | always | itasca-mcp-bridge — point your MCP client here |
+| `ws://localhost:9002` | always | itasca-mcp-bridge — point your MCP client here |
 | `http://localhost:6080/vnc.html` | `--gui` only | FLAC's Qt GUI in your browser via noVNC |
 
 Console mode (default) runs `flac3d9_console` with the bridge on a blocking

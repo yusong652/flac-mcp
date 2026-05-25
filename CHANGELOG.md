@@ -22,6 +22,10 @@ Description of the release.
   zone, gridpoint, structure, model, and constitutive-model workflows.
 - Standardize bridge runtime configuration on `FLAC_MCP_*` environment
   variables and the `ItascaBridgeClient` name.
+- Add product/version-scoped command coverage auditing and mark FLAC2D 6.0/7.0
+  as not applicable in the bundled documentation matrix.
+- Add agentic setup and runtime validation documentation for FLAC2D/FLAC3D
+  verification.
 
 ## [0.1.0] - 2026-05-20
 

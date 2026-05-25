@@ -5,9 +5,14 @@ from typing import Any
 from fastmcp import FastMCP
 from pydantic import Field
 
-from flac_mcp.contracts import build_docs_data, build_ok
+from flac_mcp.contracts import build_docs_data, build_error, build_ok
 from flac_mcp.knowledge.commands import CommandLoader
-from flac_mcp.knowledge.compatibility import FLACProduct, normalize_product
+from flac_mcp.knowledge.compatibility import (
+    FLACProduct,
+    is_product_version_applicable,
+    normalize_product,
+    product_version_error_payload,
+)
 from flac_mcp.knowledge.query import CommandSearch
 from flac_mcp.utils import CommandDocVersion, SearchLimit, SearchQuery, normalize_command_doc_version
 
@@ -50,6 +55,15 @@ def register(mcp: FastMCP) -> None:
         """
         version_value = normalize_command_doc_version(version)
         product_value = normalize_product(product)
+        if not is_product_version_applicable(product_value, version_value):
+            error_payload = product_version_error_payload("commands", "query", product_value, version_value)
+            err = error_payload["error"]
+            return build_error(
+                code=str(err["code"]),
+                message=str(err["message"]),
+                details={k: v for k, v in error_payload.items() if k != "error"},
+            )
+
         results = CommandSearch.search_commands_only(
             query,
             top_k=limit,

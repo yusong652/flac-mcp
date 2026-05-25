@@ -23,13 +23,17 @@ exe_lower = executable.lower()
 product = "unknown"
 if "flac3d" in exe_lower or "flac3" in exe_lower:
     product = "flac3d"
-elif "flac2d" in exe_lower or "flac2" in exe_lower or "flac700" in exe_lower:
+elif "flac2d" in exe_lower or "flac2" in exe_lower:
     product = "flac2d"
 
 version = None
 match = re.search(r"(?:flac(?:2d|3d)?|itascasoftware)(\d)(\d{2})", exe_lower)
 if match:
     version = "%s.%s" % (match.group(1), match.group(2).lstrip("0") or "0")
+else:
+    match = re.search(r"flac(?:2d|3d)?(?P<major>[679])(?:[_\-.]|$)", exe_lower)
+    if match:
+        version = "%s.0" % match.group("major")
 
 try:
     dim = it.dim()

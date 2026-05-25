@@ -39,6 +39,10 @@ If `uvx` is unavailable, fallback to:
 }
 ```
 
+[USER ACTION REQUIRED]
+
+Always close and reopen the Claude Code session before continuing.
+
 ## Continue with common bootstrap
 
 After Step 1, continue from Step 2 in:

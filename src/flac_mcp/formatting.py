@@ -95,11 +95,11 @@ def build_bridge_error(exc: Exception, *, task_id: str | None = None) -> dict[st
     details: dict[str, Any] = {
         "bridge_url": cfg.url,
         "reason": reason,
-        "action": "start itasca-mcp-bridge in FLAC3D, then retry",
+        "action": "start itasca-mcp-bridge in the intended FLAC GUI, then retry",
     }
     if task_id:
         details["task_id"] = task_id
-    return build_error("bridge_unavailable", "FLAC3D bridge unavailable", details)
+    return build_error("bridge_unavailable", "FLAC bridge unavailable", details)
 
 
 def build_operation_error(

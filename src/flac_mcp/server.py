@@ -1,4 +1,4 @@
-"""FLAC MCP Server - ITASCA FLAC3D tools exposed over MCP."""
+"""FLAC MCP Server - ITASCA FLAC tools exposed over MCP."""
 
 import argparse
 import asyncio
@@ -15,6 +15,7 @@ from flac_mcp.tools import (
     browse_python_api,
     browse_reference,
     check_task_status,
+    command_coverage,
     execute_code,
     execute_task,
     interrupt_task,
@@ -28,10 +29,10 @@ from flac_mcp.tools import (
 mcp = FastMCP(
     "FLAC MCP Server",
     instructions=(
-        "FLAC3D MCP server. "
+        "FLAC MCP server for FLAC2D/FLAC3D workflows. "
         "Provides tools for browsing/searching ITASCA reference documentation "
         "and for executing simulation tasks and managing runs "
-        "through an itasca-mcp-bridge WebSocket service running inside FLAC3D."
+        "through an itasca-mcp-bridge WebSocket service running inside FLAC."
     ),
 )
 
@@ -43,6 +44,7 @@ browse_python_api.register(mcp)
 browse_reference.register(mcp)
 query_command.register(mcp)
 query_python_api.register(mcp)
+command_coverage.register(mcp)
 python_api_coverage.register(mcp)
 
 # Register execution tools
@@ -58,7 +60,7 @@ def main() -> None:
     """Entry point for the FLAC MCP server."""
     parser = argparse.ArgumentParser(
         prog="flac-mcp",
-        description="FLAC MCP Server - ITASCA FLAC3D tools exposed over MCP",
+        description="FLAC MCP Server - ITASCA FLAC tools exposed over MCP",
     )
     parser.add_argument("--version", "-v", action="version", version=f"flac-mcp {__version__}")
     parser.add_argument(
@@ -81,7 +83,7 @@ def main() -> None:
     parser.add_argument(
         "--bridge-url",
         default=None,
-        help="Bridge WebSocket URL (default: ws://localhost:9001, or FLAC_MCP_BRIDGE_URL env)",
+        help="Bridge WebSocket URL (default: ws://localhost:9002, or FLAC_MCP_BRIDGE_URL env)",
     )
     parser.add_argument(
         "--log-level",

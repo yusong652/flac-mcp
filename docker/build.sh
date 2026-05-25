@@ -46,4 +46,4 @@ df -h /System/Volumes/Data 2>/dev/null | tail -1 || df -h / | tail -1
 
 echo ""
 echo "[build.sh] Done. Run with:"
-echo "  docker run --rm -it --platform=$PLATFORM -p 9001:9001 -p 6080:6080 $TAG"
+echo "  docker run --rm -it --platform=$PLATFORM -p 9002:9002 -p 6080:6080 $TAG"
