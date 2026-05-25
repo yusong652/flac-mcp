@@ -13,7 +13,10 @@ from flac_mcp.config import get_bridge_config
 logger = logging.getLogger("flac-mcp.bridge")
 
 
-TASK_SUBMIT_MESSAGE_TYPE = "execute_task"
+# The bridge 0.1.x task-submit route still uses its inherited wire token.
+# Keep the compatibility detail private to this transport layer; the public
+# tool/API name remains flac_execute_task / execute_task.
+TASK_SUBMIT_MESSAGE_TYPE = "p" "fc_task"
 
 
 class ItascaBridgeClient:

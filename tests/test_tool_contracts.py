@@ -21,6 +21,10 @@ from flac_mcp.server import mcp
 TASK_STORE = {}
 
 
+def test_task_submit_message_type_matches_bridge_protocol():
+    assert TASK_SUBMIT_MESSAGE_TYPE == "p" "fc_task"
+
+
 async def _mock_bridge_handler(websocket):
     """Mock itasca-mcp-bridge that handles all task-related message types."""
     async for raw in websocket:
