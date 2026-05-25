@@ -7,6 +7,7 @@ from pydantic import Field
 
 from flac_mcp.contracts import build_docs_data, build_ok
 from flac_mcp.knowledge.commands import CommandLoader
+from flac_mcp.knowledge.compatibility import FLACProduct, normalize_product
 from flac_mcp.knowledge.query import CommandSearch
 from flac_mcp.utils import CommandDocVersion, SearchLimit, SearchQuery, normalize_command_doc_version
 
@@ -26,6 +27,13 @@ def register(mcp: FastMCP) -> None:
                 "structural-element commands). Use 7.0/6.0 for legacy documentation."
             ),
         ),
+        product: FLACProduct = Field(
+            FLACProduct.ANY,
+            description=(
+                "FLAC product/dimension filter. Use 'flac2d' to hide docs marked 3D-only, "
+                "'flac3d' to hide docs marked 2D-only, or 'any' for no product filter."
+            ),
+        ),
     ) -> dict[str, Any]:
         """Search FLAC command documentation by keywords (like grep).
 
@@ -41,7 +49,13 @@ def register(mcp: FastMCP) -> None:
         - flac_query_python_api: Search Python SDK by keywords
         """
         version_value = normalize_command_doc_version(version)
-        results = CommandSearch.search_commands_only(query, top_k=limit, version=version_value)
+        product_value = normalize_product(product)
+        results = CommandSearch.search_commands_only(
+            query,
+            top_k=limit,
+            version=version_value,
+            product=product_value,
+        )
         matches: list[dict[str, Any]] = []
         for result in results:
             metadata = result.document.metadata or {}
@@ -55,6 +69,8 @@ def register(mcp: FastMCP) -> None:
                     "score": round(result.score, 2),
                     "rank": result.rank,
                     "version": metadata.get("version", version_value),
+                    "product": metadata.get("product", product_value),
+                    "compatibility": metadata.get("compatibility"),
                 }
             )
 
@@ -65,6 +81,7 @@ def register(mcp: FastMCP) -> None:
             summary={
                 "count": len(matches),
                 "version": version_value,
+                "product": product_value,
             },
         )
 

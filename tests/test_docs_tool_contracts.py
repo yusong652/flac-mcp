@@ -99,6 +99,31 @@ async def test_browse_category_contract() -> None:
 
 
 @pytest.mark.asyncio
+async def test_browse_commands_filters_by_product() -> None:
+    result = await mcp._tool_manager.call_tool(
+        "flac_browse_commands",
+        {"command": "zone create2d", "version": "9.0", "product": "flac3d"},
+    )
+    payload = _parse_tool_payload(result)
+
+    assert payload["ok"] is False
+    assert payload["error"]["code"] == "command_unavailable_for_product"
+
+
+@pytest.mark.asyncio
+async def test_query_command_filters_by_product() -> None:
+    result = await mcp._tool_manager.call_tool(
+        "flac_query_command",
+        {"query": "create2d", "limit": 5, "version": "9.0", "product": "flac3d"},
+    )
+    payload = _parse_tool_payload(result)
+    names = {entry["name"] for entry in payload["data"]["entries"]}
+
+    assert payload["ok"] is True
+    assert "zone create2d" not in names
+
+
+@pytest.mark.asyncio
 async def test_query_command_versioned_contract() -> None:
     result = await mcp._tool_manager.call_tool(
         "flac_query_command",
@@ -128,6 +153,28 @@ async def test_browse_python_api_root_contract() -> None:
 
 
 @pytest.mark.asyncio
+async def test_browse_python_api_generated_zonearray_contract() -> None:
+    result = await mcp._tool_manager.call_tool("flac_browse_python_api", {"api": "itasca.zonearray"})
+    payload = _parse_tool_payload(result)
+    data = payload["data"]
+
+    assert payload["ok"] is True
+    assert data["summary"]["module_path"] == "itasca.zonearray"
+    assert data["summary"]["count"] >= 1
+
+
+@pytest.mark.asyncio
+async def test_browse_python_api_generated_attach_method_contract() -> None:
+    result = await mcp._tool_manager.call_tool("flac_browse_python_api", {"api": "itasca.attach.Attach.extra"})
+    payload = _parse_tool_payload(result)
+    data = payload["data"]
+
+    assert payload["ok"] is True
+    assert data["entries"][0]["actual_object"] == "Attach"
+    assert data["entries"][0]["method"] == "extra"
+
+
+@pytest.mark.asyncio
 async def test_python_api_coverage_reports_missing_modules() -> None:
     result = await mcp._tool_manager.call_tool("flac_python_api_coverage", {})
     payload = _parse_tool_payload(result)
@@ -136,8 +183,8 @@ async def test_python_api_coverage_reports_missing_modules() -> None:
     assert payload["ok"] is True
     assert "flac2d" in data["products"]
     assert "flac3d" in data["products"]
-    assert data["matrix"]["flac3d"]["9.0"]["complete"] is False
-    assert "zonearray" in data["matrix"]["flac3d"]["9.0"]["missing_modules"]
+    assert data["matrix"]["flac3d"]["9.0"]["complete"] is True
+    assert data["matrix"]["flac3d"]["9.0"]["missing_modules"] == []
 
 
 @pytest.mark.asyncio

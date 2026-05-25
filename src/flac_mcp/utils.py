@@ -7,6 +7,8 @@ from typing import Annotated
 from pydantic import Field
 from pydantic.functional_validators import AfterValidator
 
+from flac_mcp.knowledge.compatibility import FLACProduct
+
 # Search limits
 DEFAULT_SEARCH_LIMIT = 10
 MAX_SEARCH_LIMIT = 20
@@ -35,6 +37,9 @@ class CommandDocVersion(str, Enum):
     V6_0 = "6.0"
     V7_0 = "7.0"
     V9_0 = "9.0"
+
+
+ProductFilter = FLACProduct
 
 
 def normalize_command_doc_version(value: CommandDocVersion | str) -> str:

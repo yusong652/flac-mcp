@@ -7,6 +7,12 @@ from pydantic import Field
 
 from flac_mcp.contracts import build_docs_data, build_error, build_ok
 from flac_mcp.knowledge.commands import CommandLoader
+from flac_mcp.knowledge.compatibility import (
+    FLACProduct,
+    compatibility_summary,
+    is_compatible_with_product,
+    normalize_product,
+)
 from flac_mcp.utils import CommandDocVersion, normalize_command_doc_version, normalize_input
 
 
@@ -34,6 +40,13 @@ def register(mcp: FastMCP) -> None:
                 "structural-element commands). Use 7.0/6.0 for legacy documentation."
             ),
         ),
+        product: FLACProduct = Field(
+            FLACProduct.ANY,
+            description=(
+                "FLAC product/dimension filter. Use 'flac2d' to hide docs marked 3D-only, "
+                "'flac3d' to hide docs marked 2D-only, or 'any' for no product filter."
+            ),
+        ),
     ) -> dict[str, Any]:
         """Browse FLAC command documentation by path (like glob + cat).
 
@@ -52,22 +65,27 @@ def register(mcp: FastMCP) -> None:
         """
         cmd = normalize_input(command)
         version_value = normalize_command_doc_version(version)
+        product_value = normalize_product(product)
 
         if not cmd:
-            return build_ok(_browse_root(version_value))
+            return build_ok(_browse_root(version_value, product_value))
 
         parts = cmd.split()
 
         if len(parts) == 1:
-            payload = _browse_category(parts[0], version_value)
+            payload = _browse_category(parts[0], version_value, product_value)
         else:
             category = parts[0]
             command_name = " ".join(parts[1:])
-            payload = _browse_command(category, command_name, version_value)
+            payload = _browse_command(category, command_name, version_value, product_value)
         return _wrap_payload(payload)
 
 
-def _iter_available_category_commands(category: str, version: str) -> list[tuple[dict[str, Any], dict[str, Any]]]:
+def _iter_available_category_commands(
+    category: str,
+    version: str,
+    product: str = FLACProduct.ANY.value,
+) -> list[tuple[dict[str, Any], dict[str, Any]]]:
     """Return commands that are available in the requested version."""
     index = CommandLoader.load_index()
     category_data = index.get("categories", {}).get(category, {})
@@ -80,13 +98,13 @@ def _iter_available_category_commands(category: str, version: str) -> list[tuple
             # Doc has no entry for this version (e.g. FLAC 9.0-only docs
             # browsed at 7.0/6.0) — not available here, skip.
             continue
-        if cmd_doc and cmd_doc.get("available") is not False:
+        if cmd_doc and cmd_doc.get("available") is not False and is_compatible_with_product(cmd_doc, product):
             available.append((cmd_meta, cmd_doc))
 
     return available
 
 
-def _browse_root(version: str) -> dict[str, Any]:
+def _browse_root(version: str, product: str) -> dict[str, Any]:
     """Level 0: Return overview of all command categories."""
     index = CommandLoader.load_index()
     categories = index.get("categories", {})
@@ -94,7 +112,7 @@ def _browse_root(version: str) -> dict[str, Any]:
     total_commands = 0
 
     for category_name, category_data in categories.items():
-        available_commands = _iter_available_category_commands(category_name, version)
+        available_commands = _iter_available_category_commands(category_name, version, product)
         command_count = len(available_commands)
         total_commands += command_count
         category_items.append(
@@ -113,11 +131,12 @@ def _browse_root(version: str) -> dict[str, Any]:
             "count": len(category_items),
             "total_commands": total_commands,
             "version": version,
+            "product": product,
         },
     )
 
 
-def _browse_category(category: str, version: str) -> dict[str, Any]:
+def _browse_category(category: str, version: str, product: str) -> dict[str, Any]:
     """Level 1: Return list of commands in a category."""
     index = CommandLoader.load_index()
     categories = index.get("categories", {})
@@ -130,19 +149,20 @@ def _browse_category(category: str, version: str) -> dict[str, Any]:
                 "code": "category_not_found",
                 "message": f"Category '{category}' not found.",
             },
-            "input": {"category": category, "version": version},
+            "input": {"category": category, "version": version, "product": product},
             "available_categories": sorted(categories.keys()),
         }
 
     cat_data = categories[category]
     command_items: list[dict[str, Any]] = []
-    for cmd, cmd_doc in _iter_available_category_commands(category, version):
+    for cmd, cmd_doc in _iter_available_category_commands(category, version, product):
         command_items.append(
             {
                 "name": cmd.get("name", ""),
                 "short_description": cmd.get("short_description", ""),
                 "syntax": cmd_doc.get("syntax"),
                 "python_available": bool(cmd.get("python_available", False)),
+                "dimension": compatibility_summary(cmd_doc, product)["dimension"],
             }
         )
 
@@ -155,11 +175,12 @@ def _browse_category(category: str, version: str) -> dict[str, Any]:
             "category": category,
             "description": cat_data.get("description", ""),
             "version": version,
+            "product": product,
         },
     )
 
 
-def _browse_command(category: str, command_name: str, version: str) -> dict[str, Any]:
+def _browse_command(category: str, command_name: str, version: str, product: str) -> dict[str, Any]:
     """Level 2: Return full documentation for a specific command."""
     # JSON filenames use dash as sub-command separator (e.g. edge-create,
     # cmat-add, scalar-create) while FLAC syntax separates them with spaces.
@@ -191,7 +212,7 @@ def _browse_command(category: str, command_name: str, version: str) -> dict[str,
                 "code": "command_unavailable_for_version",
                 "message": f"Command '{command_name}' is not available in FLAC {version}.",
             },
-            "input": {"category": category, "command": command_name, "version": version},
+            "input": {"category": category, "command": command_name, "version": version, "product": product},
             "available_versions": available_versions,
         }
 
@@ -207,7 +228,7 @@ def _browse_command(category: str, command_name: str, version: str) -> dict[str,
                     "code": "category_not_found",
                     "message": f"Category '{category}' not found.",
                 },
-                "input": {"category": category, "command": command_name, "version": version},
+                "input": {"category": category, "command": command_name, "version": version, "product": product},
                 "available_categories": sorted(categories.keys()),
             }
 
@@ -221,7 +242,7 @@ def _browse_command(category: str, command_name: str, version: str) -> dict[str,
                 "code": "command_not_found",
                 "message": f"Command '{command_name}' not found in '{category}'.",
             },
-            "input": {"category": category, "command": command_name, "version": version},
+            "input": {"category": category, "command": command_name, "version": version, "product": product},
             "available_commands": available_cmds,
         }
 
@@ -233,8 +254,20 @@ def _browse_command(category: str, command_name: str, version: str) -> dict[str,
                 "code": "command_unavailable_for_version",
                 "message": f"Command '{command_name}' is not available in FLAC {version}.",
             },
-            "input": {"category": category, "command": command_name, "version": version},
+            "input": {"category": category, "command": command_name, "version": version, "product": product},
             "available_versions": cmd_doc.get("versions", []),
+        }
+
+    if not is_compatible_with_product(cmd_doc, product):
+        return {
+            "source": "commands",
+            "action": "browse",
+            "error": {
+                "code": "command_unavailable_for_product",
+                "message": f"Command '{command_name}' is not compatible with product filter '{product}'.",
+            },
+            "input": {"category": category, "command": command_name, "version": version, "product": product},
+            "compatibility": compatibility_summary(cmd_doc, product),
         }
 
     return build_docs_data(
@@ -245,10 +278,11 @@ def _browse_command(category: str, command_name: str, version: str) -> dict[str,
                 "category": category,
                 "command": command_name,
                 "version": version,
+                "compatibility": compatibility_summary(cmd_doc, product),
                 "doc": cmd_doc,
             }
         ],
-        summary={"count": 1, "version": version},
+        summary={"count": 1, "version": version, "product": product},
     )
 
 

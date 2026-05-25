@@ -86,6 +86,8 @@ Once first-time setup is done, each new FLAC session only needs the bridge re-st
 ## Features
 
 - **Multi-version FLAC support** - command docs for FLAC 6.0, 7.0, and 9.0 via the `version` parameter
+- **FLAC2D/FLAC3D filtering** - command and reference tools accept `product` to avoid dimension-specific mismatches
+- **Expanded FLAC 9.0 Python API** - bundled docs include attach, array, interface, zone, gridpoint, and vec APIs
 - **Hierarchical documentation browsing** - agents navigate the FLAC command tree to discover capabilities and boundaries, reducing hallucinated commands
 - **Enhanced plot documentation** - plot items reference docs supplementing the official documentation
 - **Interactive REPL** - rapid iteration before committing to full scripts; agents can quickly test and refine code

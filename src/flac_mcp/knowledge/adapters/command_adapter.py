@@ -7,6 +7,11 @@ Note: Model properties are handled separately via flac_browse_reference tool.
 """
 
 from flac_mcp.knowledge.commands.loader import CommandLoader
+from flac_mcp.knowledge.compatibility import (
+    FLACProduct,
+    compatibility_summary,
+    is_compatible_with_product,
+)
 from flac_mcp.knowledge.models import DocumentType, SearchDocument
 
 
@@ -27,7 +32,10 @@ class CommandDocumentAdapter:
     """
 
     @staticmethod
-    def load_commands(version: str = CommandLoader.DEFAULT_VERSION) -> list[SearchDocument]:
+    def load_commands(
+        version: str = CommandLoader.DEFAULT_VERSION,
+        product: str = FLACProduct.ANY.value,
+    ) -> list[SearchDocument]:
         """Load all FLAC command documents.
 
         Returns:
@@ -57,7 +65,11 @@ class CommandDocumentAdapter:
                 cmd_doc = CommandLoader.load_command_doc(category, cmd_name, version)
             except KeyError:
                 continue
-            if not cmd_doc or cmd_doc.get("available") is False:
+            if (
+                not cmd_doc
+                or cmd_doc.get("available") is False
+                or not is_compatible_with_product(cmd_doc, product)
+            ):
                 continue
 
             # Convert to SearchDocument
@@ -75,6 +87,8 @@ class CommandDocumentAdapter:
                     "file": cmd_meta.get("file"),
                     "short_description": cmd_meta.get("short_description", ""),
                     "version": version,
+                    "product": product,
+                    "compatibility": compatibility_summary(cmd_doc, product),
                 },
             )
             documents.append(doc)
@@ -85,7 +99,11 @@ class CommandDocumentAdapter:
     load_all = load_commands
 
     @staticmethod
-    def load_by_id(doc_id: str, version: str = CommandLoader.DEFAULT_VERSION) -> SearchDocument | None:
+    def load_by_id(
+        doc_id: str,
+        version: str = CommandLoader.DEFAULT_VERSION,
+        product: str = FLACProduct.ANY.value,
+    ) -> SearchDocument | None:
         """Load a specific command document by ID.
 
         Args:
@@ -108,7 +126,7 @@ class CommandDocumentAdapter:
         except KeyError:
             return None
 
-        if not cmd_doc or cmd_doc.get("available") is False:
+        if not cmd_doc or cmd_doc.get("available") is False or not is_compatible_with_product(cmd_doc, product):
             return None
 
         return SearchDocument(
@@ -123,5 +141,7 @@ class CommandDocumentAdapter:
             metadata={
                 "python_available": cmd_doc.get("python_sdk_alternative", {}).get("available", False),
                 "version": version,
+                "product": product,
+                "compatibility": compatibility_summary(cmd_doc, product),
             },
         )

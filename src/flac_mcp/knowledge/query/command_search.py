@@ -8,6 +8,7 @@ from typing import Any
 
 from flac_mcp.knowledge.adapters.command_adapter import CommandDocumentAdapter
 from flac_mcp.knowledge.commands.loader import CommandLoader
+from flac_mcp.knowledge.compatibility import FLACProduct, normalize_product
 from flac_mcp.knowledge.models.search_result import SearchResult
 from flac_mcp.knowledge.search.engines.bm25_engine import BM25SearchEngine
 
@@ -42,19 +43,25 @@ class CommandSearch:
     _engines: dict[str, BM25SearchEngine] = {}
 
     @classmethod
-    def _get_engine(cls, version: str = CommandLoader.DEFAULT_VERSION) -> BM25SearchEngine:
+    def _get_engine(
+        cls,
+        version: str = CommandLoader.DEFAULT_VERSION,
+        product: str = FLACProduct.ANY.value,
+    ) -> BM25SearchEngine:
         """Get or create a version-specific BM25 search engine.
 
         Returns:
             BM25SearchEngine instance (shared across all calls)
         """
-        if version not in cls._engines:
-            cls._engines[version] = BM25SearchEngine(
-                document_loader=lambda: CommandDocumentAdapter.load_commands(version=version)
+        product_value = normalize_product(product)
+        key = f"{version}:{product_value}"
+        if key not in cls._engines:
+            cls._engines[key] = BM25SearchEngine(
+                document_loader=lambda: CommandDocumentAdapter.load_commands(version=version, product=product_value)
             )
-            cls._engines[version].build()
+            cls._engines[key].build()
 
-        return cls._engines[version]
+        return cls._engines[key]
 
     @classmethod
     def search(
@@ -64,6 +71,7 @@ class CommandSearch:
         category: str | None = None,
         min_score: float | None = None,
         version: str = CommandLoader.DEFAULT_VERSION,
+        product: str = FLACProduct.ANY.value,
     ) -> list[SearchResult]:
         """Search for FLAC commands.
 
@@ -88,7 +96,7 @@ class CommandSearch:
             >>> results[0].document.category
             "zone"
         """
-        engine = cls._get_engine(version)
+        engine = cls._get_engine(version, product)
 
         # Build filter dictionary
         filters: dict[str, Any] = {}
@@ -111,6 +119,7 @@ class CommandSearch:
         top_k: int = 10,
         category: str | None = None,
         version: str = CommandLoader.DEFAULT_VERSION,
+        product: str = FLACProduct.ANY.value,
     ) -> list[SearchResult]:
         """Search for commands (alias for search method).
 
@@ -124,7 +133,7 @@ class CommandSearch:
         Returns:
             List of SearchResult objects
         """
-        return cls.search(query=query, top_k=top_k, category=category, version=version)
+        return cls.search(query=query, top_k=top_k, category=category, version=version, product=product)
 
     @classmethod
     def get_by_category(
@@ -132,6 +141,7 @@ class CommandSearch:
         category: str,
         top_k: int = 20,
         version: str = CommandLoader.DEFAULT_VERSION,
+        product: str = FLACProduct.ANY.value,
     ) -> list[SearchResult]:
         """Get all commands in a specific category.
 
@@ -147,10 +157,10 @@ class CommandSearch:
             >>> all(r.document.category == "zone" for r in results)
             True
         """
-        return cls.search(query=category, top_k=top_k, category=category, version=version)
+        return cls.search(query=category, top_k=top_k, category=category, version=version, product=product)
 
     @classmethod
-    def rebuild_index(cls, version: str | None = None) -> None:
+    def rebuild_index(cls, version: str | None = None, product: str | None = None) -> None:
         """Rebuild search index from scratch.
 
         Use this when:
@@ -159,15 +169,21 @@ class CommandSearch:
         - Troubleshooting index issues
         """
         if version is not None:
-            if version in cls._engines:
-                cls._engines[version].rebuild()
+            product_value = normalize_product(product)
+            key = f"{version}:{product_value}"
+            if key in cls._engines:
+                cls._engines[key].rebuild()
             return
 
         for engine in cls._engines.values():
             engine.rebuild()
 
     @classmethod
-    def get_index_stats(cls, version: str = CommandLoader.DEFAULT_VERSION) -> dict[str, Any]:
+    def get_index_stats(
+        cls,
+        version: str = CommandLoader.DEFAULT_VERSION,
+        product: str = FLACProduct.ANY.value,
+    ) -> dict[str, Any]:
         """Get search index statistics.
 
         Returns:
@@ -177,5 +193,5 @@ class CommandSearch:
             - description_field: Description field statistics
             - keywords_field: Keywords field statistics
         """
-        engine = cls._get_engine(version)
+        engine = cls._get_engine(version, product)
         return engine.get_index_stats()

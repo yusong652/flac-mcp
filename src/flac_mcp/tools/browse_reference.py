@@ -6,6 +6,12 @@ from fastmcp import FastMCP
 from pydantic import Field
 
 from flac_mcp.contracts import build_docs_data, build_error, build_ok
+from flac_mcp.knowledge.compatibility import (
+    FLACProduct,
+    compatibility_summary,
+    is_compatible_with_product,
+    normalize_product,
+)
 from flac_mcp.knowledge.references import ReferenceLoader
 from flac_mcp.utils import (
     CommandDocVersion,
@@ -38,6 +44,13 @@ def register(mcp: FastMCP) -> None:
                 "constitutive-models and range-elements are version-agnostic."
             ),
         ),
+        product: FLACProduct = Field(
+            FLACProduct.ANY,
+            description=(
+                "FLAC product/dimension filter. Use 'flac2d' to hide docs marked 3D-only, "
+                "'flac3d' to hide docs marked 2D-only, or 'any' for no product filter."
+            ),
+        ),
     ) -> dict[str, Any]:
         """Browse FLAC reference documentation (syntax elements, model properties).
 
@@ -61,30 +74,35 @@ def register(mcp: FastMCP) -> None:
         """
         topic_str = normalize_input(topic, lowercase=True)
         version_value = normalize_command_doc_version(version)
+        product_value = normalize_product(product)
 
         if not topic_str:
-            return build_ok(_browse_references_root(version_value))
+            return build_ok(_browse_references_root(version_value, product_value))
 
         parts = topic_str.split()
         category = parts[0]
 
         if len(parts) == 1:
-            payload = _browse_category(category, version_value)
+            payload = _browse_category(category, version_value, product_value)
         elif len(parts) == 2:
-            payload = _browse_item(category, parts[1], version_value)
+            payload = _browse_item(category, parts[1], version_value, product_value)
         else:
             # 3+ parts: category + item + sub-item (remaining parts joined)
-            payload = _browse_sub_item(category, parts[1], " ".join(parts[2:]), version_value)
+            payload = _browse_sub_item(category, parts[1], " ".join(parts[2:]), version_value, product_value)
         return _wrap_payload(payload)
 
 
-def _browse_references_root(version: str) -> dict[str, Any]:
+def _browse_references_root(version: str, product: str) -> dict[str, Any]:
     refs_index = ReferenceLoader.load_index()
     categories = refs_index.get("categories", {})
     category_items: list[dict[str, Any]] = []
 
     for category_name, category_data in categories.items():
-        items = ReferenceLoader.get_item_list(category_name, version)
+        items = [
+            item
+            for item in ReferenceLoader.get_item_list(category_name, version)
+            if is_compatible_with_product(item, product)
+        ]
         category_items.append(
             {
                 "name": category_name,
@@ -97,11 +115,11 @@ def _browse_references_root(version: str) -> dict[str, Any]:
         source="reference",
         action="browse",
         entries=category_items,
-        summary={"count": len(category_items), "version": version},
+        summary={"count": len(category_items), "version": version, "product": product},
     )
 
 
-def _browse_category(category: str, version: str) -> dict[str, Any]:
+def _browse_category(category: str, version: str, product: str) -> dict[str, Any]:
     refs_index = ReferenceLoader.load_index()
     categories = refs_index.get("categories", {})
 
@@ -113,7 +131,7 @@ def _browse_category(category: str, version: str) -> dict[str, Any]:
                 "code": "category_not_found",
                 "message": f"Category '{category}' not found.",
             },
-            "input": {"category": category, "version": version},
+            "input": {"category": category, "version": version, "product": product},
             "available_categories": sorted(categories.keys()),
         }
 
@@ -126,14 +144,17 @@ def _browse_category(category: str, version: str) -> dict[str, Any]:
                 "code": "category_index_not_found",
                 "message": f"Category index not found for '{category}'.",
             },
-            "input": {"category": category, "version": version},
+            "input": {"category": category, "version": version, "product": product},
         }
     raw_items = ReferenceLoader.get_item_list(category, version)
     items = []
     for item in raw_items:
+        if not is_compatible_with_product(item, product):
+            continue
         entry: dict[str, Any] = {
             "name": item.get("name", ""),
             "description": item.get("description", ""),
+            "compatibility": compatibility_summary(item, product),
         }
         if "full_name" in item:
             entry["full_name"] = item["full_name"]
@@ -153,11 +174,12 @@ def _browse_category(category: str, version: str) -> dict[str, Any]:
             "count": len(items),
             "category": category,
             "version": version,
+            "product": product,
         },
     )
 
 
-def _browse_item(category: str, item: str, version: str) -> dict[str, Any]:
+def _browse_item(category: str, item: str, version: str, product: str) -> dict[str, Any]:
     refs_index = ReferenceLoader.load_index()
     categories = refs_index.get("categories", {})
     if category not in categories:
@@ -168,7 +190,7 @@ def _browse_item(category: str, item: str, version: str) -> dict[str, Any]:
                 "code": "category_not_found",
                 "message": f"Category '{category}' not found.",
             },
-            "input": {"category": category, "item": item, "version": version},
+            "input": {"category": category, "item": item, "version": version, "product": product},
             "available_categories": sorted(categories.keys()),
         }
 
@@ -184,7 +206,7 @@ def _browse_item(category: str, item: str, version: str) -> dict[str, Any]:
                 "code": "item_not_found",
                 "message": f"Item '{item}' not found in '{category}'.",
             },
-            "input": {"category": category, "item": item, "version": version},
+            "input": {"category": category, "item": item, "version": version, "product": product},
             "available_items": available,
         }
 
@@ -200,8 +222,20 @@ def _browse_item(category: str, item: str, version: str) -> dict[str, Any]:
                     f"'{item}' is not available in FLAC {version} (available in: {', '.join(supported) or 'none'})."
                 ),
             },
-            "input": {"category": category, "item": item, "version": version},
+            "input": {"category": category, "item": item, "version": version, "product": product},
             "available_versions": supported,
+        }
+
+    if not is_compatible_with_product(item_doc, product):
+        return {
+            "source": "reference",
+            "action": "browse",
+            "error": {
+                "code": "item_unavailable_for_product",
+                "message": f"'{item}' is not compatible with product filter '{product}'.",
+            },
+            "input": {"category": category, "item": item, "version": version, "product": product},
+            "compatibility": compatibility_summary(item_doc, product),
         }
 
     # Directory-based item: return overview with sub-item list instead of full doc
@@ -212,6 +246,7 @@ def _browse_item(category: str, item: str, version: str) -> dict[str, Any]:
             "item": item,
             "description": item_doc.get("description", ""),
             "base_syntax": item_doc.get("base_syntax", ""),
+            "compatibility": compatibility_summary(item_doc, product),
         }
         if "basic_keywords" in item_doc:
             overview["basic_keywords"] = item_doc["basic_keywords"]
@@ -226,6 +261,7 @@ def _browse_item(category: str, item: str, version: str) -> dict[str, Any]:
                 "count": 1,
                 "sub_item_count": len(sub_items),
                 "version": version,
+                "product": product,
                 "hint": f"Use flac_browse_reference('{category} {item} <sub_item>') for details",
             },
         )
@@ -233,9 +269,10 @@ def _browse_item(category: str, item: str, version: str) -> dict[str, Any]:
     entry: dict[str, Any] = {
         "category": category,
         "item": item,
+        "compatibility": compatibility_summary(item_doc, product),
         "doc": item_doc,
     }
-    summary: dict[str, Any] = {"count": 1, "version": version}
+    summary: dict[str, Any] = {"count": 1, "version": version, "product": product}
     if isinstance(item_doc.get("availability"), dict):
         summary["available_in"] = [v for v, ok in item_doc["availability"].items() if ok]
     return build_docs_data(
@@ -246,7 +283,7 @@ def _browse_item(category: str, item: str, version: str) -> dict[str, Any]:
     )
 
 
-def _browse_sub_item(category: str, item: str, sub_item: str, version: str) -> dict[str, Any]:
+def _browse_sub_item(category: str, item: str, sub_item: str, version: str, product: str) -> dict[str, Any]:
     refs_index = ReferenceLoader.load_index()
     categories = refs_index.get("categories", {})
     if category not in categories:
@@ -262,6 +299,7 @@ def _browse_sub_item(category: str, item: str, sub_item: str, version: str) -> d
                 "item": item,
                 "sub_item": sub_item,
                 "version": version,
+                "product": product,
             },
             "available_categories": sorted(categories.keys()),
         }
@@ -279,6 +317,7 @@ def _browse_sub_item(category: str, item: str, sub_item: str, version: str) -> d
                 "item": item,
                 "sub_item": sub_item,
                 "version": version,
+                "product": product,
             },
         }
 
@@ -298,8 +337,27 @@ def _browse_sub_item(category: str, item: str, sub_item: str, version: str) -> d
                 "item": item,
                 "sub_item": sub_item,
                 "version": version,
+                "product": product,
             },
             "available_sub_items": available,
+        }
+
+    if not is_compatible_with_product(sub_doc, product):
+        return {
+            "source": "reference",
+            "action": "browse",
+            "error": {
+                "code": "sub_item_unavailable_for_product",
+                "message": f"'{category} {item} {sub_item}' is not compatible with product filter '{product}'.",
+            },
+            "input": {
+                "category": category,
+                "item": item,
+                "sub_item": sub_item,
+                "version": version,
+                "product": product,
+            },
+            "compatibility": compatibility_summary(sub_doc, product),
         }
 
     return build_docs_data(
@@ -310,10 +368,11 @@ def _browse_sub_item(category: str, item: str, sub_item: str, version: str) -> d
                 "category": category,
                 "item": item,
                 "sub_item": sub_item,
+                "compatibility": compatibility_summary(sub_doc, product),
                 "doc": sub_doc,
             }
         ],
-        summary={"count": 1, "version": version},
+        summary={"count": 1, "version": version, "product": product},
     )
 
 
