@@ -27,6 +27,16 @@ git clone --recurse-submodules https://github.com/yusong652/flac-mcp.git
 git submodule update --init --recursive
 ```
 
+如果你机器上的 `git submodule` 本身报错，可以手动克隆 bridge，并 checkout 到当前仓库钉住的 SHA：
+
+```bash
+git ls-tree HEAD itasca-mcp-bridge
+git clone https://github.com/yusong652/itasca-mcp-bridge.git itasca-mcp-bridge
+git -C itasca-mcp-bridge checkout <sha-from-git-ls-tree>
+```
+
+在 Windows 上，如果 `git-submodule` 报错里出现缺失 `basename`、`sed` 或 `git-sh-setup` 之类 Unix helper，通常是 Git for Windows 安装不完整，或它自带的工具目录没有进 PATH。干净做法是重装 Git for Windows；上面的手动克隆只是临时绕过。
+
 然后在仓库根目录执行：
 
 ```bash

@@ -1,4 +1,4 @@
-# Compose file for the pfc-mcp dev container.
+# Compose file for the flac-mcp dev container.
 #
 # Usage (run from repo root):
 #   docker compose -f docker/docker-compose.yml up --build
@@ -13,7 +13,7 @@
 # Stop with Ctrl-C (or `docker compose down` from another terminal).
 
 services:
-  pfc:
+  flac:
     build:
       context: ..
       dockerfile: docker/Dockerfile
@@ -22,23 +22,23 @@ services:
       # ITASCA_DEB_DIR=/path/to/dir before invoking compose.
       additional_contexts:
         itasca-deb: ${ITASCA_DEB_DIR:-${HOME}/Downloads}
-    image: pfc-mcp:dev
+    image: flac-mcp:dev
     platform: linux/amd64
     # Invoke the bind-mounted entrypoint via bash so a missing exec bit on
     # the host file (Edit/Write tools don't preserve it) doesn't kill the
     # container.
     entrypoint: ["bash", "/usr/local/bin/entrypoint.sh"]
-    # Pass through PFC_GUI so `PFC_GUI=1 ./docker/run.sh` flips on the X
+    # Pass through FLAC_GUI so `FLAC_GUI=1 ./docker/run.sh` flips on the X
     # stack + noVNC. Default (unset) is headless console mode.
     environment:
-      PFC_GUI: "${PFC_GUI:-}"
+      FLAC_GUI: "${FLAC_GUI:-}"
     ports:
-      - "9001:9001"   # pfc-mcp-bridge WebSocket
+      - "9001:9001"   # itasca-mcp-bridge WebSocket
       - "6080:6080"   # noVNC HTML5 viewer (GUI mode only)
     volumes:
       # Live-edit bridge source: host changes apply immediately, paired with
       # the editable install baked into the image.
-      - ../pfc-mcp-bridge/src/pfc_mcp_bridge:/opt/pfc-mcp-bridge/src/pfc_mcp_bridge
+      - ../itasca-mcp-bridge/src/itasca_mcp_bridge:/opt/itasca-mcp-bridge/src/itasca_mcp_bridge
       # Live-edit the entrypoint without rebuilding -- handy while we are
       # still figuring out the right startup choreography.
       - ./entrypoint.sh:/usr/local/bin/entrypoint.sh:ro

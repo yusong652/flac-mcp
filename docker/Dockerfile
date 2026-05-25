@@ -1,11 +1,11 @@
 # syntax=docker/dockerfile:1.6
 
-# PFC headless dev container.
+# FLAC headless dev container.
 #
-# Goal: run the Itasca PFC Linux engine in console (no-GUI) mode plus the
-# pfc-mcp-bridge WebSocket server, so MCP clients on the host can drive PFC
-# without a Windows machine. Demo mode (no license) caps models at 1000
-# balls/clumps -- enough for bridge dev and smoke tests.
+# Goal: run the Itasca FLAC Linux engine in console (no-GUI) mode plus the
+# itasca-mcp-bridge WebSocket server, so MCP clients on the host can drive
+# FLAC without a Windows machine. Demo mode is enough for bridge dev and
+# smoke tests.
 #
 # The Itasca .deb (~2.5 GB) is downloaded once on the host and bind-mounted
 # into the build, so the slow download is decoupled from build iteration and
@@ -18,19 +18,19 @@
 # Build (Apple Silicon -> emulate x86_64 via Rosetta):
 #   docker build --platform=linux/amd64 \
 #       --build-context itasca-deb=$HOME/Downloads \
-#       -t pfc-mcp:dev -f docker/Dockerfile .
+#       -t flac-mcp:dev -f docker/Dockerfile .
 #
 # Run, exposing the bridge WS port to the host:
-#   docker run --rm -it --platform=linux/amd64 -p 9001:9001 pfc-mcp:dev
+#   docker run --rm -it --platform=linux/amd64 -p 9001:9001 flac-mcp:dev
 
-# ---------- Stage 1: install PFC engine ----------
+# ---------- Stage 1: install FLAC engine ----------
 # Ubuntu 22.04 is required because the Itasca binaries link against glibc 2.32+
 # (the 9.6 build crashes with `GLIBC_2.34 not found` on 20.04's glibc 2.31).
 # The .deb's Depends list still mentions libffi7 -- a 20.04-era package -- so
 # we sideload it from the 20.04 archive before installing the .deb. Itasca's
 # own packaging is inconsistent on this point; this workaround lets a single
 # image work despite it.
-FROM --platform=linux/amd64 ubuntu:22.04 AS pfc-engine
+FROM --platform=linux/amd64 ubuntu:22.04 AS flac-engine
 
 ARG DEB_NAME=itascasoftware.latest.deb
 # 20.04-era libs the Itasca binaries link against (.deb declares libffi7, the
@@ -66,15 +66,15 @@ RUN --mount=type=bind,from=itasca-deb,target=/itasca-deb \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
 # ---------- Stage 2: GUI stack + bridge ----------
-FROM pfc-engine AS pfc-mcp
+FROM flac-engine AS flac-mcp
 
 ARG DEBIAN_FRONTEND=noninteractive
 
 # In-container X stack (Xvfb + fluxbox + x11vnc + noVNC) plus the runtime libs
-# the PFC binaries dlopen() at startup. Putting these in stage 2 keeps the
+# the FLAC binaries dlopen() at startup. Putting these in stage 2 keeps the
 # heavy engine layer cached when iterating on the GUI/entrypoint setup.
 #
-# - libfontconfig1 is required by pfc3d9_gui but missing from the .deb's
+# - libfontconfig1 is required by flac3d9_gui but missing from the .deb's
 #   Depends list (Itasca packaging gap; surfaces as `libfontconfig.so.1: cannot
 #   open shared object file` on first launch).
 # - mesa-utils + libgl1-mesa-dri provide llvmpipe software GL (Docker-on-Mac
@@ -91,7 +91,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libgl1-mesa-dri \
     && rm -rf /var/lib/apt/lists/*
 
-# PFC bundles its own Python 3.10 (used by pfc3d_console etc.). That is the
+# FLAC bundles its own Python 3.10 (used by flac3d_console etc.). That is the
 # only interpreter where `import itasca` works, so we install the bridge into
 # its site-packages directly. Direct invocation needs LD_LIBRARY_PATH to find
 # libpython3.10 and libstdc++ shipped by Itasca.
@@ -99,8 +99,8 @@ ENV ITASCA_HOME=/opt/itascasoftware/subscription
 ENV ITASCA_PYBIN=${ITASCA_HOME}/python310/bin/python3
 ENV ITASCA_LD_PATHS=${ITASCA_HOME}/python310/bin:${ITASCA_HOME}
 
-WORKDIR /opt/pfc-mcp-bridge
-COPY pfc-mcp-bridge/ ./
+WORKDIR /opt/itasca-mcp-bridge
+COPY itasca-mcp-bridge/ ./
 
 # Editable install so a future bind-mount of the host's source can iterate
 # without rebuilding the image. Using the embedded Python guarantees the
@@ -110,7 +110,7 @@ RUN LD_LIBRARY_PATH=${ITASCA_LD_PATHS} ${ITASCA_PYBIN} -m pip install --no-cache
 COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
-# pfc3d9_gui resolves project/data paths against CWD; sit in /workspace so
+# flac3d9_gui resolves project/data paths against CWD; sit in /workspace so
 # they go to the host-mounted user workspace, not the bridge install dir.
 WORKDIR /workspace
 

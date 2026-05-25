@@ -1,5 +1,5 @@
 #!/bin/bash
-# Bring up the pfc-mcp dev container with the right ports/volumes/platform.
+# Bring up the flac-mcp dev container with the right ports/volumes/platform.
 # Wraps `docker compose` so the long flag list lives in docker-compose.yml.
 #
 # Usage:  ./docker/run.sh           # console mode (default, faster)
@@ -13,7 +13,7 @@ COMPOSE_FILE="$(dirname "$0")/docker-compose.yml"
 
 # Parse --gui flag; everything else is passed through to compose.
 if [ "${1:-}" = "--gui" ]; then
-    export PFC_GUI=1
+    export FLAC_GUI=1
     shift
 fi
 
@@ -24,8 +24,8 @@ fi
 # volumes (workspace, bridge source) are untouched.
 docker compose -f "$COMPOSE_FILE" down --remove-orphans 2>/dev/null || true
 
-echo "[run.sh] Bringing up pfc-mcp..."
-if [ "${PFC_GUI:-}" = "1" ]; then
+echo "[run.sh] Bringing up flac-mcp..."
+if [ "${FLAC_GUI:-}" = "1" ]; then
     echo "  GUI:    http://localhost:6080/vnc.html"
 fi
 echo "  bridge: ws://localhost:9001"

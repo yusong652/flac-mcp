@@ -27,6 +27,16 @@ Already cloned without `--recurse-submodules`? `itasca-mcp-bridge/` is empty unt
 git submodule update --init --recursive
 ```
 
+If `git submodule` itself is broken on your machine, clone the bridge manually and check out the SHA pinned by this repository:
+
+```bash
+git ls-tree HEAD itasca-mcp-bridge
+git clone https://github.com/yusong652/itasca-mcp-bridge.git itasca-mcp-bridge
+git -C itasca-mcp-bridge checkout <sha-from-git-ls-tree>
+```
+
+On Windows, a `git-submodule` error mentioning missing Unix helper commands such as `basename`, `sed`, or `git-sh-setup` usually means the Git installation is incomplete or its bundled tools are not on PATH. Reinstalling Git for Windows is the clean fix; the manual clone above is a temporary unblocker.
+
 Then, from the repository root:
 
 ```bash

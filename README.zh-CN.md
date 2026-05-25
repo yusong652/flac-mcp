@@ -20,6 +20,15 @@
 
 **5 个执行工具** — 交互式 REPL、任务提交、进度监控、中断和历史浏览。需要 bridge。
 
+## 运行方式
+
+`flac-mcp` 由两个进程组成：
+
+- MCP 服务端运行在普通 Python 环境中，通过 `uvx flac-mcp` 启动。
+- bridge 运行在 FLAC 内嵌 Python 中，通过 [`addon.py`](addon.py) 启动，并监听 `ws://localhost:9001`。
+
+文档工具只要 MCP 服务端注册好就能用。执行工具需要连接 bridge，因为只有 FLAC 内嵌 Python 能 `import itasca` 并操作当前模型。
+
 ## 首次启动配置
 
 ### 前置条件
@@ -60,7 +69,15 @@ https://raw.githubusercontent.com/yusong652/flac-mcp/main/docs/agentic/flac-mcp-
 
 ### 验证
 
-重启你的 AI 智能体（Claude Code、Codex CLI、Gemini CLI 等），让它调用 `flac_execute_code` 来验证连接是否正常。
+重启你的 AI 智能体（Claude Code、Codex CLI、Gemini CLI 等），让它调用 `flac_execute_code` 执行：
+
+```python
+import itasca as it
+print("FLAC bridge online")
+print(it.command("model list information"))
+```
+
+如果这一步成功，可以继续用 `flac_execute_task` 验证任务执行，参数传 FLAC 所在机器上真实存在的 Python 脚本绝对路径。
 
 ## 日常启动
 
@@ -82,6 +99,18 @@ https://raw.githubusercontent.com/yusong652/flac-mcp/main/docs/agentic/flac-mcp-
 ## 开发
 
 详见 [开发者指南：从源码安装与运行](docs/development/source-install.zh-CN.md)。
+
+源码开发建议克隆时带上 submodule：
+
+```bash
+git clone --recurse-submodules https://github.com/yusong652/flac-mcp.git
+```
+
+如果 clone 或 pull 后 `itasca-mcp-bridge/` 是空目录，执行：
+
+```bash
+git submodule update --init --recursive
+```
 
 ## 贡献
 

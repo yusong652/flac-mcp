@@ -2,8 +2,7 @@
 
 Runs the Itasca FLAC Linux engine in console mode plus `itasca-mcp-bridge`, so
 Mac users can develop and test flac-mcp without a Windows + USB-key setup.
-Demo mode (no license required) caps models at 1000 balls/clumps + 1000
-rigid blocks + 10 DFNs — enough for bridge integration testing.
+Demo mode is enough for bridge integration testing and smoke tests.
 
 ## Build
 
@@ -59,7 +58,7 @@ Endpoints:
 Console mode (default) runs `flac3d9_console` with the bridge on a blocking
 poll. Most Mac dev work — testing tools, validating MCP behaviour — needs
 no GUI; skip the X stack to start in seconds. Switch to `--gui` only when
-you actually want to see particles.
+you actually want to inspect the FLAC GUI.
 
 Drop user scripts into `workspace/` at the repo root; they appear at
 `/workspace` inside the container.
@@ -70,7 +69,6 @@ Drop user scripts into `workspace/` at the repo root; they appear at
   rendering is CPU-bound. Fine for demo-mode dev; long simulations stay
   responsive but interactive 3D rotation feels sluggish.
 - Performance under Rosetta is reduced (~30% slower than native x86_64).
-  Demo mode caps models at 1000 balls/clumps anyway, so the gap is moot for
-  bridge-development workloads.
+  Keep smoke-test models small so bridge-development feedback stays quick.
 - Web license auth (if you ever wire it up) goes outbound on
   `gateway.itascacloud.com:443`.

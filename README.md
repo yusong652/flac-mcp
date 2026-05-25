@@ -20,6 +20,15 @@
 
 **5 execution tools** — interactive REPL, task submission, progress monitoring, interruption, and history. Requires bridge.
 
+## How It Runs
+
+`flac-mcp` has two processes:
+
+- The MCP server runs on your normal Python environment through `uvx flac-mcp`.
+- The bridge runs inside FLAC's embedded Python through [`addon.py`](addon.py) and listens on `ws://localhost:9001`.
+
+Documentation tools work as soon as the MCP server is registered. Execution tools connect through the bridge, because only FLAC's embedded Python can `import itasca` and operate on the active model.
+
 ## First-time Setup
 
 ### Prerequisites
@@ -60,7 +69,15 @@ Download [`addon.py`](addon.py), then use either of these two flows inside FLAC:
 
 ### Verify
 
-Restart your AI agent (Claude Code, Codex CLI, Gemini CLI, etc.) and ask it to call `flac_execute_code` to verify the connection.
+Restart your AI agent (Claude Code, Codex CLI, Gemini CLI, etc.) and ask it to call `flac_execute_code` with:
+
+```python
+import itasca as it
+print("FLAC bridge online")
+print(it.command("model list information"))
+```
+
+If that works, task execution can be checked with `flac_execute_task` by passing the absolute path to a Python script that exists on the FLAC machine.
 
 ## Daily Startup
 
@@ -82,6 +99,18 @@ See [Troubleshooting](docs/agentic/flac-mcp-bootstrap.md#troubleshooting) in the
 ## Development
 
 See [Developer Guide: Install and Run from Source](docs/development/source-install.md).
+
+For a source checkout, clone with submodules:
+
+```bash
+git clone --recurse-submodules https://github.com/yusong652/flac-mcp.git
+```
+
+If `itasca-mcp-bridge/` is empty after cloning or pulling, run:
+
+```bash
+git submodule update --init --recursive
+```
 
 ## Contributing
 
