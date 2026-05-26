@@ -10,6 +10,23 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "available": false,
+      "reason": "Not listed in the official FLAC3D 6.0 command indexes.",
+      "source_urls": [
+        "https://docs.itascacg.com/pfc600/flac3d/docproject/source/elements/command_summary.html",
+        "https://docs.itascacg.com/pfc600/flac3d/sel/doc/manual/sel_manual/sel_commands/sel_commands.html"
+      ],
+      "target_version": "6.0"
+    },
+    "7.0": {
+      "available": false,
+      "reason": "Not listed in the official FLAC3D 7.0 contents command index.",
+      "source_urls": [
+        "https://docs.itascacg.com/flac3d700/contents.html"
+      ],
+      "target_version": "7.0"
+    },
     "9.0": {
       "command": "structure liner cmodel",
       "syntax": "structure liner cmodel keyword",
@@ -29,8 +46,7 @@
           "syntax": "plastic-integration <i1><i2>[range]",
           "description": "number of integration points through the thickness ( i1 ) and over the element area ( i2 ) for plastic materials. The integration point layout is shown here . The allowable values for { i1 , i2 } are \\(\\{ 1, 1 \\}\\) or \\(\\{ 2-12, 3 \\}\\) . The default values are five and three, respectively. See Shell Plastic Constitutive Models for additional discussion of the integration scheme, and see this Figure for guidance on choosing the number of integration points through the thickness. The integration scheme cannot be modified after cycling has occurred. When the integration scheme is set, then the shell constitutive model properties are reset to their default values; thus, the shell constitutive model properties should be set AFTER setting the integration scheme. Plastic integration data can be queried with the structure liner cmodel list plastic-integration command."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }
