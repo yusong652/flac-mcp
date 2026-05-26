@@ -1,0 +1,75 @@
+{
+  "name": "shell-geogrid-liner",
+  "dimension": "mixed",
+  "full_name": "Shell, Geogrid, and Liner Structural Properties",
+  "description": "Shell-type elements share thickness/material properties. Geogrids and liners add grid-interaction coupling springs. Shell and geogrid are FLAC3D-only; liner has separate FLAC2D and FLAC3D formulations.",
+  "primary_commands": [
+    "structure shell property",
+    "structure geogrid property",
+    "structure liner property",
+    "structure shell recover",
+    "structure liner recover",
+    "structure geogrid recover"
+  ],
+  "property_groups": [
+    {
+      "group": "shell-type common",
+      "properties": [
+        "thickness",
+        "density",
+        "thermal-expansion",
+        "young",
+        "poisson"
+      ],
+      "notes": [
+        "Orthotropic and anisotropic shell models use additional material stiffness and orientation properties."
+      ]
+    },
+    {
+      "group": "geogrid coupling",
+      "properties": [
+        "coupling-cohesion",
+        "coupling-friction",
+        "coupling-stiffness",
+        "slide",
+        "slide-tolerance"
+      ],
+      "notes": [
+        "Geogrid structural elements are FLAC3D-only."
+      ]
+    },
+    {
+      "group": "liner coupling",
+      "properties": [
+        "coupling-cohesion-shear",
+        "coupling-cohesion-shear-residual",
+        "coupling-friction-shear",
+        "coupling-stiffness-normal",
+        "coupling-stiffness-shear",
+        "coupling-yield-normal",
+        "effective",
+        "slide",
+        "slide-tolerance"
+      ],
+      "notes": [
+        "Embedded FLAC3D liners also support side-2 variants such as coupling-stiffness-normal-2 and coupling-yield-normal-2.",
+        "FLAC2D liners use line-based coupling units; FLAC3D liners use area-based coupling units."
+      ]
+    }
+  ],
+  "common_patterns": [
+    {
+      "name": "Elastic shell",
+      "commands": [
+        "structure shell property young 2e10 poisson 0.2 thickness 0.25 density 2400"
+      ]
+    },
+    {
+      "name": "Liner with shear and normal coupling",
+      "commands": [
+        "structure liner property young 2e10 poisson 0.2 thickness 0.25 coupling-stiffness-normal 1e9 coupling-stiffness-shear 1e9 coupling-cohesion-shear 1e5 coupling-friction-shear 30"
+      ]
+    }
+  ],
+  "official_documentation": "https://docs.itascacg.com/itasca900/common/sel/doc/manual/sel_manual/shelltypes/shelltypes.html"
+}

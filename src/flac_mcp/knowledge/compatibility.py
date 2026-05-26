@@ -116,6 +116,27 @@ def infer_dimension(doc: Any) -> str:
         ``"mixed"`` when conflicting markers appear, and ``"any"`` when no
         restrictive marker is visible.
     """
+    if isinstance(doc, dict):
+        explicit = doc.get("dimension") or doc.get("compatibility_dimension")
+        if isinstance(explicit, str) and explicit.lower() in {"any", "2d", "3d", "mixed"}:
+            explicit_value = explicit.lower()
+            if explicit_value == "2d":
+                return "2D"
+            if explicit_value == "3d":
+                return "3D"
+            return explicit_value
+        products = doc.get("products") or doc.get("compatible_products")
+        if isinstance(products, list):
+            normalized_products = {normalize_product(product) for product in products}
+            has_2d = FLACProduct.FLAC2D.value in normalized_products
+            has_3d = FLACProduct.FLAC3D.value in normalized_products
+            if has_2d and has_3d:
+                return "mixed"
+            if has_2d:
+                return "2D"
+            if has_3d:
+                return "3D"
+
     text = json.dumps(doc, ensure_ascii=False)
     has_3d = any(pattern.search(text) for pattern in _THREE_D_PATTERNS)
     has_2d = any(pattern.search(text) for pattern in _TWO_D_PATTERNS)
@@ -142,6 +163,14 @@ def is_compatible_with_product(doc: Any, product: str) -> bool:
     return True
 
 
+def _has_explicit_dimension_metadata(doc: Any) -> bool:
+    if not isinstance(doc, dict):
+        return False
+    if isinstance(doc.get("dimension") or doc.get("compatibility_dimension"), str):
+        return True
+    return isinstance(doc.get("products") or doc.get("compatible_products"), list)
+
+
 def compatibility_summary(doc: Any, product: str) -> dict[str, Any]:
     """Small metadata block describing inferred compatibility."""
     dimension = infer_dimension(doc)
@@ -149,5 +178,9 @@ def compatibility_summary(doc: Any, product: str) -> dict[str, Any]:
         "product_filter": normalize_product(product),
         "dimension": dimension,
         "compatible": is_compatible_with_product(doc, product),
-        "basis": "inferred from 2D/3D markers in bundled documentation",
+        "basis": (
+            "explicit dimension metadata"
+            if _has_explicit_dimension_metadata(doc)
+            else "inferred from 2D/3D markers in bundled documentation"
+        ),
     }

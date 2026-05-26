@@ -26,6 +26,8 @@ Description of the release.
   as not applicable in the bundled documentation matrix.
 - Add FLAC plot-item reference docs for zone, gridpoint, and structural-element
   visualization workflows.
+- Add FLAC reference docs for boundary conditions, initial conditions,
+  structural-element properties, histories, zone field data, and results export.
 - Tighten FLAC2D Python API filtering with explicit out-of-plane API rules.
 - Add agentic setup and runtime validation documentation for FLAC2D/FLAC3D
   verification.

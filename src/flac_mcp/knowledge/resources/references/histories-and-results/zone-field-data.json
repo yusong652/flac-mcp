@@ -1,0 +1,115 @@
+{
+  "name": "zone-field-data",
+  "dimension": "mixed",
+  "full_name": "Zone Field Data Names",
+  "description": "Field data names are used by FISH zone.field queries and correspond to values available through zone history. They include zone-based values and gridpoint-based values interpolated at requested positions.",
+  "primary_commands": [
+    "zone history",
+    "fish define",
+    "zone.field.name",
+    "zone.field.get",
+    "zone.field.init",
+    "zone.field.reset"
+  ],
+  "field_groups": [
+    {
+      "group": "kinematics",
+      "names": [
+        "displacement",
+        "displacement-x",
+        "displacement-y",
+        "displacement-z",
+        "velocity",
+        "velocity-x",
+        "velocity-y",
+        "velocity-z",
+        "acceleration",
+        "acceleration-x",
+        "acceleration-y",
+        "acceleration-z"
+      ],
+      "notes": [
+        "z-component field names are FLAC3D-only unless the official command explicitly states otherwise.",
+        "Acceleration fields require dynamic configuration."
+      ]
+    },
+    {
+      "group": "stress-strain",
+      "names": [
+        "stress",
+        "stress-xx",
+        "stress-yy",
+        "stress-zz",
+        "stress-xy",
+        "stress-xz",
+        "stress-yz",
+        "strain-increment",
+        "strain-rate"
+      ],
+      "notes": [
+        "Tensor values may require a quantity selector such as maximum, minimum, mean, or shear-maximum.",
+        "FLAC2D plane-strain workflows may still report out-of-plane stress values, but out-of-plane position/vector commands remain FLAC3D-specific."
+      ]
+    },
+    {
+      "group": "model-state",
+      "names": [
+        "condition",
+        "density",
+        "extra",
+        "property",
+        "property-thermal",
+        "ratio-local",
+        "state",
+        "unbalanced-force"
+      ],
+      "notes": [
+        "property and extra field queries require the relevant property or extra index to be set through the corresponding zone.field function."
+      ]
+    },
+    {
+      "group": "fluid-thermal",
+      "names": [
+        "pore-pressure",
+        "saturation",
+        "temperature",
+        "thermal-flux"
+      ],
+      "notes": [
+        "Fluid fields require fluid configuration where applicable.",
+        "Thermal fields require thermal configuration where applicable."
+      ]
+    }
+  ],
+  "quantity_names": [
+    "maximum",
+    "minimum",
+    "intermediate",
+    "mean",
+    "norm",
+    "octahedral",
+    "shear-maximum",
+    "total-measure",
+    "volumetric"
+  ],
+  "fish_patterns": [
+    {
+      "name": "Single-point query",
+      "commands": [
+        "zone.field.name = 'displacement-x'",
+        "local value = zone.field.get(vector(3.5, 4.3, 6.7))"
+      ]
+    },
+    {
+      "name": "Repeated queries",
+      "commands": [
+        "zone.field.name = 'stress-xx'",
+        "zone.field.method.name = 'poly'",
+        "zone.field.init",
+        "; query many points",
+        "zone.field.reset"
+      ]
+    }
+  ],
+  "official_documentation": "https://docs.itascacg.com/itasca900/flac3d/docproject/source/elements/zones/zones.html"
+}

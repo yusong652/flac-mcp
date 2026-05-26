@@ -25,6 +25,38 @@
       "index_file": "plot-items/index.json",
       "summary": "Keywords for 'plot item create <type>' — color-by, cut, transparency, legends, labels, and rendering controls",
       "usage": "plot item create <type> <keyword> <keyword> ..."
+    },
+    "boundary-conditions": {
+      "name": "Boundary Conditions",
+      "description": "Practical keyword maps for mechanical, fluid, thermal, and dynamic FLAC boundary conditions.",
+      "directory": "boundary-conditions",
+      "index_file": "boundary-conditions/index.json",
+      "summary": "Keyword families for 'zone face apply', 'zone gridpoint fix/free', and boundary-condition modifiers",
+      "usage": "zone face apply <condition> <value> [modifier] [range]; zone gridpoint fix <condition> [range]"
+    },
+    "initial-conditions": {
+      "name": "Initial Conditions",
+      "description": "Reference patterns for stress, pore-pressure, density, temperature, displacement, and staged initial-state setup.",
+      "directory": "initial-conditions",
+      "index_file": "initial-conditions/index.json",
+      "summary": "Common setup recipes using 'zone initialize', 'zone initialize-stresses', 'model gravity', and solve/reset workflows",
+      "usage": "zone initialize <quantity> <value> [gradient ...] [range]; zone initialize-stresses [keyword ...]"
+    },
+    "structural-properties": {
+      "name": "Structural Element Properties",
+      "description": "Property keyword groups for FLAC structural elements such as cable, beam, pile, shell, liner, and geogrid.",
+      "directory": "structural-properties",
+      "index_file": "structural-properties/index.json",
+      "summary": "Property vocabularies for 'structure <type> property' and related structural-element workflows",
+      "usage": "structure <type> property <keyword> <value> [range]"
+    },
+    "histories-and-results": {
+      "name": "Histories and Results",
+      "description": "Monitoring, field-query, and results-export keyword references for FLAC model validation.",
+      "directory": "histories-and-results",
+      "index_file": "histories-and-results/index.json",
+      "summary": "Keyword families for 'history', 'zone history', 'zone.field.*', 'zone results', and 'model results export'",
+      "usage": "history interval <i>; zone history <name> position <v>; zone results <keyword> <bool>; model results export <file>"
     }
   },
   "navigation": {

@@ -378,6 +378,10 @@ async def test_browse_reference_root_contract() -> None:
     names = {e["name"] for e in data["entries"]}
     assert "constitutive-models" in names
     assert "plot-items" in names
+    assert "boundary-conditions" in names
+    assert "initial-conditions" in names
+    assert "structural-properties" in names
+    assert "histories-and-results" in names
 
 
 @pytest.mark.asyncio
@@ -403,6 +407,88 @@ async def test_browse_reference_plot_item_sub_item_contract() -> None:
     assert entry["item"] == "zone"
     assert entry["sub_item"] == "color-by"
     assert entry["doc"]["parent"] == "zone"
+
+
+@pytest.mark.asyncio
+async def test_browse_reference_boundary_conditions_contract() -> None:
+    result = await mcp._tool_manager.call_tool("flac_browse_reference", {"topic": "boundary-conditions"})
+    payload = _parse_tool_payload(result)
+    data = payload["data"]
+
+    assert payload["ok"] is True
+    names = {e["name"] for e in data["entries"]}
+    assert {"mechanical-face", "gridpoint-fixity", "fluid-flow", "apply-modifiers"} <= names
+
+    result = await mcp._tool_manager.call_tool(
+        "flac_browse_reference", {"topic": "boundary-conditions mechanical-face"}
+    )
+    payload = _parse_tool_payload(result)
+    doc = payload["data"]["entries"][0]["doc"]
+    assert payload["ok"] is True
+    assert "zone face apply" in doc["primary_commands"]
+    families = {family["family"] for family in doc["condition_families"]}
+    assert {"stress", "velocity", "reaction"} <= families
+
+
+@pytest.mark.asyncio
+async def test_browse_reference_initial_conditions_contract() -> None:
+    result = await mcp._tool_manager.call_tool(
+        "flac_browse_reference", {"topic": "initial-conditions stress-initialization"}
+    )
+    payload = _parse_tool_payload(result)
+    doc = payload["data"]["entries"][0]["doc"]
+
+    assert payload["ok"] is True
+    assert "zone initialize-stresses" in doc["primary_commands"]
+    method_names = {method["name"] for method in doc["methods"]}
+    assert "gravity stress with K0 ratio" in method_names
+
+
+@pytest.mark.asyncio
+async def test_browse_reference_structural_properties_contract() -> None:
+    result = await mcp._tool_manager.call_tool("flac_browse_reference", {"topic": "structural-properties cable"})
+    payload = _parse_tool_payload(result)
+    doc = payload["data"]["entries"][0]["doc"]
+
+    assert payload["ok"] is True
+    assert "structure cable property" in doc["primary_commands"]
+    groups = {group["group"] for group in doc["property_groups"]}
+    assert {"reinforcement material", "grout coupling"} <= groups
+
+
+@pytest.mark.asyncio
+async def test_browse_reference_histories_and_results_contract() -> None:
+    result = await mcp._tool_manager.call_tool("flac_browse_reference", {"topic": "histories-and-results"})
+    payload = _parse_tool_payload(result)
+    data = payload["data"]
+
+    assert payload["ok"] is True
+    names = {e["name"] for e in data["entries"]}
+    assert {"history-workflow", "zone-field-data", "results-export"} <= names
+
+    result = await mcp._tool_manager.call_tool(
+        "flac_browse_reference", {"topic": "histories-and-results zone-field-data"}
+    )
+    payload = _parse_tool_payload(result)
+    doc = payload["data"]["entries"][0]["doc"]
+    assert payload["ok"] is True
+    field_groups = {group["group"] for group in doc["field_groups"]}
+    assert {"kinematics", "stress-strain", "fluid-thermal"} <= field_groups
+    assert "shear-maximum" in doc["quantity_names"]
+
+
+@pytest.mark.asyncio
+async def test_browse_reference_explicit_mixed_dimension_overrides_z_keyword_filter() -> None:
+    result = await mcp._tool_manager.call_tool(
+        "flac_browse_reference",
+        {"topic": "histories-and-results zone-field-data", "version": "9.0", "product": "flac2d"},
+    )
+    payload = _parse_tool_payload(result)
+    entry = payload["data"]["entries"][0]
+
+    assert payload["ok"] is True
+    assert entry["compatibility"]["dimension"] == "mixed"
+    assert entry["doc"]["name"] == "zone-field-data"
 
 
 @pytest.mark.asyncio

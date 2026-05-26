@@ -37,7 +37,10 @@ def register(mcp: FastMCP) -> None:
                 "property keywords (for 'zone property')\n"
                 "- 'range-elements': Range elements overview (24 elements)\n"
                 "- 'range-elements position': Position range syntax\n"
-                "- 'plot-items zone color-by': Zone plot coloring keywords"
+                "- 'plot-items zone color-by': Zone plot coloring keywords\n"
+                "- 'boundary-conditions mechanical-face': zone face apply condition keywords\n"
+                "- 'initial-conditions stress-initialization': in-situ stress setup\n"
+                "- 'histories-and-results zone-field-data': history/field data names"
             ),
         ),
         version: CommandDocVersion = Field(
@@ -70,6 +73,8 @@ def register(mcp: FastMCP) -> None:
           before a 'zone property' / 'zone cmodel assign' command
         - Need range filtering syntax (position, cylinder, group, id)
         - Need plot item coloring/cut keywords for zone, gridpoint, or structure plots
+        - Need boundary-condition, initialization, structural-property, or history/result
+          keyword groups before building a FLAC model script
         - Using range filters in any FLAC command
 
         Related tools:

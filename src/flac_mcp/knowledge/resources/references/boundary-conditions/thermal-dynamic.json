@@ -1,0 +1,64 @@
+{
+  "name": "thermal-dynamic",
+  "dimension": "mixed",
+  "full_name": "Thermal and Dynamic Boundary Conditions",
+  "description": "Thermal and dynamic boundary conditions cover temperature/heat-transfer values, acceleration inputs, and quiet boundaries for dynamic wave absorption.",
+  "primary_commands": [
+    "model configure thermal",
+    "model configure dynamic",
+    "zone face apply temperature",
+    "zone face apply flux",
+    "zone face apply convection",
+    "zone face apply acceleration",
+    "zone face apply quiet"
+  ],
+  "keyword_groups": [
+    {
+      "group": "thermal",
+      "keywords": [
+        "temperature",
+        "flux",
+        "convection"
+      ],
+      "notes": [
+        "Use temperature for prescribed temperature boundaries.",
+        "Use flux or convection for heat-transfer style boundaries."
+      ]
+    },
+    {
+      "group": "dynamic",
+      "keywords": [
+        "acceleration",
+        "acceleration-x",
+        "acceleration-y",
+        "acceleration-z",
+        "acceleration-normal",
+        "acceleration-tangential",
+        "quiet",
+        "quiet-normal",
+        "quiet-tangential"
+      ],
+      "notes": [
+        "Dynamic keywords require dynamic configuration.",
+        "FLAC2D users should avoid z-directed acceleration keywords; quiet normal/tangential forms are dimension-neutral."
+      ]
+    }
+  ],
+  "common_patterns": [
+    {
+      "name": "Quiet base boundary",
+      "commands": [
+        "model configure dynamic",
+        "zone face apply quiet-normal range group 'Bottom'"
+      ]
+    },
+    {
+      "name": "Prescribed temperature",
+      "commands": [
+        "model configure thermal",
+        "zone face apply temperature 20 range group 'Outer'"
+      ]
+    }
+  ],
+  "official_documentation": "https://docs.itascacg.com/itasca900/flac3d/zone/doc/manual/zone_manual/zone_commands/zoneface/cmd_zone.face.apply.html"
+}
