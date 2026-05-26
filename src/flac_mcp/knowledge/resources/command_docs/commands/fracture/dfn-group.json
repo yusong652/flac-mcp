@@ -4,10 +4,8 @@
     "dfn-group"
   ],
   "description": "Specify DFN group names. Use of the group logic is described in the Groups topic. By default, s is assigned to the default slot Default . Use the remove keyword to remove s from all slots.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -24,8 +22,7 @@
           "syntax": "slot <slot>",
           "description": "Set group slot slot to s . By default, slot Default is used."
         }
-      ],
-      "examples": []
+      ]
     },
     "7.0": {
       "command": "fracture dfn-group",
@@ -41,8 +38,7 @@
           "syntax": "slot <slot>",
           "description": "Set group slot slot to s . By default, slot Default is used."
         }
-      ],
-      "examples": []
+      ]
     },
     "9.0": {
       "command": "fracture dfn-group",
@@ -58,8 +54,7 @@
           "syntax": "slot <slot>",
           "description": "Set group slot slot to s . By default, slot Default is used."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

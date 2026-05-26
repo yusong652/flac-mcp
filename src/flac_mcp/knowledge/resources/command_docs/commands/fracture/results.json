@@ -4,26 +4,26 @@
     "results"
   ],
   "description": "Specify whether fracture information is stored in subsequent results files. By default this value is off .",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
-      "available": false
+      "available": false,
+      "reason": "Not listed in the official FLAC3D 6.0 command indexes.",
+      "source_urls": [
+        "https://docs.itascacg.com/pfc600/flac3d/docproject/source/elements/command_summary.html",
+        "https://docs.itascacg.com/pfc600/flac3d/sel/doc/manual/sel_manual/sel_commands/sel_commands.html"
+      ],
+      "target_version": "6.0"
     },
     "7.0": {
       "command": "fracture results",
-      "syntax": "fracture results active <b>",
-      "keywords": [],
-      "examples": []
+      "syntax": "fracture results active <b>"
     },
     "9.0": {
       "command": "fracture results",
-      "syntax": "fracture results active <b>",
-      "keywords": [],
-      "examples": []
+      "syntax": "fracture results active <b>"
     }
   }
 }

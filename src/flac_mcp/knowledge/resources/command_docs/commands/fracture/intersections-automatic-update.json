@@ -4,29 +4,21 @@
     "intersections-automatic-update"
   ],
   "description": "Set the intersection automatic-updating state. By default, when new fractures are added or removed, the previously calculated intersections and clusters are not updated automatically. By enabling this behavior, these data structures remain valid and up-to-date. This keyword cannot be given with any other keywords.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
       "command": "fracture intersections automatic-update",
-      "syntax": "fracture intersections automatic-update <b>",
-      "keywords": [],
-      "examples": []
+      "syntax": "fracture intersections automatic-update <b>"
     },
     "7.0": {
       "command": "fracture intersections automatic-update",
-      "syntax": "fracture intersections automatic-update <b>",
-      "keywords": [],
-      "examples": []
+      "syntax": "fracture intersections automatic-update <b>"
     },
     "9.0": {
       "command": "fracture intersections automatic-update",
-      "syntax": "fracture intersections automatic-update <b>",
-      "keywords": [],
-      "examples": []
+      "syntax": "fracture intersections automatic-update <b>"
     }
   }
 }

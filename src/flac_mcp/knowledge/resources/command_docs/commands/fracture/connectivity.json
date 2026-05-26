@@ -4,10 +4,8 @@
     "connectivity"
   ],
   "description": "Calculate fracture connectivity with a specified structure. The initial structure can either be a fracture or a geometry set. By default, integer connectivity levels are computed for each fracture (i.e., a connectivity level of n means that the fracture is connected to the structure through n fracture intersections), and extras are assigned based on the distance. This behavior can be modified with the aperture , cubic and distance keywords. If either no intersection set is specified or the specified intersection set does not exist, a new intersection set is created and all intersections between fractures are delineated; the resulting intersection set is used as the basis for the connectivity calculation.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -49,8 +47,7 @@
           "syntax": "intersection-set <s>",
           "description": "Specify the intersection set name used for connectivity calculation. If no intersection set is specified a new intersection set is created with name intersectionsXX , where XX is the next available intersection set ID."
         }
-      ],
-      "examples": []
+      ]
     },
     "7.0": {
       "command": "fracture connectivity",
@@ -91,8 +88,7 @@
           "syntax": "intersection-set <s>",
           "description": "Specify the intersection set name used for connectivity calculation. If no intersection set is specified a new intersection set is created with name intersectionsXX , where XX is the next available intersection set ID."
         }
-      ],
-      "examples": []
+      ]
     },
     "9.0": {
       "command": "fracture connectivity",
@@ -133,8 +129,7 @@
           "syntax": "intersection-set <s>",
           "description": "Specify the intersection set name used for connectivity calculation. If no intersection set is specified a new intersection set is created with name intersectionsXX , where XX is the next available intersection set ID."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

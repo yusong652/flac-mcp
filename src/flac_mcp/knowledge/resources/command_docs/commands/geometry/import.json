@@ -4,10 +4,8 @@
     "import"
   ],
   "description": "Import geometric data. s is the file name.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -34,8 +32,7 @@
           "syntax": "set <s>",
           "description": "By default, the imported geometry is assigned to a set with a name that is identical to the imported file name without extension. This can be overridden with the set keyword."
         }
-      ],
-      "examples": []
+      ]
     },
     "7.0": {
       "command": "geometry import",
@@ -71,8 +68,7 @@
           "syntax": "set <s>",
           "description": "By default, the imported geometry is assigned to a set with a name that is identical to the imported file name without extension. This can be overridden with the set keyword."
         }
-      ],
-      "examples": []
+      ]
     },
     "9.0": {
       "command": "geometry import",
@@ -108,8 +104,7 @@
           "syntax": "set <s>",
           "description": "By default, the imported geometry is assigned to a set with a name that is identical to the imported file name without extension. This can be overridden with the set keyword."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

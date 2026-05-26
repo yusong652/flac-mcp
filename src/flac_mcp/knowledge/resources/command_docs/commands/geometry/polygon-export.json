@@ -4,10 +4,8 @@
     "polygon-export"
   ],
   "description": "Export geometry polygons data. Polygons, also nodes and edges if supported, are output to the file with name s . The default file type is the Itasca geometry format, and the range applies to polygons. If the set keyword is not given, then the current set is used.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -24,8 +22,7 @@
           "syntax": "stl",
           "description": "Specifiy the file format to use for export. The default will be selected based on the file name extension. AutoCAD DXF format with file extension “.dxf.” Itasca geometry format with file extentsion “.geom.” This is the default format, and is described in Geometry Text File Format . STL file format “.stl”."
         }
-      ],
-      "examples": []
+      ]
     },
     "7.0": {
       "command": "geometry polygon export",
@@ -46,8 +43,7 @@
           "syntax": "set <s>",
           "description": "Specify the geometry set."
         }
-      ],
-      "examples": []
+      ]
     },
     "9.0": {
       "command": "geometry polygon export",
@@ -68,8 +64,7 @@
           "syntax": "set <s>",
           "description": "Specify the geometry set."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

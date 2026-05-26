@@ -4,10 +4,8 @@
     "attribute"
   ],
   "description": "Modify fracture attributes. This command is a synonym for the fracture initialize command.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -64,8 +62,7 @@
           "syntax": "position-z <f>",
           "description": "Fracture position ( \\(z\\) -component)."
         }
-      ],
-      "examples": []
+      ]
     },
     "7.0": {
       "command": "fracture attribute",
@@ -121,8 +118,7 @@
           "syntax": "position-z <f>",
           "description": "Fracture position ( \\(z\\) -component)."
         }
-      ],
-      "examples": []
+      ]
     },
     "9.0": {
       "command": "fracture attribute",
@@ -178,8 +174,7 @@
           "syntax": "position-z <f>3D only",
           "description": "Fracture position ( \\(z\\) -component)."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

@@ -4,10 +4,8 @@
     "import"
   ],
   "description": "Import fractures.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -84,8 +82,7 @@
           "syntax": "truncate",
           "description": "Indicate that fractures intersecting the model domain boundary are truncated (i.e., disk fractures in 3D can be converted to polygonal fractures)."
         }
-      ],
-      "examples": []
+      ]
     },
     "7.0": {
       "command": "fracture import",
@@ -161,8 +158,7 @@
           "syntax": "truncate",
           "description": "Indicate that fractures intersecting the model domain boundary are truncated (i.e., disk fractures in 3D can be converted to polygonal fractures)."
         }
-      ],
-      "examples": []
+      ]
     },
     "9.0": {
       "command": "fracture import",
@@ -238,8 +234,7 @@
           "syntax": "truncate",
           "description": "Indicate that fractures intersecting the model domain boundary are truncated (i.e., disk fractures in 3D can be converted to polygonal fractures)."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

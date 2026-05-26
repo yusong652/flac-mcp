@@ -4,10 +4,8 @@
     "edge-create"
   ],
   "description": "Create an edge in the current geometry set. If the set keyword is given then the edge is created in that set. The following keywords are available as different methods of edge creation.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -44,8 +42,7 @@
           "syntax": "extra <i>a",
           "description": "Add the value a to created edges in extra variable index i . More than one extra keyword may be given."
         }
-      ],
-      "examples": []
+      ]
     },
     "7.0": {
       "command": "geometry edge create",
@@ -86,8 +83,7 @@
           "syntax": "extra <i><a>",
           "description": "Add the value a to created edges in extra variable index i . More than one extra keyword may be given."
         }
-      ],
-      "examples": []
+      ]
     },
     "9.0": {
       "command": "geometry edge create",
@@ -128,8 +124,7 @@
           "syntax": "extra <i><a>",
           "description": "Add the value a to created edges in extra variable index i . More than one extra keyword may be given."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

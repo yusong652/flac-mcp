@@ -4,10 +4,8 @@
     "export"
   ],
   "description": "Export geometry data. Polygons, as well as required nodes and edges, are output to the file with name s . If the nodes or edges keyword is specified, objects of that type are included in the search even if they are not connected to polygons. The default file type is the Itasca geometry format, and the range applies to polygons. If the set keyword is not given, then the current set is used.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -34,8 +32,7 @@
           "syntax": "nodes",
           "description": "Indicate that free nodes (i.e., not connected to any polygon) should be exported as well."
         }
-      ],
-      "examples": []
+      ]
     },
     "7.0": {
       "command": "geometry export",
@@ -66,8 +63,7 @@
           "syntax": "set <s>",
           "description": "Specify the geometry set."
         }
-      ],
-      "examples": []
+      ]
     },
     "9.0": {
       "command": "geometry export",
@@ -98,8 +94,7 @@
           "syntax": "set <s>",
           "description": "Specify the geometry set."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

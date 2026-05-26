@@ -4,17 +4,13 @@
     "translate"
   ],
   "description": "Translate nodes. The node positions are translated by v , and the optional range is applied to nodes. If the set keyword is not given, then the current set is used.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
       "command": "geometry translate",
-      "syntax": "geometry translate <v>[tolerance <ft>] [range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "geometry translate <v>[tolerance <ft>] [range]"
     },
     "7.0": {
       "command": "geometry translate",
@@ -30,8 +26,7 @@
           "syntax": "tolerance <ft>",
           "description": "The < tolerance ft > option provides tolerance for merging nodes. Default tolerance is 1.0e-8 multiplied by biggest extent size of all nodes positions in the set."
         }
-      ],
-      "examples": []
+      ]
     },
     "9.0": {
       "command": "geometry translate",
@@ -47,8 +42,7 @@
           "syntax": "tolerance <ft>",
           "description": "The < tolerance ft > option provides tolerance for merging nodes. Default tolerance is 1.0e-8 multiplied by biggest extent size of all nodes positions in the set."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

@@ -4,10 +4,8 @@
     "cluster"
   ],
   "description": "Compute fracture clusters. Clusters are defined as sets of fractures connected via intersections. These sets of fracture are indexed, and group names are assigned based on the indices. Intersections are created via the fracture intersections compute command. If either no intersection set is specified or the specified intersection set does not exist, a new intersection set is created and all intersections between fractures are delineated; the resulting intersection set is used as the basis for the cluster calculation.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -24,8 +22,7 @@
           "syntax": "intersection-set <s>",
           "description": "Specify the intersection set name used for cluster calculation. If no intersection set is specified a new intersection set is created with name name intersectionsXX , where XX is the next available intersection set ID. All intersections are subsequently computed."
         }
-      ],
-      "examples": []
+      ]
     },
     "7.0": {
       "command": "fracture cluster",
@@ -41,8 +38,7 @@
           "syntax": "intersection-set <s>",
           "description": "Specify the intersection set name used for cluster calculation. If no intersection set is specified a new intersection set is created with name name intersectionsXX , where XX is the next available intersection set ID. All intersections are subsequently computed."
         }
-      ],
-      "examples": []
+      ]
     },
     "9.0": {
       "command": "fracture cluster",
@@ -58,8 +54,7 @@
           "syntax": "intersection-set <s>",
           "description": "Specify the intersection set name used for cluster calculation. If no intersection set is specified a new intersection set is created with name name intersectionsXX , where XX is the next available intersection set ID. All intersections are subsequently computed."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }
