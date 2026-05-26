@@ -15,7 +15,6 @@
     "  - All FISH functions and variables",
     "  - All histories",
     "  - All tables",
-    "  - All model components (balls, clumps, walls, contacts, etc.)",
     "  - Domain settings",
     "  - Material properties",
     "  - Gravity settings",
@@ -34,7 +33,6 @@
     "7.0": {
       "command": "model restore",
       "syntax": "model restore <s>",
-      "keywords": [],
       "examples": [
         {
           "command": "model restore 'checkpoint.f3sav'",
@@ -61,11 +59,9 @@
           "description": "Restore base state, add gravity, solve, save new configuration"
         },
         {
-          "command": "model restore 'saved_state.sav'\nmodel clean\nclump tolerance extent 0.02",
           "description": "After restore, must clean before modifying extent tolerances"
         },
         {
-          "command": "model restore 'problem1_equilibrium'\n; Continue simulation from equilibrium\nwall attribute velocity-y -0.1 range id 1\nmodel cycle 10000",
           "description": "Restore equilibrium state and continue with new loading"
         }
       ]
@@ -73,7 +69,6 @@
     "6.0": {
       "command": "model restore",
       "syntax": "model restore <s>",
-      "keywords": [],
       "examples": [
         {
           "command": "model restore 'checkpoint.f3sav'",
@@ -100,11 +95,9 @@
           "description": "Restore base state, add gravity, solve, save new configuration"
         },
         {
-          "command": "model restore 'saved_state.sav'\nmodel clean\nclump tolerance extent 0.02",
           "description": "After restore, must clean before modifying extent tolerances"
         },
         {
-          "command": "model restore 'problem1_equilibrium'\n; Continue simulation from equilibrium\nwall attribute velocity-y -0.1 range id 1\nmodel cycle 10000",
           "description": "Restore equilibrium state and continue with new loading"
         }
       ]
@@ -112,7 +105,6 @@
     "9.0": {
       "command": "model restore",
       "syntax": "model restore <s>",
-      "keywords": [],
       "examples": [
         {
           "command": "model restore 'checkpoint.f3sav'",
@@ -139,11 +131,9 @@
           "description": "Restore base state, add gravity, solve, save new configuration"
         },
         {
-          "command": "model restore 'saved_state.sav'\nmodel clean\nclump tolerance extent 0.02",
           "description": "After restore, must clean before modifying extent tolerances"
         },
         {
-          "command": "model restore 'problem1_equilibrium'\n; Continue simulation from equilibrium\nwall attribute velocity-y -0.1 range id 1\nmodel cycle 10000",
           "description": "Restore equilibrium state and continue with new loading"
         }
       ]

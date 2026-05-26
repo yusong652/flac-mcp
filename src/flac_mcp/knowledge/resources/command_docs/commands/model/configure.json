@@ -9,24 +9,18 @@
     "Must be given BEFORE model solve or model cycle can be invoked",
     "Can be given at any stage of an analysis",
     "Configures calculation modes that require extra resources or license restrictions",
-    "CFD mode enables fluid-particle coupling simulations",
     "Once configured, the mode remains active for the model",
     "May affect available memory and computational resources"
   ],
   "python_sdk_alternative": {
     "available": false,
-    "workaround": "itasca.command('model configure cfd') - Python SDK does not provide direct configure method"
+    "workaround": "itasca.command('model configure fluid') - Python SDK does not provide a direct configure method"
   },
   "versions": {
     "7.0": {
       "command": "model configure",
       "syntax": "model configure keyword ...",
       "keywords": [
-        {
-          "name": "cfd",
-          "syntax": "cfd",
-          "description": "PFC CFD analysis"
-        },
         {
           "name": "creep",
           "syntax": "creep",
@@ -38,39 +32,14 @@
           "description": "Fully dynamic analysis*"
         },
         {
-          "name": "energy",
-          "syntax": "energy",
-          "description": "Energy tracking in 3DEC"
-        },
-        {
-          "name": "feblock",
-          "syntax": "feblock",
-          "description": "Finite element blocks in 3DEC"
-        },
-        {
           "name": "fluid",
           "syntax": "fluid",
           "description": "Fluid-flow analysis"
         },
         {
-          "name": "highorder",
-          "syntax": "highorder",
-          "description": "Include higher-order tetrahedra in the model (must be given before blocks are created in 3DEC )."
-        },
-        {
-          "name": "hotetra",
-          "syntax": "hotetra",
-          "description": "Include higher-order tetrahedra in the model (must be given before blocks are created in 3DEC )."
-        },
-        {
           "name": "imass",
           "syntax": "imass",
           "description": "The Itasca Model for Advanced Strain Softening*"
-        },
-        {
-          "name": "matrixflow",
-          "syntax": "matrixflow",
-          "description": "Matrix flow in 3DEC"
         },
         {
           "name": "plugins",
@@ -85,16 +54,12 @@
       ],
       "examples": [
         {
-          "command": "model configure cfd",
-          "description": "Enable CFD analysis mode for fluid-particle coupling"
+          "command": "model configure fluid",
+          "description": "Enable fluid-flow analysis mode before solving"
         },
         {
-          "command": "model new\nmodel configure cfd\nmodel domain extent -10 10\nmodel cycle 1000",
-          "description": "Configure CFD before cycling - correct order"
-        },
-        {
-          "command": "model configure cfd\nball generate number 1000 radius 0.5\n; ... set up fluid domain ...\nmodel solve",
-          "description": "Configure CFD, create particles and fluid domain, then solve"
+          "command": "model configure dynamic",
+          "description": "Enable dynamic analysis mode before cycling"
         }
       ]
     },
@@ -102,11 +67,6 @@
       "command": "model configure",
       "syntax": "model configure keyword ...",
       "keywords": [
-        {
-          "name": "cfd",
-          "syntax": "cfd",
-          "description": "CFD (computational fluid dynamics) analysis* ( PFC3D only)"
-        },
         {
           "name": "creep",
           "syntax": "creep",
@@ -140,16 +100,12 @@
       ],
       "examples": [
         {
-          "command": "model configure cfd",
-          "description": "Enable CFD analysis mode for fluid-particle coupling"
+          "command": "model configure fluid",
+          "description": "Enable fluid-flow analysis mode before solving"
         },
         {
-          "command": "model new\nmodel configure cfd\nmodel domain extent -10 10\nmodel cycle 1000",
-          "description": "Configure CFD before cycling - correct order"
-        },
-        {
-          "command": "model configure cfd\nball generate number 1000 radius 0.5\n; ... set up fluid domain ...\nmodel solve",
-          "description": "Configure CFD, create particles and fluid domain, then solve"
+          "command": "model configure dynamic",
+          "description": "Enable dynamic analysis mode before cycling"
         }
       ]
     },
@@ -158,19 +114,9 @@
       "syntax": "model configure keyword ...",
       "keywords": [
         {
-          "name": "array",
-          "syntax": "array <f>",
-          "description": "Specify the amount of memory to be used by 3DEC in MB. The default is 2000."
-        },
-        {
           "name": "axisymmetry",
           "syntax": "axisymmetry",
           "description": "FLAC2D axisymmetric analysis. Currently available for standard mechanical analysis only (no full dynamics)."
-        },
-        {
-          "name": "cfd",
-          "syntax": "cfd",
-          "description": "PFC CFD analysis"
         },
         {
           "name": "creep",
@@ -183,39 +129,14 @@
           "description": "Fully dynamic analysis*"
         },
         {
-          "name": "energy",
-          "syntax": "energy",
-          "description": "Energy tracking in 3DEC"
-        },
-        {
-          "name": "feblock",
-          "syntax": "feblock",
-          "description": "Finite element blocks in 3DEC"
-        },
-        {
           "name": "fluid",
           "syntax": "fluid",
           "description": "Fluid-flow analysis"
         },
         {
-          "name": "highorder",
-          "syntax": "highorder",
-          "description": "Include higher-order tetrahedra in the model (must be given before blocks are created in 3DEC )."
-        },
-        {
-          "name": "hotetra",
-          "syntax": "hotetra",
-          "description": "Include higher-order tetrahedra in the model (must be given before blocks are created in 3DEC )."
-        },
-        {
           "name": "imass",
           "syntax": "imass",
           "description": "The Itasca Model for Advanced Strain Softening*"
-        },
-        {
-          "name": "matrixflow",
-          "syntax": "matrixflow",
-          "description": "Matrix flow in 3DEC"
         },
         {
           "name": "plugins",
@@ -230,18 +151,78 @@
       ],
       "examples": [
         {
-          "command": "model configure cfd",
-          "description": "Enable CFD analysis mode for fluid-particle coupling"
+          "command": "model configure fluid",
+          "description": "Enable fluid-flow analysis mode before solving"
         },
         {
-          "command": "model new\nmodel configure cfd\nmodel domain extent -10 10\nmodel cycle 1000",
-          "description": "Configure CFD before cycling - correct order"
-        },
-        {
-          "command": "model configure cfd\nball generate number 1000 radius 0.5\n; ... set up fluid domain ...\nmodel solve",
-          "description": "Configure CFD, create particles and fluid domain, then solve"
+          "command": "model configure dynamic",
+          "description": "Enable dynamic analysis mode before cycling"
         }
       ]
+    },
+    "9.1": {
+      "command": "model configure",
+      "syntax": "model configure keyword ...",
+      "keywords": [
+        {
+          "name": "axisymmetry",
+          "syntax": "axisymmetry",
+          "description": "Enable FLAC2D axisymmetric analysis."
+        },
+        {
+          "name": "creep",
+          "syntax": "creep",
+          "description": "Enable creep material analysis when licensed."
+        },
+        {
+          "name": "dynamic",
+          "syntax": "dynamic",
+          "description": "Enable fully dynamic analysis when licensed."
+        },
+        {
+          "name": "fluid-flow",
+          "syntax": "fluid-flow",
+          "description": "Enable groundwater fluid-flow analysis. This replaces the 9.0 fluid keyword in 9.1 and later."
+        },
+        {
+          "name": "imass",
+          "syntax": "imass",
+          "description": "Enable the Itasca Model for Advanced Strain Softening when licensed."
+        },
+        {
+          "name": "plugins",
+          "syntax": "plugins",
+          "description": "Load C++ user-defined models and FISH intrinsic plugins."
+        },
+        {
+          "name": "thermal",
+          "syntax": "thermal",
+          "description": "Enable thermal analysis."
+        }
+      ],
+      "examples": [
+        {
+          "command": "model configure fluid-flow",
+          "description": "Enable groundwater fluid-flow analysis before solving"
+        },
+        {
+          "command": "model configure dynamic",
+          "description": "Enable dynamic analysis before cycling"
+        }
+      ],
+      "version_notes": [
+        "ITASCA 9.1 and later use model configure fluid-flow for FLAC groundwater flow; 9.0 used model configure fluid.",
+        "The bundled FLAC command block omits common-page keywords for other Itasca products."
+      ],
+      "official_documentation": {
+        "source_urls": [
+          "https://docs.itascacg.com/itasca910/common/kernel/doc/manual/model/commands/cmd_model.configure.html"
+        ]
+      }
+    },
+    "9.3": {
+      "alias_of": "9.1",
+      "reason": "FLAC 9.3+ uses the bundled 9.1 fluid-flow syntax block for this command until an exact 9.3 page is bundled."
     }
   }
 }

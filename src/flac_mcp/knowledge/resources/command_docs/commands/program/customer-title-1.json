@@ -4,28 +4,21 @@
     "customer-title-1"
   ],
   "description": "Set the first line of customer information. This line is displayed by default in the lower-left corner of the legend of all plot views.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
       "command": "program customer-title-1",
-      "syntax": "program customer-title-1 <s>",
-      "keywords": [],
-      "examples": []
+      "syntax": "program customer-title-1 <s>"
     },
     "7.0": {
       "command": "program customer-title-1",
-      "syntax": "program customer-title-1 <s>",
-      "keywords": []
+      "syntax": "program customer-title-1 <s>"
     },
     "9.0": {
       "command": "program customer-title-1",
-      "syntax": "program customer-title-1 <s>",
-      "keywords": [],
-      "examples": []
+      "syntax": "program customer-title-1 <s>"
     }
   }
 }

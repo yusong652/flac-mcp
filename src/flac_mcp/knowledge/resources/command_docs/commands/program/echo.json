@@ -4,10 +4,8 @@
     "echo"
   ],
   "description": "Set the echo state.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -24,8 +22,7 @@
           "syntax": "suppress",
           "description": "If this keyword is given, then the output is suppressed for the current input source; such as the current data file or the current command/endcommand block in FISH ."
         }
-      ],
-      "examples": []
+      ]
     },
     "7.0": {
       "command": "program echo",
@@ -57,8 +54,7 @@
           "syntax": "suppress",
           "description": "If this keyword is given, then the output is suppressed for the current input source; such as the current data file or the current command/endcommand block in FISH ."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

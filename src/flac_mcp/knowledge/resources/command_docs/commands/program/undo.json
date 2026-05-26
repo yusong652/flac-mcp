@@ -4,28 +4,21 @@
     "undo"
   ],
   "description": "Undo commands.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
       "command": "program undo",
-      "syntax": "program undo [<i>]",
-      "keywords": [],
-      "examples": []
+      "syntax": "program undo [<i>]"
     },
     "7.0": {
       "command": "program undo",
-      "syntax": "program undo [<i>]",
-      "keywords": []
+      "syntax": "program undo [<i>]"
     },
     "9.0": {
       "command": "program undo",
-      "syntax": "program undo [<i>]",
-      "keywords": [],
-      "examples": []
+      "syntax": "program undo [<i>]"
     }
   }
 }

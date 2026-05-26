@@ -9,7 +9,6 @@
   "notes": [
     "Sets all linear velocities to 0",
     "Sets all rotational velocities (angular velocities/spin) to 0",
-    "Applies to all pieces: balls, clumps, and walls",
     "Does not affect positions or forces",
     "Useful for removing kinetic energy from system",
     "Often used when transitioning between loading stages",
@@ -24,7 +23,6 @@
     "7.0": {
       "command": "model calm",
       "syntax": "model calm",
-      "keywords": [],
       "examples": [
         {
           "command": "model calm",
@@ -35,11 +33,9 @@
           "description": "Run cycles, calm velocities, then continue cycling"
         },
         {
-          "command": "model solve\nmodel calm\nwall attribute velocity-y -0.1 range id 1",
           "description": "Solve to equilibrium, calm system, then apply new boundary velocity"
         },
         {
-          "command": "model calm\nball attribute velocity (0,0,0)",
           "description": "Calm followed by explicit velocity assignment (calm is simpler for zeroing)"
         }
       ]
@@ -47,7 +43,6 @@
     "6.0": {
       "command": "model calm",
       "syntax": "model calm",
-      "keywords": [],
       "examples": [
         {
           "command": "model calm",
@@ -58,11 +53,9 @@
           "description": "Run cycles, calm velocities, then continue cycling"
         },
         {
-          "command": "model solve\nmodel calm\nwall attribute velocity-y -0.1 range id 1",
           "description": "Solve to equilibrium, calm system, then apply new boundary velocity"
         },
         {
-          "command": "model calm\nball attribute velocity (0,0,0)",
           "description": "Calm followed by explicit velocity assignment (calm is simpler for zeroing)"
         }
       ]
@@ -70,7 +63,6 @@
     "9.0": {
       "command": "model calm",
       "syntax": "model calm",
-      "keywords": [],
       "examples": [
         {
           "command": "model calm",
@@ -81,11 +73,9 @@
           "description": "Run cycles, calm velocities, then continue cycling"
         },
         {
-          "command": "model solve\nmodel calm\nwall attribute velocity-y -0.1 range id 1",
           "description": "Solve to equilibrium, calm system, then apply new boundary velocity"
         },
         {
-          "command": "model calm\nball attribute velocity (0,0,0)",
           "description": "Calm followed by explicit velocity assignment (calm is simpler for zeroing)"
         }
       ]

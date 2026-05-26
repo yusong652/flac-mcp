@@ -4,28 +4,21 @@
     "warning"
   ],
   "description": "Set the warning state.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
       "command": "program warning",
-      "syntax": "program warning <b>",
-      "keywords": [],
-      "examples": []
+      "syntax": "program warning <b>"
     },
     "7.0": {
       "command": "program warning",
-      "syntax": "program warning <b>",
-      "keywords": []
+      "syntax": "program warning <b>"
     },
     "9.0": {
       "command": "program warning",
-      "syntax": "program warning <b>",
-      "keywords": [],
-      "examples": []
+      "syntax": "program warning <b>"
     }
   }
 }

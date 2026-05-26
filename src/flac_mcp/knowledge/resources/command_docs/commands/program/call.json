@@ -4,10 +4,8 @@
     "call"
   ],
   "description": "Process the specified data file(s).",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -34,8 +32,7 @@
           "syntax": "suppress",
           "description": "If the optional keyword suppress is added once in a command, then the command processor will not echo the contents of the called file(s) to the screen while it processes the file(s) (and any files called by it/them)."
         }
-      ],
-      "examples": []
+      ]
     },
     "7.0": {
       "command": "program call",
@@ -87,8 +84,7 @@
           "syntax": "suppress",
           "description": "If the optional keyword suppress is added once in a command, then the command processor will not echo the contents of the called file(s) to the screen while it processes the file(s) (and any files called by it/them)."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

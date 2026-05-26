@@ -5,20 +5,16 @@
     "boundary",
     "extent"
   ],
-  "description": "Specify the domain boundaries and conditions. DFN fractures only exist within the domain extent. In FLAC3D, zones and structural elements are not aware of the model domain. In PFC, walls, clumps and balls must be inside of the domain and are aware of the domain boundary conditions.",
+  "description": "Specify the domain boundaries and conditions. DFN fractures only exist within the domain extent. In FLAC3D, zones and structural elements are not aware of the model domain.",
   "notes": [
     "DFN fractures only exist within the domain extent",
     "FLAC3D: zones and structural elements are NOT aware of model domain",
-    "PFC: walls, clumps, and balls MUST be inside domain and are aware of boundary conditions",
     "Default boundary condition: stop",
     "condition keyword order: x direction, y direction, z direction (optional)",
     "If only one condition specified: y and z set to same as x",
     "stop condition: nulls velocity and spin when centroid exits domain",
-    "reflect condition: NOT RECOMMENDED - may cause instabilities, not compatible with walls",
     "destroy condition: deletes objects whose extents fall outside domain",
-    "periodic condition: translates objects to opposite side, creates 'ghost' objects, not compatible with walls",
-    "extent: if only fxl and fxu specified, creates cubic domain",
-    "Domain must be set before creating PFC objects"
+    "extent: if only fxl and fxu specified, creates cubic domain"
   ],
   "python_sdk_alternative": {
     "available": true,
@@ -33,7 +29,7 @@
         {
           "name": "periodic",
           "syntax": "periodic",
-          "description": "Set the domain boundary conditions. Each domain condition applies to the two box sides that are perpendicular to the direction. The first keyword specifies the condition for the x direction. The second for the y , and the third for the z . If only one keyword is specified, then y and z are set to the same condition as x . The default condition is the stop condition. The following keywords can be used to specify domain conditions. The stop condition imposes the constraint that if the body centroid falls outside the model domain, the velocity and spin of the body are nulled. For PFC walls, once a facet centroid falls outside the model domain, the velocity and spin are nulled, including any vertex velocities. The reflect condition imparts the opposite sign of the velocity, and the spin is unchanged if the body centroid falls outside the model domain. The use of this condition as a contact rule is not recommended since it may induce instabilities. The reflect condition is not compatible with walls intersecting the domain. The destroy condition deletes balls, clumps, and wall facets whose individual extents (i.e., an axis-aligned bounding box that tightly encompasses the object) fall outside the model domain. The periodic condition applies periodic boundary conditions. When the ball or clump centroid falls outside of the model domain, they are translated back to the opposite side of the model. To ensure that contacts are created as if the model was continuous, “ghost” balls and clumps are introduced. The periodic condition is not compatible with walls intersecting the domain."
+          "description": "Set the domain boundary conditions. Each domain condition applies to the two box sides that are perpendicular to the direction. The first keyword specifies the condition for the x direction. The second for the y , and the third for the z . If only one keyword is specified, then y and z are set to the same condition as x . The default condition is the stop condition. The following keywords can be used to specify domain conditions. The stop condition imposes the constraint that if the body centroid falls outside the model domain, the velocity and spin of the body are nulled. The reflect condition imparts the opposite sign of the velocity, and the spin is unchanged if the body centroid falls outside the model domain. The use of this condition as a contact rule is not recommended since it may induce instabilities. The periodic condition applies periodic boundary conditions."
         },
         {
           "name": "extent",
@@ -67,12 +63,8 @@
           "description": "Delete objects that exit domain in all directions"
         },
         {
-          "command": "model domain extent -20 20\nmodel domain condition periodic\nball generate number 1000 radius 0.5",
-          "description": "Setup domain with periodic boundaries before generating balls"
-        },
-        {
           "command": "model domain extent 0 100 0 100 0 50\nmodel domain condition stop stop destroy",
-          "description": "Stop in x and y, destroy in z direction (e.g., particles falling out bottom)"
+          "description": "Stop in x and y, destroy objects that exit through the z boundary"
         },
         {
           "command": "model domain extent -10 10\nmodel domain condition reflect",
@@ -87,7 +79,7 @@
         {
           "name": "periodic",
           "syntax": "periodic",
-          "description": "Set the domain boundary conditions. Each domain condition applies to the two box sides that are perpendicular to the direction. The first keyword specifies the condition for the x direction. The second for the y , and the third for the z . If only one keyword is specified, then y and z are set to the same condition as x . The default condition is the stop condition. The following keywords can be used to specify domain conditions. The stop condition imposes the constraint that if the body centroid falls outside the model domain, the velocity and spin of the body are nulled. For PFC walls, once a facet centroid falls outside the model domain, the velocity and spin are nulled, including any vertex velocities. The reflect condition imparts the opposite sign of the velocity, and the spin is unchanged if the body centroid falls outside the model domain. The use of this condition as a contact rule is not recommended since it may induce instabilities. The reflect condition is not compatible with walls intersecting the domain. The destroy condition deletes balls, clumps, and wall facets whose individual extents (i.e., an axis-aligned bounding box that tightly encompasses the object) fall outside the model domain. The periodic condition applies periodic boundary conditions. When the ball or clump centroid falls outside of the model domain, they are translated back to the opposite side of the model. To ensure that contacts are created as if the model was continuous, “ghost” balls and clumps are introduced. The periodic condition is not compatible with walls intersecting the domain."
+          "description": "Set the domain boundary conditions. Each domain condition applies to the two box sides that are perpendicular to the direction. The first keyword specifies the condition for the x direction. The second for the y , and the third for the z . If only one keyword is specified, then y and z are set to the same condition as x . The default condition is the stop condition. The following keywords can be used to specify domain conditions. The stop condition imposes the constraint that if the body centroid falls outside the model domain, the velocity and spin of the body are nulled. The reflect condition imparts the opposite sign of the velocity, and the spin is unchanged if the body centroid falls outside the model domain. The use of this condition as a contact rule is not recommended since it may induce instabilities. The periodic condition applies periodic boundary conditions."
         },
         {
           "name": "extent",
@@ -176,12 +168,8 @@
           "description": "Delete objects that exit domain in all directions"
         },
         {
-          "command": "model domain extent -20 20\nmodel domain condition periodic\nball generate number 1000 radius 0.5",
-          "description": "Setup domain with periodic boundaries before generating balls"
-        },
-        {
           "command": "model domain extent 0 100 0 100 0 50\nmodel domain condition stop stop destroy",
-          "description": "Stop in x and y, destroy in z direction (e.g., particles falling out bottom)"
+          "description": "Stop in x and y, destroy objects that exit through the z boundary"
         },
         {
           "command": "model domain extent -10 10\nmodel domain condition reflect",
@@ -196,7 +184,7 @@
         {
           "name": "periodic",
           "syntax": "periodic",
-          "description": "Set the domain boundary conditions. Each domain condition applies to the two box sides that are perpendicular to the direction. The first keyword specifies the condition for the x direction. The second for the y , and the third for the z . If only one keyword is specified, then y and z are set to the same condition as x . The default condition is the stop condition. The following keywords can be used to specify domain conditions. The stop condition imposes the constraint that if the body centroid falls outside the model domain, the velocity and spin of the body are nulled. For PFC walls, once a facet centroid falls outside the model domain, the velocity and spin are nulled, including any vertex velocities. The reflect condition imparts the opposite sign of the velocity, and the spin is unchanged if the body centroid falls outside the model domain. The use of this condition as a contact rule is not recommended since it may induce instabilities. The reflect condition is not compatible with walls intersecting the domain. The destroy condition deletes balls, clumps, and wall facets whose individual extents (i.e., an axis-aligned bounding box that tightly encompasses the object) fall outside the model domain. The periodic condition applies periodic boundary conditions. When the ball or clump centroid falls outside of the model domain, they are translated back to the opposite side of the model. To ensure that contacts are created as if the model was continuous, “ghost” balls and clumps are introduced. The periodic condition is not compatible with walls intersecting the domain."
+          "description": "Set the domain boundary conditions. Each domain condition applies to the two box sides that are perpendicular to the direction. The first keyword specifies the condition for the x direction. The second for the y , and the third for the z . If only one keyword is specified, then y and z are set to the same condition as x . The default condition is the stop condition. The following keywords can be used to specify domain conditions. The stop condition imposes the constraint that if the body centroid falls outside the model domain, the velocity and spin of the body are nulled. The reflect condition imparts the opposite sign of the velocity, and the spin is unchanged if the body centroid falls outside the model domain. The use of this condition as a contact rule is not recommended since it may induce instabilities. The periodic condition applies periodic boundary conditions."
         },
         {
           "name": "extent",
@@ -230,12 +218,8 @@
           "description": "Delete objects that exit domain in all directions"
         },
         {
-          "command": "model domain extent -20 20\nmodel domain condition periodic\nball generate number 1000 radius 0.5",
-          "description": "Setup domain with periodic boundaries before generating balls"
-        },
-        {
           "command": "model domain extent 0 100 0 100 0 50\nmodel domain condition stop stop destroy",
-          "description": "Stop in x and y, destroy in z direction (e.g., particles falling out bottom)"
+          "description": "Stop in x and y, destroy objects that exit through the z boundary"
         },
         {
           "command": "model domain extent -10 10\nmodel domain condition reflect",

@@ -19,7 +19,6 @@
     "elastic: two-step solve (elastic first, then actual strength)",
     "fish-halt: custom stopping criteria via FISH function",
     "fish-call: execute FISH during solve (with optional interval/process filters)",
-    "clock: wall-clock time limit in minutes",
     "Process-specific limits: mechanical, creep, dynamic, fluid, thermal",
     "Each process has: cycles, cycles-total, time, time-total, ratio options",
     "unbalanced-average/maximum: based on unbalanced force",
@@ -28,7 +27,7 @@
   ],
   "python_sdk_alternative": {
     "available": false,
-    "workaround": "itasca.command('model solve ratio 1e-5') - Python SDK does not provide direct solve() function. For custom solve loops in Python, manually compute equilibrium metrics:\n\nimport math\ndef vec_mag(v): return math.sqrt(v[0]**2 + v[1]**2 + v[2]**2)\n\nwhile True:\n    itasca.cycle(100)\n    # Compute unbalanced force ratio manually:\n    unbal_sum = sum(vec_mag(b.force_unbal()) for b in itasca.ball.list())\n    contact_sum = sum(vec_mag(b.force_contact()) for b in itasca.ball.list())\n    ratio = unbal_sum / contact_sum if contact_sum > 0 else 0\n    if ratio < 1e-5:\n        break\n\nNote: Prefer 'model solve' command for standard equilibrium. Custom loops require manual force ratio calculations."
+    "workaround": "itasca.command('model solve ratio 1e-5') - Python SDK does not provide direct solve() function. Custom loops require manual force ratio calculations."
   },
   "versions": {
     "7.0": {
@@ -53,7 +52,7 @@
         {
           "name": "convergence",
           "syntax": "convergence <f>",
-          "description": "Limit based on the maximum convergence value of all gridpoints, zones, balls, clumps, or rigid blocks. The convergence value is defined as the ratio of the current mechanical force ratio to the target force ratio of the gridpoint. See the zone gridpoint initialize ratio-target and structure node initialize ratio-target commands. A convergence value of 1.0 is therefore considered “converged”, but it is possible to restrict or relax that by using a value greater or less than 1.0."
+          "description": "The convergence value is defined as the ratio of the current mechanical force ratio to the target force ratio of the gridpoint. See the zone gridpoint initialize ratio-target and structure node initialize ratio-target commands. A convergence value of 1.0 is therefore considered “converged”, but it is possible to restrict or relax that by using a value greater or less than 1.0."
         },
         {
           "name": "time-total-zone",
@@ -103,7 +102,7 @@
         {
           "name": "unbalanced-maximum",
           "syntax": "unbalanced-maximum <f>",
-          "description": "Specifies a solve limit for the mechanical process specifically. Limit based on the maximum convergence value of all gridpoints and zones in the model (note that currently PFC balls do not support this keyword). The convergence value for a gridpoint or node is defined as the ratio of the current mechanical force ratio to the target force ratio of the gridpoint. See the zone gridpoint initialize ratio-target and structure node initialize ratio-target commands. A convergence value of 1.0 is therefore considered “converged”, but it is possible to restrict or relax that by using a value greater or less than 1.0. Limit of the number of cycles to take with mechanical active during this solve operation. Total number of cycles taken with mechanical active since model creation. Total number of cycles taken with mechanical active in the zone module. Limit based on the current convergence ratio value, as defined by the various modules that use it. By default this is the same as ratio-average . See ref-equilibrium-. Limited based on the average convergence ratio. See ref-equilibrium-. Limited based on the local convergence ratio. See ref-equilibrium-. Limited based on the maximum convergence ratio. See ref-equilibrium-. CS: Common trouble Limit of the time accumulated while this process is active during this solve operation. Limit of the time accumulated while this process is active since model creation. Total accumulated mechanical time in the zone module. Limit based on the maximum unbalanced force among model objects."
+          "description": "Specifies a solve limit for the mechanical process specifically. The convergence value for a gridpoint or node is defined as the ratio of the current mechanical force ratio to the target force ratio of the gridpoint. See the zone gridpoint initialize ratio-target and structure node initialize ratio-target commands. A convergence value of 1.0 is therefore considered “converged”, but it is possible to restrict or relax that by using a value greater or less than 1.0. Limit of the number of cycles to take with mechanical active during this solve operation. Total number of cycles taken with mechanical active since model creation. Total number of cycles taken with mechanical active in the zone module. Limit based on the current convergence ratio value, as defined by the various modules that use it. By default this is the same as ratio-average . See ref-equilibrium-. Limited based on the average convergence ratio. See ref-equilibrium-. Limited based on the local convergence ratio. See ref-equilibrium-. Limited based on the maximum convergence ratio. See ref-equilibrium-. CS: Common trouble Limit of the time accumulated while this process is active during this solve operation. Limit of the time accumulated while this process is active since model creation. Total accumulated mechanical time in the zone module. Limit based on the maximum unbalanced force among model objects."
         },
         {
           "name": "or",
@@ -207,15 +206,13 @@
           "description": "Solve mechanical process to ratio 1e-5"
         },
         {
-          "command": "model solve clock 60",
-          "description": "Solve with 60 minute wall-clock time limit"
+          "command": "model solve clock 60"
         },
         {
           "command": "model solve ratio 1e-5 clock 120",
           "description": "Solve to equilibrium OR 120 minutes (whichever comes first)"
         },
         {
-          "command": "fish define check_stop\n  if ball.num < 100 then\n    check_stop = true\n  else\n    check_stop = false\n  endif\nend\nmodel solve fish-halt check_stop",
           "description": "Solve with custom FISH stopping criteria"
         },
         {
@@ -250,7 +247,7 @@
         {
           "name": "convergence",
           "syntax": "convergence <f>",
-          "description": "Limit based on the maximum convergence value of all gridpoints and zones in the model (note that currently PFC balls do not support this keyword). The convergence value for a gridpoint or node is defined as the ratio of the current mechanical force ratio to the target force ratio of the gridpoint. See the zone gridpoint initialize ratio-target and structure node initialize ratio-target commands. A convergence value of 1.0 is therefore considered “converged”, but it is possible to restrict or relax that by using a value greater or less than 1.0."
+          "description": "The convergence value for a gridpoint or node is defined as the ratio of the current mechanical force ratio to the target force ratio of the gridpoint. See the zone gridpoint initialize ratio-target and structure node initialize ratio-target commands. A convergence value of 1.0 is therefore considered “converged”, but it is possible to restrict or relax that by using a value greater or less than 1.0."
         },
         {
           "name": "time-total-zone",
@@ -295,7 +292,7 @@
         {
           "name": "unbalanced-maximum",
           "syntax": "unbalanced-maximum <f>",
-          "description": "Specifies a solve limit for the mechanical process specifically. Limit based on the maximum convergence value of all gridpoints and zones in the model (note that currently PFC balls do not support this keyword). The convergence value for a gridpoint or node is defined as the ratio of the current mechanical force ratio to the target force ratio of the gridpoint. See the zone gridpoint initialize ratio-target and structure node initialize ratio-target commands. A convergence value of 1.0 is therefore considered “converged”, but it is possible to restrict or relax that by using a value greater or less than 1.0. Limit of the number of cycles to take with mechanical active during this solve operation. Total number of cycles taken with mechanical active since model creation. Total number of cycles taken with mechanical active in the zone module. Limit based on the current convergence ratio value, as defined by the various modules that use it. By default this is the same as ratio-average . See ref-equilibrium-. Limited based on the average convergence ratio. See ref-equilibrium-. Limited based on the local convergence ratio. See ref-equilibrium-. Limited based on the maximum convergence ratio. See ref-equilibrium-. CS: Common trouble Limit of the time accumulated while this process is active during this solve operation. Limit of the time accumulated while this process is active since model creation. Total accumulated mechanical time in the zone module. Limit based on the average unbalanced force among model objects. Limit based on the maximum unbalanced force among model objects."
+          "description": "Specifies a solve limit for the mechanical process specifically. The convergence value for a gridpoint or node is defined as the ratio of the current mechanical force ratio to the target force ratio of the gridpoint. See the zone gridpoint initialize ratio-target and structure node initialize ratio-target commands. A convergence value of 1.0 is therefore considered “converged”, but it is possible to restrict or relax that by using a value greater or less than 1.0. Limit of the number of cycles to take with mechanical active during this solve operation. Total number of cycles taken with mechanical active since model creation. Total number of cycles taken with mechanical active in the zone module. Limit based on the current convergence ratio value, as defined by the various modules that use it. By default this is the same as ratio-average . See ref-equilibrium-. Limited based on the average convergence ratio. See ref-equilibrium-. Limited based on the local convergence ratio. See ref-equilibrium-. Limited based on the maximum convergence ratio. See ref-equilibrium-. CS: Common trouble Limit of the time accumulated while this process is active during this solve operation. Limit of the time accumulated while this process is active since model creation. Total accumulated mechanical time in the zone module. Limit based on the average unbalanced force among model objects. Limit based on the maximum unbalanced force among model objects."
         },
         {
           "name": "or",
@@ -399,15 +396,13 @@
           "description": "Solve mechanical process to ratio 1e-5"
         },
         {
-          "command": "model solve clock 60",
-          "description": "Solve with 60 minute wall-clock time limit"
+          "command": "model solve clock 60"
         },
         {
           "command": "model solve ratio 1e-5 clock 120",
           "description": "Solve to equilibrium OR 120 minutes (whichever comes first)"
         },
         {
-          "command": "fish define check_stop\n  if ball.num < 100 then\n    check_stop = true\n  else\n    check_stop = false\n  endif\nend\nmodel solve fish-halt check_stop",
           "description": "Solve with custom FISH stopping criteria"
         },
         {
@@ -442,7 +437,7 @@
         {
           "name": "convergence",
           "syntax": "convergence <f>",
-          "description": "Limit based on the maximum convergence value of all gridpoints, zones, structural nodes, balls, clumps, or rigid blocks. The convergence value is defined as the ratio of the current mechanical force ratio to the target force ratio of the gridpoint. See the zone gridpoint initialize ratio-target and structure node initialize ratio-target commands. A convergence value of 1.0 is therefore considered “converged”, but it is possible to restrict or relax that by using a value greater or less than 1.0."
+          "description": "The convergence value is defined as the ratio of the current mechanical force ratio to the target force ratio of the gridpoint. See the zone gridpoint initialize ratio-target and structure node initialize ratio-target commands. A convergence value of 1.0 is therefore considered “converged”, but it is possible to restrict or relax that by using a value greater or less than 1.0."
         },
         {
           "name": "time-total-zone",
@@ -492,7 +487,7 @@
         {
           "name": "unbalanced-maximum",
           "syntax": "unbalanced-maximum <f>",
-          "description": "Specifies a solve limit for the mechanical process specifically. Limit based on the maximum convergence value of all gridpoints and zones in the model (note that currently PFC balls do not support this keyword). The convergence value for a gridpoint or node is defined as the ratio of the current mechanical force ratio to the target force ratio of the gridpoint. See the zone gridpoint initialize ratio-target and structure node initialize ratio-target commands. A convergence value of 1.0 is therefore considered “converged”, but it is possible to restrict or relax that by using a value greater or less than 1.0. Limit of the number of cycles to take with mechanical active during this solve operation. Total number of cycles taken with mechanical active since model creation. Total number of cycles taken with mechanical active in the zone module. Limit based on the current convergence ratio value, as defined by the various modules that use it. By default this is the same as ratio-average . See ref-equilibrium-. Limited based on the average convergence ratio. See ref-equilibrium-. This quantity is defined for PFC here . Limited based on the local convergence ratio. See ref-equilibrium-. Limited based on the maximum convergence ratio. See ref-equilibrium-. CS: Common trouble Limit of the time accumulated while this process is active during this solve operation. Limit of the time accumulated while this process is active since model creation. Total accumulated mechanical time in the zone module. Limit based on the maximum unbalanced force among model objects."
+          "description": "Specifies a solve limit for the mechanical process specifically. The convergence value for a gridpoint or node is defined as the ratio of the current mechanical force ratio to the target force ratio of the gridpoint. See the zone gridpoint initialize ratio-target and structure node initialize ratio-target commands. A convergence value of 1.0 is therefore considered “converged”, but it is possible to restrict or relax that by using a value greater or less than 1.0. Limit of the number of cycles to take with mechanical active during this solve operation. Total number of cycles taken with mechanical active since model creation. Total number of cycles taken with mechanical active in the zone module. Limit based on the current convergence ratio value, as defined by the various modules that use it. By default this is the same as ratio-average . See ref-equilibrium-. Limited based on the average convergence ratio. See ref-equilibrium-. Limited based on the local convergence ratio. See ref-equilibrium-. Limited based on the maximum convergence ratio. See ref-equilibrium-. CS: Common trouble Limit of the time accumulated while this process is active during this solve operation. Limit of the time accumulated while this process is active since model creation. Total accumulated mechanical time in the zone module. Limit based on the maximum unbalanced force among model objects."
         },
         {
           "name": "or",
@@ -596,15 +591,13 @@
           "description": "Solve mechanical process to ratio 1e-5"
         },
         {
-          "command": "model solve clock 60",
-          "description": "Solve with 60 minute wall-clock time limit"
+          "command": "model solve clock 60"
         },
         {
           "command": "model solve ratio 1e-5 clock 120",
           "description": "Solve to equilibrium OR 120 minutes (whichever comes first)"
         },
         {
-          "command": "fish define check_stop\n  if ball.num < 100 then\n    check_stop = true\n  else\n    check_stop = false\n  endif\nend\nmodel solve fish-halt check_stop",
           "description": "Solve with custom FISH stopping criteria"
         },
         {

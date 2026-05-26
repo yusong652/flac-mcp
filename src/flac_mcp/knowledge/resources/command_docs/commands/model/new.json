@@ -13,7 +13,6 @@
     "  - All FISH functions and variables",
     "  - All histories",
     "  - All tables",
-    "  - All model objects (balls, clumps, walls, contacts, etc.)",
     "  - Domain settings",
     "  - Material properties",
     "Values associated with PROJECT or PROGRAM state are NOT affected (see 'project new' and 'program' commands)",
@@ -48,7 +47,6 @@
           "description": "Clear model without confirmation dialog"
         },
         {
-          "command": "model new\nmodel domain extent -10 10\nball generate number 1000 radius 0.5",
           "description": "Clear model and setup new problem"
         },
         {
@@ -85,7 +83,6 @@
           "description": "Clear model without confirmation dialog"
         },
         {
-          "command": "model new\nmodel domain extent -10 10\nball generate number 1000 radius 0.5",
           "description": "Clear model and setup new problem"
         },
         {
@@ -122,7 +119,6 @@
           "description": "Clear model without confirmation dialog"
         },
         {
-          "command": "model new\nmodel domain extent -10 10\nball generate number 1000 radius 0.5",
           "description": "Clear model and setup new problem"
         },
         {

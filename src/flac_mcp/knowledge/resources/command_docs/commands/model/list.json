@@ -4,10 +4,8 @@
     "list"
   ],
   "description": "List a model related quantity. The following keywords apply:",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -39,8 +37,7 @@
           "syntax": "requirements",
           "description": "A complete list of the security requirements for the current model state. Note that if no model exists or the model that does exist is smaller than the demo limits, need a this to be a link to a section *somewhere* that describes demo version nothing may be listed."
         }
-      ],
-      "examples": []
+      ]
     },
     "7.0": {
       "command": "model list",
@@ -102,8 +99,7 @@
           "syntax": "requirements",
           "description": "A complete list of the security requirements for the current model state. Note that if no model exists or the model that does exist is smaller than the demo limits, need a this to be a link to a section *somewhere* that describes demo version nothing may be listed."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

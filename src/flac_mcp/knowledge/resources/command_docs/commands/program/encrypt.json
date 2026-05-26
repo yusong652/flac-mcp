@@ -4,25 +4,26 @@
     "encrypt"
   ],
   "description": "Encrypt the source data file so that the contents are not visible or modifiable by the caller. Encrypted files can be used with the program call command the same as normal text files, but the contents have been scrambled and a check is made to see if they were modified.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
-      "available": false
+      "available": false,
+      "reason": "Not listed in the official FLAC3D 6.0 command indexes.",
+      "source_urls": [
+        "https://docs.itascacg.com/pfc600/flac3d/docproject/source/elements/command_summary.html",
+        "https://docs.itascacg.com/pfc600/flac3d/sel/doc/manual/sel_manual/sel_commands/sel_commands.html"
+      ],
+      "target_version": "6.0"
     },
     "7.0": {
       "command": "program encrypt",
-      "syntax": "program encrypt <source>[<starget>]",
-      "keywords": []
+      "syntax": "program encrypt <source>[<starget>]"
     },
     "9.0": {
       "command": "program encrypt",
-      "syntax": "program encrypt <source>[<starget>]",
-      "keywords": [],
-      "examples": []
+      "syntax": "program encrypt <source>[<starget>]"
     }
   }
 }

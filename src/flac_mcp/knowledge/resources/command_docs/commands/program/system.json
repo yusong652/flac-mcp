@@ -4,10 +4,8 @@
     "system"
   ],
   "description": "Send commands to the operating system.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -29,8 +27,7 @@
           "syntax": "timeout <i>",
           "description": "If the timeout keyword is given, i is the number of seconds the code will wait for the process to complete before shutting down the process and moving on. If i = -1, the code will wait forever. If i = 0, the code will spawn the process and move on immediately, leaving the process to run in parallel. In this last case, text output from the program will not be captured. This option can be used with either the s option or the clone option."
         }
-      ],
-      "examples": []
+      ]
     },
     "7.0": {
       "command": "program system",
@@ -82,8 +79,7 @@
           "syntax": "delete <s>",
           "description": "Operating system independent command to delete the file s ."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

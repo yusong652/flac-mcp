@@ -4,10 +4,8 @@
     "factor-of-safety"
   ],
   "description": "Set factor of safety analysis parameters. See the section ref-factorofsafety- for a complete description. The following keywords apply.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -89,8 +87,7 @@
           "syntax": "exclude <s>",
           "description": "Specify which interface properties to change during analysis. The user may include or exclude specific zone properties from the list. By default the list of properties being included is friction , cohesion , joint-cohesion , and joint-friction . Properties matching s are included. Their values are adjusted in the constitutive model as the target factor of safety is changed. Properties matching s are excluded. Their values will stay the same in the constitutive model as the target factor of safety is changed."
         }
-      ],
-      "examples": []
+      ]
     },
     "7.0": {
       "command": "model factor-of-safety",
@@ -287,8 +284,7 @@
           "syntax": "exclude <s>",
           "description": "Specify which zone-joint properties to change during analysis. The user may include or exclude specific interface properties from the list. All zone-joint properties are excluded by default. To include or exclude more than one property, repeat the keyword, e.g. model factor-of-safety zone-joint include 'friction' include 'cohesion' Properties matching s are included. Their values are adjusted in the constitutive model as the target factor of safety is changed. Properties matching s are excluded. Their values will stay the same in the constitutive model as the target factor of safety is changed."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }
