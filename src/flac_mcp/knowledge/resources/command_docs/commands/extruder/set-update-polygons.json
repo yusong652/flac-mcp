@@ -12,6 +12,48 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "command": "extrude set update-polygons",
+      "syntax": "extrude set update-polygons b <keyword>",
+      "description": "Update the internal list of closed polygons to assure that it reflects current geometry. The command outputs the number of closed polygons detected and it is typically used before creating and meshing blocks.",
+      "keywords": [
+        {
+          "name": "no-warning",
+          "syntax": "no-warning f",
+          "description": "Suppress any warning issued during polygons search and update."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 6.0 command indexes",
+        "source_urls": [
+          "https://docs.itascacg.com/pfc600/flac3d/extruder/doc/manual/extruder_manual/set/commands/cmd_extrude.set.update-polygons.html#extrude.set.update-polygons"
+        ],
+        "syntax_basis": "official FLAC3D 6.0 detailed command page",
+        "target_version": "6.0"
+      }
+    },
+    "7.0": {
+      "command": "extrude set update-polygons",
+      "syntax": "extrude set update-polygons b <keyword>",
+      "description": "Update the internal list of closed polygons to assure that it reflects current geometry. The command outputs the number of closed polygons detected and it is typically used before creating and meshing blocks.",
+      "keywords": [
+        {
+          "name": "no-warning",
+          "syntax": "no-warning f",
+          "description": "Suppress any warning issued during polygons search and update."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 7.0 contents command index",
+        "source_urls": [
+          "https://docs.itascacg.com/flac3d700/flac3d/extruder/doc/manual/extruder_manual/set/commands/cmd_extrude.set.update-polygons.html"
+        ],
+        "syntax_basis": "official FLAC3D 7.0 detailed command page",
+        "target_version": "7.0"
+      }
+    },
     "9.0": {
       "command": "sketch set update-polygons",
       "syntax": "sketch set update-polygons <b>[keyword]",
@@ -21,8 +63,7 @@
           "syntax": "no-warning <f>",
           "description": "Suppress any warning issued during polygons search and update."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

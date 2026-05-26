@@ -10,6 +10,78 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "command": "extrude set system",
+      "syntax": "extrude set system keyword",
+      "description": "Set the coordinate system. These settings affect how extruded object coordinates (u,v,n) map to global coordinates (\\(x,y,z\\)).",
+      "keywords": [
+        {
+          "name": "normal-axis",
+          "syntax": "normal-axis v",
+          "description": "Set the normal axis v (3D vector). This is the direction of extrusion (perpendicular to 2D local \\(x\\),\\(y\\))."
+        },
+        {
+          "name": "origin",
+          "syntax": "origin v",
+          "description": "Set the origin of the extrusion transformation v (3D vector). When extruded, the 2D extrusion coordinate (0,0) is mapped to (\\(x,y,z\\)) before being rotated into the u,v,n coordinate system."
+        },
+        {
+          "name": "u-axis",
+          "syntax": "u-axis v",
+          "description": "Set the u-axis (3D vector v). This axis is the direction of \\(x\\) from the 2D coordinate system when the model is extruded into 3D."
+        },
+        {
+          "name": "v-axis",
+          "syntax": "v-axis v",
+          "description": "Sets the v-axis (3D vector v). This axis is the direction of \\(y\\) from the 2D coordinate system when the model is extruded into 3D."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 6.0 command indexes",
+        "source_urls": [
+          "https://docs.itascacg.com/pfc600/flac3d/extruder/doc/manual/extruder_manual/set/commands/cmd_extrude.set.system.html#extrude.set.system"
+        ],
+        "syntax_basis": "official FLAC3D 6.0 detailed command page",
+        "target_version": "6.0"
+      }
+    },
+    "7.0": {
+      "command": "extrude set system",
+      "syntax": "extrude set system keyword...",
+      "description": "Set the coordinate system. These settings affect how extruded object coordinates (u,v,n) map to global coordinates (\\(x,y,z\\)).",
+      "keywords": [
+        {
+          "name": "normal-axis",
+          "syntax": "normal-axis v",
+          "description": "Set the normal axis v (3D vector). This is the direction of extrusion (perpendicular to 2D local \\(x\\), \\(y\\))."
+        },
+        {
+          "name": "origin",
+          "syntax": "origin v",
+          "description": "Set the origin of the extrusion transformation v (3D vector). When extruded, the 2D extrusion coordinate (0,0) is mapped to (\\(x,y,z\\)) before being rotated into the u,v,n coordinate system."
+        },
+        {
+          "name": "u-axis",
+          "syntax": "u-axis v",
+          "description": "Set the u-axis (3D vector v). This axis is the direction of \\(x\\) from the 2D coordinate system when the model is extruded into 3D."
+        },
+        {
+          "name": "v-axis",
+          "syntax": "v-axis v",
+          "description": "Sets the v-axis (3D vector v). This axis is the direction of \\(y\\) from the 2D coordinate system when the model is extruded into 3D."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 7.0 contents command index",
+        "source_urls": [
+          "https://docs.itascacg.com/flac3d700/flac3d/extruder/doc/manual/extruder_manual/set/commands/cmd_extrude.set.system.html"
+        ],
+        "syntax_basis": "official FLAC3D 7.0 detailed command page",
+        "target_version": "7.0"
+      }
+    },
     "9.0": {
       "command": "sketch set system",
       "syntax": "sketch set system keyword ...",
@@ -34,8 +106,7 @@
           "syntax": "v-axis <v>",
           "description": "Sets the v-axis (2D or 3D vector v ). This axis is the direction of \\(y\\) from the 2D coordinate system if the model is extruded into 3D (3D only)."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

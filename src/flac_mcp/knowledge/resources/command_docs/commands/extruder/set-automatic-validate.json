@@ -12,6 +12,48 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "command": "extrude set automatic-validate",
+      "syntax": "extrude set automatic-validate b <keyword>",
+      "description": "Set off/on automatic validation. This controls whether or not the program checks for valid geometry during changes. The default is true (on).",
+      "keywords": [
+        {
+          "name": "tolerance",
+          "syntax": "tolerance f",
+          "description": "The optional tolerance value f changes the tolerance used in this check. The default value is 1e-6."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 6.0 command indexes",
+        "source_urls": [
+          "https://docs.itascacg.com/pfc600/flac3d/extruder/doc/manual/extruder_manual/set/commands/cmd_extrude.set.automatic-validate.html#extrude.set.automatic-validate"
+        ],
+        "syntax_basis": "official FLAC3D 6.0 detailed command page",
+        "target_version": "6.0"
+      }
+    },
+    "7.0": {
+      "command": "extrude set automatic-validate",
+      "syntax": "extrude set automatic-validate b <keyword>",
+      "description": "Set off/on automatic validation. This controls whether or not the program checks for valid geometry during changes. The default is true (on).",
+      "keywords": [
+        {
+          "name": "tolerance",
+          "syntax": "tolerance f",
+          "description": "The optional tolerance value f changes the tolerance used in this check. The default value is 1e-6."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 7.0 contents command index",
+        "source_urls": [
+          "https://docs.itascacg.com/flac3d700/flac3d/extruder/doc/manual/extruder_manual/set/commands/cmd_extrude.set.automatic-validate.html"
+        ],
+        "syntax_basis": "official FLAC3D 7.0 detailed command page",
+        "target_version": "7.0"
+      }
+    },
     "9.0": {
       "command": "sketch set automatic-validate",
       "syntax": "sketch set automatic-validate <b>[keyword]",
@@ -21,8 +63,7 @@
           "syntax": "tolerance <f>",
           "description": "The optional tolerance value f changes the tolerance used in this check. The default value is 1e-6."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

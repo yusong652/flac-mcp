@@ -10,11 +10,37 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "command": "extrude set delete",
+      "syntax": "extrude set delete <s >",
+      "description": "Delete an extrude set. The set named s is deleted if supplied; the current set is deleted if not.",
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 6.0 command indexes",
+        "source_urls": [
+          "https://docs.itascacg.com/pfc600/flac3d/extruder/doc/manual/extruder_manual/set/commands/cmd_extrude.set.delete.html#extrude.set.delete"
+        ],
+        "syntax_basis": "official FLAC3D 6.0 detailed command page",
+        "target_version": "6.0"
+      }
+    },
+    "7.0": {
+      "command": "extrude set delete",
+      "syntax": "extrude set delete <s >",
+      "description": "Delete an extrude set. The set named s is deleted if supplied; the current set is deleted if not.",
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 7.0 contents command index",
+        "source_urls": [
+          "https://docs.itascacg.com/flac3d700/flac3d/extruder/doc/manual/extruder_manual/set/commands/cmd_extrude.set.delete.html"
+        ],
+        "syntax_basis": "official FLAC3D 7.0 detailed command page",
+        "target_version": "7.0"
+      }
+    },
     "9.0": {
       "command": "sketch set delete",
-      "syntax": "sketch set delete [<s>]",
-      "keywords": [],
-      "examples": []
+      "syntax": "sketch set delete [<s>]"
     }
   }
 }
