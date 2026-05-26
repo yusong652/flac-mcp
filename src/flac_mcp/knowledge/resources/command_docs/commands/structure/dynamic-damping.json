@@ -10,6 +10,23 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "available": false,
+      "reason": "Not listed in the official FLAC3D 6.0 command indexes.",
+      "source_urls": [
+        "https://docs.itascacg.com/pfc600/flac3d/docproject/source/elements/command_summary.html",
+        "https://docs.itascacg.com/pfc600/flac3d/sel/doc/manual/sel_manual/sel_commands/sel_commands.html"
+      ],
+      "target_version": "6.0"
+    },
+    "7.0": {
+      "available": false,
+      "reason": "Not listed in the official FLAC3D 7.0 contents command index.",
+      "source_urls": [
+        "https://docs.itascacg.com/flac3d700/contents.html"
+      ],
+      "target_version": "7.0"
+    },
     "9.0": {
       "command": "structure dynamic damping",
       "syntax": "structure dynamic damping keyword ... [range]",
@@ -39,8 +56,7 @@
           "syntax": "rayleigh <f1><f2>",
           "description": "Rayleigh damping (see Rayleigh Damping ) for all nodes in the range. The stiffness-proportional constant is f1 = beta , and the mass-proportional constant is f2 = alpha . This command must be issued when the dynamic option is configured and turned on."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }
