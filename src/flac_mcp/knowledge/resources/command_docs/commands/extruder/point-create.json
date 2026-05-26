@@ -10,6 +10,58 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "command": "extrude point create",
+      "syntax": "extrude point create v2 keyword",
+      "description": "Create a point. The point is created in the supplied position v2 (2D vector coordinates).",
+      "keywords": [
+        {
+          "name": "merge-tolerance",
+          "syntax": "merge-tolerance f",
+          "description": "The point creation is canceled if there are existing points within a tolerance f from the position."
+        },
+        {
+          "name": "group",
+          "syntax": "group s1 <slot s2 >",
+          "description": "Assign the created point the group name s1 (in slot s2 if provided, in slot Default if not). Use of the group logic is described in the Group topic."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 6.0 command indexes",
+        "source_urls": [
+          "https://docs.itascacg.com/pfc600/flac3d/extruder/doc/manual/extruder_manual/point/commands/cmd_extrude.point.create.html#extrude.point.create"
+        ],
+        "syntax_basis": "official FLAC3D 6.0 detailed command page",
+        "target_version": "6.0"
+      }
+    },
+    "7.0": {
+      "command": "extrude point create",
+      "syntax": "extrude point create v2 keyword",
+      "description": "Create a point. The point is created in the supplied position v2 (2D vector coordinates).",
+      "keywords": [
+        {
+          "name": "merge-tolerance",
+          "syntax": "merge-tolerance f",
+          "description": "The point creation is canceled if there are existing points within a tolerance f from the position."
+        },
+        {
+          "name": "group",
+          "syntax": "group s1 <slot s2 >",
+          "description": "Assign the created point the group name s1 (in slot s2 if provided, in slot Default if not). Use of the group logic is described in the Groups topic."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 7.0 contents command index",
+        "source_urls": [
+          "https://docs.itascacg.com/flac3d700/flac3d/extruder/doc/manual/extruder_manual/point/commands/cmd_extrude.point.create.html"
+        ],
+        "syntax_basis": "official FLAC3D 7.0 detailed command page",
+        "target_version": "7.0"
+      }
+    },
     "9.0": {
       "command": "sketch point create",
       "syntax": "sketch point create <v2>keyword",
@@ -24,8 +76,7 @@
           "syntax": "group <s1>[slot <s2>]",
           "description": "Assign the created point the group name s1 (in slot s2 if provided, in slot Default if not). Use of the group logic is described in the Groups topic."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

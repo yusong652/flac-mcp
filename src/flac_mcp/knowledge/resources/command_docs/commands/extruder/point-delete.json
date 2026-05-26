@@ -10,11 +10,37 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "command": "extrude point delete",
+      "syntax": "extrude point delete <invalid> <range>",
+      "description": "Delete points. All points are deleted if <range> is not supplied. When invalid is used, only points not connected to an edge will be deleted.",
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 6.0 command indexes",
+        "source_urls": [
+          "https://docs.itascacg.com/pfc600/flac3d/extruder/doc/manual/extruder_manual/point/commands/cmd_extrude.point.delete.html#extrude.point.delete"
+        ],
+        "syntax_basis": "official FLAC3D 6.0 detailed command page",
+        "target_version": "6.0"
+      }
+    },
+    "7.0": {
+      "command": "extrude point delete",
+      "syntax": "extrude point delete <invalid> <range>",
+      "description": "Delete points. All points are deleted if <range> is not supplied. When invalid is used, only points not connected to an edge will be deleted.",
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 7.0 contents command index",
+        "source_urls": [
+          "https://docs.itascacg.com/flac3d700/flac3d/extruder/doc/manual/extruder_manual/point/commands/cmd_extrude.point.delete.html"
+        ],
+        "syntax_basis": "official FLAC3D 7.0 detailed command page",
+        "target_version": "7.0"
+      }
+    },
     "9.0": {
       "command": "sketch point delete",
-      "syntax": "sketch point delete [invalid] [range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "sketch point delete [invalid] [range]"
     }
   }
 }

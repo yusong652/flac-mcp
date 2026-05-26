@@ -10,6 +10,88 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "command": "extrude edge list",
+      "syntax": "extrude edge list keyword <range>",
+      "description": "Print information about edges. If <range> is not supplied, information for all edges is provided.",
+      "keywords": [
+        {
+          "name": "blocks",
+          "syntax": "blocks",
+          "description": "Print blocks IDs for each edge."
+        },
+        {
+          "name": "extra",
+          "syntax": "extra index i",
+          "description": "Print FISH extra information. A valid integer index i must be supplied."
+        },
+        {
+          "name": "group",
+          "syntax": "group",
+          "description": "Print group information."
+        },
+        {
+          "name": "information",
+          "syntax": "information",
+          "description": "Print comprehensive edge information, which includes: groups, extras, end points IDs, length, zone size, ratio, ratio isolate flag."
+        },
+        {
+          "name": "type",
+          "syntax": "type",
+          "description": "Print information about curve type of the edge and control points."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 6.0 command indexes",
+        "source_urls": [
+          "https://docs.itascacg.com/pfc600/flac3d/extruder/doc/manual/extruder_manual/edge/commands/cmd_extrude.edge.list.html#extrude.edge.list"
+        ],
+        "syntax_basis": "official FLAC3D 6.0 detailed command page",
+        "target_version": "6.0"
+      }
+    },
+    "7.0": {
+      "command": "extrude edge list",
+      "syntax": "extrude edge list keyword <range>",
+      "description": "Print information about edges. If <range> is not supplied, information for all edges is provided.",
+      "keywords": [
+        {
+          "name": "blocks",
+          "syntax": "blocks",
+          "description": "Print blocks IDs for each edge."
+        },
+        {
+          "name": "extra",
+          "syntax": "extra i",
+          "description": "Print FISH extra information. A valid integer index i must be supplied."
+        },
+        {
+          "name": "group",
+          "syntax": "group",
+          "description": "Print group information."
+        },
+        {
+          "name": "information",
+          "syntax": "information",
+          "description": "Print comprehensive edge information, which includes: groups, extras, end points IDs, length, zone size, ratio, ratio isolate flag."
+        },
+        {
+          "name": "type",
+          "syntax": "type",
+          "description": "Print information about curve type of the edge and control points."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 7.0 contents command index",
+        "source_urls": [
+          "https://docs.itascacg.com/flac3d700/flac3d/extruder/doc/manual/extruder_manual/edge/commands/cmd_extrude.edge.list.html"
+        ],
+        "syntax_basis": "official FLAC3D 7.0 detailed command page",
+        "target_version": "7.0"
+      }
+    },
     "9.0": {
       "command": "sketch edge list",
       "syntax": "sketch edge list keyword [range]",
@@ -39,8 +121,7 @@
           "syntax": "type",
           "description": "Print information about curve type of the edge and control points."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

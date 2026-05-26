@@ -10,11 +10,37 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "command": "extrude edge clear",
+      "syntax": "extrude edge clear",
+      "description": "Clear all zone size and ratio settings on edges. All blocks present in the set will be removed.",
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 6.0 command indexes",
+        "source_urls": [
+          "https://docs.itascacg.com/pfc600/flac3d/extruder/doc/manual/extruder_manual/edge/commands/cmd_extrude.edge.clear.html#extrude.edge.clear"
+        ],
+        "syntax_basis": "official FLAC3D 6.0 detailed command page",
+        "target_version": "6.0"
+      }
+    },
+    "7.0": {
+      "command": "extrude edge clear",
+      "syntax": "extrude edge clear",
+      "description": "Clear all zone size and ratio settings on edges. All blocks present in the set will be removed.",
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 7.0 contents command index",
+        "source_urls": [
+          "https://docs.itascacg.com/flac3d700/flac3d/extruder/doc/manual/extruder_manual/edge/commands/cmd_extrude.edge.clear.html"
+        ],
+        "syntax_basis": "official FLAC3D 7.0 detailed command page",
+        "target_version": "7.0"
+      }
+    },
     "9.0": {
       "command": "sketch edge clear",
-      "syntax": "sketch edge clear",
-      "keywords": [],
-      "examples": []
+      "syntax": "sketch edge clear"
     }
   }
 }

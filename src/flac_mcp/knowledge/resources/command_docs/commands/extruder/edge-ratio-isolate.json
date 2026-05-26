@@ -12,11 +12,37 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "command": "extrude edge ratio-isolate",
+      "syntax": "extrude edge ratio-isolate b <range>",
+      "description": "The option only applies to the edges which form regular (3- or 4-sided) blocks.",
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 6.0 command indexes",
+        "source_urls": [
+          "https://docs.itascacg.com/pfc600/flac3d/extruder/doc/manual/extruder_manual/edge/commands/cmd_extrude.edge.ratio-isolate.html#extrude.edge.ratio-isolate"
+        ],
+        "syntax_basis": "official FLAC3D 6.0 detailed command page",
+        "target_version": "6.0"
+      }
+    },
+    "7.0": {
+      "command": "extrude edge ratio-isolate",
+      "syntax": "extrude edge ratio-isolate b <range>",
+      "description": "The option only applies to the edges which form regular (3- or 4-sided) blocks.",
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 7.0 contents command index",
+        "source_urls": [
+          "https://docs.itascacg.com/flac3d700/flac3d/extruder/doc/manual/extruder_manual/edge/commands/cmd_extrude.edge.ratio-isolate.html"
+        ],
+        "syntax_basis": "official FLAC3D 7.0 detailed command page",
+        "target_version": "7.0"
+      }
+    },
     "9.0": {
       "command": "sketch edge ratio-isolate",
-      "syntax": "sketch edge ratio-isolate <b>[range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "sketch edge ratio-isolate <b>[range]"
     }
   }
 }

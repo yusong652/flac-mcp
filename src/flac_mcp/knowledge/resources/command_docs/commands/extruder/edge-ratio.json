@@ -10,6 +10,34 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "command": "extrude edge ratio",
+      "syntax": "extrude edge ratio f <range>",
+      "description": "Set the ratio. The value f (a number between 0.1 and 10.1) is used to distribute zone lengths along the edge (each zone will be f of the size of the zone preceding it). This setting automatically propagates across dependent edges of regular blocks while Ratio-Isolate is false.",
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 6.0 command indexes",
+        "source_urls": [
+          "https://docs.itascacg.com/pfc600/flac3d/extruder/doc/manual/extruder_manual/edge/commands/cmd_extrude.edge.ratio.html#extrude.edge.ratio"
+        ],
+        "syntax_basis": "official FLAC3D 6.0 detailed command page",
+        "target_version": "6.0"
+      }
+    },
+    "7.0": {
+      "command": "extrude edge ratio",
+      "syntax": "extrude edge ratio f <range>",
+      "description": "Set the ratio. The value f (a number between 0.1 and 10.1) is used to distribute zone lengths along the edge (each zone will be f of the size of the zone preceding it). This setting automatically propagates across dependent edges of regular blocks while Ratio-Isolate is false.",
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 7.0 contents command index",
+        "source_urls": [
+          "https://docs.itascacg.com/flac3d700/flac3d/extruder/doc/manual/extruder_manual/edge/commands/cmd_extrude.edge.ratio.html"
+        ],
+        "syntax_basis": "official FLAC3D 7.0 detailed command page",
+        "target_version": "7.0"
+      }
+    },
     "9.0": {
       "command": "sketch edge ratio",
       "syntax": "sketch edge ratio <f>keyword [range]",
@@ -19,8 +47,7 @@
           "syntax": "auto",
           "description": "When this keyword is specified, the ratio is automatically adjusted so zones are densified towards the end that connects to an edge with smallest zones/discretization (among all conneceted edges)."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }
