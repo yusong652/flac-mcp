@@ -4,10 +4,8 @@
     "slot"
   ],
   "description": "Create a slot. The slot is named s . No objects or groups use this slot on creation. It will, however, show up on the list of available slots in the user interface.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -16,16 +14,14 @@
       "keywords": [
         {
           "name": "create",
-          "syntax": "create <s>",
-          "description": ""
+          "syntax": "create <s>"
         },
         {
           "name": "rename",
           "syntax": "rename <sold><snew>",
           "description": "Find the slot named sold and rename it to snew . All objects and groups referring to that slot are unchanged, except they now belong to snew ."
         }
-      ],
-      "examples": []
+      ]
     },
     "7.0": {
       "command": "group.slot",
@@ -33,16 +29,14 @@
       "keywords": [
         {
           "name": "create",
-          "syntax": "create <s>",
-          "description": ""
+          "syntax": "create <s>"
         },
         {
           "name": "rename",
           "syntax": "rename <sold><snew>",
           "description": "Find the slot named sold and rename it to snew . All objects and groups referring to that slot are unchanged, except they now belong to snew ."
         }
-      ],
-      "examples": []
+      ]
     },
     "9.0": {
       "command": "group.slot",
@@ -50,16 +44,14 @@
       "keywords": [
         {
           "name": "create",
-          "syntax": "create <s>",
-          "description": ""
+          "syntax": "create <s>"
         },
         {
           "name": "rename",
           "syntax": "rename <sold><snew>",
           "description": "Find the slot named sold and rename it to snew . All objects and groups referring to that slot are unchanged, except they now belong to snew ."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

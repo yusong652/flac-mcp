@@ -4,10 +4,8 @@
     "label-create"
   ],
   "description": "Create a user-defined label at a point in space. These labels can be visualized with the plotting logic, identifying regions of interest.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -39,8 +37,7 @@
           "syntax": "text <s>",
           "description": "Sets the label’s text to be s . This text will be output to the screen at the location defined by v1 ."
         }
-      ],
-      "examples": []
+      ]
     },
     "7.0": {
       "command": "data label create",
@@ -71,8 +68,7 @@
           "syntax": "text <s>",
           "description": "Sets the label’s text to be s . This text will be output to the screen at the location defined by v1 ."
         }
-      ],
-      "examples": []
+      ]
     },
     "9.0": {
       "command": "data label create",
@@ -103,8 +99,7 @@
           "syntax": "text <s>",
           "description": "Sets the label’s text to be s . This text will be output to the screen at the location defined by v1 ."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

@@ -4,25 +4,26 @@
     "structure"
   ],
   "description": "Define a new FISH structure. The structure will be named s , and must be a valid FISH name. Tokens following are assumed to be member names of the structure. Please see FISH Scripting Reference , and specifically Structures .",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
-      "available": false
+      "available": false,
+      "reason": "Not listed in the official FLAC3D 6.0 command indexes.",
+      "source_urls": [
+        "https://docs.itascacg.com/pfc600/flac3d/docproject/source/elements/command_summary.html",
+        "https://docs.itascacg.com/pfc600/flac3d/sel/doc/manual/sel_manual/sel_commands/sel_commands.html"
+      ],
+      "target_version": "6.0"
     },
     "7.0": {
       "command": "fish structure",
-      "syntax": "fish structure <s>...",
-      "keywords": []
+      "syntax": "fish structure <s>..."
     },
     "9.0": {
       "command": "fish structure",
-      "syntax": "fish structure <s>...",
-      "keywords": [],
-      "examples": []
+      "syntax": "fish structure <s>..."
     }
   }
 }

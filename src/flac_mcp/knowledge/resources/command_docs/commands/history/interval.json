@@ -4,28 +4,21 @@
     "interval"
   ],
   "description": "Specifies the history-sampling interval.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
       "command": "history interval",
-      "syntax": "history interval <i>",
-      "keywords": [],
-      "examples": []
+      "syntax": "history interval <i>"
     },
     "7.0": {
       "command": "history interval",
-      "syntax": "history interval <i>",
-      "keywords": []
+      "syntax": "history interval <i>"
     },
     "9.0": {
       "command": "history interval",
-      "syntax": "history interval <i>",
-      "keywords": [],
-      "examples": []
+      "syntax": "history interval <i>"
     }
   }
 }

@@ -4,26 +4,26 @@
     "extent"
   ],
   "description": "Specify the locations of the sides of the domain. Each set of values applies to the lower and upper bound of that dimension of the domain. If only fxl and fxu are specified, then the domain is a cube.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
-      "available": false
+      "available": false,
+      "reason": "Not listed in the official FLAC3D 6.0 command indexes.",
+      "source_urls": [
+        "https://docs.itascacg.com/pfc600/flac3d/docproject/source/elements/command_summary.html",
+        "https://docs.itascacg.com/pfc600/flac3d/sel/doc/manual/sel_manual/sel_commands/sel_commands.html"
+      ],
+      "target_version": "6.0"
     },
     "7.0": {
       "command": "domain.extent",
-      "syntax": "domain extent <fxl><fxu>[<fyl><fyu><fzl><fzu>]",
-      "keywords": [],
-      "examples": []
+      "syntax": "domain extent <fxl><fxu>[<fyl><fyu><fzl><fzu>]"
     },
     "9.0": {
       "command": "domain.extent",
-      "syntax": "domain extent <fxl><fxu>[<fyl><fyu><fzl><fzu>]",
-      "keywords": [],
-      "examples": []
+      "syntax": "domain extent <fxl><fxu>[<fyl><fyu><fzl><fzu>]"
     }
   }
 }

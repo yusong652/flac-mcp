@@ -4,28 +4,21 @@
     "result"
   ],
   "description": "Set storage of FISH information in results files. By default this value is off . If set to on , all FISH information is stored, including function code.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
       "command": "fish result",
-      "syntax": "fish results active <b>",
-      "keywords": [],
-      "examples": []
+      "syntax": "fish results active <b>"
     },
     "7.0": {
       "command": "fish result",
-      "syntax": "fish results active <b>",
-      "keywords": []
+      "syntax": "fish results active <b>"
     },
     "9.0": {
       "command": "fish result",
-      "syntax": "fish results active <b>",
-      "keywords": [],
-      "examples": []
+      "syntax": "fish results active <b>"
     }
   }
 }

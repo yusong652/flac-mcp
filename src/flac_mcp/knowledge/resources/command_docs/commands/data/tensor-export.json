@@ -4,29 +4,21 @@
     "tensor-export"
   ],
   "description": "Export tensors to the file with name s . The extension tensor will be added automatically if one is not specified. An ASCII text file is created unless the binary keyword is specified. Any previous file is deleted. The relevant file formats are fully documented in Tensor Text File Format and Tensor Binary File Format .",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
       "command": "data tensor export",
-      "syntax": "data tensor export <s>[binary] [range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "data tensor export <s>[binary] [range]"
     },
     "7.0": {
       "command": "data tensor export",
-      "syntax": "data tensor export <s>[binary] [range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "data tensor export <s>[binary] [range]"
     },
     "9.0": {
       "command": "data tensor export",
-      "syntax": "data tensor export <s>[binary] [range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "data tensor export <s>[binary] [range]"
     }
   }
 }

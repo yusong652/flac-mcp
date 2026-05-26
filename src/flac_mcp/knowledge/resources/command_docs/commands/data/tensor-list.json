@@ -4,10 +4,8 @@
     "tensor-list"
   ],
   "description": "List tensor information on data in the range specified.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -34,8 +32,7 @@
           "syntax": "value",
           "description": "List the tensor values."
         }
-      ],
-      "examples": []
+      ]
     },
     "7.0": {
       "command": "data tensor list",
@@ -61,8 +58,7 @@
           "syntax": "value",
           "description": "List the tensor values."
         }
-      ],
-      "examples": []
+      ]
     },
     "9.0": {
       "command": "data tensor list",
@@ -88,8 +84,7 @@
           "syntax": "value",
           "description": "List the tensor values."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

@@ -4,10 +4,8 @@
     "scalar-list"
   ],
   "description": "List scalar information on data in the range specified.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -29,8 +27,7 @@
           "syntax": "value",
           "description": "List the scalar values."
         }
-      ],
-      "examples": []
+      ]
     },
     "7.0": {
       "command": "data scalar list",
@@ -51,8 +48,7 @@
           "syntax": "value",
           "description": "List the scalar values."
         }
-      ],
-      "examples": []
+      ]
     },
     "9.0": {
       "command": "data scalar list",
@@ -73,8 +69,7 @@
           "syntax": "value",
           "description": "List the scalar values."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

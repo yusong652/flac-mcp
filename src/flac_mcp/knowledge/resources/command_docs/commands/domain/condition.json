@@ -4,26 +4,26 @@
     "condition"
   ],
   "description": "Set the domain boundary conditions.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
-      "available": false
+      "available": false,
+      "reason": "Not listed in the official FLAC3D 6.0 command indexes.",
+      "source_urls": [
+        "https://docs.itascacg.com/pfc600/flac3d/docproject/source/elements/command_summary.html",
+        "https://docs.itascacg.com/pfc600/flac3d/sel/doc/manual/sel_manual/sel_commands/sel_commands.html"
+      ],
+      "target_version": "6.0"
     },
     "7.0": {
       "command": "domain.condition",
-      "syntax": "domain condition <sx>[<sy><sz>] <sz>",
-      "keywords": [],
-      "examples": []
+      "syntax": "domain condition <sx>[<sy><sz>] <sz>"
     },
     "9.0": {
       "command": "domain.condition",
-      "syntax": "domain condition <sx>[<sy><sz>] <sz>is 3D only",
-      "keywords": [],
-      "examples": []
+      "syntax": "domain condition <sx>[<sy><sz>] <sz>is 3D only"
     }
   }
 }
