@@ -13,11 +13,37 @@
     "available": false
   },
   "versions": {
-    "9.0": {
+    "6.0": {
       "command": "building-blocks block make-hex-only",
       "syntax": "building-blocks block make-hex-only",
-      "keywords": [],
-      "examples": []
+      "description": "Split all triangular faces of wedge and tetrahedral blocks. The faces will be split into quads by a central point split. After this command is given only hexahedral blocks remain in the current building blocks set.",
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 6.0 command indexes",
+        "source_urls": [
+          "https://docs.itascacg.com/pfc600/flac3d/body/doc/manual/buildingblocks_manual/building-blocks_commands/cmd_building-blocks.block.make-hex-only.html#building-blocks.block.make-hex-only"
+        ],
+        "syntax_basis": "official FLAC3D 6.0 detailed command page",
+        "target_version": "6.0"
+      }
+    },
+    "7.0": {
+      "command": "building-blocks block make-hex-only",
+      "syntax": "building-blocks block make-hex-only",
+      "description": "Split all triangular faces of wedge and tetrahedral blocks. The faces will be split into quads by a central point split. After this command is given only hexahedral blocks remain in the current building blocks set.",
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 7.0 contents command index",
+        "source_urls": [
+          "https://docs.itascacg.com/flac3d700/flac3d/body/doc/manual/buildingblocks_manual/building-blocks_commands/cmd_building-blocks.block.make-hex-only.html"
+        ],
+        "syntax_basis": "official FLAC3D 7.0 detailed command page",
+        "target_version": "7.0"
+      }
+    },
+    "9.0": {
+      "command": "building-blocks block make-hex-only",
+      "syntax": "building-blocks block make-hex-only"
     }
   }
 }

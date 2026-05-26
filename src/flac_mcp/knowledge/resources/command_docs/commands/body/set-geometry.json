@@ -10,6 +10,46 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "available": false,
+      "reason": "Not listed in the official FLAC3D 6.0 command indexes.",
+      "source_urls": [
+        "https://docs.itascacg.com/pfc600/flac3d/docproject/source/elements/command_summary.html",
+        "https://docs.itascacg.com/pfc600/flac3d/sel/doc/manual/sel_manual/sel_commands/sel_commands.html"
+      ],
+      "target_version": "6.0"
+    },
+    "7.0": {
+      "command": "building-blocks set geometry",
+      "syntax": "building-blocks set geometry keyword",
+      "description": "Associate a geometry set with the current set. Geometric sets may be added, removed, or cleared for use with the current building blocks set.",
+      "keywords": [
+        {
+          "name": "add",
+          "syntax": "add s",
+          "description": "Add a geometric set with name s to be associated with current building blocks set."
+        },
+        {
+          "name": "clear",
+          "syntax": "clear",
+          "description": "Clear the list of geometric sets associated with the current building blocks set."
+        },
+        {
+          "name": "remove",
+          "syntax": "remove s",
+          "description": "Remove the geometric set with name s from the list of geometric sets associated with the current building blocks set."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 7.0 contents command index",
+        "source_urls": [
+          "https://docs.itascacg.com/flac3d700/flac3d/body/doc/manual/buildingblocks_manual/building-blocks_commands/cmd_building-blocks.set.geometry.html"
+        ],
+        "syntax_basis": "official FLAC3D 7.0 detailed command page",
+        "target_version": "7.0"
+      }
+    },
     "9.0": {
       "command": "building-blocks set geometry",
       "syntax": "building-blocks set geometry keyword",
@@ -29,8 +69,7 @@
           "syntax": "remove <s>",
           "description": "Remove the geometric set with name s from the list of geometric sets associated with the current building blocks set."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

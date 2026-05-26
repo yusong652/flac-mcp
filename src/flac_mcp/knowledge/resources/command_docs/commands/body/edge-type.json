@@ -10,6 +10,46 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "available": false,
+      "reason": "Not listed in the official FLAC3D 6.0 command indexes.",
+      "source_urls": [
+        "https://docs.itascacg.com/pfc600/flac3d/docproject/source/elements/command_summary.html",
+        "https://docs.itascacg.com/pfc600/flac3d/sel/doc/manual/sel_manual/sel_commands/sel_commands.html"
+      ],
+      "target_version": "6.0"
+    },
+    "7.0": {
+      "command": "building-blocks edge type",
+      "syntax": "building-blocks edge type keyword <range>",
+      "description": "Specify edge curve-type. Edge(s) in the current <range> are affected, if supplied; all edges are affected if not.",
+      "keywords": [
+        {
+          "name": "arc",
+          "syntax": "arc",
+          "description": "Specify an arc edge. An arc can have one control point only."
+        },
+        {
+          "name": "spline",
+          "syntax": "spline",
+          "description": "Specify a spline edge."
+        },
+        {
+          "name": "polyline",
+          "syntax": "polyline",
+          "description": "Specify a polyline edge (the is the default type)."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 7.0 contents command index",
+        "source_urls": [
+          "https://docs.itascacg.com/flac3d700/flac3d/body/doc/manual/buildingblocks_manual/building-blocks_commands/cmd_building-blocks.edge.type.html"
+        ],
+        "syntax_basis": "official FLAC3D 7.0 detailed command page",
+        "target_version": "7.0"
+      }
+    },
     "9.0": {
       "command": "building-blocks edge type",
       "syntax": "building-blocks edge type keyword [range]",
@@ -29,8 +69,7 @@
           "syntax": "polyline",
           "description": "Specify a polyline edge (the is the default type )."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

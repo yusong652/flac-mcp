@@ -10,11 +10,37 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "command": "building-blocks block multiplier",
+      "syntax": "building-blocks block multiplier i <range>",
+      "description": "Set the zone multiplier coefficient for final zone generation. The default value is 1. It will be applied to zone generation after all edge sizes and ratios are taken into account. If <range> is not supplied, all blocks will be modified.",
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 6.0 command indexes",
+        "source_urls": [
+          "https://docs.itascacg.com/pfc600/flac3d/body/doc/manual/buildingblocks_manual/building-blocks_commands/cmd_building-blocks.block.multiplier.html#building-blocks.block.multiplier"
+        ],
+        "syntax_basis": "official FLAC3D 6.0 detailed command page",
+        "target_version": "6.0"
+      }
+    },
+    "7.0": {
+      "command": "building-blocks block multiplier",
+      "syntax": "building-blocks block multiplier i <range>",
+      "description": "Set the zone multiplier coefficient for final zone generation. The default value is 1. It will be applied to zone generation after all edge sizes and ratios are taken into account. If <range> is not supplied, all blocks will be modified.",
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 7.0 contents command index",
+        "source_urls": [
+          "https://docs.itascacg.com/flac3d700/flac3d/body/doc/manual/buildingblocks_manual/building-blocks_commands/cmd_building-blocks.block.multiplier.html"
+        ],
+        "syntax_basis": "official FLAC3D 7.0 detailed command page",
+        "target_version": "7.0"
+      }
+    },
     "9.0": {
       "command": "building-blocks block multiplier",
-      "syntax": "building-blocks block multiplier <i>[range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "building-blocks block multiplier <i>[range]"
     }
   }
 }

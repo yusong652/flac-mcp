@@ -10,11 +10,32 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "available": false,
+      "reason": "Not listed in the official FLAC3D 6.0 command indexes.",
+      "source_urls": [
+        "https://docs.itascacg.com/pfc600/flac3d/docproject/source/elements/command_summary.html",
+        "https://docs.itascacg.com/pfc600/flac3d/sel/doc/manual/sel_manual/sel_commands/sel_commands.html"
+      ],
+      "target_version": "6.0"
+    },
+    "7.0": {
+      "command": "building-blocks edge factor",
+      "syntax": "building-blocks edge factor f <range>",
+      "description": "Apply a sizing factor to zones on edges. The factor is applied to edges in the current <range>, if supplied, or on all edges if not. The factor f must be between 0.001 and 1000.0 (the default is 1.0).",
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 7.0 contents command index",
+        "source_urls": [
+          "https://docs.itascacg.com/flac3d700/flac3d/body/doc/manual/buildingblocks_manual/building-blocks_commands/cmd_building-blocks.edge.factor.html"
+        ],
+        "syntax_basis": "official FLAC3D 7.0 detailed command page",
+        "target_version": "7.0"
+      }
+    },
     "9.0": {
       "command": "building-blocks edge factor",
-      "syntax": "building-blocks edge factor <f>[range]",
-      "keywords": [],
-      "examples": []
+      "syntax": "building-blocks edge factor <f>[range]"
     }
   }
 }

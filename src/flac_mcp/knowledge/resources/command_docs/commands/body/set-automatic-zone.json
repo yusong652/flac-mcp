@@ -12,6 +12,46 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "available": false,
+      "reason": "Not listed in the official FLAC3D 6.0 command indexes.",
+      "source_urls": [
+        "https://docs.itascacg.com/pfc600/flac3d/docproject/source/elements/command_summary.html",
+        "https://docs.itascacg.com/pfc600/flac3d/sel/doc/manual/sel_manual/sel_commands/sel_commands.html"
+      ],
+      "target_version": "6.0"
+    },
+    "7.0": {
+      "command": "building-blocks set automatic-zone",
+      "syntax": "building-blocks set automatic-zone keyword",
+      "description": "Specify a automatic zoning method.",
+      "keywords": [
+        {
+          "name": "extent",
+          "syntax": "extent i",
+          "description": "Specify zoning by setting i zones to be created across the largest extent of the set."
+        },
+        {
+          "name": "length",
+          "syntax": "length f",
+          "description": "Specify zoning by setting a fixed length of f for all zones generated from the set (f must be positive)."
+        },
+        {
+          "name": "total",
+          "syntax": "total i",
+          "description": "Specify zoning by setting the total number of zones in the set to i."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 7.0 contents command index",
+        "source_urls": [
+          "https://docs.itascacg.com/flac3d700/flac3d/body/doc/manual/buildingblocks_manual/building-blocks_commands/cmd_building-blocks.set.automatic-zone.html"
+        ],
+        "syntax_basis": "official FLAC3D 7.0 detailed command page",
+        "target_version": "7.0"
+      }
+    },
     "9.0": {
       "command": "building-blocks set automatic-zone",
       "syntax": "building-blocks set automatic-zone keyword",
@@ -31,8 +71,7 @@
           "syntax": "total <i>",
           "description": "Specify zoning by setting the total number of zones in the set to i ."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

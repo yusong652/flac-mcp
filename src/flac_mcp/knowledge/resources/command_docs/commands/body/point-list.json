@@ -10,6 +10,51 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "available": false,
+      "reason": "Not listed in the official FLAC3D 6.0 command indexes.",
+      "source_urls": [
+        "https://docs.itascacg.com/pfc600/flac3d/docproject/source/elements/command_summary.html",
+        "https://docs.itascacg.com/pfc600/flac3d/sel/doc/manual/sel_manual/sel_commands/sel_commands.html"
+      ],
+      "target_version": "6.0"
+    },
+    "7.0": {
+      "command": "building-blocks point list",
+      "syntax": "building-blocks point list keyword <range>",
+      "description": "Print information about points. If <range> is not supplied, the requested information is listed for all points.",
+      "keywords": [
+        {
+          "name": "extra",
+          "syntax": "extra i",
+          "description": "Print FISH extra information. A valid index i must be supplied."
+        },
+        {
+          "name": "group",
+          "syntax": "group",
+          "description": "Print group information."
+        },
+        {
+          "name": "information",
+          "syntax": "information",
+          "description": "Comprehensive information is listed, including groups and extras."
+        },
+        {
+          "name": "edges",
+          "syntax": "edges",
+          "description": "Print IDs for the edges that are connected to the point(s)."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 7.0 contents command index",
+        "source_urls": [
+          "https://docs.itascacg.com/flac3d700/flac3d/body/doc/manual/buildingblocks_manual/building-blocks_commands/cmd_building-blocks.point.list.html"
+        ],
+        "syntax_basis": "official FLAC3D 7.0 detailed command page",
+        "target_version": "7.0"
+      }
+    },
     "9.0": {
       "command": "building-blocks point list",
       "syntax": "building-blocks point list keyword [range]",
@@ -34,8 +79,7 @@
           "syntax": "edges",
           "description": "Print IDs for the edges that are connected to the point(s)."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

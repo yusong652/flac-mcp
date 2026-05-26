@@ -10,6 +10,46 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "available": false,
+      "reason": "Not listed in the official FLAC3D 6.0 command indexes.",
+      "source_urls": [
+        "https://docs.itascacg.com/pfc600/flac3d/docproject/source/elements/command_summary.html",
+        "https://docs.itascacg.com/pfc600/flac3d/sel/doc/manual/sel_manual/sel_commands/sel_commands.html"
+      ],
+      "target_version": "6.0"
+    },
+    "7.0": {
+      "command": "building-blocks face drape",
+      "syntax": "building-blocks face drape keyword <novalidate> <range>",
+      "description": "Move the points of faces onto an external geometric set. The points to be moved are defined by the <range>. Movement of each point is done along the beam-line defined by keyword until it intersects the external geometric set. The <novalidate> option skips validation of all blocks moved as part of the drape operation.",
+      "keywords": [
+        {
+          "name": "inwards",
+          "syntax": "inwards v",
+          "description": "Extend the beam-line from each point to the focus point v."
+        },
+        {
+          "name": "outwards",
+          "syntax": "outwards v",
+          "description": "Extend the beam-line from the focus point v to each point."
+        },
+        {
+          "name": "direction",
+          "syntax": "direction v",
+          "description": "Set the beam-line as a constant direction vector v."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 7.0 contents command index",
+        "source_urls": [
+          "https://docs.itascacg.com/flac3d700/flac3d/body/doc/manual/buildingblocks_manual/building-blocks_commands/cmd_building-blocks.face.drape.html"
+        ],
+        "syntax_basis": "official FLAC3D 7.0 detailed command page",
+        "target_version": "7.0"
+      }
+    },
     "9.0": {
       "command": "building-blocks face drape",
       "syntax": "building-blocks face drape keyword [novalidate] [range]",
@@ -29,8 +69,7 @@
           "syntax": "direction <v>",
           "description": "Set the beam-line as a constant direction vector v ."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

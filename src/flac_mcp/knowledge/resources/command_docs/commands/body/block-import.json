@@ -10,6 +10,58 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "command": "building-blocks block import",
+      "syntax": "building-blocks block import keyword",
+      "description": "Import blocks from a file.",
+      "keywords": [
+        {
+          "name": "from-file",
+          "syntax": "from-file name s <position|offset v >",
+          "description": "Import blocks from the file named s. <position v>, if supplied, provides the position the imported blocks. <offset v>, if supplied, provides the translational offset (shift) vector for the imported blocks."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 6.0 command indexes",
+        "source_urls": [
+          "https://docs.itascacg.com/pfc600/flac3d/body/doc/manual/buildingblocks_manual/building-blocks_commands/cmd_building-blocks.block.import.html#building-blocks.block.import"
+        ],
+        "syntax_basis": "official FLAC3D 6.0 detailed command page",
+        "target_version": "6.0"
+      }
+    },
+    "7.0": {
+      "command": "building-blocks block import",
+      "syntax": "building-blocks block import keyword",
+      "description": "Import blocks from a file.",
+      "keywords": [
+        {
+          "name": "from-file",
+          "syntax": "from-file name s <keyword>",
+          "description": "Import blocks from the file named s."
+        },
+        {
+          "name": "from-file-offset",
+          "syntax": "offset v",
+          "description": "Provide the translational offset (shift) vector for the imported blocks."
+        },
+        {
+          "name": "from-file-position",
+          "syntax": "position v",
+          "description": "Provides the position the imported blocks."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 7.0 contents command index",
+        "source_urls": [
+          "https://docs.itascacg.com/flac3d700/flac3d/body/doc/manual/buildingblocks_manual/building-blocks_commands/cmd_building-blocks.block.import.html"
+        ],
+        "syntax_basis": "official FLAC3D 7.0 detailed command page",
+        "target_version": "7.0"
+      }
+    },
     "9.0": {
       "command": "building-blocks block import",
       "syntax": "building-blocks block import keyword",
@@ -19,8 +71,7 @@
           "syntax": "position <v>",
           "description": "Import blocks from the file named s . Provide the translational offset (shift) vector for the imported blocks. Provides the position the imported blocks."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }
