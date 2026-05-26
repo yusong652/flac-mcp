@@ -203,7 +203,7 @@ def main() -> None:
             "import_statement": "from vec import vec, vec2, vec3, tens3, stens3",
             "source_url": f"{BASE}/vec.html",
             "functions": [],
-            "notes": [clean(vec_html[vec_html.find("<h1>") : vec_html.find("<div class=\"clearer\">")])],
+            "notes": [clean(vec_html[vec_html.find("<h1>") : vec_html.find('<div class="clearer">')])],
         },
     )
     modules["vec"] = {"description": vec_desc, "file": module_file("vec"), "functions": []}

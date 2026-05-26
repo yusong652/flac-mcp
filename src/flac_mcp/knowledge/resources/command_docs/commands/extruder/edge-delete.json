@@ -10,6 +10,34 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "command": "extrude edge delete",
+      "syntax": "extrude edge delete <invalid> <range>",
+      "description": "Delete edges. All edges are deleted if <range> is not supplied. Only edges that not connected to a block will be deleted when invalid is used.",
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 6.0 command indexes",
+        "source_urls": [
+          "https://docs.itascacg.com/pfc600/flac3d/extruder/doc/manual/extruder_manual/edge/commands/cmd_extrude.edge.delete.html#extrude.edge.delete"
+        ],
+        "syntax_basis": "official FLAC3D 6.0 detailed command page",
+        "target_version": "6.0"
+      }
+    },
+    "7.0": {
+      "command": "extrude edge delete",
+      "syntax": "extrude edge delete <invalid> <range>",
+      "description": "Delete edges. All edges are deleted if <range> is not supplied. Only edges that not connected to a block will be deleted when invalid is used.",
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 7.0 contents command index",
+        "source_urls": [
+          "https://docs.itascacg.com/flac3d700/flac3d/extruder/doc/manual/extruder_manual/edge/commands/cmd_extrude.edge.delete.html"
+        ],
+        "syntax_basis": "official FLAC3D 7.0 detailed command page",
+        "target_version": "7.0"
+      }
+    },
     "9.0": {
       "command": "sketch edge delete",
       "syntax": "sketch edge delete [invalid] [range]"

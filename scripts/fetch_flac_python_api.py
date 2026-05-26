@@ -55,12 +55,42 @@ VERSION_SPECS: dict[tuple[str, str], VersionSpec] = {
 }
 
 MODULE_SPECS: list[dict[str, Any]] = [
-    {"key": "itasca", "page": "itasca.html", "description": "Core simulation control and command execution", "classes": []},
-    {"key": "attach", "page": "itasca.attach.html", "description": "Attach condition object management.", "classes": ["Attach"]},
-    {"key": "gridpoint", "page": "itasca.gridpoint.html", "description": "Gridpoint object management.", "classes": ["Gridpoint"]},
-    {"key": "gridpointarray", "page": "itasca.gridpointarray.html", "description": "Array interface for gridpoints.", "classes": []},
-    {"key": "interface", "page": "itasca.interface.html", "description": "Interface object management.", "classes": ["Interface"]},
-    {"key": "interfacearray", "page": "itasca.interfacearray.html", "description": "Array interface for interfaces.", "classes": []},
+    {
+        "key": "itasca",
+        "page": "itasca.html",
+        "description": "Core simulation control and command execution",
+        "classes": [],
+    },
+    {
+        "key": "attach",
+        "page": "itasca.attach.html",
+        "description": "Attach condition object management.",
+        "classes": ["Attach"],
+    },
+    {
+        "key": "gridpoint",
+        "page": "itasca.gridpoint.html",
+        "description": "Gridpoint object management.",
+        "classes": ["Gridpoint"],
+    },
+    {
+        "key": "gridpointarray",
+        "page": "itasca.gridpointarray.html",
+        "description": "Array interface for gridpoints.",
+        "classes": [],
+    },
+    {
+        "key": "interface",
+        "page": "itasca.interface.html",
+        "description": "Interface object management.",
+        "classes": ["Interface"],
+    },
+    {
+        "key": "interfacearray",
+        "page": "itasca.interfacearray.html",
+        "description": "Array interface for interfaces.",
+        "classes": [],
+    },
     {
         "key": "interfaceelementarray",
         "page": "itasca.interfaceelementarray.html",
@@ -73,7 +103,12 @@ MODULE_SPECS: list[dict[str, Any]] = [
         "description": "Array interface for interface nodes.",
         "classes": [],
     },
-    {"key": "vertexarray", "page": "itasca.vertexarray.html", "description": "Array interface for model vertices.", "classes": []},
+    {
+        "key": "vertexarray",
+        "page": "itasca.vertexarray.html",
+        "description": "Array interface for model vertices.",
+        "classes": [],
+    },
     {"key": "zone", "page": "itasca.zone.html", "description": "Zone object management.", "classes": ["Zone"]},
     {"key": "zonearray", "page": "itasca.zonearray.html", "description": "Array interface for zones.", "classes": []},
 ]
@@ -175,7 +210,9 @@ def write_json(path: Path, data: dict[str, Any]) -> None:
     path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
-def write_class(root: Path, spec: VersionSpec, index: dict[str, Any], module_key: str, class_name: str, page: str) -> bool:
+def write_class(
+    root: Path, spec: VersionSpec, index: dict[str, Any], module_key: str, class_name: str, page: str
+) -> bool:
     fetched = fetch_page(spec, page)
     if fetched is None:
         return False
@@ -279,7 +316,7 @@ def fetch_version(product: str, version: str) -> dict[str, Any]:
                 "import_statement": "from vec import vec, vec2, vec3, tens3, stens3",
                 "source_url": vec_url,
                 "functions": [],
-                "notes": [clean(vec_html[vec_html.find("<h1>") : vec_html.find("<div class=\"clearer\">")])],
+                "notes": [clean(vec_html[vec_html.find("<h1>") : vec_html.find('<div class="clearer">')])],
             },
         )
         index["modules"]["vec"] = {"description": vec_desc, "file": module_file("vec"), "functions": []}

@@ -39,7 +39,7 @@
     {
       "name": "near",
       "signature": "itasca.gridpoint. near ( point: vec ) → Gridpoint object.",
-      "description": "Find the closest gridpoint to a point. Classes Gridpoint ⇄ ☰ ⇑ --> FLAC3D 7.0 documentation » Scripting » Python Scripting » FLAC3D Python » ⇐ Attach | Gridpoint ⇒ Was this helpful? ... FLAC3D © 2019, Itasca Updated: Feb 25, 2024",
+      "description": "Find the closest gridpoint to a point.",
       "returns": {
         "type": "Gridpoint object."
       }

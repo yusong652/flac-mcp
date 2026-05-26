@@ -22,7 +22,7 @@ TASK_STORE = {}
 
 
 def test_task_submit_message_type_matches_bridge_protocol():
-    assert TASK_SUBMIT_MESSAGE_TYPE == "p" "fc_task"
+    assert TASK_SUBMIT_MESSAGE_TYPE == "pfc_task"
 
 
 async def _mock_bridge_handler(websocket):
@@ -115,7 +115,40 @@ async def _mock_bridge_handler(websocket):
             }
 
         elif msg_type == "execute_code":
-            if "platform.platform" in req.get("code", ""):
+            if "FLAC_MCP_RUNTIME_VALIDATION" in req.get("code", ""):
+                data = {
+                    "output": (
+                        'FLAC_MCP_RUNTIME_VALIDATION {"summary": {"status": "passed", '
+                        '"passed": 3, "failed": 0, "total": 3, "destructive_checks_enabled": false}}\n'
+                    ),
+                    "result": {
+                        "summary": {
+                            "status": "passed",
+                            "passed": 3,
+                            "failed": 0,
+                            "total": 3,
+                            "destructive_checks_enabled": False,
+                        },
+                        "runtime": {
+                            "product": "flac3d",
+                            "dimension": 3,
+                            "flac_version": "9.0",
+                        },
+                        "checks": [
+                            {"name": "runtime_identity", "ok": True},
+                            {"name": "command_execution", "ok": True},
+                            {"name": "dat_file_write", "ok": True},
+                        ],
+                        "artifacts": {
+                            "dat_file": {
+                                "path": "C:/tmp/flac_mcp_runtime_validation.dat",
+                                "kept": False,
+                                "removed": True,
+                            }
+                        },
+                    },
+                }
+            elif "platform.platform" in req.get("code", ""):
                 data = {
                     "output": '{"dimension": 3, "flac_version": "9.0", "product": "flac3d"}\n',
                     "result": {
@@ -378,6 +411,22 @@ async def test_get_runtime_info_success_fields(mock_bridge):
     assert data["product"] == "flac3d"
     assert data["dimension"] == 3
     assert data["flac_version"] == "9.0"
+
+
+@pytest.mark.asyncio
+async def test_validate_runtime_success_fields(mock_bridge):
+    result = await mcp._tool_manager.call_tool("flac_validate_runtime", {})
+    text = result.content[0].text
+    payload = json.loads(text)
+
+    assert payload["ok"] is True
+    data = payload["data"]
+    assert data["summary"]["status"] == "passed"
+    assert data["summary"]["destructive_checks_enabled"] is False
+    assert data["runtime"]["product"] == "flac3d"
+    names = {check["name"] for check in data["checks"]}
+    assert {"runtime_identity", "command_execution", "dat_file_write"} <= names
+    assert data["artifacts"]["dat_file"]["removed"] is True
 
 
 # ── flac_list_tasks (continued) ──────────────────────────

@@ -14,6 +14,7 @@ from . import (
     query_command,
     query_python_api,
     runtime_info,
+    runtime_validation,
 )
 
 __all__ = [
@@ -30,4 +31,5 @@ __all__ = [
     "interrupt_task",
     "execute_code",
     "runtime_info",
+    "runtime_validation",
 ]

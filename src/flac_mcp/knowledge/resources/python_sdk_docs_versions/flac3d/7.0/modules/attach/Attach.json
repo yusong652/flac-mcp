@@ -190,7 +190,7 @@
     {
       "name": "weight_face",
       "signature": "weight_face ( ) → vec3.",
-      "description": "Get a vector with all components in the range 0 to 1.0. The value corresponds to the location of the gridpoints in the face with respect to the face vertices; for face attachments. The fourth quad weight can be computed by subtracting all three weights on the vector from 1.0. If the attachment is not of face type None is returned. ⇄ ☰ ⇑ --> FLAC3D 7.0 documentation » Scripting » Python Scripting » FLAC3D Python » itasca.attach » ⇐ itasca.attach | itasca.gridpoint ⇒ Was this helpful? ... FLAC3D © 2019, Itasca Updated: Feb 25, 2024",
+      "description": "Get a vector with all components in the range 0 to 1.0. The value corresponds to the location of the gridpoints in the face with respect to the face vertices; for face attachments. The fourth quad weight can be computed by subtracting all three weights on the vector from 1.0. If the attachment is not of face type None is returned.",
       "returns": {
         "type": "vec3."
       }

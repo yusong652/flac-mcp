@@ -10,6 +10,34 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "command": "building-blocks block hide",
+      "syntax": "building-blocks block hide b <range>",
+      "description": "Set the blocks to be hide or not.",
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 6.0 command indexes",
+        "source_urls": [
+          "https://docs.itascacg.com/pfc600/flac3d/body/doc/manual/buildingblocks_manual/building-blocks_commands/cmd_building-blocks.block.hide.html#building-blocks.block.hide"
+        ],
+        "syntax_basis": "official FLAC3D 6.0 detailed command page",
+        "target_version": "6.0"
+      }
+    },
+    "7.0": {
+      "command": "building-blocks block hide",
+      "syntax": "building-blocks block hide b <range>",
+      "description": "Set the blocks to be hide or not.",
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 7.0 contents command index",
+        "source_urls": [
+          "https://docs.itascacg.com/flac3d700/flac3d/body/doc/manual/buildingblocks_manual/building-blocks_commands/cmd_building-blocks.block.hide.html"
+        ],
+        "syntax_basis": "official FLAC3D 7.0 detailed command page",
+        "target_version": "7.0"
+      }
+    },
     "9.0": {
       "command": "building-blocks block hide",
       "syntax": "building-blocks block hide <b>[range]"

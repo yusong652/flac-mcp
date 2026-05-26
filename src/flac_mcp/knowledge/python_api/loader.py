@@ -59,7 +59,9 @@ class DocumentationLoader:
 
     @staticmethod
     @lru_cache(maxsize=32)
-    def load_index(product: str | FLACProduct | None = FLACProduct.ANY.value, version: str | None = "9.0") -> dict[str, Any]:
+    def load_index(
+        product: str | FLACProduct | None = FLACProduct.ANY.value, version: str | None = "9.0"
+    ) -> dict[str, Any]:
         """Load a product/version-scoped Python API index.
 
         The index file contains:
@@ -665,7 +667,9 @@ class DocumentationLoader:
                     quick_ref,
                     f"{file_path}#{method['name']}",
                 )
-                filtered_methods.append(annotate_api_doc(api_path or method["name"], method, product_value, version_value))
+                filtered_methods.append(
+                    annotate_api_doc(api_path or method["name"], method, product_value, version_value)
+                )
             doc["methods"] = filtered_methods
         doc["method_groups"] = object_info.get("method_groups", {})
         doc["availability"] = {"product": product_value, "version": version_value, "source": index.get("source", {})}

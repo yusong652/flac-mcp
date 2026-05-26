@@ -347,7 +347,7 @@ The MCP client config persists.
 - `Connection refused`:
   - Bridge is not running in the selected FLAC GUI, the wrong port is configured, or port `9002` is unavailable.
 - `Port 9002 is already in use`:
-  - Close the other FLAC/PFC bridge process, or start FLAC with `FLAC_MCP_BRIDGE_PORT` set to another port and point `flac-mcp --bridge-url` at the same port.
+  - Close the other Itasca bridge process, or start FLAC with `FLAC_MCP_BRIDGE_PORT` set to another port and point `flac-mcp --bridge-url` at the same port.
 - `flac_get_runtime_info` reports the wrong product or dimension:
   - The bridge is attached to a different FLAC GUI process. Close the wrong process or restart the bridge in the selected GUI.
 - `No module named itasca_mcp_bridge`:

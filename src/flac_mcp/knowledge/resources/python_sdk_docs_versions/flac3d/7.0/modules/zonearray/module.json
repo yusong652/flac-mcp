@@ -231,7 +231,7 @@
     {
       "name": "volume_deformed",
       "signature": "itasca.zonearray. volume_deformed ( ) → array double{nzone}.",
-      "description": "Return an array of the deformed zone volumes. ⇄ ☰ ⇑ --> FLAC3D 7.0 documentation » Scripting » Python Scripting » FLAC3D Python » ⇐ Zone | PFC Python ⇒ Was this helpful? ... FLAC3D © 2019, Itasca Updated: Feb 25, 2024",
+      "description": "Return an array of the deformed zone volumes.",
       "returns": {
         "type": "array double{nzone}."
       }

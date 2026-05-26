@@ -279,7 +279,7 @@
     {
       "name": "unbal",
       "signature": "itasca.zone. unbal ( ) → float.",
-      "description": "Get the current maximum unbalanced force on any gridpoint in the model. Classes Zone ⇄ ☰ ⇑ --> PFC 6.0 documentation --> PFC 6.0 documentation » Was this helpful? ... PFC 6.0 © 2019, Itasca Updated: Nov 19, 2021",
+      "description": "Get the current maximum unbalanced force on any gridpoint in the model.",
       "returns": {
         "type": "float."
       }

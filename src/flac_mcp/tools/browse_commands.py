@@ -5,7 +5,7 @@ from typing import Any
 from fastmcp import FastMCP
 from pydantic import Field
 
-from flac_mcp.contracts import build_docs_data, build_error, build_ok
+from flac_mcp.contracts import build_docs_data, build_ok, wrap_payload
 from flac_mcp.knowledge.commands import CommandLoader
 from flac_mcp.knowledge.compatibility import (
     FLACProduct,
@@ -65,11 +65,11 @@ def register(mcp: FastMCP) -> None:
         - flac_query_command: Search commands by keywords (when path unknown)
         - flac_browse_reference: Browse reference docs (e.g., "constitutive-models mohr-coulomb")
         """
-        cmd = normalize_input(command)
+        cmd = normalize_input(command, lowercase=True)
         version_value = normalize_command_doc_version(version)
         product_value = normalize_product(product)
         if not is_product_version_applicable(product_value, version_value):
-            return _wrap_payload(product_version_error_payload("commands", "browse", product_value, version_value))
+            return wrap_payload(product_version_error_payload("commands", "browse", product_value, version_value))
 
         if not cmd:
             return build_ok(_browse_root(version_value, product_value))
@@ -82,7 +82,7 @@ def register(mcp: FastMCP) -> None:
             category = parts[0]
             command_name = " ".join(parts[1:])
             payload = _browse_command(category, command_name, version_value, product_value)
-        return _wrap_payload(payload)
+        return wrap_payload(payload)
 
 
 def _iter_available_category_commands(
@@ -236,9 +236,9 @@ def _browse_command(category: str, command_name: str, version: str, product: str
                 "available_categories": sorted(categories.keys()),
             }
 
-        cat_data = categories[category]
-        commands = cat_data.get("commands", [])
-        available_cmds = [cmd.get("name") for cmd in commands]
+        available_cmds = [
+            cmd_meta.get("name") for cmd_meta, _cmd_doc in _iter_available_category_commands(category, version, product)
+        ]
         return {
             "source": "commands",
             "action": "browse",
@@ -288,16 +288,3 @@ def _browse_command(category: str, command_name: str, version: str, product: str
         ],
         summary={"count": 1, "version": version, "product": product},
     )
-
-
-def _wrap_payload(payload: dict[str, Any]) -> dict[str, Any]:
-    """Wrap tool payload into unified envelope."""
-    if "error" in payload:
-        err = payload.get("error") or {}
-        details = {k: v for k, v in payload.items() if k != "error"}
-        return build_error(
-            code=str(err.get("code") or "browse_error"),
-            message=str(err.get("message") or "Browse failed"),
-            details=details or None,
-        )
-    return build_ok(payload)

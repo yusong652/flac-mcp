@@ -13,7 +13,9 @@ jobs:
       - uses: actions/checkout@v6
       - uses: astral-sh/setup-uv@v8.1.0
       - run: uv sync --group dev
-      - run: uv run ruff check src/ tests/
-      - run: uv run ruff format --check src/ tests/
+      - run: uv run ruff check src/ tests/ scripts/
+      - run: uv run ruff format --check src/ tests/ scripts/
+      - run: uv run python scripts/generate_flac_command_index.py --check
+      - run: uv run python scripts/validate_flac_command_docs.py
       - run: uv run mypy src/flac_mcp/
       - run: uv run pytest tests/ --cov=flac_mcp --cov-report=term-missing

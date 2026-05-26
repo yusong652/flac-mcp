@@ -30,9 +30,13 @@ Description of the release.
   structural-element properties, histories, zone field data, and results export.
 - Add FLAC reference docs for FISH intrinsic workflows, interfaces/joints,
   geometry/data/table workflows, and sketch/building-block model generation.
+- Resolve FLAC3D 6.0/7.0 command coverage against official legacy command
+  indexes and mark version-absent commands as unavailable instead of missing.
 - Tighten FLAC2D Python API filtering with explicit out-of-plane API rules.
 - Add agentic setup and runtime validation documentation for FLAC2D/FLAC3D
   verification.
+- Add `flac_validate_runtime` for non-destructive bridge/runtime/command/file
+  smoke validation, with an opt-in destructive `model new` check.
 
 ## [0.1.0] - 2026-05-20
 

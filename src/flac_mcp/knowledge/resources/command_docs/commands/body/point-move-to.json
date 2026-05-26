@@ -12,6 +12,46 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "available": false,
+      "reason": "Not listed in the official FLAC3D 6.0 command indexes.",
+      "source_urls": [
+        "https://docs.itascacg.com/pfc600/flac3d/docproject/source/elements/command_summary.html",
+        "https://docs.itascacg.com/pfc600/flac3d/sel/doc/manual/sel_manual/sel_commands/sel_commands.html"
+      ],
+      "target_version": "6.0"
+    },
+    "7.0": {
+      "command": "building-blocks point move-to",
+      "syntax": "building-blocks point move-to keyword f <control-point b > <range>",
+      "description": "Move points. Position components (\\(x\\), \\(y\\), or \\(z\\)) of points in the <range>, if supplied, are moved to the value f; all points are moved if no range is supplied.",
+      "keywords": [
+        {
+          "name": "x",
+          "syntax": "x",
+          "description": "Set the \\(x\\)-component of the point(s)."
+        },
+        {
+          "name": "y",
+          "syntax": "y",
+          "description": "Set the \\(y\\)-component of the point(s)."
+        },
+        {
+          "name": "z",
+          "syntax": "z",
+          "description": "Set the \\(z\\)-component of the point(s)."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 7.0 contents command index",
+        "source_urls": [
+          "https://docs.itascacg.com/flac3d700/flac3d/body/doc/manual/buildingblocks_manual/building-blocks_commands/cmd_building-blocks.point.move-to.html"
+        ],
+        "syntax_basis": "official FLAC3D 7.0 detailed command page",
+        "target_version": "7.0"
+      }
+    },
     "9.0": {
       "command": "building-blocks point move-to",
       "syntax": "building-blocks point move-to keyword <f>[control-point <b>] [range]",

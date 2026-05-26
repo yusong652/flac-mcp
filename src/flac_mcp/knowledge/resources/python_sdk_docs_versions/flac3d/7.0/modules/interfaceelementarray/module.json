@@ -39,7 +39,7 @@
     {
       "name": "set_group",
       "signature": "itasca.interfaceelementarray. set_group ( membership: array bool{interface} , group_name: str , slot=\"default\" ) → None.",
-      "description": "Set interface element group from an array. Where membership True set the corresponding interface element to be a member of group group_name in the given slot. ⇄ ☰ ⇑ --> FLAC3D 7.0 documentation » Scripting » Python Scripting » itasca » ⇐ itasca.interfacearray | itasca.interfacenodearray ⇒ Was this helpful? ... FLAC3D © 2019, Itasca Updated: Feb 25, 2024",
+      "description": "Set interface element group from an array. Where membership True set the corresponding interface element to be a member of group group_name in the given slot.",
       "returns": {
         "type": "None."
       }

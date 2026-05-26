@@ -12,6 +12,108 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "command": "extrude set automatic-zone",
+      "syntax": "extrude set automatic-zone keyword",
+      "description": "Set automatic zoning of the extrusion set.",
+      "keywords": [
+        {
+          "name": "direction",
+          "syntax": "direction keyword",
+          "description": "Control which part(s) of the extrusion are auto-zoned. If not specified, the last value specified is retained (the default is both)."
+        },
+        {
+          "name": "direction-both",
+          "syntax": "both",
+          "description": "Auto-zoning is applied to both the 2D construction data, and the 1D extrude segment data. This is the default."
+        },
+        {
+          "name": "direction-construction",
+          "syntax": "construction",
+          "description": "Auto-zoning is applied to the 2D construction data only."
+        },
+        {
+          "name": "direction-extrusion",
+          "syntax": "extrusion",
+          "description": "Auto-zoning is applied to the extrude segment data only."
+        },
+        {
+          "name": "edge",
+          "syntax": "edge f",
+          "description": "Auto-zoning will attempt to keep the average length of a zone edge to the value f. If not supplied, the previous value will be used. The default value is 1.0."
+        },
+        {
+          "name": "size",
+          "syntax": "size i",
+          "description": "Auto-zoning will assign zone sizes so that there are approximately i zones across the largest model dimension. If not supplied, the previous value will be used. The default value is 100."
+        },
+        {
+          "name": "total",
+          "syntax": "total i",
+          "description": "Auto zoning will assign zone sizes so that the total number of 3D zones created is approximately (but not more than) i."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 6.0 command indexes",
+        "source_urls": [
+          "https://docs.itascacg.com/pfc600/flac3d/extruder/doc/manual/extruder_manual/set/commands/cmd_extrude.set.automatic-zone.html#extrude.set.automatic-zone"
+        ],
+        "syntax_basis": "official FLAC3D 6.0 detailed command page",
+        "target_version": "6.0"
+      }
+    },
+    "7.0": {
+      "command": "extrude set automatic-zone",
+      "syntax": "extrude set automatic-zone keyword",
+      "description": "Set automatic zoning of the extrusion set.",
+      "keywords": [
+        {
+          "name": "direction",
+          "syntax": "direction keyword",
+          "description": "Control which part(s) of the extrusion are auto-zoned. If not specified, the last value specified is retained (the default is both)."
+        },
+        {
+          "name": "direction-both",
+          "syntax": "both",
+          "description": "Auto-zoning is applied to both the 2D construction data, and the 1D extrude segment data. This is the default."
+        },
+        {
+          "name": "direction-construction",
+          "syntax": "construction",
+          "description": "Auto-zoning is applied to the 2D construction data only."
+        },
+        {
+          "name": "direction-extrusion",
+          "syntax": "extrusion",
+          "description": "Auto-zoning is applied to the extrude segment data only."
+        },
+        {
+          "name": "edge",
+          "syntax": "edge f",
+          "description": "Auto-zoning will attempt to keep the average length of a zone edge to the value f. If not supplied, the previous value will be used. The default value is 1.0."
+        },
+        {
+          "name": "size",
+          "syntax": "size i",
+          "description": "Auto-zoning will assign zone sizes so that there are approximately i zones across the largest model dimension. If not supplied, the previous value will be used. The default value is 100."
+        },
+        {
+          "name": "total",
+          "syntax": "total i",
+          "description": "Auto zoning will assign zone sizes so that the total number of 3D zones created is approximately (but not more than) i."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 7.0 contents command index",
+        "source_urls": [
+          "https://docs.itascacg.com/flac3d700/flac3d/extruder/doc/manual/extruder_manual/set/commands/cmd_extrude.set.automatic-zone.html"
+        ],
+        "syntax_basis": "official FLAC3D 7.0 detailed command page",
+        "target_version": "7.0"
+      }
+    },
     "9.0": {
       "command": "sketch set automatic-zone",
       "syntax": "sketch set automatic-zone keyword",

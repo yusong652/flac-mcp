@@ -126,3 +126,17 @@ def build_docs_data(
         entries=entries,
         summary=summary or {},
     ).model_dump(exclude_none=True)
+
+
+def wrap_payload(payload: dict[str, Any], *, default_code: str = "tool_error") -> dict[str, Any]:
+    """Wrap an internal payload that may carry an ``error`` block."""
+    if "error" not in payload:
+        return build_ok(payload)
+
+    err = payload.get("error") or {}
+    details = {k: v for k, v in payload.items() if k != "error"}
+    return build_error(
+        code=str(err.get("code") or default_code),
+        message=str(err.get("message") or "Tool request failed"),
+        details=details or None,
+    )

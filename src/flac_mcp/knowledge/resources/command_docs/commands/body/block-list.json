@@ -10,6 +10,113 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "command": "building-blocks block list",
+      "syntax": "building-blocks block list keyword <range>",
+      "description": "Print information about blocks. If <range> is not supplied, the requested information is listed for all blocks in the current building blocks set.",
+      "keywords": [
+        {
+          "name": "edges",
+          "syntax": "edges",
+          "description": "Edge IDs for each block are listed."
+        },
+        {
+          "name": "extra",
+          "syntax": "extra i",
+          "description": "FISH extra information printed. A valid index i must be supplied."
+        },
+        {
+          "name": "faces",
+          "syntax": "faces",
+          "description": "Face IDs for each block are listed."
+        },
+        {
+          "name": "group",
+          "syntax": "group",
+          "description": "Group information is listed."
+        },
+        {
+          "name": "information",
+          "syntax": "information",
+          "description": "Comprehensive information is listed, including groups, extras, degeneracy, and zone multiplier."
+        },
+        {
+          "name": "nodes",
+          "syntax": "nodes",
+          "description": "Node IDs for each block are listed."
+        },
+        {
+          "name": "status",
+          "syntax": "status",
+          "description": "Validation status for each block is listed."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 6.0 command indexes",
+        "source_urls": [
+          "https://docs.itascacg.com/pfc600/flac3d/body/doc/manual/buildingblocks_manual/building-blocks_commands/cmd_building-blocks.block.list.html#building-blocks.block.list"
+        ],
+        "syntax_basis": "official FLAC3D 6.0 detailed command page",
+        "target_version": "6.0"
+      }
+    },
+    "7.0": {
+      "command": "building-blocks block list",
+      "syntax": "building-blocks block list keyword <range>",
+      "description": "Print information about blocks. If <range> is not supplied, the requested information is listed for all blocks in the current building blocks set.",
+      "keywords": [
+        {
+          "name": "edges",
+          "syntax": "edges",
+          "description": "Edge IDs for each block are listed."
+        },
+        {
+          "name": "extra",
+          "syntax": "extra i",
+          "description": "FISH extra information printed. A valid index i must be supplied."
+        },
+        {
+          "name": "faces",
+          "syntax": "faces",
+          "description": "Face IDs for each block are listed."
+        },
+        {
+          "name": "group",
+          "syntax": "group",
+          "description": "Group information is listed."
+        },
+        {
+          "name": "information",
+          "syntax": "information",
+          "description": "Comprehensive information is listed, including groups, extras, degeneracy, and zone multiplier."
+        },
+        {
+          "name": "nodes",
+          "syntax": "nodes",
+          "description": "Node IDs for each block are listed."
+        },
+        {
+          "name": "points",
+          "syntax": "points",
+          "description": "List point information."
+        },
+        {
+          "name": "status",
+          "syntax": "status",
+          "description": "Validation status for each block is listed."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 7.0 contents command index",
+        "source_urls": [
+          "https://docs.itascacg.com/flac3d700/flac3d/body/doc/manual/buildingblocks_manual/building-blocks_commands/cmd_building-blocks.block.list.html"
+        ],
+        "syntax_basis": "official FLAC3D 7.0 detailed command page",
+        "target_version": "7.0"
+      }
+    },
     "9.0": {
       "command": "building-blocks block list",
       "syntax": "building-blocks block list keyword [range]",

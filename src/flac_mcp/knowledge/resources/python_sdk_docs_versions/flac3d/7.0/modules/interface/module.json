@@ -15,7 +15,7 @@
     {
       "name": "list",
       "signature": "itasca.interface. list ( ) → Interface iterator object.",
-      "description": "Get an interface iterator object. Classes Interface Sub-modules element Element node Node ⇄ ☰ ⇑ --> FLAC3D 7.0 documentation » Scripting » Python Scripting » itasca » ⇐ History | Interface ⇒ Was this helpful? ... FLAC3D © 2019, Itasca Updated: Feb 25, 2024",
+      "description": "Get an interface iterator object.",
       "returns": {
         "type": "Interface iterator object."
       }

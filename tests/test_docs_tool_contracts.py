@@ -15,6 +15,14 @@ def _parse_tool_payload(result) -> dict:
     return json.loads(text)
 
 
+def _contains_key(value, key: str) -> bool:
+    if isinstance(value, dict):
+        return key in value or any(_contains_key(item, key) for item in value.values())
+    if isinstance(value, list):
+        return any(_contains_key(item, key) for item in value)
+    return False
+
+
 @pytest.mark.asyncio
 async def test_browse_commands_root_contract() -> None:
     result = await mcp._tool_manager.call_tool("flac_browse_commands", {})
@@ -84,6 +92,44 @@ async def test_browse_commands_versioned_contract() -> None:
 
 
 @pytest.mark.asyncio
+async def test_browse_commands_accepts_mixed_case_paths() -> None:
+    result = await mcp._tool_manager.call_tool(
+        "flac_browse_commands",
+        {"command": "Zone Create", "version": "9.0"},
+    )
+    payload = _parse_tool_payload(result)
+    data = payload["data"]
+
+    assert payload["ok"] is True
+    assert data["entries"][0]["doc"]["command"] == "zone create"
+
+
+@pytest.mark.asyncio
+async def test_browse_commands_legacy_flac3d_command_docs_contract() -> None:
+    result = await mcp._tool_manager.call_tool(
+        "flac_browse_commands",
+        {"command": "extruder block create", "version": "7.0", "product": "flac3d"},
+    )
+    payload = _parse_tool_payload(result)
+    data = payload["data"]
+
+    assert payload["ok"] is True
+    doc = data["entries"][0]["doc"]
+    assert doc["command"] == "extrude block create"
+    assert doc["legacy_documentation"]["availability_verified"] is True
+    assert doc["legacy_documentation"]["syntax_basis"] == "official FLAC3D 7.0 detailed command page"
+    assert "cmd_extrude.block.create.html" in doc["legacy_documentation"]["source_urls"][0]
+
+    result = await mcp._tool_manager.call_tool(
+        "flac_browse_commands",
+        {"command": "body edge delete", "version": "6.0", "product": "flac3d"},
+    )
+    payload = _parse_tool_payload(result)
+    assert payload["ok"] is False
+    assert payload["error"]["code"] == "command_unavailable_for_version"
+
+
+@pytest.mark.asyncio
 async def test_browse_category_contract() -> None:
     result = await mcp._tool_manager.call_tool(
         "flac_browse_commands",
@@ -96,6 +142,20 @@ async def test_browse_category_contract() -> None:
     assert payload["ok"] is True
     assert data["summary"]["version"] == "9.0"
     assert "create" in names
+
+
+@pytest.mark.asyncio
+async def test_browse_category_filters_commands_by_product() -> None:
+    result = await mcp._tool_manager.call_tool(
+        "flac_browse_commands",
+        {"command": "zone", "version": "9.0", "product": "flac2d"},
+    )
+    payload = _parse_tool_payload(result)
+    names = {entry["name"] for entry in payload["data"]["entries"]}
+
+    assert payload["ok"] is True
+    assert "create2d" in names
+    assert "create" not in names
 
 
 @pytest.mark.asyncio
@@ -120,6 +180,22 @@ async def test_browse_commands_filters_3d_zone_create_for_flac2d() -> None:
 
     assert payload["ok"] is False
     assert payload["error"]["code"] == "command_unavailable_for_product"
+
+
+@pytest.mark.asyncio
+async def test_browse_commands_not_found_suggestions_are_product_filtered() -> None:
+    result = await mcp._tool_manager.call_tool(
+        "flac_browse_commands",
+        {"command": "zone not_a_real_command", "version": "9.0", "product": "flac2d"},
+    )
+    payload = _parse_tool_payload(result)
+    details = payload["error"].get("details") or {}
+    suggestions = set(details.get("available_commands") or [])
+
+    assert payload["ok"] is False
+    assert payload["error"]["code"] == "command_not_found"
+    assert "create2d" in suggestions
+    assert "create" not in suggestions
 
 
 @pytest.mark.asyncio
@@ -197,6 +273,35 @@ async def test_browse_python_api_generated_zonearray_contract() -> None:
     assert payload["ok"] is True
     assert data["summary"]["module_path"] == "itasca.zonearray"
     assert data["summary"]["count"] >= 1
+    assert data["summary"]["runtime_usage"]["access"].startswith("import itasca as it; it.zonearray")
+    assert "do not use 'import itasca.zonearray'" in data["summary"]["runtime_usage"]["note"]
+
+
+@pytest.mark.asyncio
+async def test_browse_python_api_array_function_runtime_usage_contract() -> None:
+    result = await mcp._tool_manager.call_tool("flac_browse_python_api", {"api": "itasca.zonearray.pos"})
+    payload = _parse_tool_payload(result)
+    entry = payload["data"]["entries"][0]
+
+    assert payload["ok"] is True
+    assert entry["function"] == "pos"
+    assert entry["runtime_usage"]["access"].startswith("import itasca as it; it.zonearray")
+    assert "FLAC2D returns two components" in entry["runtime_usage"]["dimension"]
+
+
+@pytest.mark.asyncio
+async def test_browse_python_api_array_function_flac2d_shape_note_contract() -> None:
+    result = await mcp._tool_manager.call_tool(
+        "flac_browse_python_api",
+        {"api": "itasca.zonearray.pos", "product": "flac2d", "version": "9.0"},
+    )
+    payload = _parse_tool_payload(result)
+    entry = payload["data"]["entries"][0]
+
+    assert payload["ok"] is True
+    assert entry["runtime_usage"]["active_product_shape"] == (
+        "FLAC2D runtime arrays use 2 columns for position/vector values."
+    )
 
 
 @pytest.mark.asyncio
@@ -261,6 +366,7 @@ async def test_python_api_coverage_reports_missing_modules() -> None:
     assert data["matrix"]["flac3d"]["7.0"]["api_entry_count"] >= 500
     assert data["matrix"]["flac3d"]["6.0"]["complete"] is True
     assert data["matrix"]["flac3d"]["6.0"]["api_entry_count"] >= 350
+    assert not _contains_key(data, "docs_dir")
 
 
 @pytest.mark.asyncio
@@ -275,12 +381,17 @@ async def test_command_coverage_reports_product_version_matrix() -> None:
     assert data["bundled"]["command_count"] >= 500
     assert data["matrix"]["flac3d"]["9.0"]["complete"] is True
     assert data["matrix"]["flac3d"]["9.0"]["available_for_product_count"] >= 500
+    assert data["matrix"]["flac3d"]["7.0"]["complete"] is True
+    assert data["matrix"]["flac3d"]["7.0"]["missing_version_count"] == 0
+    assert data["matrix"]["flac3d"]["7.0"]["available_for_product_count"] >= 450
+    assert data["matrix"]["flac3d"]["6.0"]["complete"] is True
+    assert data["matrix"]["flac3d"]["6.0"]["missing_version_count"] == 0
+    assert data["matrix"]["flac3d"]["6.0"]["available_for_product_count"] >= 350
     assert data["matrix"]["flac2d"]["9.0"]["filtered_by_product_count"] >= 1
     assert data["matrix"]["flac2d"]["6.0"]["applicable"] is False
     assert data["matrix"]["flac2d"]["6.0"]["missing_version_count"] == 0
     assert data["matrix"]["flac2d"]["7.0"]["applicable"] is False
     assert data["matrix"]["flac2d"]["7.0"]["missing_version_count"] == 0
-    assert data["matrix"]["flac3d"]["6.0"]["missing_version_count"] >= 1
 
 
 @pytest.mark.asyncio

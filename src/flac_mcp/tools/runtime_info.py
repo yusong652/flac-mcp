@@ -9,7 +9,7 @@ from flac_mcp.bridge import get_bridge_client
 from flac_mcp.contracts import build_ok
 from flac_mcp.formatting import build_bridge_error, build_operation_error, is_bridge_connectivity_error
 
-_RUNTIME_INFO_CODE = r'''
+_RUNTIME_INFO_CODE = r"""
 import json
 import platform
 import re
@@ -60,7 +60,7 @@ if dim_error:
     result["dimension_error"] = dim_error
 
 print(json.dumps(result, sort_keys=True))
-'''
+"""
 
 
 def register(mcp: FastMCP) -> None:

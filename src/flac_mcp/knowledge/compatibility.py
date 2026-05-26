@@ -83,7 +83,10 @@ def product_version_info(product: FLACProduct | str | None, version: str) -> dic
     return dict(
         PRODUCT_VERSION_SOURCES.get(product_value, {}).get(
             str(version),
-            {"applicable": False, "reason": f"Unsupported FLAC product/version combination: {product_value} {version}."},
+            {
+                "applicable": False,
+                "reason": f"Unsupported FLAC product/version combination: {product_value} {version}.",
+            },
         )
     )
 

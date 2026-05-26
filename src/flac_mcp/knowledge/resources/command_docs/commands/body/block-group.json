@@ -10,6 +10,46 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "command": "building-blocks block group",
+      "syntax": "building-blocks block group s <slot s > <remove> <range>",
+      "description": "Assign or remove a group name to blocks. If remove is present, the group name will be removed from blocks in the specified range. If <range> is not supplied, all blocks are affected.",
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 6.0 command indexes",
+        "source_urls": [
+          "https://docs.itascacg.com/pfc600/flac3d/body/doc/manual/buildingblocks_manual/building-blocks_commands/cmd_building-blocks.block.group.html#building-blocks.block.group"
+        ],
+        "syntax_basis": "official FLAC3D 6.0 detailed command page",
+        "target_version": "6.0"
+      }
+    },
+    "7.0": {
+      "command": "building-blocks block group",
+      "syntax": "building-blocks block group s <keyword> <range>",
+      "description": "Assign or remove a group name to blocks. If remove is present, the group name will be removed from blocks in the specified range. If <range> is not supplied, all blocks are affected.",
+      "keywords": [
+        {
+          "name": "slot",
+          "syntax": "slot s",
+          "description": "Assign the group name to slot s."
+        },
+        {
+          "name": "remove",
+          "syntax": "remove",
+          "description": "Remove the group name."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 7.0 contents command index",
+        "source_urls": [
+          "https://docs.itascacg.com/flac3d700/flac3d/body/doc/manual/buildingblocks_manual/building-blocks_commands/cmd_building-blocks.block.group.html"
+        ],
+        "syntax_basis": "official FLAC3D 7.0 detailed command page",
+        "target_version": "7.0"
+      }
+    },
     "9.0": {
       "command": "building-blocks block group",
       "syntax": "building-blocks block group <s>[keyword] [range]",

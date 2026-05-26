@@ -44,7 +44,8 @@ def build_command_coverage() -> dict[str, Any]:
         "known_limits": [
             "Command coverage is measured against the bundled command index.",
             "FLAC2D 6.0/7.0 are marked not applicable in the bundled source matrix.",
-            "FLAC3D 6.0/7.0 rows show missing_version for commands whose bundled docs only include newer versions.",
+            "FLAC3D 6.0/7.0 command availability is verified against official legacy command indexes; commands absent from those indexes are marked unavailable_for_version.",
+            "Some FLAC3D 6.0/7.0 detailed syntax blocks are normalized from bundled 9.0 docs after legacy command availability is verified.",
             "Product compatibility is inferred from 2D/3D markers in bundled docs; runtime validation is still required before executing model code.",
         ],
     }

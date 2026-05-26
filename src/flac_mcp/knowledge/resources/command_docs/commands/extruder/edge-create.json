@@ -10,6 +10,142 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "command": "extrude edge create",
+      "syntax": "extrude edge create keyword",
+      "description": "Creates an edge or a set of edges.",
+      "keywords": [
+        {
+          "name": "automatic",
+          "syntax": "automatic",
+          "description": "Automatically create edges from a background geometry present in a set. The background geometry usually represents an imported CAD geometry (e.g. a DXF or STL files)."
+        },
+        {
+          "name": "by-points",
+          "syntax": "by-points i1 i2 <keyword>",
+          "description": "Create an edge between two points with ID i1 and ID i2."
+        },
+        {
+          "name": "by-points-group",
+          "syntax": "group s1 <slot s2 >",
+          "description": "Assign the created edge the group name s1 (in slot s2 if provided, in slot Default if not)."
+        },
+        {
+          "name": "by-points-ratio",
+          "syntax": "ratio f",
+          "description": "Set the ratio f (a number between 0.1 and 10.1), which is used to distribute zone lengths along the edge (each zone will be f of the size of the zone preceding it). This setting automatically propagates across dependent edges of regular blocks while Ratio-Isolate is false."
+        },
+        {
+          "name": "by-points-ratio-isolate",
+          "syntax": "ratio-isolate b",
+          "description": "The option only applies to the edges which form regular (3- or 4-sided) blocks."
+        },
+        {
+          "name": "by-points-size",
+          "syntax": "size i",
+          "description": "Set the number of zones on the edge. This setting automatically propagates across dependent edges of regular blocks."
+        },
+        {
+          "name": "by-points-type",
+          "syntax": "type keyword",
+          "description": "Specify the curve type of the edge."
+        },
+        {
+          "name": "by-points-type-arc",
+          "syntax": "arc"
+        },
+        {
+          "name": "by-points-type-polyline",
+          "syntax": "polyline"
+        },
+        {
+          "name": "by-points-type-simple",
+          "syntax": "simple",
+          "description": "This is the default type (a line)."
+        },
+        {
+          "name": "by-points-type-spline",
+          "syntax": "spline"
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 6.0 command indexes",
+        "source_urls": [
+          "https://docs.itascacg.com/pfc600/flac3d/extruder/doc/manual/extruder_manual/edge/commands/cmd_extrude.edge.create.html#extrude.edge.create"
+        ],
+        "syntax_basis": "official FLAC3D 6.0 detailed command page",
+        "target_version": "6.0"
+      }
+    },
+    "7.0": {
+      "command": "extrude edge create",
+      "syntax": "extrude edge create keyword",
+      "description": "Creates an edge or a set of edges.",
+      "keywords": [
+        {
+          "name": "automatic",
+          "syntax": "automatic",
+          "description": "Automatically create edges from a background geometry present in a set. The background geometry usually represents an imported CAD geometry (e.g. a DXF or STL files)."
+        },
+        {
+          "name": "by-points",
+          "syntax": "by-points i1 i2 <keyword>",
+          "description": "Create an edge between two points with ID i1 and ID i2."
+        },
+        {
+          "name": "by-points-group",
+          "syntax": "group s1 <slot s2 >",
+          "description": "Assign the created edge the group name s1 (in slot s2 if provided, in slot Default if not)."
+        },
+        {
+          "name": "by-points-ratio",
+          "syntax": "ratio f",
+          "description": "Set the ratio f (a number between 0.1 and 10.1), which is used to distribute zone lengths along the edge (each zone will be f of the size of the zone preceding it). This setting automatically propagates across dependent edges of regular blocks while Ratio-Isolate is false."
+        },
+        {
+          "name": "by-points-ratio-isolate",
+          "syntax": "ratio-isolate b",
+          "description": "The option only applies to the edges which form regular (3- or 4-sided) blocks."
+        },
+        {
+          "name": "by-points-size",
+          "syntax": "size i",
+          "description": "Set the number of zones on the edge. This setting automatically propagates across dependent edges of regular blocks."
+        },
+        {
+          "name": "by-points-type",
+          "syntax": "type keyword",
+          "description": "Specify the curve type of the edge."
+        },
+        {
+          "name": "by-points-type-arc",
+          "syntax": "arc"
+        },
+        {
+          "name": "by-points-type-polyline",
+          "syntax": "polyline"
+        },
+        {
+          "name": "by-points-type-simple",
+          "syntax": "simple",
+          "description": "This is the default type (a line)."
+        },
+        {
+          "name": "by-points-type-spline",
+          "syntax": "spline"
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 7.0 contents command index",
+        "source_urls": [
+          "https://docs.itascacg.com/flac3d700/flac3d/extruder/doc/manual/extruder_manual/edge/commands/cmd_extrude.edge.create.html"
+        ],
+        "syntax_basis": "official FLAC3D 7.0 detailed command page",
+        "target_version": "7.0"
+      }
+    },
     "9.0": {
       "command": "sketch edge create",
       "syntax": "sketch edge create keyword",

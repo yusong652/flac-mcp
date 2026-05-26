@@ -918,7 +918,7 @@
     {
       "name": "work_plastic_vol",
       "signature": "work_plastic_vol ( ) → float.",
-      "description": "Get the zone zone volumetric plastic work dissipated. ⇄ ☰ ⇑ --> PFC 6.0 documentation --> PFC 6.0 documentation » Was this helpful? ... PFC 6.0 © 2019, Itasca Updated: Nov 19, 2021",
+      "description": "Get the zone zone volumetric plastic work dissipated.",
       "returns": {
         "type": "float."
       }

@@ -22,9 +22,7 @@ def register(mcp: FastMCP) -> None:
         limit: SearchLimit = 10,
         product: FLACProduct = Field(
             FLACProduct.ANY,
-            description=(
-                "FLAC product/dimension API index. Use 'flac2d' to search only the FLAC2D API set."
-            ),
+            description=("FLAC product/dimension API index. Use 'flac2d' to search only the FLAC2D API set."),
         ),
         version: CommandDocVersion = Field(
             CommandDocVersion.V9_0,

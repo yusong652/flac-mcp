@@ -124,7 +124,7 @@
     {
       "name": "valid",
       "signature": "valid ( ) → bool.",
-      "description": "Returns True if this interface is live. ⇄ ☰ ⇑ --> FLAC3D 7.0 documentation » Scripting » Python Scripting » itasca » itasca.interface » ⇐ itasca.interface | itasca.interface.element ⇒ Was this helpful? ... FLAC3D © 2019, Itasca Updated: Feb 25, 2024",
+      "description": "Returns True if this interface is live.",
       "returns": {
         "type": "bool."
       }

@@ -10,6 +10,68 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "command": "building-blocks block snapon",
+      "syntax": "building-blocks block snapon id i set s keyword <control-point b > <range>",
+      "description": "Snap a block to a geometric set. Points are translated on blocks that are in the specified <range>, if supplied. If not, all points are translated.",
+      "keywords": [
+        {
+          "name": "edge",
+          "syntax": "edge id i <f >",
+          "description": "The target point is on the edge in the geometric set with id i. The exact location on the edge is defined by float number parameter f. If f = 0.0 the target point is the first (start) point of the edge, if f = 1.0 the target point is the second (end) point of the edge. The default value is f = 0.5 (center of the edge)."
+        },
+        {
+          "name": "point",
+          "syntax": "point id i",
+          "description": "The target point is the point with id i of the geometric set."
+        },
+        {
+          "name": "polygon",
+          "syntax": "polygon id i <(f1, f2)>",
+          "description": "The target point is on the polygon in the geometric set with id i. The exact point on the polygon is defined by two local coordinates (f1, f2) defined in such a way that (0.0,0.0) corresponds to centroid of the polygon. By default (f1, f2) is always set initially to correspond to the centroid of the polygon."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 6.0 command indexes",
+        "source_urls": [
+          "https://docs.itascacg.com/pfc600/flac3d/body/doc/manual/buildingblocks_manual/building-blocks_commands/cmd_building-blocks.block.snapon.id.html#building-blocks.block.snapon"
+        ],
+        "syntax_basis": "official FLAC3D 6.0 detailed command page",
+        "target_version": "6.0"
+      }
+    },
+    "7.0": {
+      "command": "building-blocks block snapon",
+      "syntax": "building-blocks block snapon id i set s keyword <control-point b > <range>",
+      "description": "Snap a block to a geometric set. Points are translated on blocks that are in the specified <range>, if supplied. If not, all points are translated.",
+      "keywords": [
+        {
+          "name": "edge",
+          "syntax": "edge id i <f >",
+          "description": "The target point is on the edge in the geometric set with id i. The exact location on the edge is defined by float number parameter f. If f = 0.0 the target point is the first (start) point of the edge, if f = 1.0 the target point is the second (end) point of the edge. The default value is f = 0.5 (center of the edge)."
+        },
+        {
+          "name": "point",
+          "syntax": "point id i",
+          "description": "The target point is the point with id i of the geometric set."
+        },
+        {
+          "name": "polygon",
+          "syntax": "polygon id i <(f1, f2)>",
+          "description": "The target point is on the polygon in the geometric set with id i. The exact point on the polygon is defined by two local coordinates (f1, f2) defined in such a way that (0.0,0.0) corresponds to centroid of the polygon. By default (f1, f2) is always set initially to correspond to the centroid of the polygon."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 7.0 contents command index",
+        "source_urls": [
+          "https://docs.itascacg.com/flac3d700/flac3d/body/doc/manual/buildingblocks_manual/building-blocks_commands/cmd_building-blocks.block.snapon.id.html"
+        ],
+        "syntax_basis": "official FLAC3D 7.0 detailed command page",
+        "target_version": "7.0"
+      }
+    },
     "9.0": {
       "command": "building-blocks block snapon",
       "syntax": "building-blocks block snapon id <i>set <s>keyword [control-point <b>] [range]",

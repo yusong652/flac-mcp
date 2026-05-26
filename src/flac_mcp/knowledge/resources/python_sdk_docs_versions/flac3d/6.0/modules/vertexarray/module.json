@@ -55,7 +55,7 @@
     {
       "name": "vel",
       "signature": "itasca.vertexarray. vel ( ) → array float{vertex,2}.",
-      "description": "Get a numpy array of the vertex velocity. ⇄ ☰ ⇑ --> PFC 6.0 documentation --> PFC 6.0 documentation » Scripting » Python Scripting » itasca » ⇐ p2pLinkServer | itasca.wall ⇒ Was this helpful? ... PFC 6.0 © 2019, Itasca Updated: Nov 19, 2021",
+      "description": "Get a numpy array of the vertex velocity.",
       "returns": {
         "type": "array float{vertex,2}."
       }

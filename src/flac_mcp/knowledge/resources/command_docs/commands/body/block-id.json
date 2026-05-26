@@ -10,6 +10,48 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "command": "building-blocks block id",
+      "syntax": "building-blocks block id i keyword",
+      "description": "Perform an operation on a block (by ID). The operation is performed on block ID i in the current building blocks set.",
+      "keywords": [
+        {
+          "name": "split",
+          "syntax": "split face-id i2 v1 v2",
+          "description": "Split a block. The splitting is defined by the splitting line on a block face with id i2. The splitting line is defined by the points v1 and v2."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 6.0 command indexes",
+        "source_urls": [
+          "https://docs.itascacg.com/pfc600/flac3d/body/doc/manual/buildingblocks_manual/building-blocks_commands/cmd_building-blocks.block.id.html#building-blocks.block.id"
+        ],
+        "syntax_basis": "official FLAC3D 6.0 detailed command page",
+        "target_version": "6.0"
+      }
+    },
+    "7.0": {
+      "command": "building-blocks block id",
+      "syntax": "building-blocks block id i keyword",
+      "description": "Perform an operation on a block (by ID). The operation is performed on block ID i in the current building blocks set.",
+      "keywords": [
+        {
+          "name": "split",
+          "syntax": "split face-id i2 v1 v2",
+          "description": "Split a block. The splitting is defined by the splitting line on a block face with id i2. The splitting line is defined by the points v1 and v2."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 7.0 contents command index",
+        "source_urls": [
+          "https://docs.itascacg.com/flac3d700/flac3d/body/doc/manual/buildingblocks_manual/building-blocks_commands/cmd_building-blocks.block.id.html"
+        ],
+        "syntax_basis": "official FLAC3D 7.0 detailed command page",
+        "target_version": "7.0"
+      }
+    },
     "9.0": {
       "command": "building-blocks block id",
       "syntax": "building-blocks block id <i>keyword",

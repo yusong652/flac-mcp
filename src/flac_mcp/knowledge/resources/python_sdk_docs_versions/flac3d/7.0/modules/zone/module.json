@@ -279,7 +279,7 @@
     {
       "name": "unbal",
       "signature": "itasca.zone. unbal ( ) → float.",
-      "description": "Get the current maximum unbalanced force on any gridpoint in the model. Classes Zone ⇄ ☰ ⇑ --> FLAC3D 7.0 documentation » Scripting » Python Scripting » FLAC3D Python » ⇐ itasca.vertexarray | Zone ⇒ Was this helpful? ... FLAC3D © 2019, Itasca Updated: Feb 25, 2024",
+      "description": "Get the current maximum unbalanced force on any gridpoint in the model.",
       "returns": {
         "type": "float."
       }

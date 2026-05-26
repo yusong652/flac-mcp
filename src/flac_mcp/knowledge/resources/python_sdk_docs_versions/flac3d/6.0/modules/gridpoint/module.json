@@ -39,7 +39,7 @@
     {
       "name": "near",
       "signature": "itasca.gridpoint. near ( point: vec ) → Gridpoint object.",
-      "description": "Find the closest gridpoint to a point. Classes Gridpoint ⇄ ☰ ⇑ --> PFC 6.0 documentation --> PFC 6.0 documentation » Was this helpful? ... PFC 6.0 © 2019, Itasca Updated: Nov 19, 2021",
+      "description": "Find the closest gridpoint to a point.",
       "returns": {
         "type": "Gridpoint object."
       }

@@ -10,6 +10,76 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "available": false,
+      "reason": "Not listed in the official FLAC3D 6.0 command indexes.",
+      "source_urls": [
+        "https://docs.itascacg.com/pfc600/flac3d/docproject/source/elements/command_summary.html",
+        "https://docs.itascacg.com/pfc600/flac3d/sel/doc/manual/sel_manual/sel_commands/sel_commands.html"
+      ],
+      "target_version": "6.0"
+    },
+    "7.0": {
+      "command": "building-blocks face id",
+      "syntax": "building-blocks face id i keyword",
+      "description": "Modify the properties of a face. In the current building block set the face with ID i will be modified.",
+      "keywords": [
+        {
+          "name": "control-point",
+          "syntax": "control-point keyword",
+          "description": "Modify control points of the face."
+        },
+        {
+          "name": "control-point-add",
+          "syntax": "add i1 i2",
+          "description": "Add a face control points (CPs) grid of size i1 X i2 that represent bicubic spline interpolation of the face curvature. If the face had alredy CPs, the grid will be replaced. The non negative parameters i1 and i2 can be (0,2,3,..,20). If both of them ara 0 (zero) CPs will be removed."
+        },
+        {
+          "name": "control-point-delete",
+          "syntax": "delete",
+          "description": "Delete the control points grid from the face."
+        },
+        {
+          "name": "control-point-move",
+          "syntax": "move v index (i1, i2)",
+          "description": "Move the control point defined by a pair of indexes (i1, i2) on the CP grid to new position defined by vector v."
+        },
+        {
+          "name": "control-point-rotate",
+          "syntax": "rotate origin v_1 direction v_2 angle f indices (i1, i2) <(i3, i4)>...",
+          "description": "Rotate control points of the face defined by indices using an angle of rotation f (in degrees) around axis of rotation defined by the origin point v_1 and direction vector v_2."
+        },
+        {
+          "name": "control-point-translate",
+          "syntax": "translate v indices (i1, i2) <(i3, i4)>...",
+          "description": "Translate control points identified by indices by adding v to each position."
+        },
+        {
+          "name": "type",
+          "syntax": "type keyword",
+          "description": "Specify the curve-type of the face. Can be non-curved or bi-cubic-spline."
+        },
+        {
+          "name": "type-non-curved",
+          "syntax": "non-curved",
+          "description": "Specify non-curved face."
+        },
+        {
+          "name": "type-bi-cubic-spline",
+          "syntax": "bi-cubic-spline",
+          "description": "Specify a bi-cubic-spline face."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 7.0 contents command index",
+        "source_urls": [
+          "https://docs.itascacg.com/flac3d700/flac3d/body/doc/manual/buildingblocks_manual/building-blocks_commands/cmd_building-blocks.face.id.html"
+        ],
+        "syntax_basis": "official FLAC3D 7.0 detailed command page",
+        "target_version": "7.0"
+      }
+    },
     "9.0": {
       "command": "building-blocks face id",
       "syntax": "building-blocks face id <i>keyword",

@@ -152,17 +152,17 @@
           "python_available": false
         },
         {
-          "name": "edge-ratio-isolate",
-          "file": "commands/body/edge-ratio-isolate.json",
-          "short_description": "Determine whether zone ratios or factors propagate",
-          "syntax": "building-blocks edge ratio-isolate <b>[range]",
-          "python_available": false
-        },
-        {
           "name": "edge-ratio",
           "file": "commands/body/edge-ratio.json",
           "short_description": "Apply a sizing ratio to zones on edges",
           "syntax": "building-blocks edge ratio <f>[range]",
+          "python_available": false
+        },
+        {
+          "name": "edge-ratio-isolate",
+          "file": "commands/body/edge-ratio-isolate.json",
+          "short_description": "Determine whether zone ratios or factors propagate",
+          "syntax": "building-blocks edge ratio-isolate <b>[range]",
           "python_available": false
         },
         {
@@ -758,6 +758,13 @@
           "python_available": false
         },
         {
+          "name": "edge-ratio",
+          "file": "commands/extruder/edge-ratio.json",
+          "short_description": "Set the ratio",
+          "syntax": "sketch edge ratio <f>keyword [range]",
+          "python_available": false
+        },
+        {
           "name": "edge-ratio-isolate",
           "file": "commands/extruder/edge-ratio-isolate.json",
           "short_description": "This keyword only applies to edges that form regular (3- or 4-sided) blocks",
@@ -772,10 +779,10 @@
           "python_available": false
         },
         {
-          "name": "edge-ratio",
-          "file": "commands/extruder/edge-ratio.json",
-          "short_description": "Set the ratio",
-          "syntax": "sketch edge ratio <f>keyword [range]",
+          "name": "edge-size",
+          "file": "commands/extruder/edge-size.json",
+          "short_description": "Set the number of zones on the edge",
+          "syntax": "sketch edge size <i>[range]",
           "python_available": false
         },
         {
@@ -786,10 +793,10 @@
           "python_available": false
         },
         {
-          "name": "edge-size",
-          "file": "commands/extruder/edge-size.json",
-          "short_description": "Set the number of zones on the edge",
-          "syntax": "sketch edge size <i>[range]",
+          "name": "edge-zone-length",
+          "file": "commands/extruder/edge-zone-length.json",
+          "short_description": "Set the length of zones on the edge",
+          "syntax": "sketch edge zone-length <f>[range]",
           "python_available": false
         },
         {
@@ -797,13 +804,6 @@
           "file": "commands/extruder/edge-zone-length-default.json",
           "short_description": "Set the default length of zones on the edge",
           "syntax": "sketch edge zone-length-default <f>",
-          "python_available": false
-        },
-        {
-          "name": "edge-zone-length",
-          "file": "commands/extruder/edge-zone-length.json",
-          "short_description": "Set the length of zones on the edge",
-          "syntax": "sketch edge zone-length <f>[range]",
           "python_available": false
         },
         {
@@ -1052,13 +1052,6 @@
           "python_available": false
         },
         {
-          "name": "segment-ratio-reverse",
-          "file": "commands/extruder/segment-ratio-reverse.json",
-          "short_description": "The ratio direction is reversed on the segments",
-          "syntax": "sketch segment ratio-reverse [range]",
-          "python_available": false
-        },
-        {
           "name": "segment-ratio",
           "file": "commands/extruder/segment-ratio.json",
           "short_description": "Set the ratio",
@@ -1066,10 +1059,10 @@
           "python_available": false
         },
         {
-          "name": "segment-size-default",
-          "file": "commands/extruder/segment-size-default.json",
-          "short_description": "Set the default number of zones on the segment",
-          "syntax": "sketch segment size-default <i>",
+          "name": "segment-ratio-reverse",
+          "file": "commands/extruder/segment-ratio-reverse.json",
+          "short_description": "The ratio direction is reversed on the segments",
+          "syntax": "sketch segment ratio-reverse [range]",
           "python_available": false
         },
         {
@@ -1080,10 +1073,10 @@
           "python_available": false
         },
         {
-          "name": "segment-zone-length-default",
-          "file": "commands/extruder/segment-zone-length-default.json",
-          "short_description": "Set the default length of zones on the segment",
-          "syntax": "sketch segment zone-length-default <f>",
+          "name": "segment-size-default",
+          "file": "commands/extruder/segment-size-default.json",
+          "short_description": "Set the default number of zones on the segment",
+          "syntax": "sketch segment size-default <i>",
           "python_available": false
         },
         {
@@ -1091,6 +1084,13 @@
           "file": "commands/extruder/segment-zone-length.json",
           "short_description": "Set the length of zones on the segments",
           "syntax": "sketch segment zone-length <f>[range]",
+          "python_available": false
+        },
+        {
+          "name": "segment-zone-length-default",
+          "file": "commands/extruder/segment-zone-length-default.json",
+          "short_description": "Set the default length of zones on the segment",
+          "syntax": "sketch segment zone-length-default <f>",
           "python_available": false
         },
         {
@@ -2330,17 +2330,17 @@
           "python_available": false
         },
         {
-          "name": "echo-line",
-          "file": "commands/program/echo-line.json",
-          "short_description": "Specify output to echo to the console",
-          "syntax": "program echo-line <s>",
-          "python_available": false
-        },
-        {
           "name": "echo",
           "file": "commands/program/echo.json",
           "short_description": "Set the echo state",
           "syntax": "program echo keyword",
+          "python_available": false
+        },
+        {
+          "name": "echo-line",
+          "file": "commands/program/echo-line.json",
+          "short_description": "Specify output to echo to the console",
+          "syntax": "program echo-line <s>",
           "python_available": false
         },
         {
@@ -2386,17 +2386,17 @@
           "python_available": false
         },
         {
-          "name": "log-file",
-          "file": "commands/program/log-file.json",
-          "short_description": "Specify the log file by name",
-          "syntax": "program log-file <s>",
-          "python_available": false
-        },
-        {
           "name": "log",
           "file": "commands/program/log.json",
           "short_description": "Turn on/off logging",
           "syntax": "program log <b>[keyword ...]",
+          "python_available": false
+        },
+        {
+          "name": "log-file",
+          "file": "commands/program/log-file.json",
+          "short_description": "Specify the log file by name",
+          "syntax": "program log-file <s>",
           "python_available": false
         },
         {
@@ -2528,17 +2528,17 @@
           "python_available": false
         },
         {
-          "name": "save-plugins",
-          "file": "commands/project/save-plugins.json",
-          "short_description": "Save the currently loaded plugins with the project file",
-          "syntax": "project save-plugins <b>",
-          "python_available": false
-        },
-        {
           "name": "save",
           "file": "commands/project/save.json",
           "short_description": "Save the current project to a file",
           "syntax": "project save <s>",
+          "python_available": false
+        },
+        {
+          "name": "save-plugins",
+          "file": "commands/project/save-plugins.json",
+          "short_description": "Save the currently loaded plugins with the project file",
+          "syntax": "project save-plugins <b>",
           "python_available": false
         }
       ]
@@ -2633,17 +2633,17 @@
           "python_available": false
         },
         {
-          "name": "beam-property-{elastic}",
-          "file": "commands/structure/beam-property-{elastic}.json",
-          "short_description": "Young’s modulus, \\(E\\)",
-          "syntax": "elastic",
-          "python_available": false
-        },
-        {
           "name": "beam-property",
           "file": "commands/structure/beam-property.json",
           "short_description": "Assigns properties to beam elements in the range",
           "syntax": "structure beam property keyword ... [range]",
+          "python_available": false
+        },
+        {
+          "name": "beam-property-{elastic}",
+          "file": "commands/structure/beam-property-{elastic}.json",
+          "short_description": "Young’s modulus, \\(E\\)",
+          "syntax": "elastic",
           "python_available": false
         },
         {
@@ -3445,17 +3445,17 @@
           "python_available": false
         },
         {
-          "name": "shell-property-{elastic}",
-          "file": "commands/structure/shell-property-{elastic}.json",
-          "short_description": "Young’s modulus, \\(E\\)",
-          "syntax": "elastic",
-          "python_available": false
-        },
-        {
           "name": "shell-property",
           "file": "commands/structure/shell-property.json",
           "short_description": "Assigns properties to shell elements in the range",
           "syntax": "structure shell property keyword ... [range]",
+          "python_available": false
+        },
+        {
+          "name": "shell-property-{elastic}",
+          "file": "commands/structure/shell-property-{elastic}.json",
+          "short_description": "Young’s modulus, \\(E\\)",
+          "syntax": "elastic",
           "python_available": false
         },
         {
@@ -3598,17 +3598,17 @@
       ],
       "commands": [
         {
-          "name": "apply-remove",
-          "file": "commands/zone/apply-remove.json",
-          "short_description": "Remove a zone condition",
-          "syntax": "zone apply-remove [keyword] [range]",
-          "python_available": false
-        },
-        {
           "name": "apply",
           "file": "commands/zone/apply.json",
           "short_description": "Create or modify zone apply conditions",
           "syntax": "zone apply keyword [range]",
+          "python_available": false
+        },
+        {
+          "name": "apply-remove",
+          "file": "commands/zone/apply-remove.json",
+          "short_description": "Remove a zone condition",
+          "syntax": "zone apply-remove [keyword] [range]",
           "python_available": false
         },
         {
@@ -3689,17 +3689,17 @@
           "python_available": false
         },
         {
-          "name": "face-apply-remove",
-          "file": "commands/zone/face-apply-remove.json",
-          "short_description": "Remove zone face apply conditions, which are described in the documentation for that command",
-          "syntax": "zone face apply-remove [keyword] [range]",
-          "python_available": false
-        },
-        {
           "name": "face-apply",
           "file": "commands/zone/face-apply.json",
           "short_description": "This command is used to apply boundary conditions at surface faces of the model",
           "syntax": "zone face apply keyword [range]",
+          "python_available": false
+        },
+        {
+          "name": "face-apply-remove",
+          "file": "commands/zone/face-apply-remove.json",
+          "short_description": "Remove zone face apply conditions, which are described in the documentation for that command",
+          "syntax": "zone face apply-remove [keyword] [range]",
           "python_available": false
         },
         {
@@ -3738,17 +3738,17 @@
           "python_available": false
         },
         {
-          "name": "face-westergaard-remove",
-          "file": "commands/zone/face-westergaard-remove.json",
-          "short_description": "Removes any applied westergaard condition on the faces in the range",
-          "syntax": "zone face westergaard-remove [range]",
-          "python_available": false
-        },
-        {
           "name": "face-westergaard",
           "file": "commands/zone/face-westergaard.json",
           "short_description": "Applies the Westergaard approximation for the dynamic response of water to the surface faces in t...",
           "syntax": "zone face westergaard [keyword ...] [range]",
+          "python_available": false
+        },
+        {
+          "name": "face-westergaard-remove",
+          "file": "commands/zone/face-westergaard-remove.json",
+          "short_description": "Removes any applied westergaard condition on the faces in the range",
+          "syntax": "zone face westergaard-remove [range]",
           "python_available": false
         },
         {
@@ -3784,6 +3784,13 @@
           "file": "commands/zone/geometry-update.json",
           "short_description": "Set a specific interval of steps at which to update zone geometry and property changes in large s...",
           "syntax": "zone geometry-update <i>",
+          "python_available": false
+        },
+        {
+          "name": "gridpoint",
+          "file": "commands/zone/gridpoint.json",
+          "short_description": "For each gridpoint in the range, in each of the the specified degree-of-freedoms, checks if the g...",
+          "syntax": "zone gridpoint [keyword] [range]",
           "python_available": false
         },
         {
@@ -3850,13 +3857,6 @@
           "python_available": false
         },
         {
-          "name": "gridpoint",
-          "file": "commands/zone/gridpoint.json",
-          "short_description": "For each gridpoint in the range, in each of the the specified degree-of-freedoms, checks if the g...",
-          "syntax": "zone gridpoint [keyword] [range]",
-          "python_available": false
-        },
-        {
           "name": "group",
           "file": "commands/zone/group.json",
           "short_description": "Add group name s to the zones in the range",
@@ -3885,17 +3885,17 @@
           "python_available": false
         },
         {
-          "name": "initialize-stresses",
-          "file": "commands/zone/initialize-stresses.json",
-          "short_description": "Initialize zone stresses based on the density of the zones above them and gravity",
-          "syntax": "zone initialize-stresses keyword [range]",
-          "python_available": false
-        },
-        {
           "name": "initialize",
           "file": "commands/zone/initialize.json",
           "short_description": "Initialize a variable on all zones in the range",
           "syntax": "zone initialize keyword [range]",
+          "python_available": false
+        },
+        {
+          "name": "initialize-stresses",
+          "file": "commands/zone/initialize-stresses.json",
+          "short_description": "Initialize zone stresses based on the density of the zones above them and gravity",
+          "syntax": "zone initialize-stresses keyword [range]",
           "python_available": false
         },
         {
@@ -3976,17 +3976,17 @@
           "python_available": false
         },
         {
-          "name": "property-distribution",
-          "file": "commands/zone/property-distribution.json",
-          "short_description": "Modify a zone constitutive model property",
-          "syntax": "zone property-distribution [[property] <fvalue>] keyword ... [range]",
-          "python_available": false
-        },
-        {
           "name": "property",
           "file": "commands/zone/property.json",
           "short_description": "Make a constitutive model(s) property assignment",
           "syntax": "zone property [density <f>] keyword ... [range]",
+          "python_available": false
+        },
+        {
+          "name": "property-distribution",
+          "file": "commands/zone/property-distribution.json",
+          "short_description": "Modify a zone constitutive model property",
+          "syntax": "zone property-distribution [[property] <fvalue>] keyword ... [range]",
           "python_available": false
         },
         {

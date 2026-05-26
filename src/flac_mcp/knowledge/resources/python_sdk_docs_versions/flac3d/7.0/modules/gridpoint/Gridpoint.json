@@ -925,7 +925,7 @@
     {
       "name": "zones",
       "signature": "zones ( ) → tuple of Zone objects.",
-      "description": "Get a tuple of the zones attached to this gridpoint. ⇄ ☰ ⇑ --> FLAC3D 7.0 documentation » Scripting » Python Scripting » FLAC3D Python » itasca.gridpoint » ⇐ itasca.gridpoint | itasca.gridpointarray ⇒ Was this helpful? ... FLAC3D © 2019, Itasca Updated: Feb 25, 2024",
+      "description": "Get a tuple of the zones attached to this gridpoint.",
       "returns": {
         "type": "tuple of Zone objects."
       }

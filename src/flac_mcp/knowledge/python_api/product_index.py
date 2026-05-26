@@ -120,7 +120,7 @@ def source_info(product: str, version: str) -> dict[str, Any]:
     info = dict(PYTHON_API_SOURCES.get(product_value, {}).get(version_value, {"applicable": False, "bundled": False}))
     if info.get("applicable") and versioned_docs_dir(product_value, version_value).exists():
         info["bundled"] = True
-        info["docs_dir"] = str(versioned_docs_dir(product_value, version_value))
+        info["bundled_resource"] = f"python_sdk_docs_versions/{product_value}/{version_value}"
     return info
 
 

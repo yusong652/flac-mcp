@@ -12,6 +12,41 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "available": false,
+      "reason": "Not listed in the official FLAC3D 6.0 command indexes.",
+      "source_urls": [
+        "https://docs.itascacg.com/pfc600/flac3d/docproject/source/elements/command_summary.html",
+        "https://docs.itascacg.com/pfc600/flac3d/sel/doc/manual/sel_manual/sel_commands/sel_commands.html"
+      ],
+      "target_version": "6.0"
+    },
+    "7.0": {
+      "command": "building-blocks face add-controls",
+      "syntax": "building-blocks face add-controls keyword <no-edges-cp> <range>",
+      "description": "Add control points to faces. Control points are added on all faces in the current building blocks set if <range> is not supplied.",
+      "keywords": [
+        {
+          "name": "adummy",
+          "syntax": "i",
+          "description": "Add exactly i X i control points (grid) per each face (i must be a positive integer 0,2,3,…,20). Added control points will be evenly spaced. Also will add i CPs per each internal edge from the list of the faces. If i = 0 control points are removed."
+        },
+        {
+          "name": "no-edges-cp",
+          "syntax": "no-edges-cp",
+          "description": "Optional. Skip adding-removing CPs to-from edges."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 7.0 contents command index",
+        "source_urls": [
+          "https://docs.itascacg.com/flac3d700/flac3d/body/doc/manual/buildingblocks_manual/building-blocks_commands/cmd_building-blocks.face.add-controls.html"
+        ],
+        "syntax_basis": "official FLAC3D 7.0 detailed command page",
+        "target_version": "7.0"
+      }
+    },
     "9.0": {
       "command": "building-blocks face add-controls",
       "syntax": "building-blocks face add-controls keyword [no-edges-cp] [range]",

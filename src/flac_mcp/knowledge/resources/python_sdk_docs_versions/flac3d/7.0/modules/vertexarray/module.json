@@ -55,7 +55,7 @@
     {
       "name": "vel",
       "signature": "itasca.vertexarray. vel ( ) → array float{vertex,3}.",
-      "description": "Get a numpy array of the vertex velocity. ⇄ ☰ ⇑ --> FLAC3D 7.0 documentation » Scripting » Python Scripting » FLAC3D Python » ⇐ itasca.gridpointarray | itasca.zone ⇒ Was this helpful? ... FLAC3D © 2019, Itasca Updated: Feb 25, 2024",
+      "description": "Get a numpy array of the vertex velocity.",
       "returns": {
         "type": "array float{vertex,3}."
       }

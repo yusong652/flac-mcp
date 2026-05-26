@@ -124,7 +124,7 @@
     {
       "name": "vertex",
       "signature": "vertex ( i: int ) → Vertex pointer.",
-      "description": "Pointer to the vertex associated with the interface element where i=1,2,3. ⇄ ☰ ⇑ --> FLAC3D 7.0 documentation » Scripting » Python Scripting » itasca » itasca.interface » itasca.interface.element » ⇐ itasca.interface.element | itasca.interface.node ⇒ Was this helpful? ... FLAC3D © 2019, Itasca Updated: Feb 25, 2024",
+      "description": "Pointer to the vertex associated with the interface element where i=1,2,3.",
       "returns": {
         "type": "Vertex pointer."
       }

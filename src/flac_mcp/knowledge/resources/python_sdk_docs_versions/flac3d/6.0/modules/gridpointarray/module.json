@@ -199,7 +199,7 @@
     {
       "name": "zones",
       "signature": "itasca.gridpointarray. zones ( ) → tuple of tuples of int.",
-      "description": "Return the indices of the zones which each gridpoint is attached to. The indices are relative to the arrays returned by the zonearray interface functions. Note that the return type is not a numpy array in this case. ⇄ ☰ ⇑ --> PFC 6.0 documentation --> PFC 6.0 documentation » Was this helpful? ... PFC 6.0 © 2019, Itasca Updated: Nov 19, 2021",
+      "description": "Return the indices of the zones which each gridpoint is attached to. The indices are relative to the arrays returned by the zonearray interface functions. Note that the return type is not a numpy array in this case.",
       "returns": {
         "type": "tuple of tuples of int."
       }

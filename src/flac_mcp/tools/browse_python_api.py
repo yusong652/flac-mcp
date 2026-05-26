@@ -5,7 +5,7 @@ from typing import Any
 from fastmcp import FastMCP
 from pydantic import Field
 
-from flac_mcp.contracts import build_docs_data, build_error, build_ok
+from flac_mcp.contracts import build_docs_data, build_error, build_ok, wrap_payload
 from flac_mcp.knowledge.compatibility import FLACProduct, normalize_product
 from flac_mcp.knowledge.python_api import APILoader
 from flac_mcp.knowledge.python_api.product_index import normalize_api_version, source_info
@@ -32,9 +32,7 @@ def register(mcp: FastMCP) -> None:
         ),
         product: FLACProduct = Field(
             FLACProduct.ANY,
-            description=(
-                "FLAC product/dimension API index. Use 'flac2d' to browse the FLAC2D API set."
-            ),
+            description=("FLAC product/dimension API index. Use 'flac2d' to browse the FLAC2D API set."),
         ),
         version: CommandDocVersion = Field(
             CommandDocVersion.V9_0,
@@ -62,19 +60,19 @@ def register(mcp: FastMCP) -> None:
             return build_ok(_browse_root(product_value, version_value))
 
         if normalized == "itasca":
-            return _wrap_payload(_browse_module("itasca", product_value, version_value))
+            return wrap_payload(_browse_module("itasca", product_value, version_value))
 
         parsed = _parse_api_path(normalized, product_value, version_value)
 
         if parsed["type"] == "error":
-            return _wrap_payload(_browse_with_fallback(parsed, normalized, product_value, version_value))
+            return wrap_payload(_browse_with_fallback(parsed, normalized, product_value, version_value))
 
         if parsed["type"] == "module":
             payload = _browse_module(parsed["module_path"], product_value, version_value)
-            return _wrap_payload(payload)
+            return wrap_payload(payload)
         if parsed["type"] == "function":
             payload = _browse_function(parsed["module_path"], parsed["name"], product_value, version_value)
-            return _wrap_payload(payload)
+            return wrap_payload(payload)
         if parsed["type"] == "object":
             payload = _browse_object(
                 parsed["module_path"],
@@ -83,7 +81,7 @@ def register(mcp: FastMCP) -> None:
                 product_value,
                 version_value,
             )
-            return _wrap_payload(payload)
+            return wrap_payload(payload)
         if parsed["type"] == "method":
             payload = _browse_method(
                 parsed["module_path"],
@@ -93,7 +91,7 @@ def register(mcp: FastMCP) -> None:
                 product_value,
                 version_value,
             )
-            return _wrap_payload(payload)
+            return wrap_payload(payload)
 
         return build_error(
             code="unknown_parse_type",
@@ -195,6 +193,30 @@ def _format_module_path(index_key: str) -> str:
     return f"itasca.{index_key}"
 
 
+def _runtime_usage_note(module_path: str, product: str = FLACProduct.ANY.value) -> dict[str, str] | None:
+    parts = module_path.split(".")
+    if len(parts) == 2 and parts[1].endswith("array"):
+        attr = parts[1]
+        note = {
+            "access": f"import itasca as it; it.{attr}.<function>(...)",
+            "note": (
+                "FLAC exposes this API as an attribute on the itasca extension module at runtime; "
+                f"do not use 'import itasca.{attr}'."
+            ),
+        }
+        if attr in {"zonearray", "gridpointarray"}:
+            note["dimension"] = (
+                "Position and vector arrays follow the active product dimension at runtime: "
+                "FLAC2D returns two components, FLAC3D returns three components."
+            )
+            if product == FLACProduct.FLAC2D.value:
+                note["active_product_shape"] = "FLAC2D runtime arrays use 2 columns for position/vector values."
+            elif product == FLACProduct.FLAC3D.value:
+                note["active_product_shape"] = "FLAC3D runtime arrays use 3 columns for position/vector values."
+        return note
+    return None
+
+
 def _extract_function_names(functions: list[Any]) -> list[str]:
     names: list[str] = []
     for func in functions:
@@ -207,6 +229,10 @@ def _extract_function_names(functions: list[Any]) -> list[str]:
     return names
 
 
+def _module_summary(module_data: dict[str, Any]) -> dict[str, Any]:
+    return {key: value for key, value in module_data.items() if key != "functions"}
+
+
 def _browse_root(product: str, version: str) -> dict[str, Any]:
     index = APILoader.load_index(product, version)
     modules = index.get("modules", {})
@@ -214,14 +240,17 @@ def _browse_root(product: str, version: str) -> dict[str, Any]:
 
     module_items: list[dict[str, Any]] = []
     for module_key, module_info in modules.items():
-        module_items.append(
-            {
-                "entry_type": "module",
-                "path": _format_module_path(module_key),
-                "description": module_info.get("description", ""),
-                "function_count": len(module_info.get("functions", [])),
-            }
-        )
+        path = _format_module_path(module_key)
+        entry = {
+            "entry_type": "module",
+            "path": path,
+            "description": module_info.get("description", ""),
+            "function_count": len(module_info.get("functions", [])),
+        }
+        runtime_usage = _runtime_usage_note(path, product)
+        if runtime_usage:
+            entry["runtime_usage"] = runtime_usage
+        module_items.append(entry)
 
     object_items: list[dict[str, Any]] = []
     for object_name, object_info in objects.items():
@@ -276,19 +305,24 @@ def _browse_module(module_path: str, product: str, version: str) -> dict[str, An
 
     function_names = _extract_function_names(module_data.get("functions", []))
 
+    summary = {
+        "count": len(function_names),
+        "module_path": module_path,
+        "module": _module_summary(module_data),
+        "related_objects": sorted(related_objects),
+        "product": product,
+        "version": version,
+        "source": index.get("source", {}),
+    }
+    runtime_usage = _runtime_usage_note(module_path, product)
+    if runtime_usage:
+        summary["runtime_usage"] = runtime_usage
+
     return build_docs_data(
         source="python_api",
         action="browse",
         entries=[{"entry_type": "function", "name": name} for name in function_names],
-        summary={
-            "count": len(function_names),
-            "module_path": module_path,
-            "module": module_data,
-            "related_objects": sorted(related_objects),
-            "product": product,
-            "version": version,
-            "source": index.get("source", {}),
-        },
+        summary=summary,
     )
 
 
@@ -316,17 +350,20 @@ def _browse_function(module_path: str, func_name: str, product: str, version: st
             "available_functions": available_functions,
         }
 
+    entry = {
+        "module_path": module_path,
+        "function": func_name,
+        "availability": func_doc.get("availability", {}),
+        "doc": func_doc,
+    }
+    runtime_usage = _runtime_usage_note(module_path, product)
+    if runtime_usage:
+        entry["runtime_usage"] = runtime_usage
+
     return build_docs_data(
         source="python_api",
         action="browse",
-        entries=[
-            {
-                "module_path": module_path,
-                "function": func_name,
-                "availability": func_doc.get("availability", {}),
-                "doc": func_doc,
-            }
-        ],
+        entries=[entry],
         summary={"count": 1, "product": product, "version": version},
     )
 
@@ -462,15 +499,3 @@ def _browse_with_fallback(parsed: dict[str, Any], requested_api: str, product: s
         "fallback_path": fallback_path or "itasca",
         "available_modules": available_modules,
     }
-
-
-def _wrap_payload(payload: dict[str, Any]) -> dict[str, Any]:
-    if "error" in payload:
-        err = payload.get("error") or {}
-        details = {k: v for k, v in payload.items() if k != "error"}
-        return build_error(
-            code=str(err.get("code") or "browse_error"),
-            message=str(err.get("message") or "Browse failed"),
-            details=details or None,
-        )
-    return build_ok(payload)

@@ -183,7 +183,7 @@
     {
       "name": "vel",
       "signature": "itasca.interfacenodearray. vel ( ) → array float{nnode, 3}.",
-      "description": "Get array with velocity of the node. ⇄ ☰ ⇑ --> FLAC3D 7.0 documentation » Scripting » Python Scripting » itasca » ⇐ itasca.interfaceelementarray | itasca.structure ⇒ Was this helpful? ... FLAC3D © 2019, Itasca Updated: Feb 25, 2024",
+      "description": "Get array with velocity of the node.",
       "returns": {
         "type": "array float{nnode, 3}."
       }

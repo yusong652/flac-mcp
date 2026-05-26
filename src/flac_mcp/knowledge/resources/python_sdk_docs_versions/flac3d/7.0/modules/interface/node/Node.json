@@ -492,7 +492,7 @@
     {
       "name": "vel_z_set",
       "signature": "vel_z_set ( float ) → None.",
-      "description": "Set z-component of the velocity vector for the interface node. ⇄ ☰ ⇑ --> FLAC3D 7.0 documentation » Scripting » Python Scripting » itasca » itasca.interface » itasca.interface.node » ⇐ itasca.interface.node | itasca.interfacearray ⇒ Was this helpful? ... FLAC3D © 2019, Itasca Updated: Feb 25, 2024",
+      "description": "Set z-component of the velocity vector for the interface node.",
       "returns": {
         "type": "None."
       }

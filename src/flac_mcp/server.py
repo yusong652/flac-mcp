@@ -24,6 +24,7 @@ from flac_mcp.tools import (
     query_command,
     query_python_api,
     runtime_info,
+    runtime_validation,
 )
 
 mcp = FastMCP(
@@ -54,6 +55,7 @@ list_tasks.register(mcp)
 interrupt_task.register(mcp)
 execute_code.register(mcp)
 runtime_info.register(mcp)
+runtime_validation.register(mcp)
 
 
 def main() -> None:

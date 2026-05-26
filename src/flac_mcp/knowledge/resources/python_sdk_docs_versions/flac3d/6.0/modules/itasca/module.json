@@ -391,7 +391,7 @@
     {
       "name": "timestep",
       "signature": "itasca. timestep ( ) → float.",
-      "description": "Get the global timestep. Sub-modules attach Attach contact Contact dfn DFN fracture Fracture inter Inter setinter Setinter vertex Vertex fish gridpoint Gridpoint gridpointarray structure Beam Cable Geogrid Liner Pile Shell link Link node Node template Template util FLAC3D_Connection FLAC_Connection FishBinaryReader FishBinaryWriter PFC2D_Connection PFC3D_Connection UDECFishBinaryReader UDECFishBinaryWriter UDEC_Connection p2pLinkClient p2pLinkServer threeDEC_Connection zone Zone zonearray ⇄ ☰ ⇑ --> PFC 6.0 documentation --> PFC 6.0 documentation » Was this helpful? ... PFC 6.0 © 2019, Itasca Updated: Nov 19, 2021",
+      "description": "Get the global timestep.",
       "returns": {
         "type": "float."
       }

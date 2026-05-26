@@ -18,6 +18,8 @@
           "description": "Load constitutive model DLLs. The plugin file prefix is model . The additional model will appear in the list of available models by executing the zone cmodel list command in FLAC3D ."
         },
         {
+          "name": "contactmodelmechanical",
+          "syntax": "contactmodelmechanical",
           "description": "Load mechanical contact model DLLs."
         },
         {
@@ -67,6 +69,8 @@
           "description": "Load constitutive model DLLs. The plugin file prefix is model . The additional model will appear in the list of available models by executing the zone cmodel list command in FLAC3D ."
         },
         {
+          "name": "contactmodelmechanical",
+          "syntax": "contactmodelmechanical",
           "description": "Load mechanical contact model DLLs."
         },
         {
@@ -90,17 +94,17 @@
           "description": "Load framework plot item DLLs. The plugin file prefix is plotitem3d in 3d and plotitem2d in 2d."
         },
         {
-          "name": "kwd:adummy",
+          "name": "s",
           "syntax": "<s>",
           "description": "Load the plugin DLL file named s . Either the full file name can be given, or the code will attempt to find a name matching the pattern “prefixname005.dll” where s = name and the prefix matches the plugin type. If a full path is not given, the code will look in the executable directory and all subdirectories as well as the current directory and all subdirectories for a match."
         },
         {
-          "name": "kwd:automatic",
+          "name": "automatic",
           "syntax": "automatic",
           "description": "Attempt to load all plugins found matching “prefixname005.dll” where prefix matches the plugin type and name matches anything available. By default this will scan the “exe64/plugins” directory of the installation location, and all subdirectories. This can be overruled with the directory keyword."
         },
         {
-          "name": "kwd:directory",
+          "name": "directory",
           "syntax": "directory <sd>",
           "description": "Specify the directory to scan when using automatic . All subdirectories will also be scanned. The default directory is “exe64/plugins” directory of the installation location."
         }
@@ -116,6 +120,8 @@
           "description": "Load constitutive model DLLs. The plugin file prefix is model . The additional model will appear in the list of available models by executing the zone cmodel list command in FLAC3D ."
         },
         {
+          "name": "contactmodelmechanical",
+          "syntax": "contactmodelmechanical [loadoptions]",
           "description": "Load mechanical contact model DLLs."
         },
         {
@@ -139,17 +145,17 @@
           "description": "Load framework plot item DLLs. The plugin file prefix is plotitem3d in 3d and plotitem2d in 2d."
         },
         {
-          "name": "kwd:adummy",
+          "name": "s",
           "syntax": "<s>",
           "description": "Load the plugin DLL file named s . Either the full file name can be given, or the code will attempt to find a name matching the pattern “prefixname005.dll” where s = name and the prefix matches the plugin type. If a full path is not given, the code will look in the executable directory and all subdirectories as well as the current directory and all subdirectories for a match."
         },
         {
-          "name": "kwd:automatic",
+          "name": "automatic",
           "syntax": "automatic",
           "description": "Attempt to load all plugins found matching “prefixname005.dll” where prefix matches the plugin type and name matches anything available. By default this will scan the “exe64/plugins” directory of the installation location, and all subdirectories. This can be overruled with the directory keyword."
         },
         {
-          "name": "kwd:directory",
+          "name": "directory",
           "syntax": "directory <sd>",
           "description": "Specify the directory to scan when using automatic . All subdirectories will also be scanned. The default directory is “exe64/plugins” directory of the installation location."
         }

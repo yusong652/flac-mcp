@@ -10,6 +10,58 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "command": "extrude point id",
+      "syntax": "extrude point id i keyword",
+      "description": "Modify a single point by ID.",
+      "keywords": [
+        {
+          "name": "merge",
+          "syntax": "merge <point> i2",
+          "description": "Merge the point with point i2 (point ID positive integer)."
+        },
+        {
+          "name": "move-to",
+          "syntax": "move-to v <merge-tolerance f >",
+          "description": "Moves the point to location v, 2D coordinate vector (\\(x\\),\\(y\\)). If supplied, merge-tolerance f will be used as a tolerance for merging points during moving."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 6.0 command indexes",
+        "source_urls": [
+          "https://docs.itascacg.com/pfc600/flac3d/extruder/doc/manual/extruder_manual/point/commands/cmd_extrude.point.id.html#extrude.point.id"
+        ],
+        "syntax_basis": "official FLAC3D 6.0 detailed command page",
+        "target_version": "6.0"
+      }
+    },
+    "7.0": {
+      "command": "extrude point id",
+      "syntax": "extrude point id i keyword",
+      "description": "Modify a single point by ID.",
+      "keywords": [
+        {
+          "name": "merge",
+          "syntax": "merge <point> i2",
+          "description": "Merge the point with point i2 (point ID positive integer)."
+        },
+        {
+          "name": "move-to",
+          "syntax": "move-to v <merge-tolerance f >",
+          "description": "Moves the point to location v, 2D coordinate vector (\\(x\\),\\(y\\)). If supplied, merge-tolerance f will be used as a tolerance for merging points during moving."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 7.0 contents command index",
+        "source_urls": [
+          "https://docs.itascacg.com/flac3d700/flac3d/extruder/doc/manual/extruder_manual/point/commands/cmd_extrude.point.id.html"
+        ],
+        "syntax_basis": "official FLAC3D 7.0 detailed command page",
+        "target_version": "7.0"
+      }
+    },
     "9.0": {
       "command": "sketch point id",
       "syntax": "sketch point id <i>keyword",

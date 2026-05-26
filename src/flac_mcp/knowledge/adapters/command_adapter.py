@@ -65,11 +65,7 @@ class CommandDocumentAdapter:
                 cmd_doc = CommandLoader.load_command_doc(category, cmd_name, version)
             except KeyError:
                 continue
-            if (
-                not cmd_doc
-                or cmd_doc.get("available") is False
-                or not is_compatible_with_product(cmd_doc, product)
-            ):
+            if not cmd_doc or cmd_doc.get("available") is False or not is_compatible_with_product(cmd_doc, product):
                 continue
 
             # Convert to SearchDocument

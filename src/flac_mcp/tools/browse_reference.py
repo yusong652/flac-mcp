@@ -5,7 +5,7 @@ from typing import Any, cast
 from fastmcp import FastMCP
 from pydantic import Field
 
-from flac_mcp.contracts import build_docs_data, build_error, build_ok
+from flac_mcp.contracts import build_docs_data, build_ok, wrap_payload
 from flac_mcp.knowledge.compatibility import (
     FLACProduct,
     compatibility_summary,
@@ -88,7 +88,7 @@ def register(mcp: FastMCP) -> None:
         version_value = normalize_command_doc_version(version)
         product_value = normalize_product(product)
         if not is_product_version_applicable(product_value, version_value):
-            return _wrap_payload(product_version_error_payload("reference", "browse", product_value, version_value))
+            return wrap_payload(product_version_error_payload("reference", "browse", product_value, version_value))
 
         if not topic_str:
             return build_ok(_browse_references_root(version_value, product_value))
@@ -103,7 +103,7 @@ def register(mcp: FastMCP) -> None:
         else:
             # 3+ parts: category + item + sub-item (remaining parts joined)
             payload = _browse_sub_item(category, parts[1], " ".join(parts[2:]), version_value, product_value)
-        return _wrap_payload(payload)
+        return wrap_payload(payload)
 
 
 def _browse_references_root(version: str, product: str) -> dict[str, Any]:
@@ -388,15 +388,3 @@ def _browse_sub_item(category: str, item: str, sub_item: str, version: str, prod
         ],
         summary={"count": 1, "version": version, "product": product},
     )
-
-
-def _wrap_payload(payload: dict[str, Any]) -> dict[str, Any]:
-    if "error" in payload:
-        err = payload.get("error") or {}
-        details = {k: v for k, v in payload.items() if k != "error"}
-        return build_error(
-            code=str(err.get("code") or "browse_error"),
-            message=str(err.get("message") or "Browse failed"),
-            details=details or None,
-        )
-    return build_ok(payload)

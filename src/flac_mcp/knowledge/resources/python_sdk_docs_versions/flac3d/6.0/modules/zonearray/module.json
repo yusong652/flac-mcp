@@ -199,7 +199,7 @@
     {
       "name": "stress_min",
       "signature": "itasca.zonearray. stress_min ( ) → array double{nzone}.",
-      "description": "Return an array of the minimum (most negative) principal value of the volume averaged tetra stress for each zone. Note that compressive stresses are negative in FLAC3D. ⇄ ☰ ⇑ --> PFC 6.0 documentation --> PFC 6.0 documentation » Was this helpful? ... PFC 6.0 © 2019, Itasca Updated: Nov 19, 2021",
+      "description": "Return an array of the minimum (most negative) principal value of the volume averaged tetra stress for each zone. Note that compressive stresses are negative in FLAC3D.",
       "returns": {
         "type": "array double{nzone}."
       }

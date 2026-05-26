@@ -10,6 +10,61 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "available": false,
+      "reason": "Not listed in the official FLAC3D 6.0 command indexes.",
+      "source_urls": [
+        "https://docs.itascacg.com/pfc600/flac3d/docproject/source/elements/command_summary.html",
+        "https://docs.itascacg.com/pfc600/flac3d/sel/doc/manual/sel_manual/sel_commands/sel_commands.html"
+      ],
+      "target_version": "6.0"
+    },
+    "7.0": {
+      "command": "building-blocks point transform",
+      "syntax": "building-blocks point transform <origin v_o > keyword <control-point b > <range>",
+      "description": "Transform points. If <range> is not specified all points are transformed.",
+      "keywords": [
+        {
+          "name": "reflect",
+          "syntax": "reflect keyword",
+          "description": "Make a reflection transformation about a plane."
+        },
+        {
+          "name": "reflect-dip",
+          "syntax": "dip f1 dip-direction f2",
+          "description": "Specify the mirror plane defined by dip angle f1 and dip direction f2. Angles are defined in degrees."
+        },
+        {
+          "name": "reflect-plane",
+          "syntax": "plane v_1 v_2 v_3",
+          "description": "Specify the mirror plane defined by three points v_1 v_2 v_3."
+        },
+        {
+          "name": "rotate",
+          "syntax": "rotate direction v angle f",
+          "description": "performs rotation by angle f, in degrees, using rotation axes that goes through the coordinate origin in the direction v."
+        },
+        {
+          "name": "scale",
+          "syntax": "scale v",
+          "description": "Scale the point positions by expanding or contracting their distance from the origin by a factor of v in the \\(x\\)-, \\(y\\)-, and \\(z\\)-directions, respectively."
+        },
+        {
+          "name": "translate",
+          "syntax": "translate v",
+          "description": "Perform a translation — adding v to each coordinate point of the face to be transformed."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 7.0 contents command index",
+        "source_urls": [
+          "https://docs.itascacg.com/flac3d700/flac3d/body/doc/manual/buildingblocks_manual/building-blocks_commands/cmd_building-blocks.point.transform.html"
+        ],
+        "syntax_basis": "official FLAC3D 7.0 detailed command page",
+        "target_version": "7.0"
+      }
+    },
     "9.0": {
       "command": "building-blocks point transform",
       "syntax": "building-blocks point transform [origin <v_o>] keyword [control-point <b>] [range]",

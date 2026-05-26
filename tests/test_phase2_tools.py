@@ -17,6 +17,7 @@ def test_phase2_tools_registered() -> None:
     assert expected.issubset(set(tools.keys()))
     assert "flac_execute_code" in tools
     assert "flac_get_runtime_info" in tools
+    assert "flac_validate_runtime" in tools
     assert "flac_command_coverage" in tools
     assert "flac_python_api_coverage" in tools
 

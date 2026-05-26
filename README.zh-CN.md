@@ -14,11 +14,11 @@
 
 `flac3d>model solve ;LLM solves.`
 
-## 工具（13）
+## 工具（14）
 
 **7 个文档工具** — 浏览和搜索 FLAC 命令、Python API、参考文档，并审计内置命令/Python API 覆盖率。无需 bridge。
 
-**6 个执行工具** — 运行时识别、交互式 REPL、任务提交、进度监控、中断和历史浏览。需要 bridge。
+**7 个执行工具** — 运行时识别、运行时验证、交互式 REPL、任务提交、进度监控、中断和历史浏览。需要 bridge。
 
 ## 运行方式
 
@@ -71,7 +71,7 @@ Target runtime: FLAC2D 9.0, or FLAC3D 6.0/7.0/9.0.
 
 ### 验证
 
-重启你的 AI 智能体（Claude Code、Codex CLI、Gemini CLI 等）。先调用 `flac_get_runtime_info`，确认返回的产品和维度符合当前 FLAC GUI；然后让它调用 `flac_execute_code` 执行：
+重启你的 AI 智能体（Claude Code、Codex CLI、Gemini CLI 等）。先调用 `flac_get_runtime_info`，确认返回的产品和维度符合当前 FLAC GUI；然后调用 `flac_validate_runtime` 做一次非破坏性的 bridge、命令执行和 `.dat` 文件写读冒烟验证。也可以让它调用 `flac_execute_code` 执行：
 
 ```python
 import itasca as it
@@ -94,7 +94,8 @@ print(it.command("model list information"))
 - **扩展的 FLAC 9.0 Python API** — 内置 attach、array、interface、zone、gridpoint、vec 等 API 文档
 - **层级式文档浏览** — 智能体沿着 FLAC 命令树自主发现能力与边界，减少幻觉命令
 - **扩展的参考文档** — 在官方文档基础上补充了 plot items、边界条件、初始条件、结构单元属性、FISH intrinsic、interface/joint、geometry/data/table、sketch/building-block、history 与 results 参考文档
-- **已知覆盖限制** — FLAC3D 6.0/7.0 命令文档仍是部分覆盖；coverage 工具会报告缺失的版本条目
+- **旧版本命令可用性** — FLAC3D 6.0/7.0 命令覆盖已对照官方旧版命令索引解析；旧版索引不存在的命令会报告为该版本不可用
+- **运行时验证** — 一个工具检查 bridge 连通性、运行时身份、安全命令执行，以及临时 `.dat` 文件写读能力
 - **交互式 REPL** — 正式编写脚本前快速试错，智能体可以快速迭代验证
 - **任务全生命周期管理** — 提交长时仿真、监控进度、中止运行中的任务、浏览历史任务
 - **多客户端兼容** — 支持 Claude Code、Codex CLI、Gemini CLI、GitHub Copilot CLI、OpenCode、toyoura-nagisa 等 MCP 客户端

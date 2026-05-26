@@ -14,11 +14,11 @@
 
 `flac3d>model solve ;LLM solves.`
 
-## Tools (13)
+## Tools (14)
 
 **7 documentation tools** — browse and search FLAC commands, Python API, reference docs, and audit bundled command/Python API coverage. No bridge required.
 
-**6 execution tools** — runtime inspection, interactive REPL, task submission, progress monitoring, interruption, and history. Requires bridge.
+**7 execution tools** — runtime inspection, runtime validation, interactive REPL, task submission, progress monitoring, interruption, and history. Requires bridge.
 
 ## How It Runs
 
@@ -71,7 +71,7 @@ Download [`addon.py`](addon.py), then use either of these two flows inside FLAC:
 
 ### Verify
 
-Restart your AI agent (Claude Code, Codex CLI, Gemini CLI, etc.). First call `flac_get_runtime_info` and confirm the reported product/dimension matches the FLAC GUI you intended to use. Then call `flac_execute_code` with:
+Restart your AI agent (Claude Code, Codex CLI, Gemini CLI, etc.). First call `flac_get_runtime_info` and confirm the reported product/dimension matches the FLAC GUI you intended to use. Then call `flac_validate_runtime` for a non-destructive bridge, command, and `.dat` file smoke test. You can also call `flac_execute_code` with:
 
 ```python
 import itasca as it
@@ -94,7 +94,8 @@ Once first-time setup is done, each new FLAC session only needs the bridge re-st
 - **Expanded FLAC 9.0 Python API** - bundled docs include attach, array, interface, zone, gridpoint, and vec APIs
 - **Hierarchical documentation browsing** - agents navigate the FLAC command tree to discover capabilities and boundaries, reducing hallucinated commands
 - **Expanded reference documentation** - plot items, boundary conditions, initial conditions, structural properties, FISH intrinsics, interfaces/joints, geometry/data/table workflows, sketch/building-block workflows, histories, and results references supplementing the official documentation
-- **Known coverage limits** - FLAC3D 6.0/7.0 command docs remain partially covered; coverage tools report missing version entries
+- **Legacy command availability** - FLAC3D 6.0/7.0 command coverage is resolved against official legacy command indexes; commands absent from those indexes are reported as unavailable for that version
+- **Runtime validation** - one tool checks bridge connectivity, runtime identity, safe command execution, and temporary `.dat` file write/read behavior
 - **Interactive REPL** - rapid iteration before committing to full scripts; agents can quickly test and refine code
 - **Task lifecycle management** - submit long-running simulations, monitor progress, interrupt running tasks, and browse task history
 - **Multi-client compatible** - works with Claude Code, Codex CLI, Gemini CLI, GitHub Copilot CLI, OpenCode, toyoura-nagisa, and other MCP clients

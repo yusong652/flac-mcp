@@ -918,7 +918,7 @@
     {
       "name": "work_plastic_vol",
       "signature": "work_plastic_vol ( ) → float.",
-      "description": "Get the zone zone volumetric plastic work dissipated. ⇄ ☰ ⇑ --> FLAC3D 7.0 documentation » Scripting » Python Scripting » FLAC3D Python » itasca.zone » ⇐ itasca.zone | itasca.zonearray ⇒ Was this helpful? ... FLAC3D © 2019, Itasca Updated: Feb 25, 2024",
+      "description": "Get the zone zone volumetric plastic work dissipated.",
       "returns": {
         "type": "float."
       }

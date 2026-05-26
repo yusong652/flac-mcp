@@ -10,6 +10,58 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "command": "extrude point group",
+      "syntax": "extrude point group s <keyword> <range>",
+      "description": "Assign/remove a group name to points. Use of the group logic is described in the Group topic.",
+      "keywords": [
+        {
+          "name": "slot",
+          "syntax": "slot s2",
+          "description": "Designate the slot for the group assignment. If omitted, the slot is set to Default."
+        },
+        {
+          "name": "remove",
+          "syntax": "remove",
+          "description": "Remove the specified group/slot assignment."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 6.0 command indexes",
+        "source_urls": [
+          "https://docs.itascacg.com/pfc600/flac3d/extruder/doc/manual/extruder_manual/point/commands/cmd_extrude.point.group.html#extrude.point.group"
+        ],
+        "syntax_basis": "official FLAC3D 6.0 detailed command page",
+        "target_version": "6.0"
+      }
+    },
+    "7.0": {
+      "command": "extrude point group",
+      "syntax": "extrude point group s <keyword> <range>",
+      "description": "Assign/remove a group name to points. Use of the group logic is described in the Groups topic.",
+      "keywords": [
+        {
+          "name": "slot",
+          "syntax": "slot s2",
+          "description": "Designate the slot for the group assignment. If omitted, the slot is set to Default."
+        },
+        {
+          "name": "remove",
+          "syntax": "remove",
+          "description": "Remove the specified group/slot assignment."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 7.0 contents command index",
+        "source_urls": [
+          "https://docs.itascacg.com/flac3d700/flac3d/extruder/doc/manual/extruder_manual/point/commands/cmd_extrude.point.group.html"
+        ],
+        "syntax_basis": "official FLAC3D 7.0 detailed command page",
+        "target_version": "7.0"
+      }
+    },
     "9.0": {
       "command": "sketch point group",
       "syntax": "sketch point group <s>[keyword] [range]",
