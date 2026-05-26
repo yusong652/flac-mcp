@@ -4,29 +4,21 @@
     "sort"
   ],
   "description": "Cause all entries in table s to be sorted in order of increasing x-value.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
       "command": "table sort",
-      "syntax": "table <s>sort",
-      "keywords": [],
-      "examples": []
+      "syntax": "table <s>sort"
     },
     "7.0": {
       "command": "table sort",
-      "syntax": "table <s>sort",
-      "keywords": [],
-      "examples": []
+      "syntax": "table <s>sort"
     },
     "9.0": {
       "command": "table sort",
-      "syntax": "table <s>sort",
-      "keywords": [],
-      "examples": []
+      "syntax": "table <s>sort"
     }
   }
 }
