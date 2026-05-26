@@ -110,6 +110,8 @@ print(it.command("model list information"))
 
 真实 FLAC 软件验证流程见 [FLAC Runtime Validation Checklist](docs/validation/flac-runtime-validation.md)。
 
+项目 wiki 风格文档入口：[docs/wiki/Home.md](docs/wiki/Home.md)。
+
 源码开发建议克隆时带上 submodule：
 
 ```bash

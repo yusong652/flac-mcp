@@ -110,6 +110,8 @@ See [Developer Guide: Install and Run from Source](docs/development/source-insta
 
 For real FLAC software validation, use [FLAC Runtime Validation Checklist](docs/validation/flac-runtime-validation.md).
 
+For project wiki-style documentation, start at [docs/wiki/Home.md](docs/wiki/Home.md).
+
 For a source checkout, clone with submodules:
 
 ```bash
