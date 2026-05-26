@@ -9,6 +9,23 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "available": false,
+      "reason": "Not listed in the official FLAC3D 6.0 command indexes.",
+      "source_urls": [
+        "https://docs.itascacg.com/pfc600/flac3d/docproject/source/elements/command_summary.html",
+        "https://docs.itascacg.com/pfc600/flac3d/sel/doc/manual/sel_manual/sel_commands/sel_commands.html"
+      ],
+      "target_version": "6.0"
+    },
+    "7.0": {
+      "available": false,
+      "reason": "Not listed in the official FLAC3D 7.0 contents command index.",
+      "source_urls": [
+        "https://docs.itascacg.com/flac3d700/contents.html"
+      ],
+      "target_version": "7.0"
+    },
     "9.0": {
       "command": "zone create2d",
       "syntax": "zone create2d keyword",
@@ -88,8 +105,7 @@
           "syntax": "size <i1>[<i2>... ]",
           "description": "This specifies the number of zones for each shape. Up to three ( i3 ) may be needed for some shapes. The number required is listed in Summary of 2D Mesh Shape Properties above. The entries and their corresponding directions for each shape are shown in the reference images (click any thumbnail above). If not specified, size values default to 10."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }
