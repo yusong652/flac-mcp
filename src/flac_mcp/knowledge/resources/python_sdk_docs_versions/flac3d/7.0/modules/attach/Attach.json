@@ -1,0 +1,199 @@
+{
+  "class": "Attach",
+  "description": "Attach object instance in itasca.attach.",
+  "source_url": "https://docs.itascacg.com/flac3d700/common/docproject/source/manual/scripting/python/doc/itasca.attach.Attach.html",
+  "note": "Do not instantiate directly; use itasca.attach module functions.",
+  "method_groups": {
+    "attach": "attach_delete",
+    "extra": "extra, set_extra",
+    "group": "group, group_remove, set_group",
+    "groups": "groups",
+    "id": "id",
+    "in": "in_group",
+    "master": "master, master_face, master_zone",
+    "pos": "pos",
+    "slave": "slave",
+    "snap": "set_snap, snap",
+    "type": "type",
+    "valid": "valid",
+    "weight": "set_weight_edge, set_weight_face, weight_edge, weight_face"
+  },
+  "methods": [
+    {
+      "name": "attach_delete",
+      "signature": "attach_delete ( ) → None.",
+      "description": "Deletes an attachment.",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "extra",
+      "signature": "extra ( slot: int ) → any.",
+      "description": "Get the attach extra data in the given slot.",
+      "returns": {
+        "type": "any."
+      }
+    },
+    {
+      "name": "group",
+      "signature": "group ( [ slot: str or int ] ) → str.",
+      "description": "Get the attach group name in a given slot.",
+      "returns": {
+        "type": "str."
+      }
+    },
+    {
+      "name": "group_remove",
+      "signature": "group_remove ( group_name: str or int [ , slot: str or int ] ) → bool.",
+      "description": "Remove from the given group from all group slots of the attach. One argument of type string, giving the group name, is required. The return value is a bool which is True if the group was removed from any slot, otherwise False.",
+      "returns": {
+        "type": "bool."
+      }
+    },
+    {
+      "name": "groups",
+      "signature": "groups ( ) → {slot: group_name}.",
+      "description": "Get a dictionary describing which groups this attach is part of. The keys of the dictionary are the slot names and the values are the group names.",
+      "returns": {
+        "type": "{slot: group_name}."
+      }
+    },
+    {
+      "name": "id",
+      "signature": "id ( ) → int.",
+      "description": "Get the attach id.",
+      "returns": {
+        "type": "int."
+      }
+    },
+    {
+      "name": "in_group",
+      "signature": "in_group ( group_name: str or int [ , slot: str or int ] ) → bool.",
+      "description": "Test if the attach is part of a given group. If the optional argument slot is given, only that slot is searched. Otherwise, all group slots are searched.",
+      "returns": {
+        "type": "bool."
+      }
+    },
+    {
+      "name": "master",
+      "signature": "master ( ) → tuple of gridpoint objects.",
+      "description": "This function returns a tuple of 1, 2 or 4 gridpoint objects for gridpoint, edge or face attach types.",
+      "returns": {
+        "type": "tuple of gridpoint objects."
+      }
+    },
+    {
+      "name": "master_face",
+      "signature": "master_face ( ) → int or None.",
+      "description": "Get the face index associated with this attach condition (from 0 to 5), or None if this is not a face attach.",
+      "returns": {
+        "type": "int or None."
+      }
+    },
+    {
+      "name": "master_zone",
+      "signature": "master_zone ( ) → Zone object or None.",
+      "description": "Get a pointer to the master zone for face attachments. If the attachment type is not a face, the function returns None.",
+      "returns": {
+        "type": "Zone object or None."
+      }
+    },
+    {
+      "name": "pos",
+      "signature": "pos ( ) → vec3.",
+      "description": "Get the attach point location.",
+      "returns": {
+        "type": "vec3."
+      }
+    },
+    {
+      "name": "set_extra",
+      "signature": "set_extra ( slot: int , value: any ) → None.",
+      "description": "Set the attach extra data in the given slot.",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "set_group",
+      "signature": "set_group ( group_name: str or int [ , slot: str or int ] ) → None.",
+      "description": "Set the attach group name in a given slot.",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "set_snap",
+      "signature": "set_snap ( value: bool ) → None.",
+      "description": "Det the attach point snap option. Gridpoints on opposite attached faces will maintain their position if snap is True. Snap is True by default.",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "set_weight_edge",
+      "signature": "set_weight_edge ( weight: float ) → None.",
+      "description": "Set a value in the range 0.0 to 1.0 which describes the location of the gridpoint in the edge attach. If the attachment type is not edge, the function raises a ValueError.",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "set_weight_face",
+      "signature": "set_weight_face ( weight: vec3 ) → None.",
+      "description": "Set the face weight components with the vector value weight. The indiviual values must be in the range 0 to 1.0 and must sum to less that 1.0. The value corresponds to the location of the gridpoints in the face with respect to the face vertices; for face attachments. The fourth quad weight can be computed by subtracting all three weights on the vector from 1.0. If the attachment is not of face type a ValueError is raised.",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "slave",
+      "signature": "slave ( ) → Gridpoint object.",
+      "description": "Get the slave gridpoint.",
+      "returns": {
+        "type": "Gridpoint object."
+      }
+    },
+    {
+      "name": "snap",
+      "signature": "snap ( ) → bool.",
+      "description": "Get the attach point snap option. Gridpoints on opposite attached faces will maintain their position if snap is True. Snap is True by default.",
+      "returns": {
+        "type": "bool."
+      }
+    },
+    {
+      "name": "type",
+      "signature": "type ( ) → str.",
+      "description": "A value of “gridpoint”, “edge”, or “face” depending on the attach type.",
+      "returns": {
+        "type": "str."
+      }
+    },
+    {
+      "name": "valid",
+      "signature": "valid ( ) → bool.",
+      "description": "Returns True if this attach is live.",
+      "returns": {
+        "type": "bool."
+      }
+    },
+    {
+      "name": "weight_edge",
+      "signature": "weight_edge ( ) → float or None.",
+      "description": "Get a value in the range 0.0 to 1.0 which describes the location of the gridpoint in the edge attach. If the attachment type is not edge, the function returns None.",
+      "returns": {
+        "type": "float or None."
+      }
+    },
+    {
+      "name": "weight_face",
+      "signature": "weight_face ( ) → vec3.",
+      "description": "Get a vector with all components in the range 0 to 1.0. The value corresponds to the location of the gridpoints in the face with respect to the face vertices; for face attachments. The fourth quad weight can be computed by subtracting all three weights on the vector from 1.0. If the attachment is not of face type None is returned.",
+      "returns": {
+        "type": "vec3."
+      }
+    }
+  ]
+}

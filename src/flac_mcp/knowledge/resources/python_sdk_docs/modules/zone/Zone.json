@@ -199,8 +199,7 @@
       "signature": "zone.adjacent_zones() -> length 6 tuple in 3D and length 4 tuple in 2D of Zone objects or None",
       "description": "Return a tuple of the zones adjacent to this zone via a topologically perfect face. If there is no face adjacent to face i the ith element of the tuple will be None.",
       "returns": {
-        "type": "length 6 tuple in 3D and length 4 tuple in 2D of Zone objects or None",
-        "description": ""
+        "type": "length 6 tuple in 3D and length 4 tuple in 2D of Zone objects or None"
       }
     },
     {
@@ -208,8 +207,7 @@
       "signature": "zone.aspect() -> float",
       "description": "Get the measure of a zone's aspect ratio. Values near zero indicate a zone with a large aspect ratio. This is defined as the minimum ratio of smallest to largest edge length among adjacent edges of a zone.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -217,8 +215,7 @@
       "signature": "zone.condition() -> float",
       "description": "Get the zone condition number. This is a general value indication how geometrically well formed the zone is. A value of 1.0 indicates a perfect zone. A value of 0.0 indicates an unusable zone. For more information, see \"zone.condition\" FISH function.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -229,13 +226,11 @@
         {
           "name": "destination",
           "type": "itasca.zone.Zone",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -246,19 +241,16 @@
         {
           "name": "face_index",
           "type": "int",
-          "required": true,
-          "description": ""
+          "required": true
         },
         {
           "name": "interface_name",
           "type": "str",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "int",
-        "description": ""
+        "type": "int"
       }
     },
     {
@@ -266,8 +258,7 @@
       "signature": "zone.density() -> float",
       "description": "Get the zone density.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -278,13 +269,11 @@
         {
           "name": "slot",
           "type": "int",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "any",
-        "description": ""
+        "type": "any"
       }
     },
     {
@@ -295,19 +284,16 @@
         {
           "name": "face_index",
           "type": "int",
-          "required": true,
-          "description": ""
+          "required": true
         },
         {
           "name": "extra_index",
           "type": "int",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "any",
-        "description": ""
+        "type": "any"
       }
     },
     {
@@ -317,26 +303,19 @@
       "parameters": [
         {
           "name": "gp0",
-          "type": "",
-          "required": true,
-          "description": ""
+          "required": true
         },
         {
           "name": "gp1",
-          "type": "",
-          "required": true,
-          "description": ""
+          "required": true
         },
         {
           "name": "gp2(3D ONLY)",
-          "type": "",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "int or None",
-        "description": ""
+        "type": "int or None"
       }
     },
     {
@@ -347,13 +326,11 @@
         {
           "name": "normal",
           "type": "vec",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "int",
-        "description": ""
+        "type": "int"
       }
     },
     {
@@ -364,19 +341,15 @@
         {
           "name": "face_index",
           "type": "int",
-          "required": true,
-          "description": ""
+          "required": true
         },
         {
           "name": "slot",
-          "type": "",
-          "required": false,
-          "description": ""
+          "required": false
         }
       ],
       "returns": {
-        "type": "str or None",
-        "description": ""
+        "type": "str or None"
       }
     },
     {
@@ -387,19 +360,16 @@
         {
           "name": "face_index",
           "type": "int",
-          "required": true,
-          "description": ""
+          "required": true
         },
         {
           "name": "group_name",
           "type": "str",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "bool",
-        "description": ""
+        "type": "bool"
       }
     },
     {
@@ -410,25 +380,20 @@
         {
           "name": "face_index",
           "type": "int",
-          "required": true,
-          "description": ""
+          "required": true
         },
         {
           "name": "group_name",
           "type": "str",
-          "required": true,
-          "description": ""
+          "required": true
         },
         {
           "name": "slot",
-          "type": "",
-          "required": false,
-          "description": ""
+          "required": false
         }
       ],
       "returns": {
-        "type": "bool",
-        "description": ""
+        "type": "bool"
       }
     },
     {
@@ -436,8 +401,7 @@
       "signature": "zone.face_normals() -> tuple of vec",
       "description": "Get the outward facing normal vector of all the faces of the zone.",
       "returns": {
-        "type": "tuple of vec",
-        "description": ""
+        "type": "tuple of vec"
       }
     },
     {
@@ -445,8 +409,7 @@
       "signature": "zone.faces() -> tuple of tuples of Gridpoint objects",
       "description": "Get a tuple of tuples containing the gridpoint objects for each face. Note that zone edges in 2D are referred to and treated as faces (e.g., a 2D edge represents an infinite face in plane-strain analysis).",
       "returns": {
-        "type": "tuple of tuples of Gridpoint objects",
-        "description": ""
+        "type": "tuple of tuples of Gridpoint objects"
       }
     },
     {
@@ -454,8 +417,7 @@
       "signature": "zone.flow() -> vec",
       "description": "Get the zone specific discharge vector for the zone (vector).",
       "returns": {
-        "type": "vec",
-        "description": ""
+        "type": "vec"
       }
     },
     {
@@ -463,8 +425,7 @@
       "signature": "zone.flow_x() -> float",
       "description": "Get the x-component of the zone specific discharge vector for the zone.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -472,8 +433,7 @@
       "signature": "zone.flow_y() -> float",
       "description": "Get the y-component of the zone specific discharge vector for the zone.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -481,8 +441,7 @@
       "signature": "zone.fluid_model() -> str",
       "description": "Get the fluid flow constitituve model for the zone.",
       "returns": {
-        "type": "str",
-        "description": ""
+        "type": "str"
       }
     },
     {
@@ -493,13 +452,11 @@
         {
           "name": "property_name",
           "type": "str",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -507,35 +464,31 @@
       "signature": "zone.fluid_props() -> dict {str: any}",
       "description": "Return a dictionary containing the fluid properties.",
       "returns": {
-        "type": "dict {str: any}",
-        "description": ""
+        "type": "dict {str: any}"
       }
     },
     {
       "name": "flux",
       "signature": "zone.flux() -> vec",
-      "description": "Get the zone zone average heat flux vector (vector).",
+      "description": "Get the zone-averaged heat flux vector (vector).",
       "returns": {
-        "type": "vec",
-        "description": ""
+        "type": "vec"
       }
     },
     {
       "name": "flux_x",
       "signature": "zone.flux_x() -> float",
-      "description": "Get the x-component of the zone zone average heat flux vector.",
+      "description": "Get the x-component of the zone-averaged heat flux vector.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
       "name": "flux_y",
       "signature": "zone.flux_y() -> float",
-      "description": "Get the y-component of the zone zone average heat flux vector.",
+      "description": "Get the y-component of the zone-averaged heat flux vector.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -543,8 +496,7 @@
       "signature": "zone.geom_test() -> bool",
       "description": "Test the geometric fitness of a zone. Returns true if the zone does not contain any degenerate internal tera (in 3D) or triangles (in 2D). Otherwise, returns false.",
       "returns": {
-        "type": "bool",
-        "description": ""
+        "type": "bool"
       }
     },
     {
@@ -552,8 +504,7 @@
       "signature": "zone.gridpoints() -> tuple of Gridpoint objects",
       "description": "Get a tuple of gridpoint objects correposnding to the zone's gridpoints.",
       "returns": {
-        "type": "tuple of Gridpoint objects",
-        "description": ""
+        "type": "tuple of Gridpoint objects"
       }
     },
     {
@@ -564,13 +515,11 @@
         {
           "name": "[slot",
           "type": "str or int]",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "str",
-        "description": ""
+        "type": "str"
       }
     },
     {
@@ -581,19 +530,16 @@
         {
           "name": "group_name",
           "type": "str or int[",
-          "required": true,
-          "description": ""
+          "required": true
         },
         {
           "name": "slot",
           "type": "str or int]",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "bool",
-        "description": ""
+        "type": "bool"
       }
     },
     {
@@ -601,8 +547,7 @@
       "signature": "zone.groups() -> {slot: group_name}",
       "description": "Get a dictionary describing which groups this zone is part of. The keys of the dictionary are the slot names and the values are the group names.",
       "returns": {
-        "type": "{slot: group_name}",
-        "description": ""
+        "type": "{slot: group_name}"
       }
     },
     {
@@ -613,13 +558,11 @@
         {
           "name": "property_name",
           "type": "str",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "bool",
-        "description": ""
+        "type": "bool"
       }
     },
     {
@@ -627,8 +570,7 @@
       "signature": "zone.hysteretic_props() -> dict {string: float}",
       "description": "Get the hysteretic damping properties of this zone as a Python dictionary.",
       "returns": {
-        "type": "dict {string: float}",
-        "description": ""
+        "type": "dict {string: float}"
       }
     },
     {
@@ -636,8 +578,7 @@
       "signature": "zone.id() -> int",
       "description": "Get the zone id.",
       "returns": {
-        "type": "int",
-        "description": ""
+        "type": "int"
       }
     },
     {
@@ -648,19 +589,16 @@
         {
           "name": "group_name",
           "type": "str or int[",
-          "required": true,
-          "description": ""
+          "required": true
         },
         {
           "name": "slot",
           "type": "str or int]",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "bool",
-        "description": ""
+        "type": "bool"
       }
     },
     {
@@ -668,8 +606,7 @@
       "signature": "zone.live() -> bool",
       "description": "Checks if the zone is live, meaning it has a non-null mechanical, thermal, or fluid constitutive model.",
       "returns": {
-        "type": "bool",
-        "description": ""
+        "type": "bool"
       }
     },
     {
@@ -677,8 +614,7 @@
       "signature": "zone.model() -> string",
       "description": "Get the zone the current zone mechanical constitutive model.",
       "returns": {
-        "type": "string",
-        "description": ""
+        "type": "string"
       }
     },
     {
@@ -686,8 +622,7 @@
       "signature": "zone.model_init() -> None",
       "description": "Initializes all constitutive models (mechanical, fluid, and thermal) assigned to the zone. This recalculates intermediate values based on the current properties. This may be necessary if property values are changed during cycling. Note that mechanical constitutive models should recalculate intermediate stored values automatically when properties change. This does not perform an update of values depending on stiffness or density, see the itasca.zone.force_update() function.",
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -695,8 +630,7 @@
       "signature": "zone.num_gp() -> int",
       "description": "Get the number of unique gridpoints associated with this type of zone.",
       "returns": {
-        "type": "int",
-        "description": ""
+        "type": "int"
       }
     },
     {
@@ -704,8 +638,7 @@
       "signature": "zone.ortho() -> float",
       "description": "Get a measure of orthogonality for the zone. A value near zero indicates that the zone is very non-orthogonal.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -713,8 +646,7 @@
       "signature": "zone.overlays() -> int",
       "description": "Get the number of overlays available in the zone. This number will normally be 2. A value of 1 can occurr if the zone is deformed sufficiently to cause one overlay to contain an internal tetra (in 3D) or triangle (in 2D) with zero or negative volume, or if the zone was deliberately created with one overlay during the zone cmodel assign command. A value of 0 means the zone has never had a constitutive model assigned, and therefore internal tetra/triangles have never been created.",
       "returns": {
-        "type": "int",
-        "description": ""
+        "type": "int"
       }
     },
     {
@@ -725,13 +657,11 @@
         {
           "name": "vdir",
           "type": "vec",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "(traction: vec, normal_stress: float, max_shear_stress: float, max_shear_stress_direction: vec)",
-        "description": ""
+        "type": "(traction: vec, normal_stress: float, max_shear_stress: float, max_shear_stress_direction: vec)"
       }
     },
     {
@@ -739,8 +669,7 @@
       "signature": "zone.pos() -> vec",
       "description": "Get the zone centroid location (vector).",
       "returns": {
-        "type": "vec",
-        "description": ""
+        "type": "vec"
       }
     },
     {
@@ -748,8 +677,7 @@
       "signature": "zone.pos_x() -> float",
       "description": "Get the x-component of the zone centroid location.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -757,8 +685,7 @@
       "signature": "zone.pos_y() -> float",
       "description": "Get the y-component of the zone centroid location.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -766,8 +693,7 @@
       "signature": "zone.pp() -> float",
       "description": "Get the zone average zone pore pressure.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -778,13 +704,11 @@
         {
           "name": "property_name",
           "type": "str",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "any",
-        "description": ""
+        "type": "any"
       }
     },
     {
@@ -792,8 +716,7 @@
       "signature": "zone.props() -> dict {str: any}",
       "description": "Return a dictionary containing the mechanical properties.",
       "returns": {
-        "type": "dict {str: any}",
-        "description": ""
+        "type": "dict {str: any}"
       }
     },
     {
@@ -801,8 +724,7 @@
       "signature": "zone.rotation() -> stens3",
       "description": "Get the zone rotational increment tensor. This is calculated using the current displacement field. The symmetric tensor components are used (xx,yy,zz,xy,yz,xz).",
       "returns": {
-        "type": "stens3",
-        "description": ""
+        "type": "stens3"
       }
     },
     {
@@ -810,8 +732,7 @@
       "signature": "zone.rotation_rate() -> stens3",
       "description": "Get the zone rotation rate tensor. This is calculated using the current velocity field. The symmetric tensor components are used (xx,yy,zz,xy,yz,xz).",
       "returns": {
-        "type": "stens3",
-        "description": ""
+        "type": "stens3"
       }
     },
     {
@@ -822,13 +743,11 @@
         {
           "name": "value",
           "type": "float",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -839,19 +758,16 @@
         {
           "name": "slot",
           "type": "int",
-          "required": true,
-          "description": ""
+          "required": true
         },
         {
           "name": "value",
           "type": "any",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -862,25 +778,21 @@
         {
           "name": "face_index",
           "type": "int",
-          "required": true,
-          "description": ""
+          "required": true
         },
         {
           "name": "extra_index",
           "type": "int",
-          "required": true,
-          "description": ""
+          "required": true
         },
         {
           "name": "value",
           "type": "any",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -891,25 +803,20 @@
         {
           "name": "face_index",
           "type": "int",
-          "required": true,
-          "description": ""
+          "required": true
         },
         {
           "name": "group_name",
           "type": "str",
-          "required": true,
-          "description": ""
+          "required": true
         },
         {
           "name": "slot",
-          "type": "",
-          "required": false,
-          "description": ""
+          "required": false
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -920,13 +827,11 @@
         {
           "name": "model",
           "type": "str",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -937,13 +842,11 @@
         {
           "name": "property_name",
           "type": "str",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -954,19 +857,16 @@
         {
           "name": "group_name",
           "type": "str or int[",
-          "required": true,
-          "description": ""
+          "required": true
         },
         {
           "name": "slot",
           "type": "str or int]",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -977,13 +877,11 @@
         {
           "name": "value",
           "type": "string",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -994,13 +892,11 @@
         {
           "name": "value",
           "type": "float",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -1011,19 +907,16 @@
         {
           "name": "property_name",
           "type": "str",
-          "required": true,
-          "description": ""
+          "required": true
         },
         {
           "name": "value",
           "type": "any",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -1034,13 +927,11 @@
         {
           "name": "state",
           "type": "int",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -1051,13 +942,11 @@
         {
           "name": "stress",
           "type": "stens3",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -1068,13 +957,11 @@
         {
           "name": "value",
           "type": "float",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -1085,13 +972,11 @@
         {
           "name": "property_name",
           "type": "str",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -1102,13 +987,11 @@
         {
           "name": "model",
           "type": "str",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -1119,13 +1002,11 @@
         {
           "name": "value",
           "type": "float",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -1136,13 +1017,11 @@
         {
           "name": "value",
           "type": "float",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -1153,13 +1032,11 @@
         {
           "name": "value",
           "type": "float",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -1170,13 +1047,11 @@
         {
           "name": "value",
           "type": "float",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -1187,13 +1062,11 @@
         {
           "name": "average",
           "type": "bool",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "int",
-        "description": ""
+        "type": "int"
       }
     },
     {
@@ -1201,8 +1074,7 @@
       "signature": "zone.strain() -> stens3",
       "description": "Get the zone strain increment tensor, based on the current displacement field. The symmetric tensor components are used (xx,yy,zz,xy,yz,xz).",
       "returns": {
-        "type": "stens3",
-        "description": ""
+        "type": "stens3"
       }
     },
     {
@@ -1210,8 +1082,7 @@
       "signature": "zone.strain_rate() -> stens3",
       "description": "Get the zone strain rate tensor, based on the current velocity field. The symmetric tensor components are used (xx,yy,zz,xy,yz,xz).",
       "returns": {
-        "type": "stens3",
-        "description": ""
+        "type": "stens3"
       }
     },
     {
@@ -1219,8 +1090,7 @@
       "signature": "zone.strain_shear_inc() -> float",
       "description": "Get the zone shear strain increment, based on the current displacement field. This is the square root of the second invariant of full 3D strain increment deviator.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -1228,8 +1098,7 @@
       "signature": "zone.strain_shear_rate() -> float",
       "description": "Get the zone shear strain rate, based on the current velocity field. This is the square root of the second invariant of full 3D strain rate deviator.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -1237,8 +1106,7 @@
       "signature": "zone.strain_vol_inc() -> float",
       "description": "Get the zone volumetric strain increment, based on the current displacement field. This is the trace of full 3D strain increment tensor.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -1246,8 +1114,7 @@
       "signature": "zone.strain_vol_rate() -> float",
       "description": "Get the zone volumetric strain rate, based on the current velocity field. This is the trace of full 3D strain rate tensor.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -1255,8 +1122,7 @@
       "signature": "zone.stress() -> stens3",
       "description": "Get the zone stress tensor, calculated from the volume (in 3D) or area (in 2D) weighted average of the internal tetra/triangle stresses. The symmetric tensor components are used (xx,yy,zz,xy,yz,xz).",
       "returns": {
-        "type": "stens3",
-        "description": ""
+        "type": "stens3"
       }
     },
     {
@@ -1264,8 +1130,7 @@
       "signature": "zone.stress_effective() -> stens3",
       "description": "Get the zone effective stress. This is the volume (in 3D) or area (in 2D) weighted average of the internal tetra/triangles stresses, plus the zone averaged pore-pressure. The symmetric tensor components are used (xx,yy,zz,xy,yz,xz).",
       "returns": {
-        "type": "stens3",
-        "description": ""
+        "type": "stens3"
       }
     },
     {
@@ -1273,8 +1138,7 @@
       "signature": "zone.stress_int() -> float",
       "description": "Get the intermediate principal stress of the volume (in 3D) or area (in 2D) weighted average of the zone tetra/triangle stresses. Note that compressive stresses are negative in FLAC.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -1282,8 +1146,7 @@
       "signature": "zone.stress_max() -> float",
       "description": "Get the maximum (most positive) principal value of the volume (in 3D) or area (in 2D) weighted averaged tetra/triangle stress. Note that compressive stresses are negative in FLACD.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -1291,17 +1154,15 @@
       "signature": "zone.stress_min() -> float",
       "description": "Get the minimum (most negative) principal value of the volume (in 3D) or area (in 2D) weighted averaged tetra/triangle stress. Note that compressive stresses are negative in FLAC.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
       "name": "stress_prin",
       "signature": "zone.stress_prin() -> vec",
-      "description": "Get the zone zone principal stress, calculated from the volume (in 3D) or area (in 2D) weighted average of the internal tetra/triangle stresses (vector).",
+      "description": "Get the zone-averaged principal stress, calculated from the volume (in 3D) or area (in 2D) weighted average of the internal tetra/triangle stresses (vector).",
       "returns": {
-        "type": "vec",
-        "description": ""
+        "type": "vec"
       }
     },
     {
@@ -1309,35 +1170,31 @@
       "signature": "zone.stress_prin_dir() -> (vec3, tens3)",
       "description": "Return a tuple containing the principle stress magnitudes as a vec3 and the principle stress directions as a tens3.",
       "returns": {
-        "type": "(vec3, tens3)",
-        "description": ""
+        "type": "(vec3, tens3)"
       }
     },
     {
       "name": "stress_prin_x",
       "signature": "zone.stress_prin_x() -> float",
-      "description": "Get the x-component of the zone zone principal stress, calculated from the volume (in 3D) or area (in 2D) weighted average of the internal tetra/triangle stresses.",
+      "description": "Get the x-component of the zone-averaged principal stress, calculated from the volume (in 3D) or area (in 2D) weighted average of the internal tetra/triangle stresses.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
       "name": "stress_prin_y",
       "signature": "zone.stress_prin_y() -> float",
-      "description": "Get the y-component of the zone zone principal stress, calculated from the volume (in 3D) or area (in 2D) weighted average of the internal tetra/triangle stresses.",
+      "description": "Get the y-component of the zone-averaged principal stress, calculated from the volume (in 3D) or area (in 2D) weighted average of the internal tetra/triangle stresses.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
       "name": "stress_prin_z",
       "signature": "zone.stress_prin_z() -> float",
-      "description": "Get the z-component of the zone zone principal stress, calculated from the volume (in 3D) or area (in 2D) weighted average of the internal tetra/triangle stresses.",
+      "description": "Get the z-component of the zone-averaged principal stress, calculated from the volume (in 3D) or area (in 2D) weighted average of the internal tetra/triangle stresses.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -1345,8 +1202,7 @@
       "signature": "zone.temp() -> float",
       "description": "Get the zone temperature. Normally this is the average temperature of the gridpoints. If the `zone thermal zone-based-temperature` command was used, then temperatures are stored and retrieved directly from the zone.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -1354,8 +1210,7 @@
       "signature": "zone.tet_strain_rates() -> tuple of tuples of stens3",
       "description": "Get all the internal tets/triangles strain rate tensors. Returns two tuples (one per overlay), each containing symmetric part of full 3D tets/triangles strain rate tensor.",
       "returns": {
-        "type": "tuple of tuples of stens3",
-        "description": ""
+        "type": "tuple of tuples of stens3"
       }
     },
     {
@@ -1363,8 +1218,7 @@
       "signature": "zone.tet_strains() -> tuple of tuples of stens3",
       "description": "Get all the internal tets/triangles strain tensors. Returns two tuples (one per overlay), each containing symmetric part of full 3D tet/triangles strain tensor.",
       "returns": {
-        "type": "tuple of tuples of stens3",
-        "description": ""
+        "type": "tuple of tuples of stens3"
       }
     },
     {
@@ -1372,8 +1226,7 @@
       "signature": "zone.tet_stresses() -> tuple of tuples of stens3",
       "description": "Get the symmetric 3D stress tensors for each internal tet (3D) or triangle (2D). Returns two tuples of stens3, one for each overlay.",
       "returns": {
-        "type": "tuple of tuples of stens3",
-        "description": ""
+        "type": "tuple of tuples of stens3"
       }
     },
     {
@@ -1381,8 +1234,7 @@
       "signature": "zone.tet_volumes() -> tuple of tuples of float",
       "description": "Get volume (in 3D) or area (in 2D) of each internal tet/triangle. Returns two tuples, one for each overlay. These values are zero before any cycling has occured.",
       "returns": {
-        "type": "tuple of tuples of float",
-        "description": ""
+        "type": "tuple of tuples of float"
       }
     },
     {
@@ -1390,8 +1242,7 @@
       "signature": "zone.tets() -> tuple of tuples of tuples of itasca.gridpoint.Gridpoint objects",
       "description": "Get the gridpoints which make of each internal tet/triangle. Returns two tuples, one for each overlay.",
       "returns": {
-        "type": "tuple of tuples of tuples of itasca.gridpoint.Gridpoint objects",
-        "description": ""
+        "type": "tuple of tuples of tuples of itasca.gridpoint.Gridpoint objects"
       }
     },
     {
@@ -1402,13 +1253,11 @@
         {
           "name": "property_name",
           "type": "str",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -1416,8 +1265,7 @@
       "signature": "zone.therm_props() -> dict {str: any}",
       "description": "Return a dictionary containing the thermal properties.",
       "returns": {
-        "type": "dict {str: any}",
-        "description": ""
+        "type": "dict {str: any}"
       }
     },
     {
@@ -1425,8 +1273,7 @@
       "signature": "zone.thermal_model() -> str",
       "description": "Get the thermal flow constitituve model for the zone.",
       "returns": {
-        "type": "str",
-        "description": ""
+        "type": "str"
       }
     },
     {
@@ -1434,8 +1281,7 @@
       "signature": "zone.type() -> str",
       "description": "Get the zone type. In 3D it is one of: \"brick\", \"wedge\", \"pyramid\", \"dbrick\" or \"tetra\". In 2D it is either \"quadrilateral\" or \"triangle\".",
       "returns": {
-        "type": "str",
-        "description": ""
+        "type": "str"
       }
     },
     {
@@ -1443,8 +1289,7 @@
       "signature": "zone.valid() -> bool",
       "description": "Returns True if this zone is live.",
       "returns": {
-        "type": "bool",
-        "description": ""
+        "type": "bool"
       }
     },
     {
@@ -1452,8 +1297,7 @@
       "signature": "zone.vol() -> float",
       "description": "Get the zone volume (in 3D) or area (in 2D) calculated using the current position of the zone's gridpoints.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -1461,8 +1305,7 @@
       "signature": "zone.vol_deformed() -> float",
       "description": "Get the volume (in 3D) or area (in 2D) of a zone using gridpoint positions that take into account accumulated gridpoint displacements. This method is meant to be used in a small-strain analysis when deformed zone volumes/areas are required. This method should not be used in a large-strain analysis (an incorrect volume/area will be returned). Use the .vol() of the zone object in large-strain mode.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -1470,8 +1313,7 @@
       "signature": "zone.work_elastic_shear() -> float",
       "description": "Get the zone shear elastic work dissipated.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -1479,8 +1321,7 @@
       "signature": "zone.work_elastic_total() -> float",
       "description": "Get the total elastic work.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -1488,8 +1329,7 @@
       "signature": "zone.work_elastic_vol() -> float",
       "description": "Get the zone volumetric elastic work dissipated.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -1497,8 +1337,7 @@
       "signature": "zone.work_plastic_shear() -> float",
       "description": "Get the zone shear plastic work dissipated.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -1506,8 +1345,7 @@
       "signature": "zone.work_plastic_total() -> float",
       "description": "Get the total plastic work dissipated.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -1515,8 +1353,7 @@
       "signature": "zone.work_plastic_vol() -> float",
       "description": "Get the zone volumetric plastic work dissipated.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     }
   ]

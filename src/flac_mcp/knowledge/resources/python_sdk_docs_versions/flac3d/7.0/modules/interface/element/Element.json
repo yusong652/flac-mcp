@@ -1,0 +1,133 @@
+{
+  "class": "Element",
+  "description": "Element object instance in itasca.interface.element.",
+  "source_url": "https://docs.itascacg.com/flac3d700/common/docproject/source/manual/scripting/python/doc/itasca.interface.element.Element.html",
+  "note": "Do not instantiate directly; use itasca.interface.element module functions.",
+  "method_groups": {
+    "area": "area",
+    "extra": "extra, set_extra",
+    "group": "group, group_remove, set_group",
+    "groups": "groups",
+    "id": "id",
+    "in": "in_group",
+    "join": "join",
+    "node": "node",
+    "normal": "normal",
+    "valid": "valid",
+    "vertex": "vertex"
+  },
+  "methods": [
+    {
+      "name": "area",
+      "signature": "area ( ) → float.",
+      "description": "Get the area of the interface element.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "extra",
+      "signature": "extra ( slot: int ) → any.",
+      "description": "Get the element extra data in the given slot.",
+      "returns": {
+        "type": "any."
+      }
+    },
+    {
+      "name": "group",
+      "signature": "group ( [ slot: str or int ] ) → str.",
+      "description": "Get the element group name in a given slot.",
+      "returns": {
+        "type": "str."
+      }
+    },
+    {
+      "name": "group_remove",
+      "signature": "group_remove ( group_name: str or int [ , slot: str or int ] ) → bool.",
+      "description": "Remove from the given group from all group slots of the element. One argument of type string, giving the group name, is required. The return value is a bool which is True if the group was removed from any slot, otherwise False.",
+      "returns": {
+        "type": "bool."
+      }
+    },
+    {
+      "name": "groups",
+      "signature": "groups ( ) → {slot: group_name}.",
+      "description": "Get a dictionary describing which groups this element is part of. The keys of the dictionary are the slot names and the values are the group names.",
+      "returns": {
+        "type": "{slot: group_name}."
+      }
+    },
+    {
+      "name": "id",
+      "signature": "id ( ) → int.",
+      "description": "Get the element id.",
+      "returns": {
+        "type": "int."
+      }
+    },
+    {
+      "name": "in_group",
+      "signature": "in_group ( group_name: str or int [ , slot: str or int ] ) → bool.",
+      "description": "Test if the element is part of a given group. If the optional argument slot is given, only that slot is searched. Otherwise, all group slots are searched.",
+      "returns": {
+        "type": "bool."
+      }
+    },
+    {
+      "name": "join",
+      "signature": "join ( i: int ) → Interface pointer.",
+      "description": "Get the pointer to the adjacent interface element joined across edge i, where i = 1, 2, or 3.",
+      "returns": {
+        "type": "Interface pointer."
+      }
+    },
+    {
+      "name": "node",
+      "signature": "node ( i: int ) → Node pointer.",
+      "description": "Pointer to the node associated with the interface element where i=1,2,3.",
+      "returns": {
+        "type": "Node pointer."
+      }
+    },
+    {
+      "name": "normal",
+      "signature": "normal ( i: int ) → normal vector or component.",
+      "description": "Get the normal vector for the interface element. Returns a vector, unless an optional component argument i is supplied, in which case it returns the component value.",
+      "returns": {
+        "type": "normal vector or component."
+      }
+    },
+    {
+      "name": "set_extra",
+      "signature": "set_extra ( slot: int , value: any ) → None.",
+      "description": "Set the element extra data in the given slot.",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "set_group",
+      "signature": "set_group ( group_name: str or int [ , slot: str or int ] ) → None.",
+      "description": "Set the element group name in a given slot.",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "valid",
+      "signature": "valid ( ) → bool.",
+      "description": "Returns True if this element is live.",
+      "returns": {
+        "type": "bool."
+      }
+    },
+    {
+      "name": "vertex",
+      "signature": "vertex ( i: int ) → Vertex pointer.",
+      "description": "Pointer to the vertex associated with the interface element where i=1,2,3.",
+      "returns": {
+        "type": "Vertex pointer."
+      }
+    }
+  ]
+}

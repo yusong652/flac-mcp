@@ -163,8 +163,7 @@
       "signature": "gridpoint.accel() -> vec",
       "description": "Get the gridpoint acceleration (vector).",
       "returns": {
-        "type": "vec",
-        "description": ""
+        "type": "vec"
       }
     },
     {
@@ -172,8 +171,7 @@
       "signature": "gridpoint.accel_x() -> float",
       "description": "Get the x-component of the gridpoint acceleration.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -181,8 +179,7 @@
       "signature": "gridpoint.accel_y() -> float",
       "description": "Get the y-component of the gridpoint acceleration.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -190,8 +187,7 @@
       "signature": "gridpoint.biot_modulus() -> float",
       "description": "Get the gridpoint fluid Biot modulus.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -199,8 +195,7 @@
       "signature": "gridpoint.convergence() -> float",
       "description": "Get the gridpoint gridpoint convergence value, defined as the ratio of the currenct local force ratio (gridpoint ratio member) to the target force ratio (gridpoint ratio_target method). A value of 1 or less is therefore considered converged.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -211,13 +206,11 @@
         {
           "name": "destination",
           "type": "gridpoint",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -225,8 +218,7 @@
       "signature": "gridpoint.disp() -> vec",
       "description": "Get the gridpoint displacement (vector).",
       "returns": {
-        "type": "vec",
-        "description": ""
+        "type": "vec"
       }
     },
     {
@@ -234,8 +226,7 @@
       "signature": "gridpoint.disp_small() -> vec",
       "description": "Get the gridpoint small displacement vector for the gridpoint. Small displacements are incremented from velocity and timestep only in small strain model. See the command model large. The small strain vector field is used in the interface logic to calculate overlaps. (vector).",
       "returns": {
-        "type": "vec",
-        "description": ""
+        "type": "vec"
       }
     },
     {
@@ -243,8 +234,7 @@
       "signature": "gridpoint.disp_small_x() -> float",
       "description": "Get the x-component of the gridpoint small displacement vector for the gridpoint. Small displacements are incremented from velocity and timestep only in small strain model. See the command model large. The small strain vector field is used in the interface logic to calculate overlaps..",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -252,8 +242,7 @@
       "signature": "gridpoint.disp_small_y() -> float",
       "description": "Get the y-component of the gridpoint small displacement vector for the gridpoint. Small displacements are incremented from velocity and timestep only in small strain model. See the command model large. The small strain vector field is used in the interface logic to calculate overlaps..",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -261,8 +250,7 @@
       "signature": "gridpoint.disp_x() -> float",
       "description": "Get the x-component of the gridpoint displacement.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -270,8 +258,7 @@
       "signature": "gridpoint.disp_y() -> float",
       "description": "Get the y-component of the gridpoint displacement.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -279,8 +266,7 @@
       "signature": "gridpoint.dynamic_mul() -> float",
       "description": "Get the gridpoint dynamic stepping multiplier.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -291,13 +277,11 @@
         {
           "name": "slot",
           "type": "int",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "any",
-        "description": ""
+        "type": "any"
       }
     },
     {
@@ -308,13 +292,11 @@
         {
           "name": "component",
           "type": "int",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "bool",
-        "description": ""
+        "type": "bool"
       }
     },
     {
@@ -322,8 +304,7 @@
       "signature": "gridpoint.flow() -> float",
       "description": "Get the gridpoint unbalanced flow discharge at a gridpoint.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -331,8 +312,7 @@
       "signature": "gridpoint.fluid_load() -> float",
       "description": "Get the gridpoint additional fluid load.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -340,8 +320,7 @@
       "signature": "gridpoint.fluid_modulus() -> float",
       "description": "Get the gridpoint gridpoint fluid bulk modulus.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -349,8 +328,7 @@
       "signature": "gridpoint.fluid_modulus_confined() -> float",
       "description": "Get the gridpoint fluid flow confined modulus times nodal volume. This is used in the fastflow solution scheme.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -358,8 +336,7 @@
       "signature": "gridpoint.fluid_tension() -> float",
       "description": "Get the gridpoint gridpoint fluid tension limit.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -367,8 +344,7 @@
       "signature": "gridpoint.fluid_unbal() -> float",
       "description": "Get the gridpoint fluid out-of-balance flow : used in the fastflow solution scheme.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -376,8 +352,7 @@
       "signature": "gridpoint.fluid_vol_inv() -> float",
       "description": "Get the gridpoint inverse of the fluid nodal volume..",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -385,8 +360,7 @@
       "signature": "gridpoint.flux() -> float",
       "description": "Get the gridpoint unbalanced thermal flux at a gridpoint..",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -394,8 +368,7 @@
       "signature": "gridpoint.force_app() -> vec",
       "description": "Get the gridpoint total applied force at a gridpoint. This includes all sources, including forces due to gravity (vector).",
       "returns": {
-        "type": "vec",
-        "description": ""
+        "type": "vec"
       }
     },
     {
@@ -403,8 +376,7 @@
       "signature": "gridpoint.force_app_x() -> float",
       "description": "Get the x-component of the gridpoint total applied force at a gridpoint. This includes all sources, including forces due to gravity.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -412,8 +384,7 @@
       "signature": "gridpoint.force_app_y() -> float",
       "description": "Get the y-component of the gridpoint total applied force at a gridpoint. This includes all sources, including forces due to gravity.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -421,8 +392,7 @@
       "signature": "gridpoint.force_load() -> vec",
       "description": "Get the gridpoint user applied load (vector).",
       "returns": {
-        "type": "vec",
-        "description": ""
+        "type": "vec"
       }
     },
     {
@@ -430,8 +400,7 @@
       "signature": "gridpoint.force_load_x() -> float",
       "description": "Get the x-component of the gridpoint user applied load.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -439,8 +408,7 @@
       "signature": "gridpoint.force_load_y() -> float",
       "description": "Get the y-component of the gridpoint user applied load.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -448,8 +416,7 @@
       "signature": "gridpoint.force_unbal() -> vec",
       "description": "Get the gridpoint unbalanced force (vector).",
       "returns": {
-        "type": "vec",
-        "description": ""
+        "type": "vec"
       }
     },
     {
@@ -457,8 +424,7 @@
       "signature": "gridpoint.force_unbal_x() -> float",
       "description": "Get the x-component of the gridpoint unbalanced force.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -466,8 +432,7 @@
       "signature": "gridpoint.force_unbal_y() -> float",
       "description": "Get the y-component of the gridpoint unbalanced force.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -478,13 +443,11 @@
         {
           "name": "[slot",
           "type": "str or int]",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "str",
-        "description": ""
+        "type": "str"
       }
     },
     {
@@ -495,19 +458,16 @@
         {
           "name": "group_name",
           "type": "str or int[",
-          "required": true,
-          "description": ""
+          "required": true
         },
         {
           "name": "slot",
           "type": "str or int]",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "bool",
-        "description": ""
+        "type": "bool"
       }
     },
     {
@@ -515,8 +475,7 @@
       "signature": "gridpoint.groups() -> {slot: group_name}",
       "description": "Get a dictionary describing which groups this gridpoint is part of. The keys of the dictionary are the slot names and the values are the group names.",
       "returns": {
-        "type": "{slot: group_name}",
-        "description": ""
+        "type": "{slot: group_name}"
       }
     },
     {
@@ -524,8 +483,7 @@
       "signature": "gridpoint.id() -> int",
       "description": "Get the gridpoint id.",
       "returns": {
-        "type": "int",
-        "description": ""
+        "type": "int"
       }
     },
     {
@@ -536,19 +494,16 @@
         {
           "name": "group_name",
           "type": "str or int[",
-          "required": true,
-          "description": ""
+          "required": true
         },
         {
           "name": "slot",
           "type": "str or int]",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "bool",
-        "description": ""
+        "type": "bool"
       }
     },
     {
@@ -556,8 +511,7 @@
       "signature": "gridpoint.local_small() -> bool",
       "description": "Get the gridpoint local small strain setting.",
       "returns": {
-        "type": "bool",
-        "description": ""
+        "type": "bool"
       }
     },
     {
@@ -565,8 +519,7 @@
       "signature": "gridpoint.mass_add() -> vec",
       "description": "Get the gridpoint added mass vector for the gridpoint. This mass is added to the inertial mass of the gridpoint during equations of motion. (vector).",
       "returns": {
-        "type": "vec",
-        "description": ""
+        "type": "vec"
       }
     },
     {
@@ -574,8 +527,7 @@
       "signature": "gridpoint.mass_add_x() -> float",
       "description": "Get the x-component of the gridpoint added mass vector for the gridpoint. This mass is added to the inertial mass of the gridpoint during equations of motion..",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -583,8 +535,7 @@
       "signature": "gridpoint.mass_add_y() -> float",
       "description": "Get the y-component of the gridpoint added mass vector for the gridpoint. This mass is added to the inertial mass of the gridpoint during equations of motion..",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -592,8 +543,7 @@
       "signature": "gridpoint.mass_gravity() -> float",
       "description": "Get the gridpoint gravitational mass.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -601,8 +551,7 @@
       "signature": "gridpoint.mass_inertial() -> float",
       "description": "Get the gridpoint gridpoint inertial mass.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -610,8 +559,7 @@
       "signature": "gridpoint.pos() -> vec",
       "description": "Get the gridpoint centroid location (vector).",
       "returns": {
-        "type": "vec",
-        "description": ""
+        "type": "vec"
       }
     },
     {
@@ -619,8 +567,7 @@
       "signature": "gridpoint.pos_x() -> float",
       "description": "Get the x-component of the gridpoint centroid location.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -628,8 +575,7 @@
       "signature": "gridpoint.pos_y() -> float",
       "description": "Get the y-component of the gridpoint centroid location.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -637,8 +583,7 @@
       "signature": "gridpoint.pp() -> float",
       "description": "Get the gridpoint pore pressure.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -646,8 +591,7 @@
       "signature": "gridpoint.pp_fix() -> bool",
       "description": "Get the gridpoint flag indicating that the pore-pressure in the gridpoint is fixed.",
       "returns": {
-        "type": "bool",
-        "description": ""
+        "type": "bool"
       }
     },
     {
@@ -655,8 +599,7 @@
       "signature": "gridpoint.ratio() -> float",
       "description": "Get the gridpoint local gridpoint mechanical convergence ratio.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -664,8 +607,7 @@
       "signature": "gridpoint.ratio_target() -> float",
       "description": "Get the gridpoint target local gridpoint mechanical convergence ratio. The default value is 1e-4. A local force ratio (gridpoint ratio method) below this value is considered converged. See the convergence Gridpoint method.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -673,8 +615,7 @@
       "signature": "gridpoint.sat() -> float",
       "description": "Get the gridpoint gridpoint fluid saturation.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -685,13 +626,11 @@
         {
           "name": "value",
           "type": "float",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -702,13 +641,11 @@
         {
           "name": "value",
           "type": "vec",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -719,13 +656,11 @@
         {
           "name": "value",
           "type": "vec",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -736,13 +671,11 @@
         {
           "name": "value",
           "type": "float",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -753,13 +686,11 @@
         {
           "name": "value",
           "type": "float",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -770,13 +701,11 @@
         {
           "name": "value",
           "type": "float",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -787,13 +716,11 @@
         {
           "name": "value",
           "type": "float",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -804,19 +731,16 @@
         {
           "name": "slot",
           "type": "int",
-          "required": true,
-          "description": ""
+          "required": true
         },
         {
           "name": "value",
           "type": "any",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -827,19 +751,16 @@
         {
           "name": "component",
           "type": "int",
-          "required": true,
-          "description": ""
+          "required": true
         },
         {
           "name": "fix",
           "type": "bool",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -850,13 +771,11 @@
         {
           "name": "value",
           "type": "float",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -867,13 +786,11 @@
         {
           "name": "value",
           "type": "float",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -884,13 +801,11 @@
         {
           "name": "value",
           "type": "float",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -901,13 +816,11 @@
         {
           "name": "value",
           "type": "float",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -918,13 +831,11 @@
         {
           "name": "value",
           "type": "float",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -935,13 +846,11 @@
         {
           "name": "value",
           "type": "vec",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -952,13 +861,11 @@
         {
           "name": "value",
           "type": "float",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -969,13 +876,11 @@
         {
           "name": "value",
           "type": "float",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -986,19 +891,16 @@
         {
           "name": "group_name",
           "type": "str or int[",
-          "required": true,
-          "description": ""
+          "required": true
         },
         {
           "name": "slot",
           "type": "str or int]",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -1009,13 +911,11 @@
         {
           "name": "value",
           "type": "bool",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -1026,13 +926,11 @@
         {
           "name": "value",
           "type": "vec",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -1043,13 +941,11 @@
         {
           "name": "value",
           "type": "float",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -1060,13 +956,11 @@
         {
           "name": "value",
           "type": "float",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -1077,13 +971,11 @@
         {
           "name": "value",
           "type": "vec",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -1094,13 +986,11 @@
         {
           "name": "value",
           "type": "float",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -1111,13 +1001,11 @@
         {
           "name": "value",
           "type": "float",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -1128,19 +1016,16 @@
         {
           "name": "pp",
           "type": "float",
-          "required": true,
-          "description": ""
+          "required": true
         },
         {
           "name": "update",
           "type": "bool",
-          "required": false,
-          "description": ""
+          "required": false
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -1151,13 +1036,11 @@
         {
           "name": "value",
           "type": "bool",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -1168,13 +1051,11 @@
         {
           "name": "value",
           "type": "float",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -1185,13 +1066,11 @@
         {
           "name": "value",
           "type": "float",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -1202,13 +1081,11 @@
         {
           "name": "value",
           "type": "float",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -1219,13 +1096,11 @@
         {
           "name": "value",
           "type": "float",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -1236,13 +1111,11 @@
         {
           "name": "value",
           "type": "float",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -1253,13 +1126,11 @@
         {
           "name": "value",
           "type": "bool",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -1270,13 +1141,11 @@
         {
           "name": "value",
           "type": "vec",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -1287,13 +1156,11 @@
         {
           "name": "value",
           "type": "float",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -1304,13 +1171,11 @@
         {
           "name": "value",
           "type": "float",
-          "required": true,
-          "description": ""
+          "required": true
         }
       ],
       "returns": {
-        "type": "None",
-        "description": ""
+        "type": "None"
       }
     },
     {
@@ -1318,8 +1183,7 @@
       "signature": "gridpoint.stiff() -> float",
       "description": "Get the gridpoint accumulated gridpoint effective stiffness.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -1327,8 +1191,7 @@
       "signature": "gridpoint.temp() -> float",
       "description": "Get the gridpoint current gridpoint temperature.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -1336,8 +1199,7 @@
       "signature": "gridpoint.temp_change() -> float",
       "description": "Get the gridpoint amount of temperature change that has accumulated since the last thermal/mechanical coupling..",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -1345,8 +1207,7 @@
       "signature": "gridpoint.temp_source() -> float",
       "description": "Get the gridpoint applied FISH temperature source at a gridpoint.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -1354,8 +1215,7 @@
       "signature": "gridpoint.tempfis() -> bool",
       "description": "Get the gridpoint flag indicating that temperature in this gridpoint is fixed.",
       "returns": {
-        "type": "bool",
-        "description": ""
+        "type": "bool"
       }
     },
     {
@@ -1363,8 +1223,7 @@
       "signature": "gridpoint.valid() -> bool",
       "description": "Returns True if this gridpoint is live.",
       "returns": {
-        "type": "bool",
-        "description": ""
+        "type": "bool"
       }
     },
     {
@@ -1372,8 +1231,7 @@
       "signature": "gridpoint.vel() -> vec",
       "description": "Get the gridpoint velocity (vector).",
       "returns": {
-        "type": "vec",
-        "description": ""
+        "type": "vec"
       }
     },
     {
@@ -1381,8 +1239,7 @@
       "signature": "gridpoint.vel_x() -> float",
       "description": "Get the x-component of the gridpoint velocity.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -1390,8 +1247,7 @@
       "signature": "gridpoint.vel_y() -> float",
       "description": "Get the y-component of the gridpoint velocity.",
       "returns": {
-        "type": "float",
-        "description": ""
+        "type": "float"
       }
     },
     {
@@ -1399,8 +1255,7 @@
       "signature": "gridpoint.zones() -> tuple of Zone objects",
       "description": "Get a tuple of the zones attached to this gridpoint.",
       "returns": {
-        "type": "tuple of Zone objects",
-        "description": ""
+        "type": "tuple of Zone objects"
       }
     }
   ]

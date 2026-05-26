@@ -1,0 +1,48 @@
+{
+  "module": "itasca.interfaceelementarray",
+  "description": "Array interface for FLAC3D interface elements.",
+  "import_statement": "import itasca",
+  "source_url": "https://docs.itascacg.com/flac3d700/common/docproject/source/manual/scripting/python/doc/itasca.interfaceelementarray.html",
+  "functions": [
+    {
+      "name": "area",
+      "signature": "itasca.interfaceelementarray. area ( ) → array float{nelement}.",
+      "description": "Get the area of the interface element.",
+      "returns": {
+        "type": "array float{nelement}."
+      }
+    },
+    {
+      "name": "in_group",
+      "signature": "itasca.interfaceelementarray. in_group ( group_name: str , slot=\"default\" ) → array bool{nelement}.",
+      "description": "Return interface element group membership as a Boolean array.",
+      "returns": {
+        "type": "array bool{nelement}."
+      }
+    },
+    {
+      "name": "normal",
+      "signature": "itasca.interfaceelementarray. normal ( ) → array DVect{nelement}.",
+      "description": "Get array with element normal.",
+      "returns": {
+        "type": "array DVect{nelement}."
+      }
+    },
+    {
+      "name": "of_interface",
+      "signature": "itasca.interfaceelementarray. of_interface ( string name ) → array bool{nelement}.",
+      "description": "Return interface node of interface with ‘name’ as boolean array.",
+      "returns": {
+        "type": "array bool{nelement}."
+      }
+    },
+    {
+      "name": "set_group",
+      "signature": "itasca.interfaceelementarray. set_group ( membership: array bool{interface} , group_name: str , slot=\"default\" ) → None.",
+      "description": "Set interface element group from an array. Where membership True set the corresponding interface element to be a member of group group_name in the given slot.",
+      "returns": {
+        "type": "None."
+      }
+    }
+  ]
+}

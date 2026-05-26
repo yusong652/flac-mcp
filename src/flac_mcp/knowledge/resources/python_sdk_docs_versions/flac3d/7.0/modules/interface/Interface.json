@@ -1,0 +1,133 @@
+{
+  "class": "Interface",
+  "description": "Interface object instance in itasca.interface.",
+  "source_url": "https://docs.itascacg.com/flac3d700/common/docproject/source/manual/scripting/python/doc/itasca.interface.Interface.html",
+  "note": "Do not instantiate directly; use itasca.interface module functions.",
+  "method_groups": {
+    "element": "element_find",
+    "elements": "elements",
+    "extra": "extra, set_extra",
+    "group": "group, group_remove, set_group",
+    "groups": "groups",
+    "id": "id",
+    "in": "in_group",
+    "name": "name",
+    "node": "node_find",
+    "nodes": "nodes",
+    "valid": "valid"
+  },
+  "methods": [
+    {
+      "name": "element_find",
+      "signature": "element_find ( id: int ) → Interface element.",
+      "description": "Get interface element with given ID number.",
+      "returns": {
+        "type": "Interface element."
+      }
+    },
+    {
+      "name": "elements",
+      "signature": "elements ( ) → Interface elements iterator object.",
+      "description": "Get an interface element interator object.",
+      "returns": {
+        "type": "Interface elements iterator object."
+      }
+    },
+    {
+      "name": "extra",
+      "signature": "extra ( slot: int ) → any.",
+      "description": "Get the interface extra data in the given slot.",
+      "returns": {
+        "type": "any."
+      }
+    },
+    {
+      "name": "group",
+      "signature": "group ( [ slot: str or int ] ) → str.",
+      "description": "Get the interface group name in a given slot.",
+      "returns": {
+        "type": "str."
+      }
+    },
+    {
+      "name": "group_remove",
+      "signature": "group_remove ( group_name: str or int [ , slot: str or int ] ) → bool.",
+      "description": "Remove from the given group from all group slots of the interface. One argument of type string, giving the group name, is required. The return value is a bool which is True if the group was removed from any slot, otherwise False.",
+      "returns": {
+        "type": "bool."
+      }
+    },
+    {
+      "name": "groups",
+      "signature": "groups ( ) → {slot: group_name}.",
+      "description": "Get a dictionary describing which groups this interface is part of. The keys of the dictionary are the slot names and the values are the group names.",
+      "returns": {
+        "type": "{slot: group_name}."
+      }
+    },
+    {
+      "name": "id",
+      "signature": "id ( ) → int.",
+      "description": "Get the interface id.",
+      "returns": {
+        "type": "int."
+      }
+    },
+    {
+      "name": "in_group",
+      "signature": "in_group ( group_name: str or int [ , slot: str or int ] ) → bool.",
+      "description": "Test if the interface is part of a given group. If the optional argument slot is given, only that slot is searched. Otherwise, all group slots are searched.",
+      "returns": {
+        "type": "bool."
+      }
+    },
+    {
+      "name": "name",
+      "signature": "name ( ) → str or None.",
+      "description": "Get the interface name.",
+      "returns": {
+        "type": "str or None."
+      }
+    },
+    {
+      "name": "node_find",
+      "signature": "node_find ( id: int ) → Interface node.",
+      "description": "Get interface node with given ID number.",
+      "returns": {
+        "type": "Interface node."
+      }
+    },
+    {
+      "name": "nodes",
+      "signature": "nodes ( ) → Interface nodes iterator object.",
+      "description": "Get an interface node iterator object.",
+      "returns": {
+        "type": "Interface nodes iterator object."
+      }
+    },
+    {
+      "name": "set_extra",
+      "signature": "set_extra ( slot: int , value: any ) → None.",
+      "description": "Set the interface extra data in the given slot.",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "set_group",
+      "signature": "set_group ( group_name: str or int [ , slot: str or int ] ) → None.",
+      "description": "Set the interface group name in a given slot.",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "valid",
+      "signature": "valid ( ) → bool.",
+      "description": "Returns True if this interface is live.",
+      "returns": {
+        "type": "bool."
+      }
+    }
+  ]
+}

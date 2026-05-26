@@ -1,0 +1,927 @@
+{
+  "class": "Zone",
+  "description": "Zone object instance in itasca.zone.",
+  "source_url": "https://docs.itascacg.com/flac3d700/common/docproject/source/manual/scripting/python/doc/itasca.zone.Zone.html",
+  "note": "Do not instantiate directly; use itasca.zone module functions.",
+  "method_groups": {
+    "adjacent": "adjacent_zones",
+    "aspect": "aspect",
+    "condition": "condition",
+    "copy": "copy_to",
+    "create": "create_interface_element",
+    "density": "density, set_density",
+    "extra": "extra, set_extra",
+    "face": "face_areas, face_extra, face_find, face_find_normal, face_group, face_group_remove, face_in_group, face_normals, set_face_extra, set_face_group",
+    "faces": "faces",
+    "flow": "flow, flow_x, flow_y, flow_z",
+    "fluid": "fluid_model, fluid_prop, fluid_props, set_fluid_model, set_fluid_prop",
+    "flux": "flux, flux_x, flux_y, flux_z",
+    "geom": "geom_test",
+    "gridpoints": "gridpoints",
+    "group": "group, group_remove, set_group",
+    "groups": "groups",
+    "has": "has_prop",
+    "hysteretic": "hysteretic_props",
+    "id": "id",
+    "in": "in_group",
+    "live": "live",
+    "model": "model, model_init, set_model",
+    "num": "num_gp",
+    "ortho": "ortho",
+    "overlays": "overlays",
+    "planarity": "planarity",
+    "plane": "plane_traction",
+    "pos": "pos, pos_x, pos_y, pos_z",
+    "pp": "pp, set_pp",
+    "prop": "prop, set_prop",
+    "props": "props",
+    "rotation": "rotation, rotation_rate",
+    "state": "set_state, state",
+    "strain": "strain, strain_rate, strain_shear_inc, strain_shear_rate, strain_vol_inc, strain_vol_rate",
+    "stress": "set_stress, stress, stress_effective, stress_int, stress_max, stress_min, stress_prin, stress_prin_dir, stress_prin_x, stress_prin_y, stress_prin_z",
+    "temp": "set_temp, temp",
+    "test": "test_quality",
+    "tet": "tet_strain_rates, tet_strains, tet_stresses, tet_volumes",
+    "tets": "tets",
+    "therm": "set_therm_prop, therm_prop, therm_props",
+    "thermal": "set_thermal_model, thermal_model",
+    "type": "type",
+    "valid": "valid",
+    "vol": "vol, vol_deformed",
+    "work": "set_work_elastic_shear, set_work_elastic_vol, set_work_plastic_shear, set_work_plastic_vol, work_elastic_shear, work_elastic_total, work_elastic_vol, work_plastic_shear, work_plastic_total, work_plastic_vol"
+  },
+  "methods": [
+    {
+      "name": "adjacent_zones",
+      "signature": "adjacent_zones ( ) → length 6 tuple of Zone objects or None.",
+      "description": "Return a tuple of the zones adjacent to this zone via a topologically perfect face. If there is no face adjacent to face i the ith element of the tuple will be None.",
+      "returns": {
+        "type": "length 6 tuple of Zone objects or None."
+      }
+    },
+    {
+      "name": "aspect",
+      "signature": "aspect ( ) → float.",
+      "description": "Get the measure of a zone’s aspect ratio. Values near zero indicate a zone with a large aspect ratio. This is defined as the minimum ratio of smallest to largest edge length among adjacent edges of a zone.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "condition",
+      "signature": "condition ( ) → float.",
+      "description": "Get the zone condition number. This is a general value indication how geometrically well formed the zone is. A value of 1.0 indicates a perfect cubical zone. A value of 0.0 indicates an unusable zone.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "copy_to",
+      "signature": "copy_to ( destination: itasca.zone.Zone ) → None.",
+      "description": "Copy the zone state information from this zone to the destination zone.",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "create_interface_element",
+      "signature": "create_interface_element ( face_index: int , interface_name: str ) → int.",
+      "description": "Create new interface elements attached to the face given by face_index. face_index starts at 0. The newly created interface elements will be added to the interface given by interface_name. If this interface does not exist it will be created. The return value is the number if interface elements created. A value of zero is returned if the face already has an interface.",
+      "returns": {
+        "type": "int."
+      }
+    },
+    {
+      "name": "density",
+      "signature": "density ( ) → float.",
+      "description": "Get the zone zone density.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "extra",
+      "signature": "extra ( slot: int ) → any.",
+      "description": "Get the zone extra data in the given slot.",
+      "returns": {
+        "type": "any."
+      }
+    },
+    {
+      "name": "face_areas",
+      "signature": "face_areas ( ) → tuple of floats.",
+      "description": "Get the area of the faces of this zone.",
+      "returns": {
+        "type": "tuple of floats."
+      }
+    },
+    {
+      "name": "face_extra",
+      "signature": "face_extra ( face_index: int , extra_index: int ) → any.",
+      "description": "Get the value of the extra variable at the index extra_index associated with face_index. face_index starts at zero, extra_index starts at 1.",
+      "returns": {
+        "type": "any."
+      }
+    },
+    {
+      "name": "face_find",
+      "signature": "face_find ( gp0 , gp1 , gp2 ) → int or None.",
+      "description": "Get the face index of the zone that contains the three gridpoints gp0, gp1 and gp2. Each gridpoint may be specified by a itasca.gridpoint.Gridpoint object or by ID number. If the face is found a value beteen 0 and 5 is returned. If no face is found, None is returned.",
+      "returns": {
+        "type": "int or None."
+      }
+    },
+    {
+      "name": "face_find_normal",
+      "signature": "face_find_normal ( normal: vec3 ) → int.",
+      "description": "Get the face index of the zone that has outward facing normal closest to the direction normal. This function returns a value from 0 to 5.",
+      "returns": {
+        "type": "int."
+      }
+    },
+    {
+      "name": "face_group",
+      "signature": "face_group ( face_index: int , slot='Default' ) → str or None.",
+      "description": "Get the group name associated with the face identified by face_index in slot slot. face_index starts at zero. None is returned if no group is assigned to the given slot.",
+      "returns": {
+        "type": "str or None."
+      }
+    },
+    {
+      "name": "face_group_remove",
+      "signature": "face_group_remove ( face_index: int , group_name: str ) → bool.",
+      "description": "Removes the group_name from the face identified and face_index. The return value will be false if that group had not been assigned to that face. It will remove the group name from any slot it is found in. face_index starts at zero.",
+      "returns": {
+        "type": "bool."
+      }
+    },
+    {
+      "name": "face_in_group",
+      "signature": "face_in_group ( face_index: int , group_name: str , slot='Default' ) → bool.",
+      "description": "Check if the group_name is associated with the zone face indicated by face_index. By default will check if there is a match in any slot, if the slot optional argument is specified it will return a match only in that slot. Note that this function will return a match if any zone attached to the face contains that group name, as well as the face itself. face_index starts at zero.",
+      "returns": {
+        "type": "bool."
+      }
+    },
+    {
+      "name": "face_normals",
+      "signature": "face_normals ( ) → tuple of vec.",
+      "description": "Get the outward facing normal vector of all the faces of the zone.",
+      "returns": {
+        "type": "tuple of vec."
+      }
+    },
+    {
+      "name": "faces",
+      "signature": "faces ( ) → tuple of tuples of Gridpoint objects.",
+      "description": "Get a tuple of tuples containing the gridpoint objects for each face.",
+      "returns": {
+        "type": "tuple of tuples of Gridpoint objects."
+      }
+    },
+    {
+      "name": "flow",
+      "signature": "flow ( ) → vec.",
+      "description": "Get the zone specific discharge vector for the zone (vector).",
+      "returns": {
+        "type": "vec."
+      }
+    },
+    {
+      "name": "flow_x",
+      "signature": "flow_x ( ) → float.",
+      "description": "Get the x-component of the zone specific discharge vector for the zone.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "flow_y",
+      "signature": "flow_y ( ) → float.",
+      "description": "Get the y-component of the zone specific discharge vector for the zone.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "flow_z",
+      "signature": "flow_z ( ) → float.",
+      "description": "Get the z-component of the zone specific discharge vector for the zone.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "fluid_model",
+      "signature": "fluid_model ( ) → str.",
+      "description": "Get the fluid flow constitituve model for the zone.",
+      "returns": {
+        "type": "str."
+      }
+    },
+    {
+      "name": "fluid_prop",
+      "signature": "fluid_prop ( property_name: str ) → float.",
+      "description": "Get a fluid property value of this zone.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "fluid_props",
+      "signature": "fluid_props ( ) → dict {str: any}.",
+      "description": "Return a dictionary containing the fluid properties.",
+      "returns": {
+        "type": "dict {str: any}."
+      }
+    },
+    {
+      "name": "flux",
+      "signature": "flux ( ) → vec.",
+      "description": "Get the zone zone average heat flux vector (vector).",
+      "returns": {
+        "type": "vec."
+      }
+    },
+    {
+      "name": "flux_x",
+      "signature": "flux_x ( ) → float.",
+      "description": "Get the x-component of the zone zone average heat flux vector.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "flux_y",
+      "signature": "flux_y ( ) → float.",
+      "description": "Get the y-component of the zone zone average heat flux vector.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "flux_z",
+      "signature": "flux_z ( ) → float.",
+      "description": "Get the z-component of the zone zone average heat flux vector.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "geom_test",
+      "signature": "geom_test ( ) → bool.",
+      "description": "Test the geometric fitness of a zone. Returns true if the zone is good, and false if the zone is bad.",
+      "returns": {
+        "type": "bool."
+      }
+    },
+    {
+      "name": "gridpoints",
+      "signature": "gridpoints ( ) → tuple of Gridpoint objects.",
+      "description": "Get a tuple the gridpoint objects which are part of this zone.",
+      "returns": {
+        "type": "tuple of Gridpoint objects."
+      }
+    },
+    {
+      "name": "group",
+      "signature": "group ( [ slot: str or int ] ) → str.",
+      "description": "Get the zone group name in a given slot.",
+      "returns": {
+        "type": "str."
+      }
+    },
+    {
+      "name": "group_remove",
+      "signature": "group_remove ( group_name: str or int [ , slot: str or int ] ) → bool.",
+      "description": "Remove from the given group from all group slots of the zone. One argument of type string, giving the group name, is required. The return value is a bool which is True if the group was removed from any slot, otherwise False.",
+      "returns": {
+        "type": "bool."
+      }
+    },
+    {
+      "name": "groups",
+      "signature": "groups ( ) → {slot: group_name}.",
+      "description": "Get a dictionary describing which groups this zone is part of. The keys of the dictionary are the slot names and the values are the group names.",
+      "returns": {
+        "type": "{slot: group_name}."
+      }
+    },
+    {
+      "name": "has_prop",
+      "signature": "has_prop ( property_name: str ) → bool.",
+      "description": "Returns True if the zone has the given surface property.",
+      "returns": {
+        "type": "bool."
+      }
+    },
+    {
+      "name": "hysteretic_props",
+      "signature": "hysteretic_props ( ) → dict {string: float}.",
+      "description": "Get the hysteretic damping properties of this zone as a Python dictionary.",
+      "returns": {
+        "type": "dict {string: float}."
+      }
+    },
+    {
+      "name": "id",
+      "signature": "id ( ) → int.",
+      "description": "Get the zone id.",
+      "returns": {
+        "type": "int."
+      }
+    },
+    {
+      "name": "in_group",
+      "signature": "in_group ( group_name: str or int [ , slot: str or int ] ) → bool.",
+      "description": "Test if the zone is part of a given group. If the optional argument slot is given, only that slot is searched. Otherwise, all group slots are searched.",
+      "returns": {
+        "type": "bool."
+      }
+    },
+    {
+      "name": "live",
+      "signature": "live ( ) → bool.",
+      "description": "Checks if the zone is live, meaning it has a non-null mechanical, thermal, or fluid constitutive model.",
+      "returns": {
+        "type": "bool."
+      }
+    },
+    {
+      "name": "model",
+      "signature": "model ( ) → string.",
+      "description": "Get the zone the current zone mechanical constitutive model.",
+      "returns": {
+        "type": "string."
+      }
+    },
+    {
+      "name": "model_init",
+      "signature": "model_init ( ) → None.",
+      "description": "Initializes all constitutive models (mechanical, fluid, and thermal) assigned to the zone. This recalculates intermediate values based on the current properties. This may be necessary if property values are changed during cycling. Note that mechanical constitutive models should recalculate intermediate stored values automatically when properties change. This does not perform an update of values depending on stiffness or density, see the itasca.zone.force_update() function.",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "num_gp",
+      "signature": "num_gp ( ) → int.",
+      "description": "Get the number of unique gridpoints associated with this type of zone. This can be as few as 4 for tetrahedral zones, or as many as 8 for hexahedral zones.",
+      "returns": {
+        "type": "int."
+      }
+    },
+    {
+      "name": "ortho",
+      "signature": "ortho ( ) → float.",
+      "description": "Get a measure of orthogonality for the zone. A value near zero indicates that the zone is very non-orthogonal.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "overlays",
+      "signature": "overlays ( ) → int.",
+      "description": "Get the number of overlays available in the zone. This number will normally be 2. A value of 1 can occurr if the zone is deformed sufficiently to cause one overlay to contain a tetra with zero or negative volume, or if the zone was deliberately created with one overlay during the zone cmodel assign command. A value of 0 means the zone has never had a constitutive model assigned, and therefore internal tetra have never been created.",
+      "returns": {
+        "type": "int."
+      }
+    },
+    {
+      "name": "planarity",
+      "signature": "planarity ( ) → float.",
+      "description": "Get a measure of how planar the quadrilateral faces of a zone are. A value of 0 means that all faces are perfectly planar. The greater this number, the more nonplanar the faces are.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "plane_traction",
+      "signature": "plane_traction ( vdir: vec3 ) → (traction: vec, normal_stress: float, max_shear_stress: float, max_shear_stress_direction: vec3).",
+      "description": "Get the traction on the zone in the plane normal to vdir. The return value is a tuple which contains the traction(vec), normal stress(float), maximum shear stress(float) and maximum shear stress direction (vec).",
+      "returns": {
+        "type": "(traction: vec, normal_stress: float, max_shear_stress: float, max_shear_stress_direction: vec3)."
+      }
+    },
+    {
+      "name": "pos",
+      "signature": "pos ( ) → vec.",
+      "description": "Get the zone centroid location (vector).",
+      "returns": {
+        "type": "vec."
+      }
+    },
+    {
+      "name": "pos_x",
+      "signature": "pos_x ( ) → float.",
+      "description": "Get the x-component of the zone centroid location.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "pos_y",
+      "signature": "pos_y ( ) → float.",
+      "description": "Get the y-component of the zone centroid location.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "pos_z",
+      "signature": "pos_z ( ) → float.",
+      "description": "Get the z-component of the zone centroid location.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "pp",
+      "signature": "pp ( ) → float.",
+      "description": "Get the zone average zone pore pressure.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "prop",
+      "signature": "prop ( property_name: str ) → any.",
+      "description": "Get a property value of this zone.",
+      "returns": {
+        "type": "any."
+      }
+    },
+    {
+      "name": "props",
+      "signature": "props ( ) → dict {str: any}.",
+      "description": "Return a dictionary containing the mechanical properties.",
+      "returns": {
+        "type": "dict {str: any}."
+      }
+    },
+    {
+      "name": "rotation",
+      "signature": "rotation ( ) → stens3.",
+      "description": "Get the zone rotational increment tensor. This is calculated using the current displacement field.",
+      "returns": {
+        "type": "stens3."
+      }
+    },
+    {
+      "name": "rotation_rate",
+      "signature": "rotation_rate ( ) → stens3.",
+      "description": "Get the zone rotation rate tensor. This is calculated using the current velocity field.",
+      "returns": {
+        "type": "stens3."
+      }
+    },
+    {
+      "name": "set_density",
+      "signature": "set_density ( value: float ) → None.",
+      "description": "Set the zone zone density.",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "set_extra",
+      "signature": "set_extra ( slot: int , value: any ) → None.",
+      "description": "Set the zone extra data in the given slot.",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "set_face_extra",
+      "signature": "set_face_extra ( face_index: int , extra_index: int , value: any ) → None.",
+      "description": "Set the value of the extra variable at the index extra_index associated with face_index. face_index starts at zero.",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "set_face_group",
+      "signature": "set_face_group ( face_index: int , group_name: str , slot='Default' ) → None.",
+      "description": "Set the group name associated with the face identified by face_index in slot slot. face_index starts at zero.",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "set_fluid_model",
+      "signature": "set_fluid_model ( model: str ) → None.",
+      "description": "Set the fluid flow constitituve model for the zone. The currently available constitutive models are anisotropic, isotropic, and null.",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "set_fluid_prop",
+      "signature": "set_fluid_prop ( property_name: str ) → float.",
+      "description": "Set a fluid property value of this zone.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "set_group",
+      "signature": "set_group ( group_name: str or int [ , slot: str or int ] ) → None.",
+      "description": "Set the zone group name in a given slot.",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "set_model",
+      "signature": "set_model ( value: string ) → None.",
+      "description": "Set the zone the current zone mechanical constitutive model.",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "set_pp",
+      "signature": "set_pp ( value: float ) → None.",
+      "description": "Set the zone average zone pore pressure.",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "set_prop",
+      "signature": "set_prop ( property_name: str , value: any ) → None.",
+      "description": "Set a surface property of this zone.",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "set_state",
+      "signature": "set_state ( state: int ) → None.",
+      "description": "Set the current plasticity state indicators of this zone.",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "set_stress",
+      "signature": "set_stress ( stress: stens3 ) → None.",
+      "description": "Set the zone stress tensor.",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "set_temp",
+      "signature": "set_temp ( value: float ) → None.",
+      "description": "Set the zone temperature.",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "set_therm_prop",
+      "signature": "set_therm_prop ( property_name: str ) → float.",
+      "description": "Set a thermal property value of this zone.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "set_thermal_model",
+      "signature": "set_thermal_model ( model: str ) → None.",
+      "description": "Set the thermal flow constitituve model for the zone. The currently available constitutive models are advection-conduction, anisotropic, hydration, isotropic, and null.",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "set_work_elastic_shear",
+      "signature": "set_work_elastic_shear ( value: float ) → None.",
+      "description": "Set the zone zone shear elastic work dissipated.",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "set_work_elastic_vol",
+      "signature": "set_work_elastic_vol ( value: float ) → None.",
+      "description": "Set the zone zone volumetric elastic work dissipated.",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "set_work_plastic_shear",
+      "signature": "set_work_plastic_shear ( value: float ) → None.",
+      "description": "Set the zone zone shear plastic work dissipated.",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "set_work_plastic_vol",
+      "signature": "set_work_plastic_vol ( value: float ) → None.",
+      "description": "Set the zone zone volumetric plastic work dissipated.",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "state",
+      "signature": "state ( average: bool ) → int.",
+      "description": "Get the current plasticity state indicators of this zone. The argument average, if true, indicates that the bit will be set if 50% or more of the volume averaged tetra have that bit set. If false then the bit will be set if any tetra in the zone have that bit set.",
+      "returns": {
+        "type": "int."
+      }
+    },
+    {
+      "name": "strain",
+      "signature": "strain ( ) → stens3.",
+      "description": "Get the zone strain increment, based on the current displacement field.",
+      "returns": {
+        "type": "stens3."
+      }
+    },
+    {
+      "name": "strain_rate",
+      "signature": "strain_rate ( ) → stens3.",
+      "description": "Get the zone strain rate, based on the current velocity field.",
+      "returns": {
+        "type": "stens3."
+      }
+    },
+    {
+      "name": "strain_shear_inc",
+      "signature": "strain_shear_inc ( ) → float.",
+      "description": "Get the zone shear strain increment, based on the current displacement field. This is the square root of the second invariant of the strain increment deviator.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "strain_shear_rate",
+      "signature": "strain_shear_rate ( ) → float.",
+      "description": "Get the zone shear strain rate, based on the current velocity field. This is the square root of the second invariant of the strain rate deviator.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "strain_vol_inc",
+      "signature": "strain_vol_inc ( ) → float.",
+      "description": "Get the zone volumetric strain increment, based on the current displacement field. This is the trace of the strain increment tensor.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "strain_vol_rate",
+      "signature": "strain_vol_rate ( ) → float.",
+      "description": "Get the zone volumetric strain rate, based on the current velocity field. This is the trace of the strain rate tensor.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "stress",
+      "signature": "stress ( ) → stens3.",
+      "description": "Get the zone stress tensor.",
+      "returns": {
+        "type": "stens3."
+      }
+    },
+    {
+      "name": "stress_effective",
+      "signature": "stress_effective ( ) → stens3.",
+      "description": "Get the zone effective stress. This is the volume weighted average of the tetra stresses, plus the zone averaged pore-pressure.",
+      "returns": {
+        "type": "stens3."
+      }
+    },
+    {
+      "name": "stress_int",
+      "signature": "stress_int ( ) → float.",
+      "description": "Get the intermediate principal stress of the volume weighted average of the zone tetra stresses.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "stress_max",
+      "signature": "stress_max ( ) → float.",
+      "description": "Get the maximum (most positive) principal value of the volume averaged tetra stress. Note that compressive stresses are negative in FLAC3D.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "stress_min",
+      "signature": "stress_min ( ) → float.",
+      "description": "Get the minimum (most negative) principal value of the volume averaged tetra stress. Note that compressive stresses are negative in FLAC3D.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "stress_prin",
+      "signature": "stress_prin ( ) → vec.",
+      "description": "Get the zone zone principal stress, calculated from the volume weighted average of the tetra stresses (vector).",
+      "returns": {
+        "type": "vec."
+      }
+    },
+    {
+      "name": "stress_prin_dir",
+      "signature": "stress_prin_dir ( ) → (vec3, tens3).",
+      "description": "Return a tuple containing the principle stress magnitudes as a vec and the principle stress directions as a tens3.",
+      "returns": {
+        "type": "(vec3, tens3)."
+      }
+    },
+    {
+      "name": "stress_prin_x",
+      "signature": "stress_prin_x ( ) → float.",
+      "description": "Get the x-component of the zone zone principal stress, calculated from the volume weighted average of the tetra stresses.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "stress_prin_y",
+      "signature": "stress_prin_y ( ) → float.",
+      "description": "Get the y-component of the zone zone principal stress, calculated from the volume weighted average of the tetra stresses.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "stress_prin_z",
+      "signature": "stress_prin_z ( ) → float.",
+      "description": "Get the z-component of the zone zone principal stress, calculated from the volume weighted average of the tetra stresses.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "temp",
+      "signature": "temp ( ) → float.",
+      "description": "Get the zone temperature. Normally this is the average temperature of the gridpoints. If the zone thermal zone-based-temperature command was used, then temperatures are stored and retrieved directly from the zone.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "test_quality",
+      "signature": "test_quality ( ) → (length_vol: float, skew: float).",
+      "description": "Get measures of the zone quality, or how the zone shape may affect solution accuracy. The first value indicates a test of volume over edge length. The second value indicates a test of skew. Both return the minimum value obtained over all internal tetrahedrons. A return value of 1.0 indicates an equilateral tetra.",
+      "returns": {
+        "type": "(length_vol: float, skew: float)."
+      }
+    },
+    {
+      "name": "tet_strain_rates",
+      "signature": "tet_strain_rates ( ) → tuple of tuples of stens3.",
+      "description": "Get all the tet strain rate tensors. Returns two tuples of stens, one for each overlay.",
+      "returns": {
+        "type": "tuple of tuples of stens3."
+      }
+    },
+    {
+      "name": "tet_strains",
+      "signature": "tet_strains ( ) → tuple of tuples of stens3.",
+      "description": "Get all the tet strain tensors. Returns two tuples of stens, one for each overlay.",
+      "returns": {
+        "type": "tuple of tuples of stens3."
+      }
+    },
+    {
+      "name": "tet_stresses",
+      "signature": "tet_stresses ( ) → tuple of tuples of stens3.",
+      "description": "Get all the tet stress tensors. Returns two tuples of stens, one for each overlay.",
+      "returns": {
+        "type": "tuple of tuples of stens3."
+      }
+    },
+    {
+      "name": "tet_volumes",
+      "signature": "tet_volumes ( ) → tuple of tuples of float.",
+      "description": "Get volume of each tet. Returns two tuples, one for each overlay. These values are zero before any cycling has occured.",
+      "returns": {
+        "type": "tuple of tuples of float."
+      }
+    },
+    {
+      "name": "tets",
+      "signature": "tets ( ) → tuple of tuples of tuples of itasca.",
+      "description": "gridpoint.Gridpoint objects. Get the gridpoints which make of each tet. Returns two tuples, one for each overlay.",
+      "returns": {
+        "type": "tuple of tuples of tuples of itasca."
+      }
+    },
+    {
+      "name": "therm_prop",
+      "signature": "therm_prop ( property_name: str ) → float.",
+      "description": "Get a thermal property value of this zone.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "therm_props",
+      "signature": "therm_props ( ) → dict {str: any}.",
+      "description": "Return a dictionary containing the thermal properties.",
+      "returns": {
+        "type": "dict {str: any}."
+      }
+    },
+    {
+      "name": "thermal_model",
+      "signature": "thermal_model ( ) → str.",
+      "description": "Get the thermal flow constitituve model for the zone.",
+      "returns": {
+        "type": "str."
+      }
+    },
+    {
+      "name": "type",
+      "signature": "type ( ) → str.",
+      "description": "Get the zone type, one of: “brick”, “wedge”, “pyramid”, “dbrick” or “tetra”).",
+      "returns": {
+        "type": "str."
+      }
+    },
+    {
+      "name": "valid",
+      "signature": "valid ( ) → bool.",
+      "description": "Returns True if this zone is live.",
+      "returns": {
+        "type": "bool."
+      }
+    },
+    {
+      "name": "vol",
+      "signature": "vol ( ) → float.",
+      "description": "Get the zone volume calculated using the current position of the zone’s gridpoints.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "vol_deformed",
+      "signature": "vol_deformed ( ) → float.",
+      "description": "Get the volume of a zone using gridpoint positions that take into account accumulated gridpoint displacements. This method is meant to be used in a small-strain analysis when deformed zone volumes are required. This method should not be used in a large-strain analysis (an incorrect volume will be returned). Use the .vol() of the zone object in large-strain mode.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "work_elastic_shear",
+      "signature": "work_elastic_shear ( ) → float.",
+      "description": "Get the zone zone shear elastic work dissipated.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "work_elastic_total",
+      "signature": "work_elastic_total ( ) → float.",
+      "description": "Get the total elastic work.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "work_elastic_vol",
+      "signature": "work_elastic_vol ( ) → float.",
+      "description": "Get the zone zone volumetric elastic work dissipated.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "work_plastic_shear",
+      "signature": "work_plastic_shear ( ) → float.",
+      "description": "Get the zone zone shear plastic work dissipated.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "work_plastic_total",
+      "signature": "work_plastic_total ( ) → float.",
+      "description": "Get the total plastic work dissipated.",
+      "returns": {
+        "type": "float."
+      }
+    },
+    {
+      "name": "work_plastic_vol",
+      "signature": "work_plastic_vol ( ) → float.",
+      "description": "Get the zone zone volumetric plastic work dissipated.",
+      "returns": {
+        "type": "float."
+      }
+    }
+  ]
+}

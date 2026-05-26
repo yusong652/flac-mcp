@@ -1,0 +1,10 @@
+{
+  "module": "vec",
+  "description": "Fast length two and three vectors.",
+  "import_statement": "from vec import vec, vec2, vec3, tens3, stens3",
+  "source_url": "https://docs.itascacg.com/flac3d700/common/docproject/source/manual/scripting/python/doc/vec.html",
+  "functions": [],
+  "notes": [
+    "vec Fast length two and three vectors. The vec module provides four classes vec2 , vec3 , tens3 , and stens3 which are specialized fast types for representing vectors and tensors. The statement from vec import vec will import the 2 or 3d version in the active 2D and 3D product respectively. vec , tens , and stens objects interoperate with NumPy. Many of the itasca module API functions accept or return these objects. This module was created because NumPy is relatively slow for small arrays. Examples: >>> from vec import vec3 >>> a = vec3 (( 1 , 1 , 1 )) >>> b = vec3 (( 2 , 2 , 2 )) >>> print a vec3 (( 1.000000e+00 , 1.000000e+00 , 1.000000e+00 )) The typical operations are defined: >>> a + b vec3 (( 3.000000e+00 , 3.000000e+00 , 3.000000e+00 )) >>> b / ( a + 0.1 ) vec3 (( 1.818182e+00 , 1.818182e+00 , 1.818182e+00 )) as well as some operations specific to vectors >>> b . mag () 3.4641016151377544 >>> a . norm () vec3 (( 5.773503e-01 , 5.773503e-01 , 5.773503e-01 )) >>> a . dot ( b ) 6.0"
+  ]
+}
