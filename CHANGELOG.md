@@ -24,6 +24,9 @@ Description of the release.
   variables and the `ItascaBridgeClient` name.
 - Add product/version-scoped command coverage auditing and mark FLAC2D 6.0/7.0
   as not applicable in the bundled documentation matrix.
+- Add FLAC plot-item reference docs for zone, gridpoint, and structural-element
+  visualization workflows.
+- Tighten FLAC2D Python API filtering with explicit out-of-plane API rules.
 - Add agentic setup and runtime validation documentation for FLAC2D/FLAC3D
   verification.
 

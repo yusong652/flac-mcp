@@ -86,6 +86,7 @@ def build_python_api_coverage() -> dict[str, Any]:
         "known_limits": [
             "FLAC3D Python API snapshots are bundled for 6.0, 7.0, and 9.0.",
             "FLAC2D product-scoped Python API is represented for 9.0 from the official shared FLAC docs.",
+            "FLAC2D 9.0 hides explicit out-of-plane API leaves such as *_z, *_xz, *_yz, and *_zz.",
             "FLAC2D 6.0/7.0 are marked not applicable in the bundled source matrix.",
         ],
         "sources": [

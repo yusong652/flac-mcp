@@ -1,0 +1,57 @@
+{
+  "name": "color-by",
+  "parent": "structure",
+  "description": "Color-by modes for structural-element plot items. The available attributes depend on the concrete item type (beam, cable, shell, liner, pile, geogrid, or structure-node).",
+  "modes": [
+    {
+      "keyword": "color-by text-attribute",
+      "description": "Color structural objects by group, id, or name.",
+      "syntax": "color-by text-attribute \"<name>\"",
+      "examples": [
+        "color-by text-attribute \"group\" 'Any' color-options named maximum-names 1000000 name-controls true",
+        "color-by text-attribute \"id\" color-options named maximum-names 1000000 name-controls true"
+      ],
+      "available_attributes": [
+        "group",
+        "id",
+        "name"
+      ]
+    },
+    {
+      "keyword": "color-by vector-attribute",
+      "description": "Color structural nodes or elements by vector quantities.",
+      "syntax": "color-by vector-attribute \"<name>\"",
+      "examples": [
+        "color-by vector-attribute \"displacement\"",
+        "color-by vector-attribute \"velocity\""
+      ],
+      "available_attributes": [
+        "displacement",
+        "force",
+        "moment",
+        "position",
+        "velocity"
+      ]
+    },
+    {
+      "keyword": "color-by numeric-attribute",
+      "description": "Color structural elements by scalar result components.",
+      "syntax": "color-by numeric-attribute \"<name>\"",
+      "examples": [
+        "color-by numeric-attribute \"axial-force\"",
+        "color-by numeric-attribute \"moment-x\"",
+        "color-by numeric-attribute \"extra\" 1"
+      ],
+      "available_attributes": [
+        "axial-force",
+        "extra",
+        "moment-x",
+        "moment-y",
+        "moment-z",
+        "stress",
+        "yield-state"
+      ],
+      "notes": "Attribute names vary by structural element type and active model configuration."
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "name": "cut",
+  "parent": "zone",
+  "description": "Cut settings for zone plot items. Use 2D coordinates in FLAC2D and 3D coordinates in FLAC3D.",
+  "keywords": [
+    {
+      "keyword": "cut active on",
+      "description": "Enable a cut plane or cut line for the zone plot item.",
+      "syntax": "cut active on type plane surface on front on back off origin (<x>,<y>,<z>) normal (<nx>,<ny>,<nz>)",
+      "examples": [
+        "plot item create zone active on",
+        "plot item modify 1 cut active on type plane surface on front on back off origin (0,0,0) normal (1,0,0)",
+        "plot item modify 1 cut active on type plane surface on front on back off origin (0,0) normal (1,0)"
+      ],
+      "available_parameters": {
+        "active": "on | off",
+        "type": "plane",
+        "surface": "on | off",
+        "front": "on | off",
+        "back": "on | off",
+        "origin": "(x,y) in FLAC2D or (x,y,z) in FLAC3D",
+        "normal": "(nx,ny) in FLAC2D or (nx,ny,nz) in FLAC3D"
+      }
+    },
+    {
+      "keyword": "cut active off",
+      "description": "Disable the cut and show the full zone item.",
+      "syntax": "cut active off"
+    }
+  ],
+  "notes": [
+    "Create the plot item first, then use 'plot item modify' when the GUI exports cut settings that are not accepted inline.",
+    "FLAC2D cut settings should not use z coordinates."
+  ]
+}

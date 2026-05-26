@@ -36,7 +36,8 @@ def register(mcp: FastMCP) -> None:
                 "- 'constitutive-models mohr-coulomb': Mohr-Coulomb zone "
                 "property keywords (for 'zone property')\n"
                 "- 'range-elements': Range elements overview (24 elements)\n"
-                "- 'range-elements position': Position range syntax"
+                "- 'range-elements position': Position range syntax\n"
+                "- 'plot-items zone color-by': Zone plot coloring keywords"
             ),
         ),
         version: CommandDocVersion = Field(
@@ -68,6 +69,7 @@ def register(mcp: FastMCP) -> None:
           (mohr-coulomb: young/poisson/cohesion/friction/...; cysoil; etc.)
           before a 'zone property' / 'zone cmodel assign' command
         - Need range filtering syntax (position, cylinder, group, id)
+        - Need plot item coloring/cut keywords for zone, gridpoint, or structure plots
         - Using range filters in any FLAC command
 
         Related tools:

@@ -223,6 +223,18 @@ async def test_browse_python_api_filters_3d_api_for_flac2d() -> None:
 
 
 @pytest.mark.asyncio
+async def test_browse_python_api_filters_explicit_out_of_plane_method_for_flac2d() -> None:
+    result = await mcp._tool_manager.call_tool(
+        "flac_browse_python_api",
+        {"api": "itasca.zone.Zone.stress_prin_z", "product": "flac2d"},
+    )
+    payload = _parse_tool_payload(result)
+
+    assert payload["ok"] is False
+    assert payload["error"]["code"] == "api_unavailable_for_product"
+
+
+@pytest.mark.asyncio
 async def test_browse_python_api_rejects_non_applicable_flac2d_legacy_version() -> None:
     result = await mcp._tool_manager.call_tool(
         "flac_browse_python_api",
@@ -315,6 +327,19 @@ async def test_query_python_api_filters_3d_api_for_flac2d() -> None:
 
 
 @pytest.mark.asyncio
+async def test_query_python_api_filters_out_of_plane_methods_for_flac2d() -> None:
+    result = await mcp._tool_manager.call_tool(
+        "flac_query_python_api",
+        {"query": "stress_prin_z", "limit": 10, "product": "flac2d"},
+    )
+    payload = _parse_tool_payload(result)
+    paths = {entry["api_path"] for entry in payload["data"]["entries"]}
+
+    assert payload["ok"] is True
+    assert "itasca.zone.Zone.stress_prin_z" not in paths
+
+
+@pytest.mark.asyncio
 async def test_query_python_api_rejects_non_applicable_flac2d_legacy_version() -> None:
     result = await mcp._tool_manager.call_tool(
         "flac_query_python_api",
@@ -352,6 +377,32 @@ async def test_browse_reference_root_contract() -> None:
     assert isinstance(data["entries"], list)
     names = {e["name"] for e in data["entries"]}
     assert "constitutive-models" in names
+    assert "plot-items" in names
+
+
+@pytest.mark.asyncio
+async def test_browse_reference_plot_items_contract() -> None:
+    result = await mcp._tool_manager.call_tool("flac_browse_reference", {"topic": "plot-items"})
+    payload = _parse_tool_payload(result)
+    data = payload["data"]
+
+    assert payload["ok"] is True
+    names = {e["name"] for e in data["entries"]}
+    assert {"zone", "gridpoint", "structure"} <= names
+
+
+@pytest.mark.asyncio
+async def test_browse_reference_plot_item_sub_item_contract() -> None:
+    result = await mcp._tool_manager.call_tool("flac_browse_reference", {"topic": "plot-items zone color-by"})
+    payload = _parse_tool_payload(result)
+    data = payload["data"]
+
+    assert payload["ok"] is True
+    entry = data["entries"][0]
+    assert entry["category"] == "plot-items"
+    assert entry["item"] == "zone"
+    assert entry["sub_item"] == "color-by"
+    assert entry["doc"]["parent"] == "zone"
 
 
 @pytest.mark.asyncio

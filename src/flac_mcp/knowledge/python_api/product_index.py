@@ -55,16 +55,30 @@ PYTHON_API_SOURCES: dict[str, dict[str, dict[str, Any]]] = {
     },
 }
 
-_THREE_D_ONLY_NAME_PATTERNS = (
-    re.compile(
-        r"(?<![A-Za-z0-9])("
-        r"gravity_z|set_gravity_z|domain_min_z|domain_max_z|"
-        r"set_domain_min_z|set_domain_max_z|pos_z|pos_z_set|vel_z|vel_z_set|"
-        r"normal_z|disp_shear_z|disp_shear_z_set|stress_shear_z|stress_shear_z_set|"
-        r"stress_prin_z"
-        r")(?![A-Za-z0-9])",
-        re.IGNORECASE,
-    ),
+# Product scoping is applied before browse/search builds its API index.  The
+# official FLAC Python pages do not ship a per-product manifest, so keep the
+# MCP-side rules explicit and API-shaped instead of relying on broad text
+# searches over descriptions.
+FLAC3D_ONLY_API_LEAF_NAMES = {
+    "domain_max_z",
+    "domain_min_z",
+    "gravity_z",
+    "normal_z",
+    "set_domain_max_z",
+    "set_domain_min_z",
+    "set_gravity_z",
+    "stress_prin_z",
+}
+
+FLAC3D_ONLY_API_LEAF_SUFFIXES = (
+    "_z",
+    "_z_set",
+    "_xz",
+    "_xz_set",
+    "_yz",
+    "_yz_set",
+    "_zz",
+    "_zz_set",
 )
 
 _THREE_D_ONLY_TEXT_PATTERNS = (
@@ -122,12 +136,20 @@ def api_products(api_path: str, doc: Any, version: str) -> list[str]:
     if version_value in {"6.0", "7.0"}:
         return [FLACProduct.FLAC3D.value]
 
+    three_d_only = _is_explicit_flac3d_only_api(api_path)
     text = api_path + " " + json.dumps(doc, ensure_ascii=False)
-    three_d_only = any(pattern.search(text) for pattern in _THREE_D_ONLY_NAME_PATTERNS)
     three_d_only = three_d_only or any(pattern.search(text) for pattern in _THREE_D_ONLY_TEXT_PATTERNS)
     if three_d_only:
         return [FLACProduct.FLAC3D.value]
     return [FLACProduct.FLAC2D.value, FLACProduct.FLAC3D.value]
+
+
+def _is_explicit_flac3d_only_api(api_path: str) -> bool:
+    """Return True when an API path uses an explicit out-of-plane component."""
+    leaf = api_path.rsplit(".", 1)[-1].lower()
+    if leaf in FLAC3D_ONLY_API_LEAF_NAMES:
+        return True
+    return any(leaf.endswith(suffix) for suffix in FLAC3D_ONLY_API_LEAF_SUFFIXES)
 
 
 def is_api_available(api_path: str, doc: Any, product: str, version: str) -> bool:

@@ -1,0 +1,54 @@
+{
+  "name": "structure",
+  "item_type": "structure",
+  "search_keywords": [
+    "structure",
+    "beam",
+    "cable",
+    "shell",
+    "liner",
+    "pile",
+    "geogrid",
+    "node",
+    "force",
+    "moment"
+  ],
+  "description": "Configuration keywords for FLAC structural-element plot items. Use the concrete item type when known, such as beam, cable, shell, liner, pile, geogrid, or structure-node.",
+  "base_syntax": "plot item create <beam|cable|shell|liner|pile|geogrid|structure-node> <keywords...>",
+  "basic_keywords": [
+    {
+      "keyword": "active on",
+      "description": "Show the structural plot item.",
+      "syntax": "active on"
+    },
+    {
+      "keyword": "transparency",
+      "description": "Set item transparency where supported.",
+      "syntax": "transparency <0-100>"
+    },
+    {
+      "keyword": "legend active on",
+      "description": "Show a legend for color-mapped structural values.",
+      "syntax": "legend active on"
+    }
+  ],
+  "sub_items": [
+    {
+      "name": "color-by",
+      "file": "color-by.json",
+      "description": "Color structural elements or nodes by group, component forces, moments, stress resultants, displacement, or system attributes."
+    }
+  ],
+  "common_usage_patterns": [
+    {
+      "use_case": "Shells colored by group",
+      "command": "plot item create shell active on color-by text-attribute \"group\" 'Any' color-options named maximum-names 1000000 name-controls true legend active on",
+      "description": "Different color per shell group."
+    },
+    {
+      "use_case": "Structural nodes colored by displacement",
+      "command": "plot item create structure-node active on color-by vector-attribute \"displacement\" color-options scaled ramp rainbow minimum automatic maximum automatic legend active on",
+      "description": "Continuous displacement color map for structural nodes."
+    }
+  ]
+}

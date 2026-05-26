@@ -17,6 +17,14 @@
       "index_file": "range-elements/index.json",
       "summary": "Geometric, attribute, and logical range filters",
       "usage": "<command> ... range <element> [params]"
+    },
+    "plot-items": {
+      "name": "Plot Item Keywords",
+      "description": "Configuration keywords for common FLAC plot item types (zone, gridpoint, and structural elements).",
+      "directory": "plot-items",
+      "index_file": "plot-items/index.json",
+      "summary": "Keywords for 'plot item create <type>' — color-by, cut, transparency, legends, labels, and rendering controls",
+      "usage": "plot item create <type> <keyword> <keyword> ..."
     }
   },
   "navigation": {

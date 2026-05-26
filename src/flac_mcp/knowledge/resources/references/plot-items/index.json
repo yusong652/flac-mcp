@@ -1,0 +1,42 @@
+{
+  "type": "plot_item_keywords",
+  "description": "Configuration keywords for common FLAC plot item types created via 'plot item create <type>'. These keywords control visibility, coloring, clipping, labels, transparency, and legends.",
+  "usage_context": "plot item create <type> <keyword> <keyword> ...",
+  "items": [
+    {
+      "name": "zone",
+      "file": "zone/index.json",
+      "description": "Zone visualization with coloring by stress, displacement, pore pressure, temperature, model state, group, or extra variables.",
+      "common_use": "Visualize continuum grid results and material model state."
+    },
+    {
+      "name": "gridpoint",
+      "file": "gridpoint/index.json",
+      "description": "Gridpoint visualization with coloring by displacement, velocity, force, pore pressure, temperature, group, or extra variables.",
+      "common_use": "Inspect nodal values, boundary-condition response, and convergence-related quantities."
+    },
+    {
+      "name": "structure",
+      "file": "structure/index.json",
+      "description": "Structural-element visualization for beams, cables, shells, liners, piles, geogrids, nodes, and related element results.",
+      "common_use": "Visualize structural element groups, forces, moments, systems, and result components."
+    }
+  ],
+  "shared_keywords": {
+    "description": "Keywords common to most FLAC plot item types.",
+    "list": [
+      "active",
+      "color-by",
+      "color-options",
+      "cut",
+      "legend",
+      "transparency",
+      "label"
+    ]
+  },
+  "notes": [
+    "Plot-item keywords are appended after the item type.",
+    "Some complex settings are easier to apply with 'plot item modify' after creating the item.",
+    "The entries here are practical MCP lookup aids derived from bundled FLAC command/reference resources; verify unusual plot syntax in the target FLAC GUI."
+  ]
+}

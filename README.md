@@ -94,6 +94,7 @@ Once first-time setup is done, each new FLAC session only needs the bridge re-st
 - **Expanded FLAC 9.0 Python API** - bundled docs include attach, array, interface, zone, gridpoint, and vec APIs
 - **Hierarchical documentation browsing** - agents navigate the FLAC command tree to discover capabilities and boundaries, reducing hallucinated commands
 - **Enhanced plot documentation** - plot items reference docs supplementing the official documentation
+- **Known coverage limits** - FLAC3D 6.0/7.0 command docs remain partially covered; coverage tools report missing version entries
 - **Interactive REPL** - rapid iteration before committing to full scripts; agents can quickly test and refine code
 - **Task lifecycle management** - submit long-running simulations, monitor progress, interrupt running tasks, and browse task history
 - **Multi-client compatible** - works with Claude Code, Codex CLI, Gemini CLI, GitHub Copilot CLI, OpenCode, toyoura-nagisa, and other MCP clients
