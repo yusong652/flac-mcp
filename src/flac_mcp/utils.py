@@ -37,6 +37,13 @@ class CommandDocVersion(str, Enum):
     V6_0 = "6.0"
     V7_0 = "7.0"
     V9_0 = "9.0"
+    V9_1 = "9.1"
+    V9_2 = "9.2"
+    V9_3 = "9.3"
+    V9_4 = "9.4"
+    V9_5 = "9.5"
+    V9_6 = "9.6"
+    V9_7 = "9.7"
 
 
 ProductFilter = FLACProduct

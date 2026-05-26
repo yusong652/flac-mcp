@@ -36,7 +36,10 @@ def register(mcp: FastMCP) -> None:
         ),
         version: CommandDocVersion = Field(
             CommandDocVersion.V9_0,
-            description="FLAC Python API documentation version. Bundled product-scoped API data is currently 9.0.",
+            description=(
+                "FLAC Python API documentation version. Bundled product-scoped API snapshots include "
+                "FLAC3D 6.0/7.0 and the 9.0 baseline used for 9.x."
+            ),
         ),
     ) -> dict[str, Any]:
         """Browse FLAC Python SDK documentation by path (like glob + cat)."""

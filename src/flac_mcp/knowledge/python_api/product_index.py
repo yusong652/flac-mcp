@@ -12,7 +12,15 @@ from flac_mcp.knowledge.compatibility import FLACProduct, normalize_product
 from flac_mcp.knowledge.config import FLAC_PYTHON_API_DOCS_VERSION_ROOT
 
 SUPPORTED_PYTHON_API_PRODUCTS = ("flac2d", "flac3d")
-SUPPORTED_PYTHON_API_VERSIONS = ("6.0", "7.0", "9.0")
+SUPPORTED_PYTHON_API_VERSIONS = ("6.0", "7.0", "9.0", "9.1", "9.2", "9.3", "9.4", "9.5", "9.6", "9.7")
+
+ITASCA_9X_PYTHON_API_URL = (
+    "https://docs.itascacg.com/itasca900/common/docproject/source/manual/scripting/python/python_flac3d.html"
+)
+ITASCA_9X_PYTHON_API_SOURCE = (
+    "Uses the bundled ITASCA 9.0 FLAC Python API snapshot as the documented 9.x baseline; "
+    "runtime validation is recommended for version-specific embedded Python behavior."
+)
 
 PYTHON_API_SOURCES: dict[str, dict[str, dict[str, Any]]] = {
     "flac2d": {
@@ -30,7 +38,60 @@ PYTHON_API_SOURCES: dict[str, dict[str, dict[str, Any]]] = {
             "applicable": True,
             "bundled": True,
             "source": "Derived from the official ITASCA 9.0 FLAC shared docs and FLAC3D-Python API pages.",
-            "url": "https://docs.itascacg.com/itasca900/common/docproject/source/manual/scripting/python/python_flac3d.html",
+            "url": ITASCA_9X_PYTHON_API_URL,
+        },
+        "9.1": {
+            "applicable": True,
+            "bundled": True,
+            "source": ITASCA_9X_PYTHON_API_SOURCE,
+            "source_version": "9.0",
+            "url": ITASCA_9X_PYTHON_API_URL,
+        },
+        "9.2": {
+            "applicable": True,
+            "bundled": True,
+            "source": ITASCA_9X_PYTHON_API_SOURCE,
+            "source_version": "9.0",
+            "url": ITASCA_9X_PYTHON_API_URL,
+        },
+        "9.3": {
+            "applicable": True,
+            "bundled": True,
+            "source": ITASCA_9X_PYTHON_API_SOURCE,
+            "source_version": "9.0",
+            "url": ITASCA_9X_PYTHON_API_URL,
+        },
+        "9.4": {
+            "applicable": True,
+            "bundled": True,
+            "source": ITASCA_9X_PYTHON_API_SOURCE,
+            "source_version": "9.0",
+            "reference_version": "9.3",
+            "url": ITASCA_9X_PYTHON_API_URL,
+        },
+        "9.5": {
+            "applicable": True,
+            "bundled": True,
+            "source": ITASCA_9X_PYTHON_API_SOURCE,
+            "source_version": "9.0",
+            "reference_version": "9.3",
+            "url": ITASCA_9X_PYTHON_API_URL,
+        },
+        "9.6": {
+            "applicable": True,
+            "bundled": True,
+            "source": ITASCA_9X_PYTHON_API_SOURCE,
+            "source_version": "9.0",
+            "reference_version": "9.3",
+            "url": ITASCA_9X_PYTHON_API_URL,
+        },
+        "9.7": {
+            "applicable": True,
+            "bundled": True,
+            "source": ITASCA_9X_PYTHON_API_SOURCE,
+            "source_version": "9.0",
+            "reference_version": "9.3",
+            "url": ITASCA_9X_PYTHON_API_URL,
         },
     },
     "flac3d": {
@@ -50,7 +111,60 @@ PYTHON_API_SOURCES: dict[str, dict[str, dict[str, Any]]] = {
             "applicable": True,
             "bundled": True,
             "source": "Official ITASCA 9.0 FLAC3D-Python API pages.",
-            "url": "https://docs.itascacg.com/itasca900/common/docproject/source/manual/scripting/python/python_flac3d.html",
+            "url": ITASCA_9X_PYTHON_API_URL,
+        },
+        "9.1": {
+            "applicable": True,
+            "bundled": True,
+            "source": ITASCA_9X_PYTHON_API_SOURCE,
+            "source_version": "9.0",
+            "url": ITASCA_9X_PYTHON_API_URL,
+        },
+        "9.2": {
+            "applicable": True,
+            "bundled": True,
+            "source": ITASCA_9X_PYTHON_API_SOURCE,
+            "source_version": "9.0",
+            "url": ITASCA_9X_PYTHON_API_URL,
+        },
+        "9.3": {
+            "applicable": True,
+            "bundled": True,
+            "source": ITASCA_9X_PYTHON_API_SOURCE,
+            "source_version": "9.0",
+            "url": ITASCA_9X_PYTHON_API_URL,
+        },
+        "9.4": {
+            "applicable": True,
+            "bundled": True,
+            "source": ITASCA_9X_PYTHON_API_SOURCE,
+            "source_version": "9.0",
+            "reference_version": "9.3",
+            "url": ITASCA_9X_PYTHON_API_URL,
+        },
+        "9.5": {
+            "applicable": True,
+            "bundled": True,
+            "source": ITASCA_9X_PYTHON_API_SOURCE,
+            "source_version": "9.0",
+            "reference_version": "9.3",
+            "url": ITASCA_9X_PYTHON_API_URL,
+        },
+        "9.6": {
+            "applicable": True,
+            "bundled": True,
+            "source": ITASCA_9X_PYTHON_API_SOURCE,
+            "source_version": "9.0",
+            "reference_version": "9.3",
+            "url": ITASCA_9X_PYTHON_API_URL,
+        },
+        "9.7": {
+            "applicable": True,
+            "bundled": True,
+            "source": ITASCA_9X_PYTHON_API_SOURCE,
+            "source_version": "9.0",
+            "reference_version": "9.3",
+            "url": ITASCA_9X_PYTHON_API_URL,
         },
     },
 }
@@ -99,6 +213,8 @@ def normalize_api_version(value: str | None) -> str:
         return "7.0"
     if normalized in {"9", "9.0"}:
         return "9.0"
+    if normalized in {"9.1", "9.2", "9.3", "9.4", "9.5", "9.6", "9.7"}:
+        return normalized
     return normalized
 
 

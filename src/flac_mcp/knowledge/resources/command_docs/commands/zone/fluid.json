@@ -825,6 +825,403 @@
           "description": "Specify the tortuosity as f . Tortuosity is the ratio of the straight line path to the actual fluid path through a zone. This factor will be used to multiply track increments calculated from the flow velocity. The value defaults to 1 if not given."
         }
       ]
+    },
+    "9.1": {
+      "command": "zone fluid",
+      "syntax": "zone fluid keyword",
+      "description": "Set parameters for a groundwater fluid-flow analysis. FLAC 9.1 and later require model configure fluid-flow.",
+      "keywords": [
+        {
+          "name": "active",
+          "syntax": "active <b>",
+          "description": "Set the zone fluid process on or off after model configure fluid-flow."
+        },
+        {
+          "name": "cmodel",
+          "syntax": "cmodel keyword",
+          "description": "Select, assign, or list zone fluid constitutive models."
+        },
+        {
+          "name": "cmodel-assign",
+          "syntax": "assign keyword <range>",
+          "description": "Assign a fluid constitutive model to zones in the range. FLAC3D 9.x runtime accepts active, inactive, isotropic, and anisotropic."
+        },
+        {
+          "name": "cmodel-assign-active",
+          "syntax": "active",
+          "description": "Assign the active fluid flow model. Runtime-validated in FLAC3D 9.x."
+        },
+        {
+          "name": "cmodel-assign-inactive",
+          "syntax": "inactive",
+          "description": "Assign the inactive fluid model, making the zone effectively impermeable."
+        },
+        {
+          "name": "cmodel-assign-isotropic",
+          "syntax": "isotropic",
+          "description": "Assign the isotropic fluid flow model. Runtime-validated in FLAC3D 9.x."
+        },
+        {
+          "name": "cmodel-assign-anisotropic",
+          "syntax": "anisotropic",
+          "description": "Assign the anisotropic fluid flow model. Runtime-validated in FLAC3D 9.x."
+        },
+        {
+          "name": "cmodel-list",
+          "syntax": "list",
+          "description": "List available fluid constitutive models and properties."
+        },
+        {
+          "name": "conserve-generated",
+          "syntax": "conserve-generated <b>",
+          "description": "Redistribute generated pore pressure away from fixed-pore-pressure gridpoints during two-way coupling."
+        },
+        {
+          "name": "fastflow",
+          "syntax": "fastflow <b>",
+          "description": "Turn the fastflow solution scheme on or off."
+        },
+        {
+          "name": "fastflow-relaxation",
+          "syntax": "fastflow-relaxation <f>",
+          "description": "Set relaxation parameters for the fastflow solution scheme."
+        },
+        {
+          "name": "density",
+          "syntax": "density <f>",
+          "description": "Set the global fluid density used by the fluid-flow calculation."
+        },
+        {
+          "name": "implicit",
+          "syntax": "implicit [[active] <b>] <keyword> ...",
+          "description": "Configure implicit fluid-flow solution mode."
+        },
+        {
+          "name": "implicit-maximum-iterations",
+          "syntax": "maximum-iterations <i>",
+          "description": "Set the maximum matrix-solver iteration count for iterative implicit solvers."
+        },
+        {
+          "name": "implicit-maxnonlinear-iterations",
+          "syntax": "maxnonlinear-iterations <i>",
+          "description": "Set the maximum nonlinear iterations when a saturation model is active."
+        },
+        {
+          "name": "implicit-servo",
+          "syntax": "servo <keyword> ...",
+          "description": "Configure the optional timestep servo for implicit fluid calculations."
+        },
+        {
+          "name": "implicit-solver",
+          "syntax": "solver <automatic|direct|jacobi|pcg>",
+          "description": "Select the matrix solver used during implicit fluid-flow mode."
+        },
+        {
+          "name": "implicit-tolerance",
+          "syntax": "tolerance <f>",
+          "description": "Set convergence tolerance for iterative implicit fluid solvers."
+        },
+        {
+          "name": "list",
+          "syntax": "list",
+          "description": "Output fluid-flow configuration, model, and property information."
+        },
+        {
+          "name": "list-information",
+          "syntax": "information",
+          "description": "Output current configuration settings and status information for the fluid model."
+        },
+        {
+          "name": "list-property",
+          "syntax": "property keyword <range>",
+          "description": "Output the requested fluid property for zones in the range."
+        },
+        {
+          "name": "modulus-scale",
+          "syntax": "modulus-scale <keyword ...> <range>",
+          "description": "Scale fluid or Biot modulus values for flow-only or coupled consolidation analysis."
+        },
+        {
+          "name": "modulus-scale-limit-modulus",
+          "syntax": "limit-modulus <fmin> <fmax>",
+          "description": "Limit scaled fluid modulus values."
+        },
+        {
+          "name": "modulus-scale-limit-modulus-biot",
+          "syntax": "limit-modulus-biot <fmin> <fmax>",
+          "description": "Limit scaled Biot modulus values."
+        },
+        {
+          "name": "modulus-scale-limit-stiffness-ratio",
+          "syntax": "limit-stiffness-ratio <fmax>",
+          "description": "Limit the ratio between fluid storage stiffness and mechanical confined stiffness."
+        },
+        {
+          "name": "modulus-scale-restore",
+          "syntax": "restore",
+          "description": "Restore original fluid or Biot modulus after modulus scaling."
+        },
+        {
+          "name": "modulus-automatic",
+          "syntax": "modulus-automatic [fratio] <range>",
+          "description": "Set Biot modulus from current mechanical confined stiffness; default ratio is 20 if omitted."
+        },
+        {
+          "name": "permeability-saturation",
+          "syntax": "permeability-saturation keyword <range>",
+          "description": "Specify how effective permeability varies with average gridpoint saturation."
+        },
+        {
+          "name": "permeability-saturation-constant",
+          "syntax": "constant",
+          "description": "Keep permeability unchanged by saturation."
+        },
+        {
+          "name": "permeability-saturation-s-shape",
+          "syntax": "s-shape",
+          "description": "Scale permeability with an S-shaped saturation relation."
+        },
+        {
+          "name": "permeability-saturation-table",
+          "syntax": "table <sname>",
+          "description": "Scale permeability by a named user table keyed by average zone saturation; quote the table name in FLAC commands."
+        },
+        {
+          "name": "property",
+          "syntax": "property keyword ... <range>",
+          "description": "Assign one or more fluid property name-value pairs to zones in the range."
+        },
+        {
+          "name": "property-biot-coefficient",
+          "syntax": "biot-coefficient <f>",
+          "description": "Set the Biot coefficient for zones."
+        },
+        {
+          "name": "property-biot-modulus",
+          "syntax": "biot-modulus <f>",
+          "description": "Set the Biot modulus for zones."
+        },
+        {
+          "name": "property-consolidation-coefficient",
+          "syntax": "consolidation-coefficient <f>",
+          "description": "Set consolidation coefficient as an alternate way to specify storage behavior."
+        },
+        {
+          "name": "property-density-saturated",
+          "syntax": "density-saturated <b>",
+          "description": "Control whether saturated density is used for total fluid density contribution."
+        },
+        {
+          "name": "property-effective-cutoff",
+          "syntax": "effective-cutoff <f>",
+          "description": "Set the lower bound used for effective-stress pore pressure calculations."
+        },
+        {
+          "name": "property-fluid-density",
+          "syntax": "fluid-density <f>",
+          "description": "Set zone-specific fluid density."
+        },
+        {
+          "name": "property-fluid-modulus",
+          "syntax": "fluid-modulus <f>",
+          "description": "Set zone fluid modulus."
+        },
+        {
+          "name": "property-hydraulic-conductivity",
+          "syntax": "hydraulic-conductivity <f>",
+          "description": "Set isotropic hydraulic conductivity in length-per-time units."
+        },
+        {
+          "name": "property-hydraulic-conductivity-tensor",
+          "syntax": "hydraulic-conductivity-tensor <fxx> <fyy> <fzz> <fxy> <fxz> <fyz>",
+          "description": "Set anisotropic hydraulic conductivity components."
+        },
+        {
+          "name": "property-mobility-coefficient",
+          "syntax": "mobility-coefficient <f>",
+          "description": "Set isotropic mobility coefficient, the preferred 9.1+ permeability-style property."
+        },
+        {
+          "name": "property-mobility-coefficient-tensor",
+          "syntax": "mobility-coefficient-tensor <fxx> <fyy> <fzz> <fxy> <fxz> <fyz>",
+          "description": "Set anisotropic mobility coefficient components."
+        },
+        {
+          "name": "property-pore-pressure-generation",
+          "syntax": "pore-pressure-generation <b>",
+          "description": "Enable or disable pore-pressure generation from mechanical volumetric strain."
+        },
+        {
+          "name": "property-porosity",
+          "syntax": "porosity <f>",
+          "description": "Set zone porosity."
+        },
+        {
+          "name": "property-undrained-thermal-coefficient",
+          "syntax": "undrained-thermal-coefficient <f>",
+          "description": "Set the undrained thermal coefficient."
+        },
+        {
+          "name": "property-distribution",
+          "syntax": "property-distribution <s> <value> <keyword ...> <range>",
+          "description": "Assign a spatially varied fluid property distribution."
+        },
+        {
+          "name": "property-distribution-add",
+          "syntax": "add",
+          "description": "Add to a float property distribution value."
+        },
+        {
+          "name": "property-distribution-gradient",
+          "syntax": "gradient <v> [origin <v>]",
+          "description": "Apply a gradient to a float property distribution value."
+        },
+        {
+          "name": "property-distribution-multiply",
+          "syntax": "multiply",
+          "description": "Multiply a property distribution value."
+        },
+        {
+          "name": "property-distribution-vary",
+          "syntax": "vary <v>",
+          "description": "Apply a linear variation to a float property distribution value."
+        },
+        {
+          "name": "saturation-tolerance",
+          "syntax": "saturation-tolerance <f>",
+          "description": "Set the saturation-change threshold used before saturation effects are applied."
+        },
+        {
+          "name": "steady-state",
+          "syntax": "steady-state <keyword ...>",
+          "description": "Solve the steady-state fluid-flow system; unsaturated models use nonlinear Picard iteration."
+        },
+        {
+          "name": "steady-state-effective",
+          "syntax": "effective <b>",
+          "description": "Control whether effective stress or pore pressure is held consistent during steady-state updates."
+        },
+        {
+          "name": "steady-state-linear-first",
+          "syntax": "linear-first",
+          "description": "Use a preliminary linear solution to accelerate convergence for cutoff unsaturated flow models."
+        },
+        {
+          "name": "steady-state-maximum-iterations",
+          "syntax": "maximum-iterations <i>",
+          "description": "Set the Picard iteration limit for steady-state unsaturated solutions."
+        },
+        {
+          "name": "timestep",
+          "syntax": "timestep <keyword>",
+          "description": "Manage zone fluid timestep controls."
+        },
+        {
+          "name": "timestep-automatic",
+          "syntax": "automatic",
+          "description": "Return fluid timestep selection to automatic mode."
+        },
+        {
+          "name": "timestep-fix",
+          "syntax": "fix <f>",
+          "description": "Fix the fluid timestep to a user-specified value. Runtime keyword is fix."
+        },
+        {
+          "name": "time-total",
+          "syntax": "time-total <f>",
+          "description": "Set accumulated zone fluid time."
+        },
+        {
+          "name": "track",
+          "syntax": "track keyword",
+          "description": "Create, delete, list, and group passive particles that track fluid flow paths."
+        },
+        {
+          "name": "track-active",
+          "syntax": "active <b>",
+          "description": "Turn fluid particle tracking on or off."
+        },
+        {
+          "name": "track-create",
+          "syntax": "create keyword",
+          "description": "Create passive fluid tracking particles."
+        },
+        {
+          "name": "track-delete",
+          "syntax": "delete <range>",
+          "description": "Delete fluid tracking particles in the range."
+        },
+        {
+          "name": "track-group",
+          "syntax": "group <s> keyword <range>",
+          "description": "Assign or remove groups on fluid tracking particles."
+        },
+        {
+          "name": "track-list",
+          "syntax": "list <path>",
+          "description": "List current particle locations or path information."
+        },
+        {
+          "name": "track-trace",
+          "syntax": "trace [name <s>] <i>",
+          "description": "Create a location trace for a fluid tracking particle."
+        },
+        {
+          "name": "unsaturated",
+          "syntax": "unsaturated keyword <range>",
+          "description": "Assign the unsaturated flow model used at gridpoints; assignment can vary spatially."
+        },
+        {
+          "name": "unsaturated-brooks-corey",
+          "syntax": "brooks-corey <fae> <fpsi> [fcutoff]",
+          "description": "Use the Brooks-Corey saturation-suction relation."
+        },
+        {
+          "name": "unsaturated-cutoff",
+          "syntax": "cutoff [fcutoff [ftension]]",
+          "description": "Use a cutoff model that prevents pore pressure from falling below the specified tension."
+        },
+        {
+          "name": "unsaturated-gardner",
+          "syntax": "gardner <fa> <fn> <fref> [fcutoff]",
+          "description": "Use the Gardner saturation-suction relation."
+        },
+        {
+          "name": "unsaturated-off",
+          "syntax": "off",
+          "description": "Disable unsaturated flow behavior."
+        },
+        {
+          "name": "unsaturated-table",
+          "syntax": "table <sname>",
+          "description": "Use a table to define the saturation-suction relation."
+        },
+        {
+          "name": "unsaturated-van-genuchten",
+          "syntax": "van-genuchten <fn> <fm> <fref>",
+          "description": "Use the van Genuchten saturation-suction relation."
+        },
+        {
+          "name": "zone-based-pp",
+          "syntax": "zone-based-pp <b>",
+          "description": "Use zone pore pressures directly rather than gridpoint-averaged pore pressures."
+        }
+      ],
+      "version_notes": [
+        "ITASCA 9.1 and later use model configure fluid-flow before zone fluid commands; FLAC 9.0 used model configure fluid.",
+        "Unsaturated-flow and saturation-dependent permeability controls are documented in the 9.1+ zone fluid command page.",
+        "For 9.1+ mobility-coefficient and hydraulic-conductivity property names should be preferred over older permeability property names.",
+        "Runtime validation in FLAC3D 9.x accepted cmodel assign active/inactive/isotropic/anisotropic and timestep fix; cmodel assign linear and timestep fixed were rejected."
+      ],
+      "official_documentation": {
+        "source_urls": [
+          "https://docs.itascacg.com/itasca910/flac3d/zone/doc/manual/zone_manual/zone_commands/cmd_zone.fluid.html"
+        ]
+      }
+    },
+    "9.3": {
+      "alias_of": "9.1",
+      "reason": "FLAC 9.3+ uses the bundled 9.1 fluid-flow syntax block for this command until an exact 9.3 page is bundled."
     }
   }
 }

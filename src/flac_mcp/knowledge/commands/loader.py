@@ -25,6 +25,15 @@ class CommandLoader:
     """
 
     DEFAULT_VERSION = "9.0"
+    NINE_X_FALLBACKS = {
+        "9.1": ("9.1", "9.0"),
+        "9.2": ("9.2", "9.1", "9.0"),
+        "9.3": ("9.3", "9.2", "9.1", "9.0"),
+        "9.4": ("9.4", "9.3", "9.2", "9.1", "9.0"),
+        "9.5": ("9.5", "9.3", "9.2", "9.1", "9.0"),
+        "9.6": ("9.6", "9.3", "9.2", "9.1", "9.0"),
+        "9.7": ("9.7", "9.3", "9.2", "9.1", "9.0"),
+    }
 
     @staticmethod
     @lru_cache(maxsize=1)
@@ -81,19 +90,42 @@ class CommandLoader:
             resolved["versions"] = [CommandLoader.DEFAULT_VERSION]
             return resolved
 
-        if version not in versions:
+        source_version = CommandLoader._source_version(versions, version)
+        if source_version is None:
             raise KeyError(version)
 
         resolved = {k: v for k, v in doc.items() if k != "versions"}
         resolved["versions"] = list(versions.keys())
 
-        version_doc = versions[version]
+        version_doc = versions[source_version]
+        alias_target = version_doc.get("alias_of") if isinstance(version_doc.get("alias_of"), str) else None
+        if alias_target is not None:
+            if alias_target not in versions:
+                raise KeyError(alias_target)
+            version_doc = versions[alias_target]
+
         if version_doc.get("available") is False:
             resolved["available"] = False
             return resolved
 
         resolved.update(version_doc)
+        if source_version != version or alias_target is not None:
+            resolved["version_alias"] = {
+                "requested_version": version,
+                "source_version": source_version,
+                "reason": "No exact bundled command page exists for this 9.x version; using the nearest available 9.x baseline.",
+            }
+            if alias_target is not None:
+                resolved["version_alias"]["content_version"] = alias_target
         return resolved
+
+    @staticmethod
+    def _source_version(versions: dict[str, Any], requested_version: str) -> str | None:
+        """Return the bundled version block to use for a requested command version."""
+        for candidate in CommandLoader.NINE_X_FALLBACKS.get(requested_version, (requested_version,)):
+            if candidate in versions:
+                return candidate
+        return None
 
     @staticmethod
     def load_command_doc(

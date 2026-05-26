@@ -130,6 +130,47 @@ async def test_browse_commands_legacy_flac3d_command_docs_contract() -> None:
 
 
 @pytest.mark.asyncio
+async def test_browse_commands_flac_9_7_fluid_flow_command_docs_contract() -> None:
+    result = await mcp._tool_manager.call_tool(
+        "flac_browse_commands",
+        {"command": "model configure", "version": "9.7", "product": "flac3d"},
+    )
+    payload = _parse_tool_payload(result)
+    data = payload["data"]
+    doc = data["entries"][0]["doc"]
+    keyword_names = {keyword["name"] for keyword in doc["keywords"]}
+
+    assert payload["ok"] is True
+    assert data["summary"]["version"] == "9.7"
+    assert doc["version_alias"]["source_version"] == "9.3"
+    assert doc["version_alias"]["content_version"] == "9.1"
+    assert "fluid-flow" in keyword_names
+    assert "fluid" not in keyword_names
+
+
+@pytest.mark.asyncio
+async def test_browse_commands_flac_9_7_unsaturated_flow_docs_contract() -> None:
+    result = await mcp._tool_manager.call_tool(
+        "flac_browse_commands",
+        {"command": "zone fluid", "version": "9.7", "product": "flac3d"},
+    )
+    payload = _parse_tool_payload(result)
+    data = payload["data"]
+    doc = data["entries"][0]["doc"]
+    keyword_names = {keyword["name"] for keyword in doc["keywords"]}
+
+    assert payload["ok"] is True
+    assert data["summary"]["version"] == "9.7"
+    assert doc["version_alias"]["source_version"] == "9.3"
+    assert doc["version_alias"]["content_version"] == "9.1"
+    assert "unsaturated" in keyword_names
+    assert "permeability-saturation" in keyword_names
+    assert "steady-state" in keyword_names
+    assert "cmodel-assign-isotropic" in keyword_names
+    assert "cmodel-assign-linear" not in keyword_names
+
+
+@pytest.mark.asyncio
 async def test_browse_category_contract() -> None:
     result = await mcp._tool_manager.call_tool(
         "flac_browse_commands",
@@ -362,6 +403,10 @@ async def test_python_api_coverage_reports_missing_modules() -> None:
     assert "flac3d" in data["products"]
     assert data["matrix"]["flac3d"]["9.0"]["complete"] is True
     assert data["matrix"]["flac3d"]["9.0"]["missing_modules"] == []
+    assert data["matrix"]["flac3d"]["9.3"]["complete"] is True
+    assert data["matrix"]["flac3d"]["9.3"]["source"]["source_version"] == "9.0"
+    assert data["matrix"]["flac3d"]["9.7"]["complete"] is True
+    assert data["matrix"]["flac3d"]["9.7"]["source"]["reference_version"] == "9.3"
     assert data["matrix"]["flac3d"]["7.0"]["complete"] is True
     assert data["matrix"]["flac3d"]["7.0"]["api_entry_count"] >= 500
     assert data["matrix"]["flac3d"]["6.0"]["complete"] is True
@@ -381,6 +426,12 @@ async def test_command_coverage_reports_product_version_matrix() -> None:
     assert data["bundled"]["command_count"] >= 500
     assert data["matrix"]["flac3d"]["9.0"]["complete"] is True
     assert data["matrix"]["flac3d"]["9.0"]["available_for_product_count"] >= 500
+    assert data["matrix"]["flac3d"]["9.3"]["complete"] is True
+    assert data["matrix"]["flac3d"]["9.3"]["missing_version_count"] == 0
+    assert data["matrix"]["flac3d"]["9.7"]["complete"] is True
+    assert data["matrix"]["flac3d"]["9.7"]["missing_version_count"] == 0
+    assert data["matrix"]["flac2d"]["9.3"]["complete"] is True
+    assert data["matrix"]["flac2d"]["9.7"]["complete"] is True
     assert data["matrix"]["flac3d"]["7.0"]["complete"] is True
     assert data["matrix"]["flac3d"]["7.0"]["missing_version_count"] == 0
     assert data["matrix"]["flac3d"]["7.0"]["available_for_product_count"] >= 450

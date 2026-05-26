@@ -38,8 +38,10 @@ def register(mcp: FastMCP) -> None:
             CommandDocVersion.V9_0,
             description=(
                 "FLAC documentation version to browse. Defaults to 9.0 "
-                "(current ITASCA Software release; covers FLAC continuum + "
-                "structural-element commands). Use 7.0/6.0 for legacy documentation."
+                "(bundled 9.x baseline; covers FLAC continuum + "
+                "structural-element commands). Use 9.1-9.7 for newer 9.x command "
+                "differences; 9.4+ resolves against the nearest bundled 9.3-era "
+                "baseline. Use 7.0/6.0 for legacy FLAC3D documentation."
             ),
         ),
         product: FLACProduct = Field(
@@ -99,8 +101,7 @@ def _iter_available_category_commands(
         try:
             cmd_doc = CommandLoader.load_command_doc(category, cmd_meta.get("name", ""), version)
         except KeyError:
-            # Doc has no entry for this version (e.g. FLAC 9.0-only docs
-            # browsed at 7.0/6.0) — not available here, skip.
+            # Doc has no entry for this version — not available here, skip.
             continue
         if cmd_doc and cmd_doc.get("available") is not False and is_compatible_with_product(cmd_doc, product):
             available.append((cmd_meta, cmd_doc))
@@ -194,11 +195,11 @@ def _browse_command(category: str, command_name: str, version: str, product: str
         if not cmd_doc and " " in command_name:
             cmd_doc = CommandLoader.load_command_doc(category, command_name.replace(" ", "-"), version)
     except KeyError:
-        # Command exists but has no entry for this version (FLAC docs are
-        # 9.0-only). Same structured error as the available=false path,
-        # reporting the versions it does support.
+        # Command exists but has no entry for this version. Same structured
+        # error as the available=false path, reporting the versions it does
+        # support.
         available_versions: list[str] = []
-        for probe in ("9.0", "7.0", "6.0"):
+        for probe in ("9.7", "9.6", "9.5", "9.4", "9.3", "9.2", "9.1", "9.0", "7.0", "6.0"):
             for name in (command_name, command_name.replace(" ", "-")):
                 try:
                     probe_doc = CommandLoader.load_command_doc(category, name, probe)

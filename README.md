@@ -33,7 +33,7 @@ Documentation tools work as soon as the MCP server is registered. Execution tool
 
 ### Prerequisites
 
-- **ITASCA FLAC 6.0, 7.0, or 9.0** installed
+- **ITASCA FLAC 6.0, 7.0, or 9.x** installed
 - **[uv](https://docs.astral.sh/uv/getting-started/installation/)** installed (for `uvx`)
 
 ### Agentic Setup (Recommended)
@@ -44,7 +44,7 @@ Copy this to your AI agent and let it self-configure. Include your target produc
 Fetch and follow this bootstrap guide end-to-end:
 https://raw.githubusercontent.com/yusong652/flac-mcp/main/docs/agentic/flac-mcp-bootstrap.md
 
-Target runtime: FLAC2D 9.0, or FLAC3D 6.0/7.0/9.0.
+Target runtime: FLAC2D 9.x, or FLAC3D 6.0/7.0/9.x.
 ```
 
 ### Manual Setup
@@ -87,11 +87,11 @@ Once first-time setup is done, each new FLAC session only needs the bridge re-st
 
 ## Features
 
-- **Multi-version FLAC support** - command docs for FLAC 6.0, 7.0, and 9.0 via the `version` parameter
-- **Versioned Python API snapshots** - FLAC3D Python API docs for 6.0, 7.0, and 9.0 are bundled
+- **Multi-version FLAC support** - command docs for FLAC 6.0, 7.0, and 9.0-9.7 via the `version` parameter
+- **Versioned Python API snapshots** - FLAC3D Python API docs for 6.0, 7.0, and the 9.x baseline are bundled
 - **Product-scoped Python API docs** - Python API browse/search use FLAC2D or FLAC3D API indexes via `product` and `version`
 - **FLAC2D/FLAC3D filtering** - command and reference tools accept `product` to avoid dimension-specific mismatches
-- **Expanded FLAC 9.0 Python API** - bundled docs include attach, array, interface, zone, gridpoint, and vec APIs
+- **Expanded FLAC 9.x Python API** - bundled docs include attach, array, interface, zone, gridpoint, and vec APIs
 - **Hierarchical documentation browsing** - agents navigate the FLAC command tree to discover capabilities and boundaries, reducing hallucinated commands
 - **Expanded reference documentation** - plot items, boundary conditions, initial conditions, structural properties, FISH intrinsics, interfaces/joints, geometry/data/table workflows, sketch/building-block workflows, histories, and results references supplementing the official documentation
 - **Legacy command availability** - FLAC3D 6.0/7.0 command coverage is resolved against official legacy command indexes; commands absent from those indexes are reported as unavailable for that version

@@ -28,8 +28,10 @@ def register(mcp: FastMCP) -> None:
             CommandDocVersion.V9_0,
             description=(
                 "FLAC documentation version to search. Defaults to 9.0 "
-                "(current ITASCA Software release; covers FLAC continuum + "
-                "structural-element commands). Use 7.0/6.0 for legacy documentation."
+                "(bundled 9.x baseline; covers FLAC continuum + "
+                "structural-element commands). Use 9.1-9.7 for newer 9.x command "
+                "differences; 9.4+ resolves against the nearest bundled 9.3-era "
+                "baseline. Use 7.0/6.0 for legacy FLAC3D documentation."
             ),
         ),
         product: FLACProduct = Field(

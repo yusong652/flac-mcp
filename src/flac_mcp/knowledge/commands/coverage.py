@@ -46,6 +46,7 @@ def build_command_coverage() -> dict[str, Any]:
             "FLAC2D 6.0/7.0 are marked not applicable in the bundled source matrix.",
             "FLAC3D 6.0/7.0 command availability is verified against official legacy command indexes; commands absent from those indexes are marked unavailable_for_version.",
             "Some FLAC3D 6.0/7.0 detailed syntax blocks are normalized from bundled 9.0 docs after legacy command availability is verified.",
+            "FLAC 9.1-9.7 command docs use exact version blocks where bundled; otherwise the loader marks the entry as a nearest 9.x baseline alias.",
             "Product compatibility is inferred from 2D/3D markers in bundled docs; runtime validation is still required before executing model code.",
         ],
     }
@@ -71,7 +72,6 @@ def _build_product_version_row(commands: list[dict[str, Any]], product: str, ver
     missing_files: list[str] = []
     missing_versions: list[str] = []
     unavailable_for_version: list[str] = []
-    filtered_by_product: list[dict[str, str]] = []
 
     for meta in commands:
         category = str(meta.get("category", ""))
@@ -102,13 +102,6 @@ def _build_product_version_row(commands: list[dict[str, Any]], product: str, ver
 
         if not is_compatible_with_product(doc, product):
             filtered_by_product_count += 1
-            _append_sample(
-                filtered_by_product,
-                {
-                    "command": command_label,
-                    "dimension": dimension,
-                },
-            )
             continue
 
         available_for_product_count += 1
@@ -125,23 +118,19 @@ def _build_product_version_row(commands: list[dict[str, Any]], product: str, ver
         "available_for_product_count": available_for_product_count,
         "python_available_count": python_available_count,
         "category_count": len(category_counts),
-        "category_counts": dict(sorted(category_counts.items())),
-        "dimension_counts": dimension_counts,
         "missing_file_count": missing_file_count,
         "missing_version_count": missing_version_count,
         "unavailable_for_version_count": unavailable_for_version_count,
         "filtered_by_product_count": filtered_by_product_count,
-        "resolved_ratio": _ratio(resolved_count, indexed_count),
-        "product_available_ratio": _ratio(available_for_product_count, indexed_count),
         "complete": missing_file_count == 0 and missing_version_count == 0,
         "applicable": True,
-        "source": source,
-        "samples": {
-            "missing_files": missing_files,
-            "missing_versions": missing_versions,
-            "unavailable_for_version": unavailable_for_version,
-            "filtered_by_product": filtered_by_product,
-        },
+        "samples": _non_empty_samples(
+            {
+                "missing_files": missing_files,
+                "missing_versions": missing_versions,
+                "unavailable_for_version": unavailable_for_version,
+            }
+        ),
     }
 
 
@@ -154,23 +143,13 @@ def _not_applicable_row(indexed_count: int, source: dict[str, Any]) -> dict[str,
         "available_for_product_count": 0,
         "python_available_count": 0,
         "category_count": 0,
-        "category_counts": {},
-        "dimension_counts": {"any": 0, "2D": 0, "3D": 0, "mixed": 0},
         "missing_file_count": 0,
         "missing_version_count": 0,
         "unavailable_for_version_count": 0,
         "filtered_by_product_count": 0,
-        "resolved_ratio": 0.0,
-        "product_available_ratio": 0.0,
         "complete": False,
         "applicable": False,
-        "source": source,
-        "samples": {
-            "missing_files": [],
-            "missing_versions": [],
-            "unavailable_for_version": [],
-            "filtered_by_product": [],
-        },
+        "samples": {},
     }
 
 
@@ -183,7 +162,6 @@ def _append_sample(items: list[Any], value: Any) -> None:
         items.append(value)
 
 
-def _ratio(numerator: int, denominator: int) -> float:
-    if denominator <= 0:
-        return 0.0
-    return round(numerator / denominator, 4)
+def _non_empty_samples(samples: dict[str, list[Any]]) -> dict[str, list[Any]]:
+    """Keep coverage reports compact by omitting empty sample lists."""
+    return {key: value for key, value in samples.items() if value}

@@ -5,7 +5,7 @@ Use this guide when an agent needs to set up `flac-mcp` execution end-to-end on 
 ## Target Outcome
 
 1. MCP client is configured to run `flac-mcp`.
-2. The target FLAC product and version are known: FLAC2D or FLAC3D, 6.0, 7.0, or 9.0.
+2. The target FLAC product and version are known: FLAC2D or FLAC3D, 6.0, 7.0, or 9.x.
 3. `itasca-mcp-bridge` is installed in that FLAC installation's embedded Python environment.
 4. The bridge is started inside the matching FLAC GUI through `addon.py` or `itasca_mcp_bridge.start()`.
 5. MCP execution tools are verified with `flac_get_runtime_info` and `flac_execute_code`.
@@ -16,10 +16,10 @@ Use this guide when an agent needs to set up `flac-mcp` execution end-to-end on 
 | --- | --- | --- | --- | --- |
 | FLAC2D | 6.0 | N/A | Not applicable in this documentation matrix | Not applicable |
 | FLAC2D | 7.0 | N/A | Not applicable in this documentation matrix | Not applicable |
-| FLAC2D | 9.0 | Python 3.10 | Supported | Product-scoped command/reference/Python API docs available |
+| FLAC2D | 9.0-9.7 | Python 3.10 | Supported | Product-scoped command/reference/Python API docs available |
 | FLAC3D | 6.0 | Python 3.6 | Supported | Product-scoped command/reference/Python API docs available |
 | FLAC3D | 7.0 | Python 3.6 | Supported | Product-scoped command/reference/Python API docs available |
-| FLAC3D | 9.0 | Python 3.10 | Supported | Product-scoped command/reference/Python API docs available |
+| FLAC3D | 9.0-9.7 | Python 3.10 | Supported | Product-scoped command/reference/Python API docs available |
 
 Execution support depends on the installed GUI process and its embedded Python. Documentation tools do not need a running bridge.
 
@@ -29,7 +29,7 @@ Execution support depends on the installed GUI process and its embedded Python. 
 - Use bounded, fast path detection for `flac_path`; avoid full-drive recursive scans by default.
 - Prefer FLAC embedded interpreter for package installs:
   - FLAC 6.0/7.0: `"{flac_path}/exe64/python36/python.exe" -m pip ...`
-  - FLAC 9.0: `"{flac_path}/exe64/python310/python.exe" -m pip ...`
+  - FLAC 9.x: `"{flac_path}/exe64/python310/python.exe" -m pip ...`
 - If a command or API lookup is product-sensitive, pass `product="flac2d"` or `product="flac3d"` explicitly.
 - If a setup step fails, report the exact command and output, then apply the next fallback.
 - Respect step ownership labels:
@@ -46,13 +46,13 @@ Record these values before continuing:
 
 ```text
 target_product = flac2d | flac3d
-target_version = 6.0 | 7.0 | 9.0
+target_version = 6.0 | 7.0 | 9.0 | 9.1 | 9.2 | 9.3 | 9.4 | 9.5 | 9.6 | 9.7
 ```
 
 Valid product/version combinations in the bundled documentation matrix:
 
-- `flac2d` + `9.0`
-- `flac3d` + `6.0`, `7.0`, or `9.0`
+- `flac2d` + `9.0`, `9.1`, `9.2`, `9.3`, `9.4`, `9.5`, `9.6`, or `9.7`
+- `flac3d` + `6.0`, `7.0`, `9.0`, `9.1`, `9.2`, `9.3`, `9.4`, `9.5`, `9.6`, or `9.7`
 
 Use those values consistently when browsing docs:
 

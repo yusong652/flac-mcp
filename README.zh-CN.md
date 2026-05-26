@@ -33,7 +33,7 @@
 
 ### 前置条件
 
-- 已安装 **ITASCA FLAC 6.0、7.0 或 9.0**
+- 已安装 **ITASCA FLAC 6.0、7.0 或 9.x**
 - 已安装 **[uv](https://docs.astral.sh/uv/getting-started/installation/)**（用于 `uvx`）
 
 ### 智能体自动配置（推荐）
@@ -44,7 +44,7 @@
 Fetch and follow this bootstrap guide end-to-end:
 https://raw.githubusercontent.com/yusong652/flac-mcp/main/docs/agentic/flac-mcp-bootstrap.md
 
-Target runtime: FLAC2D 9.0, or FLAC3D 6.0/7.0/9.0.
+Target runtime: FLAC2D 9.x, or FLAC3D 6.0/7.0/9.x.
 ```
 
 ### 手动配置
@@ -87,11 +87,11 @@ print(it.command("model list information"))
 
 ## 功能亮点
 
-- **多版本 FLAC 支持** — 通过 `version` 参数查阅 FLAC 6.0、7.0、9.0 的命令文档
-- **版本化 Python API 快照** — 内置 FLAC3D 6.0、7.0、9.0 的 Python API 文档
+- **多版本 FLAC 支持** — 通过 `version` 参数查阅 FLAC 6.0、7.0、9.0-9.7 的命令文档
+- **版本化 Python API 快照** — 内置 FLAC3D 6.0、7.0 和 9.x 基线的 Python API 文档
 - **按产品区分 Python API 文档** — Python API 浏览/搜索通过 `product` 和 `version` 使用 FLAC2D 或 FLAC3D API 索引
 - **FLAC2D/FLAC3D 过滤** — 命令和参考文档工具支持 `product`，减少维度不匹配
-- **扩展的 FLAC 9.0 Python API** — 内置 attach、array、interface、zone、gridpoint、vec 等 API 文档
+- **扩展的 FLAC 9.x Python API** — 内置 attach、array、interface、zone、gridpoint、vec 等 API 文档
 - **层级式文档浏览** — 智能体沿着 FLAC 命令树自主发现能力与边界，减少幻觉命令
 - **扩展的参考文档** — 在官方文档基础上补充了 plot items、边界条件、初始条件、结构单元属性、FISH intrinsic、interface/joint、geometry/data/table、sketch/building-block、history 与 results 参考文档
 - **旧版本命令可用性** — FLAC3D 6.0/7.0 命令覆盖已对照官方旧版命令索引解析；旧版索引不存在的命令会报告为该版本不可用

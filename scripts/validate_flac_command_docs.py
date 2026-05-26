@@ -11,7 +11,7 @@ from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 COMMAND_DOCS_ROOT = REPO_ROOT / "src" / "flac_mcp" / "knowledge" / "resources" / "command_docs"
-SUPPORTED_VERSIONS = ("6.0", "7.0", "9.0")
+SUPPORTED_VERSIONS = ("6.0", "7.0", "9.0", "9.1", "9.2", "9.3", "9.4", "9.5", "9.6", "9.7")
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -76,6 +76,11 @@ def validate_version_doc(path: Path, version: str, version_doc: Any) -> list[str
     label = f"{rel(path)} versions[{version}]"
     if not isinstance(version_doc, dict):
         return [f"{label}: must be an object"]
+
+    if "alias_of" in version_doc:
+        if not isinstance(version_doc.get("alias_of"), str) or not version_doc.get("alias_of"):
+            errors.append(f"{label}: alias_of must be a non-empty string")
+        return errors
 
     if version_doc.get("available") is False:
         if not isinstance(version_doc.get("reason"), str) or not version_doc.get("reason"):

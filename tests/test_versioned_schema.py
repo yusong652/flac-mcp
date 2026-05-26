@@ -43,6 +43,23 @@ class TestLoadCommandDocVersioned:
         with pytest.raises(KeyError, match="5.0"):
             CommandLoader.load_command_doc("zone", "create", "5.0")
 
+    def test_9x_version_alias_uses_nearest_available_baseline(self):
+        doc = CommandLoader.load_command_doc("zone", "create", "9.3")
+        assert doc is not None
+        assert doc["command"] == "zone create"
+        assert doc["version_alias"]["requested_version"] == "9.3"
+        assert doc["version_alias"]["source_version"] == "9.0"
+
+    def test_9x_specific_command_doc_preferred_over_9_0_baseline(self):
+        doc = CommandLoader.load_command_doc("zone", "fluid", "9.7")
+        assert doc is not None
+        keyword_names = {keyword["name"] for keyword in doc["keywords"]}
+        assert doc["version_alias"]["requested_version"] == "9.7"
+        assert doc["version_alias"]["source_version"] == "9.3"
+        assert doc["version_alias"]["content_version"] == "9.1"
+        assert "unsaturated" in keyword_names
+        assert "permeability-saturation" in keyword_names
+
     def test_version_6_0_loads_correctly(self):
         doc = CommandLoader.load_command_doc("model", "new", "6.0")
         assert doc is not None

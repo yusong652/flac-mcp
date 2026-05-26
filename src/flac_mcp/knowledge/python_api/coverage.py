@@ -36,11 +36,25 @@ EXPECTED_BY_PRODUCT_VERSION: dict[str, dict[str, set[str]]] = {
         "6.0": set(),
         "7.0": set(),
         "9.0": EXPECTED_FLAC_9_MODULES,
+        "9.1": EXPECTED_FLAC_9_MODULES,
+        "9.2": EXPECTED_FLAC_9_MODULES,
+        "9.3": EXPECTED_FLAC_9_MODULES,
+        "9.4": EXPECTED_FLAC_9_MODULES,
+        "9.5": EXPECTED_FLAC_9_MODULES,
+        "9.6": EXPECTED_FLAC_9_MODULES,
+        "9.7": EXPECTED_FLAC_9_MODULES,
     },
     "flac3d": {
         "6.0": set(),
         "7.0": set(),
         "9.0": EXPECTED_FLAC_9_MODULES,
+        "9.1": EXPECTED_FLAC_9_MODULES,
+        "9.2": EXPECTED_FLAC_9_MODULES,
+        "9.3": EXPECTED_FLAC_9_MODULES,
+        "9.4": EXPECTED_FLAC_9_MODULES,
+        "9.5": EXPECTED_FLAC_9_MODULES,
+        "9.6": EXPECTED_FLAC_9_MODULES,
+        "9.7": EXPECTED_FLAC_9_MODULES,
     },
 }
 
@@ -64,8 +78,8 @@ def build_python_api_coverage() -> dict[str, Any]:
             missing = sorted(expected_modules - product_modules)
             source = source_info(product, version)
             matrix[product][version] = {
-                "expected_modules": sorted(expected_modules),
-                "present_modules": present,
+                "expected_module_count": len(expected_modules),
+                "present_module_count": len(present),
                 "missing_modules": missing,
                 "api_entry_count": len(product_index.get("quick_ref", {})),
                 "source": source,
@@ -85,8 +99,9 @@ def build_python_api_coverage() -> dict[str, Any]:
         "matrix": matrix,
         "known_limits": [
             "FLAC3D Python API snapshots are bundled for 6.0, 7.0, and 9.0.",
-            "FLAC2D product-scoped Python API is represented for 9.0 from the official shared FLAC docs.",
-            "FLAC2D 9.0 hides explicit out-of-plane API leaves such as *_z, *_xz, *_yz, and *_zz.",
+            "FLAC 9.1-9.7 Python API coverage reuses the bundled 9.0 snapshot as the documented 9.x baseline.",
+            "FLAC2D product-scoped Python API is represented for 9.x from the official shared FLAC docs.",
+            "FLAC2D 9.x hides explicit out-of-plane API leaves such as *_z, *_xz, *_yz, and *_zz.",
             "FLAC2D 6.0/7.0 are marked not applicable in the bundled source matrix.",
         ],
         "sources": [

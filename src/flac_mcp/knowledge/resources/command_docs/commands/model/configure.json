@@ -159,6 +159,70 @@
           "description": "Enable dynamic analysis mode before cycling"
         }
       ]
+    },
+    "9.1": {
+      "command": "model configure",
+      "syntax": "model configure keyword ...",
+      "keywords": [
+        {
+          "name": "axisymmetry",
+          "syntax": "axisymmetry",
+          "description": "Enable FLAC2D axisymmetric analysis."
+        },
+        {
+          "name": "creep",
+          "syntax": "creep",
+          "description": "Enable creep material analysis when licensed."
+        },
+        {
+          "name": "dynamic",
+          "syntax": "dynamic",
+          "description": "Enable fully dynamic analysis when licensed."
+        },
+        {
+          "name": "fluid-flow",
+          "syntax": "fluid-flow",
+          "description": "Enable groundwater fluid-flow analysis. This replaces the 9.0 fluid keyword in 9.1 and later."
+        },
+        {
+          "name": "imass",
+          "syntax": "imass",
+          "description": "Enable the Itasca Model for Advanced Strain Softening when licensed."
+        },
+        {
+          "name": "plugins",
+          "syntax": "plugins",
+          "description": "Load C++ user-defined models and FISH intrinsic plugins."
+        },
+        {
+          "name": "thermal",
+          "syntax": "thermal",
+          "description": "Enable thermal analysis."
+        }
+      ],
+      "examples": [
+        {
+          "command": "model configure fluid-flow",
+          "description": "Enable groundwater fluid-flow analysis before solving"
+        },
+        {
+          "command": "model configure dynamic",
+          "description": "Enable dynamic analysis before cycling"
+        }
+      ],
+      "version_notes": [
+        "ITASCA 9.1 and later use model configure fluid-flow for FLAC groundwater flow; 9.0 used model configure fluid.",
+        "The bundled FLAC command block omits common-page keywords for other Itasca products."
+      ],
+      "official_documentation": {
+        "source_urls": [
+          "https://docs.itascacg.com/itasca910/common/kernel/doc/manual/model/commands/cmd_model.configure.html"
+        ]
+      }
+    },
+    "9.3": {
+      "alias_of": "9.1",
+      "reason": "FLAC 9.3+ uses the bundled 9.1 fluid-flow syntax block for this command until an exact 9.3 page is bundled."
     }
   }
 }

@@ -12,6 +12,12 @@ Use this workflow when adding or refreshing command documentation:
    uv run python scripts/update_flac3d_legacy_command_docs.py --parse-pages --write
    ```
 
+   FLAC 9.1-9.7 command requests use the nearest bundled 9.x command block.
+   FLAC 9.4 and later should resolve against the 9.3-era baseline first, then
+   older 9.x blocks. Add an explicit 9.1+ version block only when official
+   syntax differs from the 9.0 baseline, such as `model configure fluid-flow`
+   and `zone fluid` unsaturated-flow controls.
+
 2. Regenerate the command index after adding, deleting, or renaming command JSON
    files:
 
