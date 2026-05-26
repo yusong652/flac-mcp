@@ -1,50 +1,42 @@
 {
   "type": "plot_item_keywords",
-  "description": "Configuration keywords for plot item types created via 'plot item create <type>'. These keywords are appended after the item type to control appearance, coloring, clipping, and legend.",
-
+  "description": "Configuration keywords for common FLAC plot item types created via 'plot item create <type>'. These keywords control visibility, coloring, clipping, labels, transparency, and legends.",
   "usage_context": "plot item create <type> <keyword> <keyword> ...",
-
   "items": [
     {
-      "name": "ball",
-      "file": "ball.json",
-      "description": "Ball (particle) visualization with coloring by attribute, arrow shape, and cut planes",
-      "common_use": "Visualize particles colored by velocity, displacement, force, group, etc."
+      "name": "zone",
+      "file": "zone/index.json",
+      "description": "Zone visualization with coloring by stress, displacement, pore pressure, temperature, model state, group, or extra variables.",
+      "common_use": "Visualize continuum grid results and material model state."
     },
     {
-      "name": "wall",
-      "file": "wall.json",
-      "description": "Wall visualization with transparency, coloring, and cut planes",
-      "common_use": "Visualize boundaries with adjustable transparency and coloring"
+      "name": "gridpoint",
+      "file": "gridpoint/index.json",
+      "description": "Gridpoint visualization with coloring by displacement, velocity, force, pore pressure, temperature, group, or extra variables.",
+      "common_use": "Inspect nodal values, boundary-condition response, and convergence-related quantities."
     },
     {
-      "name": "clump",
-      "file": "clump.json",
-      "description": "Clump (rigid cluster) visualization with coloring by attribute, arrow shape, transparency, and cut planes",
-      "common_use": "Visualize clumps colored by velocity, displacement, volume, group, etc."
-    },
-    {
-      "name": "contact",
-      "file": "contact.json",
-      "description": "Contact visualization with force scaling, property coloring, and cut planes",
-      "common_use": "Visualize contact forces, types, or model properties"
-    },
-    {
-      "name": "rblock",
-      "file": "rblock.json",
-      "description": "Rigid block visualization with coloring by attribute, cut planes, and legend display",
-      "common_use": "Visualize rigid blocks colored by velocity, displacement, volume, group, etc."
+      "name": "structure",
+      "file": "structure/index.json",
+      "description": "Structural-element visualization for beams, cables, shells, liners, piles, geogrids, nodes, and related element results.",
+      "common_use": "Visualize structural element groups, forces, moments, systems, and result components."
     }
   ],
-
   "shared_keywords": {
-    "description": "Keywords common to most plot item types",
-    "list": ["active", "color-by", "color-options", "cut", "legend"]
+    "description": "Keywords common to most FLAC plot item types.",
+    "list": [
+      "active",
+      "color-by",
+      "color-options",
+      "cut",
+      "legend",
+      "transparency",
+      "label"
+    ]
   },
-
   "notes": [
-    "Keywords are appended directly after 'plot item create <type>'",
-    "Multiple keywords can be combined in a single command",
-    "These keywords are not officially documented; derived from working patterns"
+    "Plot-item keywords are appended after the item type.",
+    "Some complex settings are easier to apply with 'plot item modify' after creating the item.",
+    "The entries here are practical MCP lookup aids derived from bundled FLAC command/reference resources; verify unusual plot syntax in the target FLAC GUI."
   ]
 }

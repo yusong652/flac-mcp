@@ -1,0 +1,79 @@
+{
+  "name": "history-workflow",
+  "dimension": "mixed",
+  "full_name": "History Monitoring Workflow",
+  "description": "Histories sample a single variable at a common interval during cycling. They are used for convergence checks, load/displacement curves, pore-pressure response, dynamic traces, and other validation outputs.",
+  "primary_commands": [
+    "history interval",
+    "history list",
+    "history delete",
+    "history purge",
+    "history export",
+    "zone history",
+    "zone gridpoint history",
+    "structure node history"
+  ],
+  "workflow": [
+    {
+      "step": "Set sampling interval",
+      "commands": [
+        "history interval 10"
+      ],
+      "notes": [
+        "All histories use one global sampling interval.",
+        "A smaller interval gives finer curves but increases stored data."
+      ]
+    },
+    {
+      "step": "Create histories",
+      "commands": [
+        "zone history displacement-z position 0 0 10",
+        "zone history stress-zz position 0 0 5",
+        "zone gridpoint history unbalanced-force position 0 0 0"
+      ],
+      "notes": [
+        "Use FLAC2D coordinates for FLAC2D and FLAC3D coordinates for FLAC3D.",
+        "Only one monitored variable is created per history command."
+      ]
+    },
+    {
+      "step": "Inspect and export",
+      "commands": [
+        "history list all",
+        "history export 'top_disp' vs 'step' file 'top_disp.csv'"
+      ],
+      "notes": [
+        "Use history names or IDs consistently in exports.",
+        "Use tables when the next step stays inside FLAC; use files for external plotting."
+      ]
+    }
+  ],
+  "management_keywords": [
+    {
+      "keyword": "interval",
+      "description": "Set the global sampling interval in cycles or steps."
+    },
+    {
+      "keyword": "list all",
+      "description": "Print a summary of configured histories."
+    },
+    {
+      "keyword": "purge",
+      "description": "Erase stored history values while keeping history definitions."
+    },
+    {
+      "keyword": "delete",
+      "description": "Remove history definitions."
+    },
+    {
+      "keyword": "export",
+      "description": "Write selected histories to screen, file, or table."
+    }
+  ],
+  "validation_notes": [
+    "Name histories so exported curves remain self-describing.",
+    "For staged analysis, export or purge histories at stage boundaries when the baseline changes.",
+    "Use product-specific coordinates: avoid z-position probes in FLAC2D commands."
+  ],
+  "official_documentation": "https://docs.itascacg.com/itasca900/common/kernel/doc/manual/history_manual/history.html"
+}

@@ -1,0 +1,56 @@
+{
+  "name": "structure-interface",
+  "dimension": "mixed",
+  "full_name": "Structural and Interface FISH Intrinsics",
+  "description": "Structural and interface FISH intrinsic families are used to extract forces, moments, link state, interface contact response, and reinforcement state after solving.",
+  "families": [
+    {
+      "family": "structural nodes and elements",
+      "examples": [
+        "struct.node.list",
+        "struct.node.pos",
+        "struct.node.disp",
+        "struct.link.list",
+        "struct.link.model"
+      ],
+      "notes": [
+        "Structural node values are central for support displacement and link-state checks.",
+        "Use element-specific families for cable, beam, pile, shell, liner, and geogrid quantities."
+      ]
+    },
+    {
+      "family": "reinforcement response",
+      "examples": [
+        "struct.cable.force.axial",
+        "struct.beam.force",
+        "struct.pile.force",
+        "struct.shell.stress",
+        "struct.liner.force"
+      ],
+      "notes": [
+        "Use the corresponding structural-properties reference before setting element properties.",
+        "Choose local/global force interpretation deliberately."
+      ]
+    },
+    {
+      "family": "zone interfaces",
+      "examples": [
+        "zone.interface.list",
+        "zone.interface.node.list",
+        "zone.interface.node.force",
+        "zone.interface.node.stress"
+      ],
+      "notes": [
+        "Interface data are often node based; inspect active contact state before interpreting forces.",
+        "Interface stiffness and strength should be validated against adjacent zone stiffness and expected discontinuity behavior."
+      ]
+    }
+  ],
+  "common_checks": [
+    "Maximum cable axial load compared with yield capacity.",
+    "Liner or shell force envelopes after staged excavation.",
+    "Interface slip/opening indicators along discontinuities.",
+    "Link attachment state after geometry updates or large-strain motion."
+  ],
+  "official_documentation": "https://docs.itascacg.com/itasca900/flac3d/docproject/source/flac3dhome.html"
+}

@@ -65,324 +65,266 @@
           "keyword": "bulk",
           "symbol": "K",
           "description": "elastic bulk modulus, K",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "cohesion",
           "symbol": "c",
           "description": "matrix cohesion, c = c_1",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "cohesion-2",
           "symbol": "c_2",
           "description": "matrix cohesion, c_2",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "dilation",
           "symbol": "\\psi",
           "description": "matrix dilation angle, \\psi = \\psi_1. The default is 0.0.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "dilation-2",
           "symbol": "\\psi_2",
           "description": "matrix dilation angle, \\psi_2. The default is 0.0.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "dip",
-          "symbol": "",
           "description": "dip angle [degrees] of weakness plane",
           "type": "FLT",
-          "default": "",
           "dim": "3D"
         },
         {
           "keyword": "dip-direction",
-          "symbol": "",
           "description": "dip direction [degrees] of weakness plane",
           "type": "FLT",
-          "default": "",
           "dim": "3D"
         },
         {
           "keyword": "angle",
-          "symbol": "",
           "description": "angle [degrees] of weakness plane, taken counterclockwise from the x-axis",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "friction",
           "symbol": "\\phi",
           "description": "matrix friction angle, \\phi = \\phi_1",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "friction-2",
           "symbol": "\\phi_2",
           "description": "matrix friction angle, \\phi_2",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "poisson",
           "symbol": "\\nu",
           "description": "Poisson’s ratio, \\nu",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "shear",
           "symbol": "G",
           "description": "elastic shear modulus, G",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "tension",
           "symbol": "\\sigma^t",
           "description": "tension limit, \\sigma^t. The default is 0.0.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "young",
           "symbol": "E",
           "description": "Young’s modulus, E",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "joint-cohesion",
           "symbol": "c_j",
           "description": "joint cohesion, c_j = c_{j1}",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "joint-cohesion-2",
           "symbol": "c_{j2}",
           "description": "joint cohesion, c_{j2}",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "joint-dilation",
           "symbol": "\\psi_j",
           "description": "joint dilation angle, \\psi_j = \\psi_{j1}. The default is 0.0.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "joint-dilation-2",
           "symbol": "\\psi_{j2}",
           "description": "joint dilation angle, \\psi_{j2}. The default is 0.0.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "joint-friction",
           "symbol": "\\phi_j",
           "description": "joint friction angle, \\phi_j = \\phi_{j1}",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "joint-friction-2",
           "symbol": "\\phi_{j2}",
           "description": "joint friction angle, \\phi_{j2}",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "joint-tension",
           "symbol": "\\sigma^t_j",
           "description": "joint tension limit, \\sigma^t_j. The default is 0.0.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "normal",
-          "symbol": "",
           "description": "normal direction of the weakness plane, (2D or 3D vector)",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "normal-x",
           "symbol": "x",
           "description": "x-component of the normal direction to the weakness plane, n_x",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "normal-y",
           "symbol": "y",
           "description": "y-component of the normal direction to the weakness plane, n_y",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "normal-z",
           "symbol": "z",
           "description": "z-component of the normal direction to the weakness plane, n_z (3D only)",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "flag-bilinear",
-          "symbol": "",
           "description": "= 0 (default) for matrix linear model ;",
-          "type": "BOOL",
-          "default": ""
+          "type": "BOOL"
         },
         {
           "keyword": "flag-bilinear-joint",
-          "symbol": "",
           "description": "= 0 (default) for joint linear model ;",
-          "type": "BOOL",
-          "default": ""
+          "type": "BOOL"
         },
         {
           "keyword": "flag-brittle",
-          "symbol": "",
           "description": "If true, the tension limit is set to 0 in the event of tensile failure. The default is false.",
-          "type": "BOOL",
-          "default": ""
+          "type": "BOOL"
         },
         {
           "keyword": "table-cohesion",
           "symbol": "c",
           "description": "name of the table relating matrix cohesion c = c_1 to matrix plastic shear strain.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "table-cohesion-2",
           "symbol": "c_2",
           "description": "name of the table relating matrix cohesion c_2 to matrix plastic shear strain.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "table-dilation",
           "symbol": "\\psi",
           "description": "name of the table relating matrix dilation angle \\psi = \\psi_{1} to matrix plastic shear strain.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "table-dilation-2",
           "symbol": "\\psi_{2}",
           "description": "name of the table relating matrix dilation \\psi_{2} to matrix plastic shear strain.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "table-friction",
           "symbol": "\\psi",
           "description": "name of the table relating matrix friction \\psi = \\psi_{1} angle to matrix plastic shear strain.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "table-friction-2",
           "symbol": "\\psi_{2}",
           "description": "name of the table relating matrix friction angle \\psi_{2} to matrix plastic shear strain.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "table-joint-cohesion",
           "symbol": "c_j",
           "description": "name of the table relating joint cohesion c_j = c_{j1} to joint plastic shear strain.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "table-joint-cohesion-2",
           "symbol": "c_{j2}",
           "description": "name of the table relating joint cohesion c_{j2} to joint plastic shear strain.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "table-joint-dilation",
           "symbol": "\\psi_j",
           "description": "name of the table relating joint dilation \\psi_j = \\psi_{j1} to joint plastic shear strain.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "table-joint-dilation-2",
           "symbol": "\\psi_{j2}",
           "description": "name of the table relating joint dilation \\psi_{j2} to joint plastic shear strain.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "table-joint-friction",
           "symbol": "\\phi_j",
           "description": "name of the table relating joint friction angle \\phi_j = \\phi_{j1} to joint plastic shear strain.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "table-joint-friction-2",
           "symbol": "\\phi_{j2}",
           "description": "name of the table relating joint friction angle \\phi_{j2} to joint plastic shear strain.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "table-joint-tension",
           "symbol": "\\sigma^t_j",
           "description": "name of the table relating joint tension limit \\sigma^t_j to joint plastic tensile strain.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "strain-shear-plastic",
-          "symbol": "",
           "description": "accumulated plastic shear strain",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "strain-shear-plastic-joint",
-          "symbol": "",
           "description": "accumulated joint plastic shear strain",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "strain-tensile-plastic",
-          "symbol": "",
           "description": "accumulated plastic tensile strain",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "strain-tensile-plastic-joint",
-          "symbol": "",
           "description": "accumulated joint plastic tensile strain",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         }
       ]
     }
   ],
-  "typical_applications": [],
-  "notes": [],
   "source": "https://docs.itascacg.com/itasca900/common/models/subi/doc/modelsubi.html",
   "usage": {
     "assign": "zone cmodel assign softening-ubiquitous [range ...]",

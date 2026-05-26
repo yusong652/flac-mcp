@@ -23,49 +23,41 @@
           "keyword": "bulk",
           "symbol": "K",
           "description": "bulk modulus, K",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "modulus-plastic",
           "symbol": "H",
           "description": "kinematic plastic (hardening) modulus, H (see Figure 2). The default value is zero. Be aware that this is not the elastoplastic tangent modulus, E_t. The relationship between H and E_t is shown in Figure 2.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "poisson",
           "symbol": "\\nu",
           "description": "Poisson’s ratio, \\nu",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "shear",
           "symbol": "G",
           "description": "shear modulus, G",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "strength-yield",
           "symbol": "\\sigma_Y",
           "description": "yield strength, \\sigma_Y",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "young",
           "symbol": "E",
           "description": "Young’s modulus, E",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         }
       ]
     }
   ],
-  "typical_applications": [],
-  "notes": [],
   "source": "https://docs.itascacg.com/itasca900/common/models/vonmises/doc/modelvonmises.html",
   "usage": {
     "assign": "zone cmodel assign von-mises [range ...]",

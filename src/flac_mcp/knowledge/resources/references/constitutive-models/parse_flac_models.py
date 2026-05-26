@@ -14,8 +14,7 @@ id prefix (``kwd:mohr-coulomb.cohesion`` -> ``mohr-coulomb``), so — as in
 This is a **pure-parse** pass: property ``keyword`` + ``symbol`` +
 ``description`` + a coarse ``type``. Curated fields
 (``typical_applications`` / usage patterns / typical values) are intentionally
-left empty for a later curation phase, mirroring how the PFC ``contact-models``
-JSON was seeded then augmented.
+left empty for a later curation phase.
 
 Usage::
 
@@ -38,7 +37,7 @@ from typing import Any
 # id="kwd:...">``; the shared stateful parser lets that outer group ``<dd>``
 # swallow the *first* nested property's description (one lost description per
 # model). A bounded per-``kwd:``-id slice is immune to the nesting and keeps
-# this extractor independent of the shared PFC parser (which must not change).
+# this extractor independent of the shared FLAC parser (which must not change).
 
 # ---------------------------------------------------------------------------
 # Path configuration

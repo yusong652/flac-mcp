@@ -1,0 +1,85 @@
+{
+  "name": "beam-pile",
+  "dimension": "mixed",
+  "full_name": "Beam-Type and Pile Structural Properties",
+  "description": "Beam-type elements use section and material properties for axial, bending, torsional, and shear response. Piles extend beam behavior with normal and shear coupling springs to the grid.",
+  "primary_commands": [
+    "structure beam property",
+    "structure beam cmodel assign",
+    "structure pile property",
+    "structure pile cmodel assign",
+    "structure beam list",
+    "structure pile list"
+  ],
+  "property_groups": [
+    {
+      "group": "beam elastic material",
+      "properties": [
+        "young",
+        "poisson",
+        "density",
+        "thermal-expansion"
+      ]
+    },
+    {
+      "group": "beam section",
+      "properties": [
+        "cross-sectional-area",
+        "moi",
+        "moi-y",
+        "moi-z",
+        "moi-polar",
+        "shear-coefficient",
+        "shear-coefficient-y",
+        "shear-coefficient-z"
+      ],
+      "notes": [
+        "FLAC2D beam workflows use in-plane section properties; FLAC3D uses y/z principal bending properties."
+      ]
+    },
+    {
+      "group": "pile coupling springs",
+      "properties": [
+        "coupling-cohesion-normal",
+        "coupling-cohesion-shear",
+        "coupling-friction-normal",
+        "coupling-friction-shear",
+        "coupling-gap-normal",
+        "coupling-stiffness-normal",
+        "coupling-stiffness-shear",
+        "perimeter",
+        "slide",
+        "slide-tolerance"
+      ]
+    },
+    {
+      "group": "pile rockbolt options",
+      "properties": [
+        "rockbolt-flag",
+        "coupling-cohesion-table",
+        "coupling-confining-flag",
+        "coupling-confining-table",
+        "coupling-friction-table",
+        "tensile-failure-strain",
+        "yield-compression",
+        "yield-tension"
+      ]
+    }
+  ],
+  "common_patterns": [
+    {
+      "name": "Elastic beam",
+      "commands": [
+        "structure beam create by-line (0,0,0) (5,0,0) segments 5",
+        "structure beam property young 2e11 poisson 0.3 cross-sectional-area 0.01 moi-y 1e-5 moi-z 1e-5 moi-polar 2e-5"
+      ]
+    },
+    {
+      "name": "Pile with coupling",
+      "commands": [
+        "structure pile property young 2e10 poisson 0.25 cross-sectional-area 0.1 coupling-stiffness-normal 1e9 coupling-stiffness-shear 1e9 coupling-cohesion-shear 1e5"
+      ]
+    }
+  ],
+  "official_documentation": "https://docs.itascacg.com/itasca900/common/sel/doc/manual/sel_manual/beamtypes/beamtypes.html"
+}

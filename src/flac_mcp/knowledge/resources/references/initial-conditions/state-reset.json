@@ -1,0 +1,44 @@
+{
+  "name": "state-reset",
+  "dimension": "mixed",
+  "full_name": "State Reset After Initial Equilibrium",
+  "description": "After generating an initial equilibrium state, it is common to reset displacements, velocities, and histories before starting the construction or excavation stage.",
+  "primary_commands": [
+    "model solve",
+    "model solve elastic",
+    "zone initialize displacement",
+    "zone initialize velocity",
+    "zone gridpoint initialize",
+    "history purge",
+    "model save"
+  ],
+  "common_patterns": [
+    {
+      "name": "Elastic initialization then reset displacements",
+      "commands": [
+        "model solve elastic",
+        "zone initialize displacement (0,0,0)",
+        "zone gridpoint initialize velocity (0,0,0)",
+        "model save 'initial-equilibrium'"
+      ]
+    },
+    {
+      "name": "Preserve stress through cmodel change",
+      "commands": [
+        "zone cmodel assign elastic",
+        "model solve elastic",
+        "zone cmodel assign mohr-coulomb range group 'stage'",
+        "zone property friction 35 cohesion 1e5 range group 'stage'"
+      ],
+      "notes": [
+        "Changing from one non-null constitutive model to another preserves zone stresses.",
+        "Assigning null removes stresses in affected zones."
+      ]
+    }
+  ],
+  "notes": [
+    "Reset only the state variables that are artificial products of initialization; do not reset physical stress or pore-pressure state unless intended.",
+    "Save an initial-equilibrium state before staged model changes."
+  ],
+  "official_documentation": "https://docs.itascacg.com/itasca900/flac3d/docproject/source/modeling/problemsolving/initial_conditions.html"
+}

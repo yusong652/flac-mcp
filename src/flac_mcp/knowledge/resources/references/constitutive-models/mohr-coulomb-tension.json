@@ -35,112 +35,94 @@
           "keyword": "bulk",
           "symbol": "K",
           "description": "elastic bulk modulus, K",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "cohesion",
           "symbol": "c",
           "description": "cohesion, c",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "dilation",
           "symbol": "\\psi",
           "description": "dilation angle, \\psi. The default is 0.0.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "friction",
           "symbol": "\\phi",
           "description": "internal angle of friction, \\phi",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "poisson",
           "symbol": "\\nu",
           "description": "Poisson’s ratio, \\nu",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "shear",
           "symbol": "G",
           "description": "elastic shear modulus, G",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "tension",
           "symbol": "\\sigma^t",
           "description": "tension limit, \\sigma^t. The default is 0.0.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "young",
           "symbol": "E",
           "description": "Young’s modulus, E",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "normal-1",
           "symbol": "n_{1,x}",
           "description": "normal direction of the crack plane 2, (n_{1,x}, n_{1,y}, n_{1,z})",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "normal-2",
           "symbol": "n_{2,x}",
           "description": "normal direction of the crack plane 2, (n_{2,x}, n_{2,y}, n_{2,z})",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "normal-3",
           "symbol": "n_{3,x}",
           "description": "normal direction of the crack plane 3, (n_{3,x}, n_{3,y}, n_{3,z})",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "number-cracks",
-          "symbol": "",
           "description": "number of crack sets developed",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "strain-tension-plastic-1",
           "symbol": "n_1",
           "description": "accumulated plastic tensile strain in the direction n_1",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "strain-tension-plastic-2",
           "symbol": "n_2",
           "description": "accumulated plastic tensile strain in the direction n_2",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "strain-tension-plastic-3",
           "symbol": "n_3",
           "description": "accumulated plastic tensile strain in the direction n_3",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         }
       ]
     }
   ],
-  "typical_applications": [],
-  "notes": [],
   "source": "https://docs.itascacg.com/itasca900/common/models/mohrt/doc/modelmohrt.html",
   "usage": {
     "assign": "zone cmodel assign mohr-coulomb-tension [range ...]",

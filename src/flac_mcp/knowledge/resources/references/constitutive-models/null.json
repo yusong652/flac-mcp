@@ -5,16 +5,12 @@
     "null",
     "constitutive"
   ],
-  "description": "",
   "property_groups": [
     {
       "name": "Properties",
-      "description": "Material properties for the 'null' zone constitutive model. Assign the model with 'zone cmodel assign null [range ...]', then set these with 'zone property <keyword> <value> [range cmodel-name null]'.",
-      "properties": []
+      "description": "Material properties for the 'null' zone constitutive model. Assign the model with 'zone cmodel assign null [range ...]', then set these with 'zone property <keyword> <value> [range cmodel-name null]'."
     }
   ],
-  "typical_applications": [],
-  "notes": [],
   "source": "https://docs.itascacg.com/itasca900/common/models/null/doc/modelnull.html",
   "usage": {
     "assign": "zone cmodel assign null [range ...]",

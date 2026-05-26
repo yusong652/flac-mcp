@@ -1,0 +1,61 @@
+{
+  "name": "fluid-thermal",
+  "dimension": "mixed",
+  "full_name": "Fluid and Thermal Initial Conditions",
+  "description": "Initial pore-pressure and temperature fields should be assigned consistently with the active fluid/thermal model configuration and boundary conditions.",
+  "primary_commands": [
+    "model configure fluid",
+    "model configure thermal",
+    "zone initialize pore-pressure",
+    "zone initialize saturation",
+    "zone water density",
+    "zone initialize temperature",
+    "zone gridpoint fix pore-pressure",
+    "zone face apply temperature"
+  ],
+  "keyword_groups": [
+    {
+      "group": "fluid",
+      "keywords": [
+        "pore-pressure",
+        "saturation",
+        "fluid-density",
+        "water-density"
+      ],
+      "notes": [
+        "Gridpoint pore pressures are used to derive zone pore pressures.",
+        "Effective stresses depend on pore pressure when using effective-stress constitutive behavior."
+      ]
+    },
+    {
+      "group": "thermal",
+      "keywords": [
+        "temperature",
+        "thermal-timestep",
+        "thermal-expansion"
+      ],
+      "notes": [
+        "Thermal initialization must be paired with thermal material properties when thermal-mechanical coupling is modeled."
+      ]
+    }
+  ],
+  "common_patterns": [
+    {
+      "name": "Initialize phreatic pore pressure then fix drain",
+      "commands": [
+        "model configure fluid",
+        "zone water density 1000",
+        "zone initialize pore-pressure 0 gradient (0,0,-9810)",
+        "zone face apply pore-pressure 0 range group 'drain'"
+      ]
+    },
+    {
+      "name": "Uniform initial temperature",
+      "commands": [
+        "model configure thermal",
+        "zone initialize temperature 20"
+      ]
+    }
+  ],
+  "official_documentation": "https://docs.itascacg.com/itasca900/flac3d/docproject/source/modeling/problemsolving/initial_conditions.html"
+}

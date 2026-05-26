@@ -1,0 +1,70 @@
+{
+  "name": "sketch-workflow",
+  "dimension": "mixed",
+  "full_name": "Sketch Workflow",
+  "description": "Sketch is the FLAC 9.0 name for workflows formerly called extrusion. A sketch is a 2D design made from points, edges, blocks, and mesh controls. FLAC2D can generate zones directly; FLAC3D extrudes the sketch before creating zones.",
+  "primary_commands": [
+    "sketch set",
+    "sketch point",
+    "sketch edge",
+    "sketch block",
+    "sketch mesh",
+    "sketch segment",
+    "sketch path",
+    "zone generate from-sketch"
+  ],
+  "objects": [
+    {
+      "object": "set",
+      "role": "Named sketch collection; commands operate on the active set."
+    },
+    {
+      "object": "point",
+      "role": "Coordinate anchors for edges and blocks."
+    },
+    {
+      "object": "edge",
+      "role": "Line or curved boundaries with zoning controls."
+    },
+    {
+      "object": "block",
+      "role": "Closed shape meshed as regular structured or irregular unstructured mesh."
+    },
+    {
+      "object": "mesh",
+      "role": "Mesh sizing, automatic zoning, and block meshing operations."
+    }
+  ],
+  "workflow": [
+    {
+      "step": "Create geometry",
+      "commands": [
+        "sketch set create 'section'",
+        "sketch point create ...",
+        "sketch edge create ..."
+      ]
+    },
+    {
+      "step": "Create and mesh blocks",
+      "commands": [
+        "sketch block create ...",
+        "sketch mesh automatic"
+      ]
+    },
+    {
+      "step": "Generate zones",
+      "commands": [
+        "zone generate from-sketch"
+      ],
+      "notes": [
+        "FLAC2D generates zones from the 2D sketch.",
+        "FLAC3D requires extrusion/section setup before 3D zones are generated."
+      ]
+    }
+  ],
+  "version_notes": [
+    "In FLAC 9.0, sketch replaces the older extrude naming.",
+    "Some legacy documentation and command resources may still use extruder/extrude terminology."
+  ],
+  "official_documentation": "https://docs.itascacg.com/itasca900/flac3d/docproject/source/elements/sketch/sketch.html"
+}

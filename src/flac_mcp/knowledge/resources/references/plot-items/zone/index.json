@@ -1,0 +1,73 @@
+{
+  "name": "zone",
+  "item_type": "zone",
+  "search_keywords": [
+    "zone",
+    "grid",
+    "stress",
+    "strain",
+    "displacement",
+    "pore pressure",
+    "temperature",
+    "constitutive model",
+    "group"
+  ],
+  "description": "Configuration keywords for 'plot item create zone'. Controls continuum zone rendering, coloring, cut planes, labels, and legends for FLAC2D/FLAC3D results.",
+  "base_syntax": "plot item create zone <keywords...>",
+  "basic_keywords": [
+    {
+      "keyword": "active on",
+      "description": "Show the zone item in the plot.",
+      "syntax": "active on"
+    },
+    {
+      "keyword": "active off",
+      "description": "Hide the zone item without removing it.",
+      "syntax": "active off"
+    },
+    {
+      "keyword": "transparency",
+      "description": "Set zone transparency where supported by the plot item.",
+      "syntax": "transparency <0-100>"
+    },
+    {
+      "keyword": "legend active on",
+      "description": "Show a legend for color-mapped zone values.",
+      "syntax": "legend active on"
+    },
+    {
+      "keyword": "color-options",
+      "description": "Configure continuous or named color mapping.",
+      "syntax": "color-options scaled ramp rainbow minimum automatic maximum automatic"
+    }
+  ],
+  "sub_items": [
+    {
+      "name": "color-by",
+      "file": "color-by.json",
+      "description": "Color zones by result values, model state, groups, or extra variables."
+    },
+    {
+      "name": "cut",
+      "file": "cut.json",
+      "description": "Clip the zone visualization with a 2D or 3D cutting region."
+    }
+  ],
+  "common_usage_patterns": [
+    {
+      "use_case": "Zones colored by group",
+      "command": "plot item create zone active on color-by text-attribute \"group\" 'Any' color-options named maximum-names 1000000 name-controls true legend active on",
+      "description": "Different color per zone group."
+    },
+    {
+      "use_case": "Zones colored by displacement magnitude",
+      "command": "plot item create zone active on color-by vector-attribute \"displacement\" color-options scaled ramp rainbow minimum automatic maximum automatic legend active on",
+      "description": "Continuous displacement color map."
+    },
+    {
+      "use_case": "Zones colored by maximum principal stress",
+      "command": "plot item create zone active on color-by numeric-attribute \"stress-prin-max\" color-options scaled ramp rainbow minimum automatic maximum automatic legend active on",
+      "description": "Useful for stress concentration checks."
+    }
+  ]
+}

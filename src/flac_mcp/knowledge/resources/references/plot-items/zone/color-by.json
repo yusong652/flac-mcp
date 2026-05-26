@@ -1,0 +1,65 @@
+{
+  "name": "color-by",
+  "parent": "zone",
+  "description": "Color-by modes for zone plot items. These include FLAC2D and FLAC3D result attributes; z, xz, yz, and zz components are FLAC3D-only.",
+  "modes": [
+    {
+      "keyword": "color-by numeric-attribute",
+      "description": "Color zones by a scalar result or property.",
+      "syntax": "color-by numeric-attribute \"<name>\"",
+      "examples": [
+        "color-by numeric-attribute \"stress-prin-max\"",
+        "color-by numeric-attribute \"pore-pressure\"",
+        "color-by numeric-attribute \"temperature\"",
+        "color-by numeric-attribute \"extra\" 1"
+      ],
+      "available_attributes": [
+        "density",
+        "extra",
+        "pore-pressure",
+        "ratio-local",
+        "state",
+        "stress-xx",
+        "stress-yy",
+        "stress-zz",
+        "stress-xy",
+        "stress-xz",
+        "stress-yz",
+        "stress-prin-min",
+        "stress-prin-max",
+        "temperature",
+        "volumetric-strain"
+      ],
+      "notes": "Use continuous color-options for numeric values. Out-of-plane stress components are FLAC3D-only."
+    },
+    {
+      "keyword": "color-by vector-attribute",
+      "description": "Color zones by vector magnitude or vector components.",
+      "syntax": "color-by vector-attribute \"<name>\"",
+      "examples": [
+        "color-by vector-attribute \"displacement\"",
+        "color-by vector-attribute \"velocity\""
+      ],
+      "available_attributes": [
+        "displacement",
+        "velocity"
+      ],
+      "notes": "Vector values may display x/y/z components depending on the target product dimension."
+    },
+    {
+      "keyword": "color-by text-attribute",
+      "description": "Color zones by a categorical value.",
+      "syntax": "color-by text-attribute \"<name>\"",
+      "examples": [
+        "color-by text-attribute \"group\" 'Any' color-options named maximum-names 1000000 name-controls true",
+        "color-by text-attribute \"model\" color-options named maximum-names 1000000 name-controls true"
+      ],
+      "available_attributes": [
+        "group",
+        "id",
+        "model"
+      ],
+      "notes": "Use named color-options for group/model/id values."
+    }
+  ]
+}

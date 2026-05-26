@@ -37,149 +37,123 @@
           "keyword": "cohesion",
           "symbol": "c",
           "description": "cohesion of the matrix, c",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "dilation",
           "symbol": "\\psi",
           "description": "dilation angle of the matrix, \\psi. The default is 0.0.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "dip",
-          "symbol": "",
           "description": "dip angle [degrees] of weakness plane",
           "type": "FLT",
-          "default": "",
           "dim": "3D"
         },
         {
           "keyword": "dip-direction",
-          "symbol": "",
           "description": "dip direction [degrees] of weakness plane",
           "type": "FLT",
-          "default": "",
           "dim": "3D"
         },
         {
           "keyword": "angle",
-          "symbol": "",
           "description": "angle [degrees] of weakness plane, taken counterclockwise from the x-axis",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "friction",
           "symbol": "\\phi",
           "description": "internal angle of friction of the matrix, \\phi",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "joint-cohesion",
           "symbol": "c_j",
           "description": "joint cohesion, c_j",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "joint-dilation",
           "symbol": "\\psi_j",
           "description": "joint dilation angle, \\psi_j. The default is 0.0.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "joint-friction",
           "symbol": "\\phi_j",
           "description": "joint friction angle, \\phi_j",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "joint-tension",
           "symbol": "\\sigma^t_j",
           "description": "joint tension limit, \\sigma^t_j. The default is 0.0.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "normal",
-          "symbol": "",
           "description": "normal direction of the weakness plane, (2D or 3D vector)",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "normal-x",
           "symbol": "x",
           "description": "x-component of the normal direction to the weakness plane, n_x",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "normal-y",
           "symbol": "y",
           "description": "y-component of the normal direction to the weakness plane, n_y",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "normal-z",
           "symbol": "z",
           "description": "z-component of the normal direction to the weakness plane, n_z (3D ONLY)",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "poisson-normal",
           "symbol": "{\\nu}'",
           "description": "Poisson’s ratio characterizing lateral contraction in the plane of isotropy when tension is applied normal to the plane, {\\nu}' = \\nu_{13} = \\nu_{23}",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "poisson-plane",
           "symbol": "\\nu",
           "description": "Poisson’s ratio characterizing lateral contraction in the plane of isotropy when tension is applied in the plane, \\nu = \\nu_{12}",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "shear-normal",
           "symbol": "G'",
           "description": "shear modulus for any plane normal to the plane of isotropy, G' = G_{13} = G_{23}",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "tension",
           "symbol": "{\\sigma}^t",
           "description": "tension limit of the matrix, {\\sigma}^t. The default is 0.0.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "young-plane",
           "symbol": "E",
           "description": "Young’s modulus in the plane of isotropy, E = E_1 = E_2",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "young-normal",
           "symbol": "E'",
           "description": "Young’s modulus normal to the plane of isotropy, E' = E_3",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         }
       ]
     }
   ],
-  "typical_applications": [],
-  "notes": [],
   "source": "https://docs.itascacg.com/itasca900/common/models/caniso/doc/modelcaniso.html",
   "usage": {
     "assign": "zone cmodel assign ubiquitous-anisotropic [range ...]",
