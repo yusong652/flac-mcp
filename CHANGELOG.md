@@ -28,6 +28,8 @@ Description of the release.
   visualization workflows.
 - Add FLAC reference docs for boundary conditions, initial conditions,
   structural-element properties, histories, zone field data, and results export.
+- Add FLAC reference docs for FISH intrinsic workflows, interfaces/joints,
+  geometry/data/table workflows, and sketch/building-block model generation.
 - Tighten FLAC2D Python API filtering with explicit out-of-plane API rules.
 - Add agentic setup and runtime validation documentation for FLAC2D/FLAC3D
   verification.

@@ -93,7 +93,7 @@ print(it.command("model list information"))
 - **FLAC2D/FLAC3D 过滤** — 命令和参考文档工具支持 `product`，减少维度不匹配
 - **扩展的 FLAC 9.0 Python API** — 内置 attach、array、interface、zone、gridpoint、vec 等 API 文档
 - **层级式文档浏览** — 智能体沿着 FLAC 命令树自主发现能力与边界，减少幻觉命令
-- **扩展的参考文档** — 在官方文档基础上补充了 plot items、边界条件、初始条件、结构单元属性、history 与 results 参考文档
+- **扩展的参考文档** — 在官方文档基础上补充了 plot items、边界条件、初始条件、结构单元属性、FISH intrinsic、interface/joint、geometry/data/table、sketch/building-block、history 与 results 参考文档
 - **已知覆盖限制** — FLAC3D 6.0/7.0 命令文档仍是部分覆盖；coverage 工具会报告缺失的版本条目
 - **交互式 REPL** — 正式编写脚本前快速试错，智能体可以快速迭代验证
 - **任务全生命周期管理** — 提交长时仿真、监控进度、中止运行中的任务、浏览历史任务

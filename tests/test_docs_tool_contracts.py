@@ -382,6 +382,10 @@ async def test_browse_reference_root_contract() -> None:
     assert "initial-conditions" in names
     assert "structural-properties" in names
     assert "histories-and-results" in names
+    assert "fish-intrinsics" in names
+    assert "interface-and-joints" in names
+    assert "geometry-data-table" in names
+    assert "sketch-and-building-blocks" in names
 
 
 @pytest.mark.asyncio
@@ -489,6 +493,66 @@ async def test_browse_reference_explicit_mixed_dimension_overrides_z_keyword_fil
     assert payload["ok"] is True
     assert entry["compatibility"]["dimension"] == "mixed"
     assert entry["doc"]["name"] == "zone-field-data"
+
+
+@pytest.mark.asyncio
+async def test_browse_reference_fish_intrinsics_contract() -> None:
+    result = await mcp._tool_manager.call_tool("flac_browse_reference", {"topic": "fish-intrinsics field-query"})
+    payload = _parse_tool_payload(result)
+    doc = payload["data"]["entries"][0]["doc"]
+
+    assert payload["ok"] is True
+    assert "zone.field.get" in doc["primary_intrinsics"]
+    steps = {step["step"] for step in doc["workflow"]}
+    assert {"Select field", "Batch query"} <= steps
+
+
+@pytest.mark.asyncio
+async def test_browse_reference_interface_and_joints_contract() -> None:
+    result = await mcp._tool_manager.call_tool(
+        "flac_browse_reference", {"topic": "interface-and-joints zone-interface"}
+    )
+    payload = _parse_tool_payload(result)
+    doc = payload["data"]["entries"][0]["doc"]
+
+    assert payload["ok"] is True
+    assert "zone interface create" in doc["primary_commands"]
+    groups = {group["group"] for group in doc["property_groups"]}
+    assert {"stiffness", "strength"} <= groups
+
+
+@pytest.mark.asyncio
+async def test_browse_reference_geometry_data_table_contract() -> None:
+    result = await mcp._tool_manager.call_tool(
+        "flac_browse_reference", {"topic": "geometry-data-table geometry-workflow"}
+    )
+    payload = _parse_tool_payload(result)
+    doc = payload["data"]["entries"][0]["doc"]
+
+    assert payload["ok"] is True
+    assert "geometry import" in doc["primary_commands"]
+    assert "stl" in doc["formats"]
+
+
+@pytest.mark.asyncio
+async def test_browse_reference_sketch_building_blocks_contract() -> None:
+    result = await mcp._tool_manager.call_tool(
+        "flac_browse_reference",
+        {"topic": "sketch-and-building-blocks sketch-workflow", "product": "flac2d", "version": "9.0"},
+    )
+    payload = _parse_tool_payload(result)
+    doc = payload["data"]["entries"][0]["doc"]
+
+    assert payload["ok"] is True
+    assert "zone generate from-sketch" in doc["primary_commands"]
+
+    result = await mcp._tool_manager.call_tool(
+        "flac_browse_reference",
+        {"topic": "sketch-and-building-blocks building-blocks", "product": "flac2d", "version": "9.0"},
+    )
+    payload = _parse_tool_payload(result)
+    assert payload["ok"] is False
+    assert payload["error"]["code"] == "item_unavailable_for_product"
 
 
 @pytest.mark.asyncio

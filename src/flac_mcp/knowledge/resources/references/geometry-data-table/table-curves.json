@@ -1,0 +1,44 @@
+{
+  "name": "table-curves",
+  "dimension": "mixed",
+  "full_name": "Table Curves",
+  "description": "Tables store x-y pairs and are used for load histories, property curves, boundary-condition modifiers, and exported history data.",
+  "primary_commands": [
+    "table add",
+    "table insert",
+    "table import",
+    "table export",
+    "table list",
+    "table delete",
+    "table clear",
+    "history export ... table"
+  ],
+  "common_patterns": [
+    {
+      "name": "Time-dependent load table",
+      "commands": [
+        "table 'load' add (0,0) (1,1) (10,1)",
+        "zone face apply stress-normal -1e5 table 'load' range group 'Top'"
+      ]
+    },
+    {
+      "name": "Import curve",
+      "commands": [
+        "table import 'load_curve.csv'",
+        "table list"
+      ]
+    },
+    {
+      "name": "Export history to table",
+      "commands": [
+        "history export 'top_disp' table 'disp_curve'"
+      ]
+    }
+  ],
+  "validation_notes": [
+    "Confirm table x-axis meaning before using it in a boundary modifier.",
+    "Use table list after import to catch delimiter or unit mistakes.",
+    "Prefer named tables over numeric IDs in generated scripts."
+  ],
+  "official_documentation": "https://docs.itascacg.com/itasca900/flac3d/docproject/source/flac3dhome.html"
+}
