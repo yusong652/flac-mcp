@@ -10,6 +10,46 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "available": false,
+      "reason": "Not listed in the official FLAC3D 6.0 command indexes.",
+      "source_urls": [
+        "https://docs.itascacg.com/pfc600/flac3d/docproject/source/elements/command_summary.html",
+        "https://docs.itascacg.com/pfc600/flac3d/sel/doc/manual/sel_manual/sel_commands/sel_commands.html"
+      ],
+      "target_version": "6.0"
+    },
+    "7.0": {
+      "command": "zone gridpoint import",
+      "syntax": "zone gridpoint import pore-pressure sfile <keyword...> <range>",
+      "description": "Imports grid point data.",
+      "keywords": [
+        {
+          "name": "cutoff",
+          "syntax": "cutoff f",
+          "description": "Pore pressure values are not allowed to fall below this cutoff value. The default cutoff value is 0.0."
+        },
+        {
+          "name": "geometry",
+          "syntax": "geometry",
+          "description": "If this keyword is given, then geometric data representing the MineDW nodes and zones will be created in a geometric set named MineDW. Nodes and edges are created only. The first extra variable of the node will be assigned the pore pressure value"
+        },
+        {
+          "name": "translate",
+          "syntax": "translate v",
+          "description": "If this keyword is used, the node locations in the file will be translate by the specified vector on import. The default value is (0,0,0)."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 7.0 contents command index",
+        "source_urls": [
+          "https://docs.itascacg.com/flac3d700/flac3d/zone/doc/manual/zone_manual/zone_commands/zonegridpoint/cmd_zone.gridpoint.import.html"
+        ],
+        "syntax_basis": "official FLAC3D 7.0 detailed command page",
+        "target_version": "7.0"
+      }
+    },
     "9.0": {
       "command": "zone gridpoint import",
       "syntax": "zone gridpoint import pore-pressure <sfile>[keyword ...] [range] 3D ONLY",
@@ -39,8 +79,7 @@
           "syntax": "scale-pressure <f>",
           "description": "Scale the pore pressure by multiplying by the scalar f. This scaler operation is performed after the cuttoff operation. The default value is 1.0 ."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }
