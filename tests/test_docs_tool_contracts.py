@@ -73,7 +73,7 @@ async def test_query_command_contract() -> None:
 async def test_browse_commands_versioned_contract() -> None:
     result = await mcp._tool_manager.call_tool(
         "flac_browse_commands",
-        {"command": "model new", "version": "6.0"},
+        {"command": "brick assemble", "version": "6.0"},
     )
     payload = _parse_tool_payload(result)
     data = payload["data"]
@@ -81,7 +81,7 @@ async def test_browse_commands_versioned_contract() -> None:
     assert payload["ok"] is True
     assert data["summary"]["version"] == "6.0"
     doc = data["entries"][0]["doc"]
-    assert doc["syntax"] == "model new [force]"
+    assert doc["syntax"] == "brick assemble keyword [range]"
 
 
 @pytest.mark.asyncio
@@ -103,7 +103,7 @@ async def test_browse_category_filters_unavailable_commands_by_version() -> None
 async def test_query_command_versioned_contract() -> None:
     result = await mcp._tool_manager.call_tool(
         "flac_query_command",
-        {"query": "model new", "limit": 5, "version": "6.0"},
+        {"query": "brick assemble", "limit": 5, "version": "6.0"},
     )
     payload = _parse_tool_payload(result)
     data = payload["data"]
@@ -111,7 +111,7 @@ async def test_query_command_versioned_contract() -> None:
     assert payload["ok"] is True
     assert data["summary"]["version"] == "6.0"
     assert len(data["entries"]) >= 1
-    assert data["entries"][0]["syntax"] == "model new [force]"
+    assert data["entries"][0]["syntax"] == "brick assemble keyword [range]"
 
 
 @pytest.mark.asyncio
