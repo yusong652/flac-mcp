@@ -21,8 +21,5 @@ PFC_COMMAND_DOCS_ROOT = _RESOURCES_DIR / "command_docs"
 # Syntax elements used within commands: contact models, range elements, etc.
 PFC_REFERENCES_ROOT = _RESOURCES_DIR / "references"
 
-# Contact models subdirectory (within references)
-PFC_CONTACT_MODELS_ROOT = PFC_REFERENCES_ROOT / "contact-models"
-
 # Maximum number of API matches to return from keyword search
 SDK_SEARCH_TOP_N = 3
