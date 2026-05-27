@@ -30,7 +30,7 @@
         "grout-cohesion",
         "grout-cohesion-table",
         "grout-friction",
-        "coupling-friction-table",
+        "grout-friction-table",
         "grout-perimeter"
       ]
     },

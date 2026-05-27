@@ -11,6 +11,21 @@
     "structure link list",
     "structure link slide"
   ],
+  "property_groups": [
+    {
+      "group": "per-DOF link property selector",
+      "properties": [
+        "x",
+        "y",
+        "rotation"
+      ],
+      "notes": [
+        "'structure link property' is followed by a DOF selector ('x', 'y', or 'rotation' for FLAC2D), then per-DOF sub-keywords like 'attach', 'model', 'area', 'stiffness', etc.",
+        "FLAC2D nodes have 3 DOFs: x, y, rotation. FLAC3D adds 'z', 'rotation-x', 'rotation-y' / 'rotation-z'.",
+        "Probe live with 'structure link property x ?' to see per-DOF sub-keywords."
+      ]
+    }
+  ],
   "concepts": [
     {
       "name": "attachment",

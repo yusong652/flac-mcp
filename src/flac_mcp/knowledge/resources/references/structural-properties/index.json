@@ -15,17 +15,21 @@
       "common_use": "Beams, piles, struts, and flexural support members."
     },
     {
-      "name": "shell-geogrid-liner",
-      "file": "shell-geogrid-liner.json",
-      "description": "Shell-type properties plus geogrid and liner coupling-spring properties.",
-      "common_use": "Shells, liners, geogrids, membranes, shotcrete, and surface support."
+      "name": "liner",
+      "file": "liner.json",
+      "description": "FLAC2D liner properties (section + double-sided coupling springs). Shell and geogrid types are FLAC3D-only and noted here.",
+      "common_use": "Tunnel linings, shotcrete, embedded membranes (FLAC2D). Use FLAC3D docs for shell/geogrid types."
     },
     {
       "name": "link",
       "file": "link.json",
-      "description": "Structural link attachment and link model property concepts.",
+      "description": "Structural link per-DOF property selectors (x / y / rotation in FLAC2D) plus attachment concepts.",
       "common_use": "Control how structural nodes interact with zones or other structural objects."
     }
+  ],
+  "notes": [
+    "Property keyword sets are binary-validated against FLAC2D 9.0 (probed via 'structure <type> property ?').",
+    "'shell' and 'geogrid' are FLAC3D-only structure types — rejected by FLAC2D 9.0. They are documented inline in liner.json under 'related_3d_only'."
   ],
   "official_sources": [
     "https://docs.itascacg.com/itasca900/common/sel/doc/manual/sel_manual/cables/cables.html",

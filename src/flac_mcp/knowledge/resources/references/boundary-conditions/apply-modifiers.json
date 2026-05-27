@@ -48,7 +48,27 @@
       "notes": [
         "Useful for staged loading, histories, hydrographs, and dynamic input records."
       ]
+    },
+    {
+      "keyword": "vary",
+      "purpose": "Apply a per-component variation profile to a condition value.",
+      "notes": [
+        "Validated against the FLAC2D 9.0 binary modifier set after 'zone face apply <kw> <value> ?'."
+      ]
     }
+  ],
+  "binary_validated_modifier_set": [
+    "fish",
+    "fish-local",
+    "gradient",
+    "range",
+    "servo",
+    "table",
+    "vary"
+  ],
+  "notes_general": [
+    "'range' is treated as a modifier-position keyword by the parser (it follows the value, like the other modifiers).",
+    "'symmetry' is accepted only after local-axis conditions (velocity-local / -normal / -tangential, reaction-local / -normal / -tangential, acceleration-local / -normal / -tangential). It is not a universal modifier."
   ],
   "official_documentation": "https://docs.itascacg.com/itasca900/flac3d/zone/doc/manual/zone_manual/zone_commands/zoneface/cmd_zone.face.apply.html"
 }

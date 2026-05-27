@@ -9,8 +9,8 @@
     "history delete",
     "history purge",
     "history export",
+    "history rename",
     "zone history",
-    "zone gridpoint history",
     "structure node history"
   ],
   "workflow": [
@@ -25,26 +25,32 @@
       ]
     },
     {
-      "step": "Create histories",
+      "step": "Create histories (FLAC2D)",
       "commands": [
-        "zone history displacement-z position 0 0 10",
-        "zone history stress-zz position 0 0 5",
-        "zone gridpoint history unbalanced-force position 0 0 0"
+        "zone history displacement-y position (0.5,1) label 'top_disp'",
+        "zone history stress quantity yy position (0.5,0.5) label 'mid_sigy'",
+        "zone history displacement-y gp 5 label 'gp5_uy'"
       ],
       "notes": [
-        "Use FLAC2D coordinates for FLAC2D and FLAC3D coordinates for FLAC3D.",
-        "Only one monitored variable is created per history command."
+        "FLAC2D positions use the (x,y) 2D tuple — NOT 'x y z'. FLAC3D uses (x,y,z).",
+        "Tensor attributes (stress, strain-rate, strain-increment) take a 'quantity' selector: xx/yy/zz/xy/xz/yz/maximum/minimum/intermediate/mean/norm/octahedral/shear-maximum/total-measure/volumetric/von-mises.",
+        "Use 'gp <gpid>' to track a gridpoint's value (this replaces the non-existent 'zone gridpoint history' command).",
+        "Use 'label <string>' to give the history a memorable name; the command still also assigns a numeric ID."
       ]
     },
     {
       "step": "Inspect and export",
       "commands": [
         "history list all",
-        "history export 'top_disp' vs 'step' file 'top_disp.csv'"
+        "history name 1 rename 'top_disp'",
+        "history export 'top_disp' vs step file 'top_disp.csv'"
       ],
       "notes": [
-        "Use history names or IDs consistently in exports.",
-        "Use tables when the next step stays inside FLAC; use files for external plotting."
+        "'history list all' prints ID / Name / Label / Position.",
+        "By default a new history's NAME equals its numeric ID as a string ('1','2',...). 'history rename' OVERWRITES the Name field — after renaming, the integer reference no longer matches and you must use the new string in 'history export'.",
+        "Rename uses 'history name <id-or-current-name> rename <new-string>' (binary-validated): the 'name' subcommand filters first, then 'rename' assigns.",
+        "The LABEL field is independent of Name — 'history export' resolves by NAME, not by Label.",
+        "'vs step' plots against step number; 'vs <other-history-id>' plots against another history."
       ]
     }
   ],
@@ -54,8 +60,8 @@
       "description": "Set the global sampling interval in cycles or steps."
     },
     {
-      "keyword": "list all",
-      "description": "Print a summary of configured histories."
+      "keyword": "list",
+      "description": "List configured histories. Sub-keywords: all / labels / limits / series."
     },
     {
       "keyword": "purge",
@@ -67,7 +73,23 @@
     },
     {
       "keyword": "export",
-      "description": "Write selected histories to screen, file, or table."
+      "description": "Write selected histories to screen, file, or table. References histories by numeric ID (or by a name set via 'history rename')."
+    },
+    {
+      "keyword": "rename",
+      "description": "Rename a history (give it a string name that 'history export' can resolve)."
+    },
+    {
+      "keyword": "name",
+      "description": "Filter subsequent 'history' subcommand by a history name pattern."
+    },
+    {
+      "keyword": "label",
+      "description": "Set / filter histories by label."
+    },
+    {
+      "keyword": "results",
+      "description": "'history results active <bool>' — include history data in results export."
     }
   ],
   "validation_notes": [

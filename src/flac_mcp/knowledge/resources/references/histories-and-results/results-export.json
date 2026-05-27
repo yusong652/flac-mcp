@@ -15,6 +15,10 @@
   ],
   "keywords": [
     {
+      "keyword": "accelerations",
+      "description": "Include gridpoint acceleration vectors (dynamic analyses)."
+    },
+    {
       "keyword": "active",
       "description": "Control whether zone values are exported."
     },

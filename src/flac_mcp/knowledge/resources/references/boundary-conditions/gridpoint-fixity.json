@@ -16,14 +16,25 @@
         "velocity",
         "velocity-x",
         "velocity-y",
-        "velocity-z",
-        "velocity-normal",
-        "velocity-tangential",
-        "velocity-local"
+        "velocity-z"
       ],
       "notes": [
         "FLAC2D uses x/y translational degrees of freedom; z velocity fixity is FLAC3D-only.",
-        "Use 'zone gridpoint free velocity-x' or related keywords to release a condition."
+        "Use 'zone gridpoint free velocity-x' or related keywords to release a condition.",
+        "Local / normal / tangential components are FACE-apply concepts only — they are NOT accepted by 'zone gridpoint fix'. Use 'zone face apply velocity-local 0 ...' instead."
+      ]
+    },
+    {
+      "group": "mechanical acceleration fixity",
+      "keywords": [
+        "acceleration",
+        "acceleration-x",
+        "acceleration-y",
+        "acceleration-z"
+      ],
+      "notes": [
+        "Requires dynamic configuration (model configure dynamic).",
+        "z component is FLAC3D-only; FLAC2D uses x/y."
       ]
     },
     {
@@ -43,10 +54,16 @@
       "keywords": [
         "pore-pressure",
         "temperature",
+        "source",
         "well"
       ],
+      "keywords_3d_only": [
+        "head"
+      ],
       "notes": [
-        "Fluid and thermal keywords require the corresponding model configuration when solving coupled processes."
+        "Fluid and thermal keywords require the corresponding model configuration when solving coupled processes.",
+        "'source' is a heat-source term (thermal); 'well' is a fluid source/sink.",
+        "'head' (hydraulic-head fixity) is accepted by 'zone gridpoint fix' in FLAC3D 9.0 but NOT in FLAC2D 9.0 — use 'pore-pressure' on FLAC2D gridpoints."
       ]
     }
   ],

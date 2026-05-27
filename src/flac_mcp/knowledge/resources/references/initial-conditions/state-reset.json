@@ -4,27 +4,35 @@
   "full_name": "State Reset After Initial Equilibrium",
   "description": "After generating an initial equilibrium state, it is common to reset displacements, velocities, and histories before starting the construction or excavation stage.",
   "primary_commands": [
+    "model large-strain on",
     "model solve",
     "model solve elastic",
-    "zone initialize displacement",
-    "zone initialize velocity",
+    "zone gridpoint initialize displacement",
+    "zone gridpoint initialize velocity",
     "zone gridpoint initialize",
     "history purge",
     "model save"
   ],
   "common_patterns": [
     {
-      "name": "Elastic initialization then reset displacements",
+      "name": "Elastic initialization then reset displacements (FLAC2D)",
       "commands": [
+        "model large-strain on",
         "model solve elastic",
-        "zone initialize displacement (0,0,0)",
-        "zone gridpoint initialize velocity (0,0,0)",
+        "zone gridpoint initialize displacement (0,0)",
+        "zone gridpoint initialize velocity (0,0)",
         "model save 'initial-equilibrium'"
+      ],
+      "notes": [
+        "FLAC2D requires 'model large-strain on' (or off) before any solve / cycle command.",
+        "Displacement and velocity are nodal vector quantities → use 'zone gridpoint initialize' (NOT 'zone initialize').",
+        "FLAC2D vector tuple is (x,y); FLAC3D is (x,y,z)."
       ]
     },
     {
       "name": "Preserve stress through cmodel change",
       "commands": [
+        "model large-strain on",
         "zone cmodel assign elastic",
         "model solve elastic",
         "zone cmodel assign mohr-coulomb range group 'stage'",

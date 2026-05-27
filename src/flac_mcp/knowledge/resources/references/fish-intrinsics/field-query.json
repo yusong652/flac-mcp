@@ -37,15 +37,15 @@
       ]
     },
     {
-      "step": "Batch query",
+      "step": "Batch query (FLAC2D)",
       "fish": [
         "zone.field.init",
-        "local value = zone.field.get(vector(3.5,4.3,6.7))",
+        "local value = zone.field.get(vector(0.5, 0.5))",
         "zone.field.reset"
       ],
       "notes": [
         "Call init/reset around repeated queries for performance.",
-        "FLAC2D workflows should use 2D coordinates where the runtime expects them."
+        "FLAC2D uses 'vector(x, y)' 2D points; FLAC3D uses 'vector(x, y, z)'."
       ]
     }
   ],

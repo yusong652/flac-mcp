@@ -27,15 +27,22 @@
       ]
     },
     {
-      "group": "flux and leakage",
+      "group": "flux and leakage (face apply)",
       "keywords": [
         "discharge",
-        "leakage",
+        "leakage"
+      ],
+      "notes": [
+        "Use face discharge/leakage for boundary fluxes via 'zone face apply'."
+      ]
+    },
+    {
+      "group": "source/sink (gridpoint only)",
+      "keywords": [
         "well"
       ],
       "notes": [
-        "Use face discharge/leakage for boundary fluxes.",
-        "Use zone or gridpoint well conditions for source/sink style flow."
+        "'well' is a gridpoint-fix keyword — NOT a 'zone face apply' keyword. Use 'zone gridpoint fix well ...' for source/sink style flow."
       ]
     }
   ],

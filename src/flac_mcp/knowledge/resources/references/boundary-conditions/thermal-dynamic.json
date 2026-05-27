@@ -34,13 +34,22 @@
         "acceleration-z",
         "acceleration-normal",
         "acceleration-tangential",
+        "acceleration-local",
         "quiet",
         "quiet-normal",
         "quiet-tangential"
       ],
+      "keywords_3d_only": [
+        "acceleration-dip",
+        "acceleration-strike",
+        "quiet-dip",
+        "quiet-strike"
+      ],
       "notes": [
-        "Dynamic keywords require dynamic configuration.",
-        "FLAC2D users should avoid z-directed acceleration keywords; quiet normal/tangential forms are dimension-neutral."
+        "Dynamic keywords require 'model configure dynamic' first.",
+        "FLAC2D users should avoid z-directed acceleration keywords; quiet normal/tangential forms and acceleration-local are dimension-neutral.",
+        "'acceleration-dip / acceleration-strike / quiet-dip / quiet-strike' accepted by FLAC3D 9.0 binary.",
+        "CAVEAT: 'zone face apply acceleration-dip <value>' was observed to crash the FLAC3D 9.0 process when applied to all faces without a configured dip axis. Probe with '?' first, or supply an explicit range and dip-axis setup before applying."
       ]
     }
   ],

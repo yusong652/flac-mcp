@@ -9,38 +9,43 @@
       "examples": [
         "struct.node.list",
         "struct.node.pos",
-        "struct.node.disp",
+        "struct.node.disp.global",
         "struct.link.list",
         "struct.link.model"
       ],
       "notes": [
+        "Use 'struct.node.disp.global(node_pnt)' for nodal displacement; 'struct.node.disp' alone is NOT a valid intrinsic in FLAC2D 9.0.",
         "Structural node values are central for support displacement and link-state checks.",
-        "Use element-specific families for cable, beam, pile, shell, liner, and geogrid quantities."
+        "Use element-specific families for cable, beam, pile, and liner quantities (shell/geogrid types do not exist in FLAC2D)."
       ]
     },
     {
       "family": "reinforcement response",
       "examples": [
         "struct.cable.force.axial",
+        "struct.beam.moment",
+        "struct.liner.normal.stress"
+      ],
+      "flac3d_only_intrinsics": [
         "struct.beam.force",
-        "struct.pile.force",
-        "struct.shell.stress",
-        "struct.liner.force"
+        "struct.shell.stress"
       ],
       "notes": [
-        "Use the corresponding structural-properties reference before setting element properties.",
-        "Choose local/global force interpretation deliberately."
+        "FISH intrinsic naming differs between FLAC2D and FLAC3D: 'struct.beam.force' and 'struct.shell.stress' exist in FLAC3D 9.0 but are rejected in FLAC2D 9.0 (FLAC2D has 'struct.beam.moment' and no shell type).",
+        "Plot 'structure-beam contour force' attribute names also do NOT mirror FISH intrinsic names directly.",
+        "Probe live with 'fish list intrinsics' (paginate output) when an expected name is rejected.",
+        "Choose local/global force interpretation deliberately (e.g. 'struct.node.disp.global' vs '.local')."
       ]
     },
     {
       "family": "zone interfaces",
       "examples": [
-        "zone.interface.list",
-        "zone.interface.node.list",
-        "zone.interface.node.force",
-        "zone.interface.node.stress"
+        "interface.list",
+        "interface.node.list",
+        "interface.node.stress.normal"
       ],
       "notes": [
+        "FLAC2D 9.0 uses the 'interface.*' (or alias 'int.*') prefix — NOT 'zone.interface.*'.",
         "Interface data are often node based; inspect active contact state before interpreting forces.",
         "Interface stiffness and strength should be validated against adjacent zone stiffness and expected discontinuity behavior."
       ]

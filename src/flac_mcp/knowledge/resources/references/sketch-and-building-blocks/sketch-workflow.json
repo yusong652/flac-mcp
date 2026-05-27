@@ -9,9 +9,16 @@
     "sketch edge",
     "sketch block",
     "sketch mesh",
-    "sketch segment",
-    "sketch path",
+    "sketch section",
     "zone generate from-sketch"
+  ],
+  "valid_subcommands_binary": [
+    "block",
+    "edge",
+    "mesh",
+    "point",
+    "section",
+    "set"
   ],
   "objects": [
     {
@@ -32,7 +39,11 @@
     },
     {
       "object": "mesh",
-      "role": "Mesh sizing, automatic zoning, and block meshing operations."
+      "role": "Mesh sizing, optimization, and meshing control parameters."
+    },
+    {
+      "object": "section",
+      "role": "Pre-defined section primitives (circle / polygon / rectangle) to seed a sketch."
     }
   ],
   "workflow": [
@@ -45,10 +56,16 @@
       ]
     },
     {
-      "step": "Create and mesh blocks",
+      "step": "Configure mesh and zoning",
       "commands": [
         "sketch block create ...",
-        "sketch mesh automatic"
+        "sketch mesh target-size 0.1",
+        "sketch set automatic-zone size 10"
+      ],
+      "notes": [
+        "Use 'sketch mesh target-size <float>' / 'sketch mesh reset' / 'sketch mesh mode <mixed|quad>' / 'sketch mesh type <mixed|unstructured>' for mesh control.",
+        "Use 'sketch set automatic-zone <size|total|direction|edge> <value>' to drive automatic zoning. Sub-keyword types: size <int>=1, total <int>=1, direction <both|construction|extrusion>, edge <float 1e-5..1e5>.",
+        "'sketch mesh automatic' is NOT a valid subcommand."
       ]
     },
     {
@@ -62,6 +79,7 @@
       ]
     }
   ],
+  "rejected_subcommands_note": "'sketch segment' and 'sketch path' are NOT valid FLAC2D 9.0 subcommands ('Bad conversion of parameter number 2'). Only block / edge / mesh / point / section / set are accepted after 'sketch'.",
   "version_notes": [
     "In FLAC 9.0, sketch replaces the older extrude naming.",
     "Some legacy documentation and command resources may still use extruder/extrude terminology."

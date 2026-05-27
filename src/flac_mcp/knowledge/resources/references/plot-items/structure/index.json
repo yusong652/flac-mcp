@@ -1,54 +1,108 @@
 {
   "name": "structure",
-  "item_type": "structure",
+  "item_type": "structure-*",
   "search_keywords": [
     "structure",
     "beam",
     "cable",
-    "shell",
     "liner",
     "pile",
-    "geogrid",
-    "node",
-    "force",
+    "structural element",
+    "axial",
     "moment"
   ],
-  "description": "Configuration keywords for FLAC structural-element plot items. Use the concrete item type when known, such as beam, cable, shell, liner, pile, geogrid, or structure-node.",
-  "base_syntax": "plot item create <beam|cable|shell|liner|pile|geogrid|structure-node> <keywords...>",
-  "basic_keywords": [
+  "description": "Structural-element plot items. Each element type has its own 'plot item create <type>' command. Type names and keywords are binary-validated against FLAC2D 9.0.",
+  "base_syntax": "plot item create <structure-beam|structure-cable|structure-liner|structure-pile|structure-vector> <keywords...>",
+  "available_types": [
     {
-      "keyword": "active on",
-      "description": "Show the structural plot item.",
-      "syntax": "active on"
+      "type": "structure-beam",
+      "description": "Beam structural elements.",
+      "shares_keyword_set_with": ["structure-cable", "structure-liner", "structure-pile"]
     },
     {
-      "keyword": "transparency",
-      "description": "Set item transparency where supported.",
-      "syntax": "transparency <0-100>"
+      "type": "structure-cable",
+      "description": "Cable structural elements.",
+      "shares_keyword_set_with": ["structure-beam", "structure-liner", "structure-pile"]
     },
     {
-      "keyword": "legend active on",
-      "description": "Show a legend for color-mapped structural values.",
-      "syntax": "legend active on"
+      "type": "structure-liner",
+      "description": "Liner structural elements.",
+      "shares_keyword_set_with": ["structure-beam", "structure-cable", "structure-pile"]
+    },
+    {
+      "type": "structure-pile",
+      "description": "Pile structural elements.",
+      "shares_keyword_set_with": ["structure-beam", "structure-cable", "structure-liner"]
+    },
+    {
+      "type": "structure-vector",
+      "description": "Vector field at structural-element nodes (displacement, velocity, force-applied, reaction, etc.).",
+      "shares_keyword_set_with": []
     }
+  ],
+  "top_level_keywords_beam_family": [
+    "active",
+    "color-list",
+    "contour",
+    "deformation-factor",
+    "label",
+    "legend",
+    "line",
+    "map",
+    "marker",
+    "range",
+    "shrink",
+    "slot",
+    "system"
+  ],
+  "top_level_keywords_structure_vector": [
+    "active",
+    "by-magnitude",
+    "color",
+    "deformation-factor",
+    "draw-as",
+    "legend",
+    "map",
+    "point-to-base",
+    "range",
+    "scale",
+    "shape",
+    "structures",
+    "value"
   ],
   "sub_items": [
     {
-      "name": "color-by",
-      "file": "color-by.json",
-      "description": "Color structural elements or nodes by group, component forces, moments, stress resultants, displacement, or system attributes."
+      "name": "contour",
+      "file": "contour.json",
+      "description": "Continuous coloring of beam-family structural elements by force / moment / displacement / velocity / link-* attributes."
     }
   ],
   "common_usage_patterns": [
     {
-      "use_case": "Shells colored by group",
-      "command": "plot item create shell active on color-by text-attribute \"group\" 'Any' color-options named maximum-names 1000000 name-controls true legend active on",
-      "description": "Different color per shell group."
+      "use_case": "Beams colored by bending moment",
+      "command": "plot item create structure-beam contour moment legend active on",
+      "description": "Continuous moment color map along beams."
     },
     {
-      "use_case": "Structural nodes colored by displacement",
-      "command": "plot item create structure-node active on color-by vector-attribute \"displacement\" color-options scaled ramp rainbow minimum automatic maximum automatic legend active on",
-      "description": "Continuous displacement color map for structural nodes."
+      "use_case": "Cables colored by axial force",
+      "command": "plot item create structure-cable contour force-axial legend active on",
+      "description": "Highlight cable axial loading."
+    },
+    {
+      "use_case": "Structural-element displacement vectors",
+      "command": "plot item create structure-vector value displacement",
+      "description": "Vector arrows at structural-element nodes."
+    },
+    {
+      "use_case": "Liners colored by group",
+      "command": "plot item create structure-liner label group legend active on",
+      "description": "Different color per liner group."
     }
+  ],
+  "notes": [
+    "Element type names REQUIRE the 'structure-' prefix in FLAC2D 9.0. Bare names like 'beam', 'cable', 'liner', 'pile', 'shell', 'geogrid', 'structure-node' are NOT accepted.",
+    "'shell' and 'geogrid' have no dedicated plot item type in FLAC2D 9.0; use 'structure-liner' or check the FLAC3D vocabulary.",
+    "For node-level fix markers, use 'plot item create struct-node-fix'.",
+    "Beam-family element types (beam, cable, liner, pile) share the same top-level keyword set, but their 'contour' attribute lists differ — probe 'plot item create structure-<type> contour ?' for each."
   ]
 }

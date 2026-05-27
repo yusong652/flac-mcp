@@ -23,17 +23,21 @@
         "zone.pos",
         "gp.pos",
         "zone.gp",
-        "zone.face"
+        "zone.face.normal",
+        "zone.face.gp",
+        "zone.id",
+        "gp.id"
       ],
       "notes": [
         "FLAC2D positions use x/y model space; FLAC3D positions use x/y/z.",
+        "Use 'zone.face.normal(z, side)' for face normal vectors; 'zone.face.gp(z, side, i)' for face gridpoints. 'zone.face' alone is NOT a valid intrinsic in FLAC2D 9.0.",
         "Zone face and node orientation differs between 2D and 3D zone shapes."
       ]
     },
     {
       "family": "state and properties",
       "examples": [
-        "zone.cmodel",
+        "zone.model",
         "zone.prop",
         "zone.state",
         "zone.group",
@@ -42,6 +46,7 @@
         "gp.extra"
       ],
       "notes": [
+        "Use 'zone.model(z)' to query the constitutive-model name; 'zone.cmodel' is NOT a valid intrinsic in FLAC2D 9.0.",
         "Use property keywords from the constitutive-models reference with zone.prop.",
         "Use groups rather than geometric coordinates when checking staged regions."
       ]

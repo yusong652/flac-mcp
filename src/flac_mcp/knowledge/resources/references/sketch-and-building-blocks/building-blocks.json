@@ -34,8 +34,22 @@
   ],
   "compatibility_notes": [
     "Building Blocks are FLAC3D-only.",
+    "FLAC2D 9.0 rejects 'building-blocks ...' commands at the parser level ('Bad conversion of parameter number 1 (building-blocks)'). 'zone generate from-building-blocks' is also rejected by FLAC2D — only 'zone generate from-sketch' is accepted in 2D.",
+    "FLAC3D 9.0 'zone generate ?' valid forms: from-building-blocks, from-geometry, from-sketch, from-topography.",
     "Use sketch-workflow for FLAC2D zone generation.",
     "Sketch can send fully structured FLAC3D sketches to Building Blocks."
+  ],
+  "binary_validated_subcommands_flac3d": [
+    "block",
+    "edge",
+    "face",
+    "point",
+    "set"
+  ],
+  "binary_validation_notes": [
+    "Top-level 'building-blocks ?' in FLAC3D 9.0 returns these five subcommands: block / edge / face / point / set.",
+    "'building-blocks set ?' subcommands include: arrest-triangle, automatic-zone, break-angle, create, delete, export, geometry, import, list, select, validate-all.",
+    "Subcommands 'building-blocks block / edge / point / face' do NOT accept a '?' help token directly ('Unused extra parameter 3 (?)') — they require a real subcommand and arguments. Probe via 'building-blocks <kw> create ?' or similar."
   ],
   "validation_notes": [
     "Check block quality and grouping before zone generation.",

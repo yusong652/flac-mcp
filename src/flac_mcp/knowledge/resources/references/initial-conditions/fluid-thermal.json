@@ -2,40 +2,56 @@
   "name": "fluid-thermal",
   "dimension": "mixed",
   "full_name": "Fluid and Thermal Initial Conditions",
-  "description": "Initial pore-pressure and temperature fields should be assigned consistently with the active fluid/thermal model configuration and boundary conditions.",
+  "description": "Initial pore-pressure and temperature fields are set on gridpoints, not zones — they are nodal scalar quantities. Bulk fluid properties such as density are set via 'zone water'. Keyword sets are binary-validated against FLAC2D 9.0.",
   "primary_commands": [
     "model configure fluid",
     "model configure thermal",
-    "zone initialize pore-pressure",
-    "zone initialize saturation",
+    "zone gridpoint initialize pore-pressure",
+    "zone gridpoint initialize saturation",
+    "zone gridpoint initialize temperature",
+    "zone gridpoint initialize head",
     "zone water density",
-    "zone initialize temperature",
-    "zone gridpoint fix pore-pressure",
+    "zone initialize fluid-density",
+    "zone face apply pore-pressure",
     "zone face apply temperature"
   ],
   "keyword_groups": [
     {
-      "group": "fluid",
+      "group": "fluid (zone gridpoint initialize)",
       "keywords": [
         "pore-pressure",
         "saturation",
-        "fluid-density",
-        "water-density"
+        "head",
+        "biot",
+        "fluid-modulus",
+        "fluid-tension"
       ],
       "notes": [
+        "Pore-pressure, saturation, and head are nodal scalar quantities → use 'zone gridpoint initialize <kw>' (NOT 'zone initialize <kw>').",
         "Gridpoint pore pressures are used to derive zone pore pressures.",
         "Effective stresses depend on pore pressure when using effective-stress constitutive behavior."
       ]
     },
     {
-      "group": "thermal",
+      "group": "fluid (zone-level + bulk)",
       "keywords": [
-        "temperature",
-        "thermal-timestep",
-        "thermal-expansion"
+        "fluid-density"
       ],
       "notes": [
-        "Thermal initialization must be paired with thermal material properties when thermal-mechanical coupling is modeled."
+        "'fluid-density' is a 'zone initialize' keyword (per-zone fluid density).",
+        "For BULK water density use 'zone water density <value>' (a 'zone water' subcommand, not 'zone initialize')."
+      ]
+    },
+    {
+      "group": "thermal (zone gridpoint initialize)",
+      "keywords": [
+        "temperature"
+      ],
+      "notes": [
+        "Temperature is a nodal quantity → use 'zone gridpoint initialize temperature' (NOT 'zone initialize temperature').",
+        "Thermal initialization must be paired with thermal material properties when thermal-mechanical coupling is modeled.",
+        "'thermal-timestep' is a 'model thermal' configuration, not an initialize keyword.",
+        "'thermal-expansion' is a 'zone property' material property, not an initialize keyword."
       ]
     }
   ],
@@ -45,15 +61,18 @@
       "commands": [
         "model configure fluid",
         "zone water density 1000",
-        "zone initialize pore-pressure 0 gradient (0,0,-9810)",
+        "zone gridpoint initialize pore-pressure 0 gradient (0,-9810)",
         "zone face apply pore-pressure 0 range group 'drain'"
+      ],
+      "notes": [
+        "FLAC2D gradient tuple is (gx,gy); FLAC3D is (gx,gy,gz)."
       ]
     },
     {
       "name": "Uniform initial temperature",
       "commands": [
         "model configure thermal",
-        "zone initialize temperature 20"
+        "zone gridpoint initialize temperature 20"
       ]
     }
   ],
