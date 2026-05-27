@@ -262,11 +262,6 @@
         "volume",
         "volume_deformed"
       ]
-    },
-    "vec": {
-      "description": "Fast length two and three vectors.",
-      "file": "modules/vec/module.json",
-      "functions": []
     }
   },
   "objects": {
