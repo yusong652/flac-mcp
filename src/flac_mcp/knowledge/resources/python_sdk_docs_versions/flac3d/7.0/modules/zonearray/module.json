@@ -1,0 +1,240 @@
+{
+  "module": "itasca.zonearray",
+  "description": "Array interface for FLAC3D zones.",
+  "import_statement": "import itasca",
+  "source_url": "https://docs.itascacg.com/flac3d700/common/docproject/source/manual/scripting/python/doc/itasca.zonearray.html",
+  "functions": [
+    {
+      "name": "extra",
+      "signature": "itasca.zonearray. extra ( slot: int ) → array float{zone} or float{zone,3}.",
+      "description": "Get the zone extra data in the given slot as an array. Extra variables accessed by array must be of type float or vec.",
+      "returns": {
+        "type": "array float{zone} or float{zone,3}."
+      }
+    },
+    {
+      "name": "faces",
+      "signature": "itasca.zonearray. faces ( ) → array int{nzone,6,4}.",
+      "description": "Return an array containing the gridpoint indices of each face of each zone. Indices of -1 indicate a non-existant face. The indicies are relative to the ordering of the itasca.gridpointarray return values.",
+      "returns": {
+        "type": "array int{nzone,6,4}."
+      }
+    },
+    {
+      "name": "fill_pos",
+      "signature": "itasca.zonearray. fill_pos ( data: array float{zone , 3} ) → None.",
+      "description": "Fill an existing array with the zone centroid location. The array must be the correct shape.",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "flow",
+      "signature": "itasca.zonearray. flow ( ) → array double{nzone,3}.",
+      "description": "Return an array of the zone specific discharge vectors.",
+      "returns": {
+        "type": "array double{nzone,3}."
+      }
+    },
+    {
+      "name": "fluid_prop",
+      "signature": "itasca.zonearray. fluid_prop ( prop_name: str ) → array double{nzone}.",
+      "description": "Return an array of the fluid property prop_name .",
+      "returns": {
+        "type": "array double{nzone}."
+      }
+    },
+    {
+      "name": "gridpoints",
+      "signature": "itasca.zonearray. gridpoints ( ) → array int{nzone,8}.",
+      "description": "Return an array containing the gridpoint indices of each zone. Indices of -1 indicate a non-existant gridpoint. The indices are relative to the ordering of the itasca.gridpointarray return values.",
+      "returns": {
+        "type": "array int{nzone,8}."
+      }
+    },
+    {
+      "name": "ids",
+      "signature": "itasca.zonearray. ids ( ) → array int{zone}.",
+      "description": "Get the zone ids as an array.",
+      "returns": {
+        "type": "array int{zone}."
+      }
+    },
+    {
+      "name": "in_group",
+      "signature": "itasca.zonearray. in_group ( group_name: str , slot=\"default\" ) → array bool{nzone}.",
+      "description": "Return zone group membership as a Boolean array.",
+      "returns": {
+        "type": "array bool{nzone}."
+      }
+    },
+    {
+      "name": "live_mechanical",
+      "signature": "itasca.zonearray. live_mechanical ( ) → array bool{nzone}.",
+      "description": "Return an array of True/False values, True values correspond to zones which have an active mechanical model.",
+      "returns": {
+        "type": "array bool{nzone}."
+      }
+    },
+    {
+      "name": "neighbors",
+      "signature": "itasca.zonearray. neighbors ( ) → array int{nzone,6}.",
+      "description": "Return an array containing the indices of the zone adjacent to each zone. Indices of -1 indicate non-existant neighbor zone. The indicies are relative to the ordering of the itasca.zonearray return values.",
+      "returns": {
+        "type": "array int{nzone,6}."
+      }
+    },
+    {
+      "name": "overlay_stresses",
+      "signature": "itasca.zonearray. overlay_stresses ( ) → array double{nzone,2,5,6}.",
+      "description": "Get a multidimensional numpy array of the zone overlay stresses. Non-existant tets have a stress of zero. The return value is a 4 dimentional array with axes: zone, overlay, tet, stress tensor component. The stress tensor component ordering is xx,yy,zz,xy,yz,xz.",
+      "returns": {
+        "type": "array double{nzone,2,5,6}."
+      }
+    },
+    {
+      "name": "pos",
+      "signature": "itasca.zonearray. pos ( ) → array float{zone,3}.",
+      "description": "Get a numpy array of the zone centroid location.",
+      "returns": {
+        "type": "array float{zone,3}."
+      }
+    },
+    {
+      "name": "prop_scalar",
+      "signature": "itasca.zonearray. prop_scalar ( prop_name: str , fill_value=0.0 ) → array double{nzone}.",
+      "description": "Return an array of the property prop_name for each zone. Only properties of type double are supported by this function. If a property is not specified in a zone, fill_value is given for that zone. fill_value is an optional argument and defaults to zero.",
+      "returns": {
+        "type": "array double{nzone}."
+      }
+    },
+    {
+      "name": "set_extra",
+      "signature": "itasca.zonearray. set_extra ( slot: int , data: array float{zone} or float{zone , 3} ) → None.",
+      "description": "Set the zone extra data in the given slot with an array. Extra variables set by array must be of type float or vec.",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "set_fluid_prop",
+      "signature": "itasca.zonearray. set_fluid_prop ( prop_name: str , data: array double{nzone} ) → None.",
+      "description": "Set the fluid property prop_name with values from an array.",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "set_group",
+      "signature": "itasca.zonearray. set_group ( membership: array bool{nzone} , group_name: str , slot=\"default\" ) → None.",
+      "description": "Set zone group from an array. Where membership True set the corresponding zone to be a member of group group_name in the given slot.",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "set_prop_scalar",
+      "signature": "itasca.zonearray. set_prop_scalar ( prop_name: str , array ) → None.",
+      "description": "Set the property prop_name of each zone. Only properties of type double or vec3 are supported. The input array should be shape (nzone,).",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "set_stress",
+      "signature": "itasca.zonearray. set_stress ( array double{nzone , 3 , 3} ) → None.",
+      "description": "Set the zone stresses.",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "set_stress_flat",
+      "signature": "itasca.zonearray. set_stress_flat ( array double{nzone , 6} ) → None.",
+      "description": "Set the zone stresses.",
+      "returns": {
+        "type": "None."
+      }
+    },
+    {
+      "name": "state",
+      "signature": "itasca.zonearray. state ( average: bool ) → array int{nzones}.",
+      "description": "Get the current plasticity state indicators of all zone. The argument average, if true, indicates that the bit will be set if 50% or more of the volume averaged tetra have that bit set. If false then the bit will be set if any tetra in the zone have that bit set.",
+      "returns": {
+        "type": "array int{nzones}."
+      }
+    },
+    {
+      "name": "strain",
+      "signature": "itasca.zonearray. strain ( ) → array double{nzone,3,3}.",
+      "description": "Get an array of the zone strains.",
+      "returns": {
+        "type": "array double{nzone,3,3}."
+      }
+    },
+    {
+      "name": "strain_flat",
+      "signature": "itasca.zonearray. strain_flat ( ) → array double{nzone,6}.",
+      "description": "Get an array of the zone strains. The return value is a 2D array where the component ordering is xx,yy,zz,xy,yz,xz.",
+      "returns": {
+        "type": "array double{nzone,6}."
+      }
+    },
+    {
+      "name": "stress",
+      "signature": "itasca.zonearray. stress ( ) → array double{nzone,3,3}.",
+      "description": "Get an array of the zone stresses.",
+      "returns": {
+        "type": "array double{nzone,3,3}."
+      }
+    },
+    {
+      "name": "stress_flat",
+      "signature": "itasca.zonearray. stress_flat ( ) → array double{nzone,6}.",
+      "description": "Get an array of the zone stresses. The return value is a 2D array where the component ordering is xx,yy,zz,xy,yz,xz.",
+      "returns": {
+        "type": "array double{nzone,6}."
+      }
+    },
+    {
+      "name": "stress_max",
+      "signature": "itasca.zonearray. stress_max ( ) → array double{nzone}.",
+      "description": "Return an array of the maximum (most positive) principal value of the volume averaged tetra stress for each zone. Note that compressive stresses are negative in FLAC3D.",
+      "returns": {
+        "type": "array double{nzone}."
+      }
+    },
+    {
+      "name": "stress_min",
+      "signature": "itasca.zonearray. stress_min ( ) → array double{nzone}.",
+      "description": "Return an array of the minimum (most negative) principal value of the volume averaged tetra stress for each zone. Note that compressive stresses are negative in FLAC3D.",
+      "returns": {
+        "type": "array double{nzone}."
+      }
+    },
+    {
+      "name": "temperature",
+      "signature": "itasca.zonearray. temperature ( ) → array double{nzone}.",
+      "description": "Return an array of the zone tempertures.",
+      "returns": {
+        "type": "array double{nzone}."
+      }
+    },
+    {
+      "name": "volume",
+      "signature": "itasca.zonearray. volume ( ) → array double{nzone}.",
+      "description": "Return an array of the undeformed zone volumes.",
+      "returns": {
+        "type": "array double{nzone}."
+      }
+    },
+    {
+      "name": "volume_deformed",
+      "signature": "itasca.zonearray. volume_deformed ( ) → array double{nzone}.",
+      "description": "Return an array of the deformed zone volumes.",
+      "returns": {
+        "type": "array double{nzone}."
+      }
+    }
+  ]
+}
