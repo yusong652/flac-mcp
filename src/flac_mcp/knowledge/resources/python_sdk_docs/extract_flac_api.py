@@ -42,6 +42,19 @@ DOCS_DIR = os.path.dirname(os.path.abspath(__file__))
 MODULES_DIR = os.path.join(DOCS_DIR, "modules")
 INDEX_PATH = os.path.join(DOCS_DIR, "index.json")
 
+
+def _write_json(path, payload):
+    """Write JSON with a trailing newline so files match POSIX/editor conventions."""
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(payload, f, indent=2, ensure_ascii=False)
+        f.write("\n")
+
+
+# ITASCA 9.0 Python doc URL template (set to None to skip source_url emission).
+SOURCE_URL_TEMPLATE = (
+    "https://docs.itascacg.com/itasca900/common/docproject/source/manual/scripting/python/doc/itasca.{path}.html"
+)
+
 FLAC_MODULES = [
     {
         "path": "zone",
@@ -51,7 +64,7 @@ FLAC_MODULES = [
     {
         "path": "zonearray",
         "classes": [],
-        "description": "Array interface for FLAC zones",
+        "description": "Array interface for FLAC3D zones.",
     },
     {
         "path": "gridpoint",
@@ -61,47 +74,47 @@ FLAC_MODULES = [
     {
         "path": "gridpointarray",
         "classes": [],
-        "description": "Array interface for FLAC gridpoints",
+        "description": "Array interface for FLAC gridpoints.",
     },
     {
         "path": "attach",
         "classes": ["Attach"],
-        "description": "Attach condition object management for FLAC gridpoints",
+        "description": "Functions and classes for working with FLAC3D gridpoint attaches.",
     },
     {
         "path": "interface",
         "classes": ["Interface"],
-        "description": "Interface object management for FLAC interfaces",
+        "description": "Functions and classes for working with FLAC interfaces.",
     },
     {
         "path": "interface.element",
         "classes": ["Element"],
-        "description": "Interface element object management for FLAC interfaces",
+        "description": "Functions and classes for working with FLAC interface elements.",
     },
     {
         "path": "interface.node",
         "classes": ["Node"],
-        "description": "Interface node object management for FLAC interfaces",
+        "description": "Functions and classes for working with FLAC interface nodes.",
     },
     {
         "path": "interfacearray",
         "classes": [],
-        "description": "Array interface for FLAC interfaces",
+        "description": "Array interface for FLAC interfaces.",
     },
     {
         "path": "interfaceelementarray",
         "classes": [],
-        "description": "Array interface for FLAC interface elements",
+        "description": "Array interface for FLAC interface elements.",
     },
     {
         "path": "interfacenodearray",
         "classes": [],
-        "description": "Array interface for FLAC interface nodes",
+        "description": "Array interface for FLAC interface node.",
     },
     {
         "path": "vertexarray",
         "classes": [],
-        "description": "Array interface for FLAC model vertices",
+        "description": "Array interface for Itasca wall vertices.",
     },
 ]
 
@@ -125,7 +138,11 @@ def _parse_params(param_str):
             required = False
         if ":" in name:
             name, ptype = (s.strip() for s in name.split(":", 1))
-        params.append({"name": name.lstrip("*"), "type": ptype, "required": required, "description": ""})
+        entry = {"name": name.lstrip("*")}
+        if ptype:
+            entry["type"] = ptype
+        entry["required"] = required
+        params.append(entry)
     return params
 
 
@@ -150,7 +167,7 @@ def _entry(prefix, name, doc):
     if parsed:
         entry["parameters"] = parsed
     if ret:
-        entry["returns"] = {"type": ret, "description": ""}
+        entry["returns"] = {"type": ret}
     return entry
 
 
@@ -207,18 +224,15 @@ def introspect_and_write():
         mod_dir = _module_dir(mod)
         os.makedirs(mod_dir, exist_ok=True)
 
-        with open(os.path.join(mod_dir, "module.json"), "w", encoding="utf-8") as f:
-            json.dump(
-                {
-                    "module": f"itasca.{mod}",
-                    "description": mod_desc,
-                    "import_statement": "import itasca",
-                    "functions": functions,
-                },
-                f,
-                indent=2,
-                ensure_ascii=False,
-            )
+        module_doc = {
+            "module": f"itasca.{mod}",
+            "description": mod_desc,
+            "import_statement": "import itasca",
+        }
+        if SOURCE_URL_TEMPLATE:
+            module_doc["source_url"] = SOURCE_URL_TEMPLATE.format(path=mod)
+        module_doc["functions"] = functions
+        _write_json(os.path.join(mod_dir, "module.json"), module_doc)
 
         class_counts = {}
         for cls_name in classes:
@@ -229,22 +243,16 @@ def introspect_and_write():
                 method_names = sorted(a for a in dir(cls) if not a.startswith("_"))
                 methods = [_entry(mod, mn, getattr(getattr(cls, mn), "__doc__", "")) for mn in method_names]
 
-            with open(os.path.join(mod_dir, f"{cls_name}.json"), "w", encoding="utf-8") as f:
-                json.dump(
-                    {
-                        "class": cls_name,
-                        "description": f"{cls_name} object instance in itasca.{mod}.",
-                        "note": (
-                            f"Do not instantiate directly; use itasca.{mod} module functions. "
-                            f"{len(method_names)} methods — see method_groups."
-                        ),
-                        "method_groups": _group_methods(method_names),
-                        "methods": methods,
-                    },
-                    f,
-                    indent=2,
-                    ensure_ascii=False,
-                )
+            object_doc = {
+                "class": cls_name,
+                "description": f"{cls_name} object instance in itasca.{mod}.",
+            }
+            if SOURCE_URL_TEMPLATE:
+                object_doc["source_url"] = SOURCE_URL_TEMPLATE.format(path=f"{mod}.{cls_name}")
+            object_doc["note"] = f"Do not instantiate directly; use itasca.{mod} module functions."
+            object_doc["method_groups"] = _group_methods(method_names)
+            object_doc["methods"] = methods
+            _write_json(os.path.join(mod_dir, f"{cls_name}.json"), object_doc)
             class_counts[cls_name] = len(methods)
 
         written.append((mod, len(functions), class_counts))
@@ -304,8 +312,7 @@ def patch_index() -> None:
             method_count += len(odoc.get("methods", []))
         print(f"  [index] {mod}: +{len(func_names)} funcs, +{method_count} methods")
 
-    with open(INDEX_PATH, "w", encoding="utf-8") as f:
-        json.dump(index, f, indent=2, ensure_ascii=False)
+    _write_json(INDEX_PATH, index)
     print("patch_index done ->", INDEX_PATH)
 
 

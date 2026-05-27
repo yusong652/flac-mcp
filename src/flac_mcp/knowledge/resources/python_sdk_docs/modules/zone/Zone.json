@@ -1,7 +1,8 @@
 {
   "class": "Zone",
-  "description": "Zone object instance in the FLAC continuum grid. Obtained via itasca.zone.find()/list().",
-  "note": "Do not instantiate directly; use itasca.zone module functions. 103 methods — see method_groups.",
+  "description": "Zone object instance in itasca.zone.",
+  "source_url": "https://docs.itascacg.com/itasca900/common/docproject/source/manual/scripting/python/doc/itasca.zone.Zone.html",
+  "note": "Do not instantiate directly; use itasca.zone module functions.",
   "method_groups": {
     "adjacent": [
       "adjacent_zones"
@@ -27,6 +28,7 @@
       "set_extra"
     ],
     "face": [
+      "face_areas",
       "face_extra",
       "face_find",
       "face_find_normal",
@@ -43,7 +45,8 @@
     "flow": [
       "flow",
       "flow_x",
-      "flow_y"
+      "flow_y",
+      "flow_z"
     ],
     "fluid": [
       "fluid_model",
@@ -55,7 +58,8 @@
     "flux": [
       "flux",
       "flux_x",
-      "flux_y"
+      "flux_y",
+      "flux_z"
     ],
     "geom": [
       "geom_test"
@@ -100,13 +104,17 @@
     "overlays": [
       "overlays"
     ],
+    "planarity": [
+      "planarity"
+    ],
     "plane": [
       "plane_traction"
     ],
     "pos": [
       "pos",
       "pos_x",
-      "pos_y"
+      "pos_y",
+      "pos_z"
     ],
     "pp": [
       "pp",
@@ -172,6 +180,9 @@
       "strain_shear_rate",
       "strain_vol_inc",
       "strain_vol_rate"
+    ],
+    "test": [
+      "test_quality"
     ],
     "tet": [
       "tet_strain_rates",
@@ -274,6 +285,14 @@
       ],
       "returns": {
         "type": "any"
+      }
+    },
+    {
+      "name": "face_areas",
+      "signature": "zone.face_areas() -> tuple of floats (3D ONLY)",
+      "description": "Get the area of the faces of this zone.",
+      "returns": {
+        "type": "tuple of floats (3D ONLY)"
       }
     },
     {
@@ -437,6 +456,14 @@
       }
     },
     {
+      "name": "flow_z",
+      "signature": "zone.flow_z() -> float",
+      "description": "Get the z-component of the zone specific discharge vector for the zone.",
+      "returns": {
+        "type": "float"
+      }
+    },
+    {
       "name": "fluid_model",
       "signature": "zone.fluid_model() -> str",
       "description": "Get the fluid flow constitituve model for the zone.",
@@ -470,7 +497,7 @@
     {
       "name": "flux",
       "signature": "zone.flux() -> vec",
-      "description": "Get the zone-averaged heat flux vector (vector).",
+      "description": "Get the zone zone average heat flux vector (vector).",
       "returns": {
         "type": "vec"
       }
@@ -478,7 +505,7 @@
     {
       "name": "flux_x",
       "signature": "zone.flux_x() -> float",
-      "description": "Get the x-component of the zone-averaged heat flux vector.",
+      "description": "Get the x-component of the zone zone average heat flux vector.",
       "returns": {
         "type": "float"
       }
@@ -486,7 +513,15 @@
     {
       "name": "flux_y",
       "signature": "zone.flux_y() -> float",
-      "description": "Get the y-component of the zone-averaged heat flux vector.",
+      "description": "Get the y-component of the zone zone average heat flux vector.",
+      "returns": {
+        "type": "float"
+      }
+    },
+    {
+      "name": "flux_z",
+      "signature": "zone.flux_z() -> float",
+      "description": "Get the z-component of the zone zone average heat flux vector.",
       "returns": {
         "type": "float"
       }
@@ -650,6 +685,14 @@
       }
     },
     {
+      "name": "planarity",
+      "signature": "zone.planarity() -> float (3D ONLY)",
+      "description": "Get a measure of how planar the quadrilateral faces of a zone are. A value of 0 means that all faces are perfectly planar. The greater this number, the more nonplanar the faces are.",
+      "returns": {
+        "type": "float (3D ONLY)"
+      }
+    },
+    {
       "name": "plane_traction",
       "signature": "zone.plane_traction(vdir: vec) -> (traction: vec, normal_stress: float, max_shear_stress: float, max_shear_stress_direction: vec)",
       "description": "Get the traction on the zone in the plane normal to vdir (3D or 2D vector). In 2D plane-strain analysis, the plane is assumed to extend in out-of-plane direction. The return value is a tuple which contains the traction(vec), normal stress(float), maximum shear stress(float) and maximum shear stress direction (vec).",
@@ -684,6 +727,14 @@
       "name": "pos_y",
       "signature": "zone.pos_y() -> float",
       "description": "Get the y-component of the zone centroid location.",
+      "returns": {
+        "type": "float"
+      }
+    },
+    {
+      "name": "pos_z",
+      "signature": "zone.pos_z() -> float",
+      "description": "Get the z-component of the zone centroid location.",
       "returns": {
         "type": "float"
       }
@@ -1160,7 +1211,7 @@
     {
       "name": "stress_prin",
       "signature": "zone.stress_prin() -> vec",
-      "description": "Get the zone-averaged principal stress, calculated from the volume (in 3D) or area (in 2D) weighted average of the internal tetra/triangle stresses (vector).",
+      "description": "Get the zone zone principal stress, calculated from the volume (in 3D) or area (in 2D) weighted average of the internal tetra/triangle stresses (vector).",
       "returns": {
         "type": "vec"
       }
@@ -1176,7 +1227,7 @@
     {
       "name": "stress_prin_x",
       "signature": "zone.stress_prin_x() -> float",
-      "description": "Get the x-component of the zone-averaged principal stress, calculated from the volume (in 3D) or area (in 2D) weighted average of the internal tetra/triangle stresses.",
+      "description": "Get the x-component of the zone zone principal stress, calculated from the volume (in 3D) or area (in 2D) weighted average of the internal tetra/triangle stresses.",
       "returns": {
         "type": "float"
       }
@@ -1184,7 +1235,7 @@
     {
       "name": "stress_prin_y",
       "signature": "zone.stress_prin_y() -> float",
-      "description": "Get the y-component of the zone-averaged principal stress, calculated from the volume (in 3D) or area (in 2D) weighted average of the internal tetra/triangle stresses.",
+      "description": "Get the y-component of the zone zone principal stress, calculated from the volume (in 3D) or area (in 2D) weighted average of the internal tetra/triangle stresses.",
       "returns": {
         "type": "float"
       }
@@ -1192,7 +1243,7 @@
     {
       "name": "stress_prin_z",
       "signature": "zone.stress_prin_z() -> float",
-      "description": "Get the z-component of the zone-averaged principal stress, calculated from the volume (in 3D) or area (in 2D) weighted average of the internal tetra/triangle stresses.",
+      "description": "Get the z-component of the zone zone principal stress, calculated from the volume (in 3D) or area (in 2D) weighted average of the internal tetra/triangle stresses.",
       "returns": {
         "type": "float"
       }
@@ -1203,6 +1254,14 @@
       "description": "Get the zone temperature. Normally this is the average temperature of the gridpoints. If the `zone thermal zone-based-temperature` command was used, then temperatures are stored and retrieved directly from the zone.",
       "returns": {
         "type": "float"
+      }
+    },
+    {
+      "name": "test_quality",
+      "signature": "zone.test_quality() -> (length_vol: float, skew: float) (3D ONLY)",
+      "description": "Get measures of the zone quality, or how the zone shape may affect solution accuracy. The first value indicates a test of volume over edge length. The second value indicates a test of skew. Both return the minimum value obtained over all internal tetrahedrons. A return value of 1.0 indicates an equilateral tetra.",
+      "returns": {
+        "type": "(length_vol: float, skew: float) (3D ONLY)"
       }
     },
     {
