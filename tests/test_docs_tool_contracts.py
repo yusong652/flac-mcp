@@ -129,9 +129,12 @@ async def test_browse_python_api_root_contract() -> None:
 
 @pytest.mark.asyncio
 async def test_query_python_api_no_results_contract() -> None:
+    # Query must avoid technical single chars (x/y/z/r/n/t) and English word
+    # stems — the BM25 partial matcher otherwise hits substrings like "z" or
+    # "defin" via prefix/substring rules in keyword_matcher.find_partial_matches.
     result = await mcp._tool_manager.call_tool(
         "flac_query_python_api",
-        {"query": "definitelynonexistentkeyword", "limit": 5},
+        {"query": "qqwbflkmp", "limit": 5},
     )
     payload = _parse_tool_payload(result)
     data = payload["data"]
