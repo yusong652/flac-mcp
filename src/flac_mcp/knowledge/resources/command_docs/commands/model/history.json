@@ -47,9 +47,9 @@
           "description": "Values associated with the dynamic process. The total number of cycles accumulated while this process is active. The total accumulated time while this process is active."
         },
         {
-          "name": "total-stored",
-          "syntax": "total-stored",
-          "description": "Total stored energy (combined block + joint strain energy). Individual energy components are accessed via 'model history energy <name>'; see the energy keyword sub-commands (block-kinetic, block-potential, block-strain, block-strain-excavated, block-volume-excavated, boundary-load, joint-friction, joint-strain, joint-strain-excavated, joint-strain-shear, joint-strain-tensile)."
+          "name": "energy",
+          "syntax": "energy <kw>",
+          "description": "Track an energy quantity. Valid <kw> in FLAC3D 9.0: block-kinetic, block-potential, block-strain, block-strain-excavated, block-volume-excavated, boundary-load, joint-friction, joint-strain, joint-strain-excavated, joint-strain-shear, joint-strain-tensile, total-stored (combined block + joint strain energy)."
         },
         {
           "name": "time-total",
@@ -233,9 +233,9 @@
           "description": "Values associated with the dynamic process. The total number of cycles accumulated while this process is active. The total accumulated time while this process is active."
         },
         {
-          "name": "total-stored",
-          "syntax": "total-stored",
-          "description": "Total stored energy (combined block + joint strain energy). Individual energy components are accessed via 'model history energy <name>'; see the energy keyword sub-commands (block-kinetic, block-potential, block-strain, block-strain-excavated, block-volume-excavated, boundary-load, joint-friction, joint-strain, joint-strain-excavated, joint-strain-shear, joint-strain-tensile)."
+          "name": "energy",
+          "syntax": "energy <kw>",
+          "description": "Track an energy quantity. Valid <kw> in FLAC3D 9.0: block-kinetic, block-potential, block-strain, block-strain-excavated, block-volume-excavated, boundary-load, joint-friction, joint-strain, joint-strain-excavated, joint-strain-shear, joint-strain-tensile, total-stored (combined block + joint strain energy)."
         },
         {
           "name": "time-total",
