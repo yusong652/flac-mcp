@@ -10,6 +10,68 @@
     "available": false
   },
   "versions": {
+    "6.0": {
+      "command": "structure shell recover",
+      "syntax": "structure shell recover keyword <range>",
+      "description": "Stress-recovery for shell elements. The stress-recovery procedure can be applied to all elements to compute both the stress resultants and the stresses acting at a specified depth. The range keyword identifies the patch of elements to which the command will apply. Note that the recovered quantities will depend upon the range of elements over which these quantities are being recovered, because nodal averaging only occurs for elements within this range.",
+      "keywords": [
+        {
+          "name": "resultants",
+          "syntax": "resultants <range>",
+          "description": "recover the eight stress resultants for all elements in the optional range. The stress resultants are expressed in terms of the surface coordinate system. This command assumes that a consistent surface coordinate system has been established for the group of elements in the range (see the surface keyword). The bending and membrane stress resultants (Mx, My, Mxy, Nx, Ny, and Nxy) vary linearly over each element, whereas the transverse-shear stress resultants (Qx and Qy) are constant over each element. The recovery procedure first computes the average values of bending and membrane stress resultants (by averaging, at the nodes, the contributions from each element in the range), and then spatially differentiates this average bending field over each element to obtain the transverse-shear stress resultants."
+        },
+        {
+          "name": "stress",
+          "syntax": "stress <depth-factor f >",
+          "description": "recover a stress tensor (expressed in global coordinate system) at a specified depth in all elements in the optional range. The depth equals v times t/2, where t is shell thickness. The depth factor, v, must be in the range [-1, +1]. v equal to +1 / -1 corresponds with the outer/inner shell surface (outer surface defined by positive surface system z-direction), and v equal to zero corresponds with the shell mid-surface. If v is not specified, it defaults to +1."
+        },
+        {
+          "name": "surface",
+          "syntax": "surface v",
+          "description": "The vector v enables a surface coordinate system to be generated for all nodes used by the elements in the optional range. The surface coordinate system, xʹ yʹ zʹ, has the following properties: 1) zʹ is normal to the surface; 2) xʹ is the projection of the given vector onto the surface; and 3) yʹ is orthogonal to xʹ and zʹ. The zʹ-direction is found at each node by taking the average normal direction of all elements in the range. If surface v is aligned with zʹ at any node, then processing stops and an error message is displayed. To proceed, designate a different v, or restrict the range of elements considered."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 6.0 command indexes",
+        "source_urls": [
+          "https://docs.itascacg.com/pfc600/flac3d/sel/doc/manual/sel_manual/shells/commands/cmd_structure.shell.recover.html#structure.shell.recover"
+        ],
+        "syntax_basis": "official FLAC3D 6.0 detailed command page",
+        "target_version": "6.0"
+      }
+    },
+    "7.0": {
+      "command": "structure shell recover",
+      "syntax": "structure shell recover keyword <range>",
+      "description": "Stress-recovery for shell elements. The stress-recovery procedure can be applied to all elements to compute both the stress resultants and the stresses acting at a specified depth. The range keyword identifies the patch of elements to which the command will apply. Note that the recovered quantities will depend upon the range of elements over which these quantities are being recovered, because nodal averaging only occurs for elements within this range.",
+      "keywords": [
+        {
+          "name": "resultants",
+          "syntax": "resultants <range>",
+          "description": "recover the eight stress resultants for all elements in the optional range. The stress resultants are expressed in terms of the surface coordinate system. This command assumes that a consistent surface coordinate system has been established for the group of elements in the range (see the surface keyword). The bending and membrane stress resultants (\\(M_x\\), \\(M_y\\), \\(M_{xy}\\), \\(N_x\\), \\(N_y\\), and \\(N_{xy}\\)) vary linearly over each element, whereas the transverse-shear stress resultants (\\(Q_x\\) and \\(Q_y\\)) are constant over each element. The recovery procedure first computes the average values of bending and membrane stress resultants (by averaging, at the nodes, the contributions from each element in the range), and then spatially differentiates this average bending field over each element to obtain the transverse-shear stress resultants."
+        },
+        {
+          "name": "stress",
+          "syntax": "stress <depth-factor f >",
+          "description": "recover a stress tensor (expressed in global coordinate system) at a specified depth in all elements in the optional range. The depth equals \\(v\\) times \\(t\\)/2, where \\(t\\) is shell thickness. The depth factor, \\(v\\), must be in the range [-1, +1]. \\(v\\) equal to +1 / -1 corresponds with the outer/inner shell surface (outer surface defined by positive surface system \\(z\\)-direction), and \\(v\\) equal to zero corresponds with the shell mid-surface. If \\(v\\) is not specified, it defaults to +1."
+        },
+        {
+          "name": "surface",
+          "syntax": "surface v",
+          "description": "The vector v enables a surface coordinate system to be generated for all nodes used by the elements in the optional range. The surface coordinate system, \\(x\\)ʹ \\(y\\)ʹ \\(z\\)ʹ, has the following properties: 1) \\(z\\)ʹ is normal to the surface; 2) \\(x\\)ʹ is the projection of the given vector v onto the surface; and 3) \\(y\\)ʹ is orthogonal to \\(x\\)ʹ and \\(z\\)ʹ. The \\(z\\)ʹ-direction is found at each node by taking the average normal direction of all elements in the range. If surface v is aligned with \\(z\\)ʹ at any node, then processing stops and an error message is displayed. To proceed, designate a different v, or restrict the range of elements considered."
+        }
+      ],
+      "legacy_documentation": {
+        "availability_verified": true,
+        "source": "official FLAC3D 7.0 contents command index",
+        "source_urls": [
+          "https://docs.itascacg.com/flac3d700/common/sel/doc/manual/sel_manual/shells/commands/cmd_structure.shell.recover.html"
+        ],
+        "syntax_basis": "official FLAC3D 7.0 detailed command page",
+        "target_version": "7.0"
+      }
+    },
     "9.0": {
       "command": "structure shell recover",
       "syntax": "structure shell recover keyword [range]",
