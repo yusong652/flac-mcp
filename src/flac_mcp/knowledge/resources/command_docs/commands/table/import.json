@@ -10,18 +10,15 @@
   "versions": {
     "6.0": {
       "command": "table import",
-      "syntax": "table <s>import <sfile>",
-      "keywords": []
+      "syntax": "table <s>import <sfile>"
     },
     "7.0": {
       "command": "table import",
-      "syntax": "table <s>import <sfile>",
-      "keywords": []
+      "syntax": "table <s>import <sfile>"
     },
     "9.0": {
       "command": "table import",
-      "syntax": "table <s>import <sfile>",
-      "keywords": []
+      "syntax": "table <s>import <sfile>"
     }
   }
 }

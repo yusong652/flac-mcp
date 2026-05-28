@@ -10,18 +10,15 @@
   "versions": {
     "6.0": {
       "command": "table delete",
-      "syntax": "table <s>delete",
-      "keywords": []
+      "syntax": "table <s>delete"
     },
     "7.0": {
       "command": "table delete",
-      "syntax": "table <s>delete",
-      "keywords": []
+      "syntax": "table <s>delete"
     },
     "9.0": {
       "command": "table delete",
-      "syntax": "table <s>delete",
-      "keywords": []
+      "syntax": "table <s>delete"
     }
   }
 }

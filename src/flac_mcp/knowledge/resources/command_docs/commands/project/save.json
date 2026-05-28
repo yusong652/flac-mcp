@@ -10,18 +10,15 @@
   "versions": {
     "6.0": {
       "command": "project save",
-      "syntax": "project save <s>",
-      "keywords": []
+      "syntax": "project save <s>"
     },
     "7.0": {
       "command": "project save",
-      "syntax": "project save <s>",
-      "keywords": []
+      "syntax": "project save <s>"
     },
     "9.0": {
       "command": "project save",
-      "syntax": "project save <s>",
-      "keywords": []
+      "syntax": "project save <s>"
     }
   }
 }

@@ -10,18 +10,15 @@
   "versions": {
     "6.0": {
       "command": "table clear",
-      "syntax": "table <s>clear",
-      "keywords": []
+      "syntax": "table <s>clear"
     },
     "7.0": {
       "command": "table clear",
-      "syntax": "table <s>clear",
-      "keywords": []
+      "syntax": "table <s>clear"
     },
     "9.0": {
       "command": "table clear",
-      "syntax": "table <s>clear",
-      "keywords": []
+      "syntax": "table <s>clear"
     }
   }
 }

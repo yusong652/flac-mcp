@@ -10,18 +10,15 @@
   "versions": {
     "6.0": {
       "command": "table label",
-      "syntax": "table <s>label <slabel>",
-      "keywords": []
+      "syntax": "table <s>label <slabel>"
     },
     "7.0": {
       "command": "table label",
-      "syntax": "table <s>label <slabel>",
-      "keywords": []
+      "syntax": "table <s>label <slabel>"
     },
     "9.0": {
       "command": "table label",
-      "syntax": "table <s>label <slabel>",
-      "keywords": []
+      "syntax": "table <s>label <slabel>"
     }
   }
 }

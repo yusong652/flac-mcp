@@ -10,18 +10,15 @@
   "versions": {
     "6.0": {
       "command": "project execute",
-      "syntax": "project execute [suppress]",
-      "keywords": []
+      "syntax": "project execute [suppress]"
     },
     "7.0": {
       "command": "project execute",
-      "syntax": "project execute [suppress]",
-      "keywords": []
+      "syntax": "project execute [suppress]"
     },
     "9.0": {
       "command": "project execute",
-      "syntax": "project execute [suppress]",
-      "keywords": []
+      "syntax": "project execute [suppress]"
     }
   }
 }

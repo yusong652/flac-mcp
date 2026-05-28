@@ -10,18 +10,15 @@
   "versions": {
     "6.0": {
       "command": "project restore",
-      "syntax": "project restore <s>",
-      "keywords": []
+      "syntax": "project restore <s>"
     },
     "7.0": {
       "command": "project restore",
-      "syntax": "project restore <s>",
-      "keywords": []
+      "syntax": "project restore <s>"
     },
     "9.0": {
       "command": "project restore",
-      "syntax": "project restore <s>",
-      "keywords": []
+      "syntax": "project restore <s>"
     }
   }
 }

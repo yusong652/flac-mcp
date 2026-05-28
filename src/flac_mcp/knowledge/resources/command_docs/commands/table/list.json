@@ -10,18 +10,15 @@
   "versions": {
     "6.0": {
       "command": "table list",
-      "syntax": "table [<s>] list",
-      "keywords": []
+      "syntax": "table [<s>] list"
     },
     "7.0": {
       "command": "table list",
-      "syntax": "table [<s>] list",
-      "keywords": []
+      "syntax": "table [<s>] list"
     },
     "9.0": {
       "command": "table list",
-      "syntax": "table [<s>] list",
-      "keywords": []
+      "syntax": "table [<s>] list"
     }
   }
 }

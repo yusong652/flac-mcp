@@ -10,18 +10,15 @@
   "versions": {
     "6.0": {
       "command": "project list",
-      "syntax": "project list information",
-      "keywords": []
+      "syntax": "project list information"
     },
     "7.0": {
       "command": "project list",
-      "syntax": "project list information",
-      "keywords": []
+      "syntax": "project list information"
     },
     "9.0": {
       "command": "project list",
-      "syntax": "project list information",
-      "keywords": []
+      "syntax": "project list information"
     }
   }
 }

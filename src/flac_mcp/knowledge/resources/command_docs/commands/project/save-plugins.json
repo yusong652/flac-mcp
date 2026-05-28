@@ -10,18 +10,15 @@
   "versions": {
     "6.0": {
       "command": "project save-plugins",
-      "syntax": "project save-plugins <b>",
-      "keywords": []
+      "syntax": "project save-plugins <b>"
     },
     "7.0": {
       "command": "project save-plugins",
-      "syntax": "project save-plugins <b>",
-      "keywords": []
+      "syntax": "project save-plugins <b>"
     },
     "9.0": {
       "command": "project save-plugins",
-      "syntax": "project save-plugins <b>",
-      "keywords": []
+      "syntax": "project save-plugins <b>"
     }
   }
 }

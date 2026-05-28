@@ -10,18 +10,15 @@
   "versions": {
     "6.0": {
       "command": "table add",
-      "syntax": "table <s>add <v2>...",
-      "keywords": []
+      "syntax": "table <s>add <v2>..."
     },
     "7.0": {
       "command": "table add",
-      "syntax": "table <s>add <v2>...",
-      "keywords": []
+      "syntax": "table <s>add <v2>..."
     },
     "9.0": {
       "command": "table add",
-      "syntax": "table <s>add <v2>...",
-      "keywords": []
+      "syntax": "table <s>add <v2>..."
     }
   }
 }

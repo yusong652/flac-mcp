@@ -10,18 +10,15 @@
   "versions": {
     "6.0": {
       "command": "table results",
-      "syntax": "table results active <b>",
-      "keywords": []
+      "syntax": "table results active <b>"
     },
     "7.0": {
       "command": "table results",
-      "syntax": "table results active <b>",
-      "keywords": []
+      "syntax": "table results active <b>"
     },
     "9.0": {
       "command": "table results",
-      "syntax": "table results active <b>",
-      "keywords": []
+      "syntax": "table results active <b>"
     }
   }
 }

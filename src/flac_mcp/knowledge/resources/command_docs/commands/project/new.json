@@ -10,18 +10,15 @@
   "versions": {
     "6.0": {
       "command": "project new",
-      "syntax": "project new [force]",
-      "keywords": []
+      "syntax": "project new [force]"
     },
     "7.0": {
       "command": "project new",
-      "syntax": "project new [force]",
-      "keywords": []
+      "syntax": "project new [force]"
     },
     "9.0": {
       "command": "project new",
-      "syntax": "project new [force]",
-      "keywords": []
+      "syntax": "project new [force]"
     }
   }
 }

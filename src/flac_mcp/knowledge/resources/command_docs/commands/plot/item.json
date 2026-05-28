@@ -6,8 +6,6 @@
     "delete",
     "modify",
     "axes",
-    "ball",
-    "wall",
     "contact",
     "geometry",
     "chart",
