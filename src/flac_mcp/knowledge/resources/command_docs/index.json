@@ -884,10 +884,10 @@
           "python_available": false
         },
         {
-          "name": "path-ends-paralle",
-          "file": "commands/extruder/path-ends-paralle.json",
+          "name": "path-ends-parallel",
+          "file": "commands/extruder/path-ends-parallel.json",
           "short_description": "Keep the cross-sections at the ends of the path parallel to the construction plane",
-          "syntax": "sketch path ends-paralle <b>",
+          "syntax": "sketch path ends-parallel <b>",
           "python_available": false
         },
         {
@@ -999,7 +999,7 @@
           "name": "segment-id",
           "file": "commands/extruder/segment-id.json",
           "short_description": "Modify a single segment by ID",
-          "syntax": "sketch segment id <i>[keyword ...]",
+          "syntax": "sketch segment id <i> keyword",
           "python_available": false
         },
         {
@@ -1073,24 +1073,10 @@
           "python_available": false
         },
         {
-          "name": "segment-size-default",
-          "file": "commands/extruder/segment-size-default.json",
-          "short_description": "Set the default number of zones on the segment",
-          "syntax": "sketch segment size-default <i>",
-          "python_available": false
-        },
-        {
           "name": "segment-zone-length",
           "file": "commands/extruder/segment-zone-length.json",
           "short_description": "Set the length of zones on the segments",
           "syntax": "sketch segment zone-length <f>[range]",
-          "python_available": false
-        },
-        {
-          "name": "segment-zone-length-default",
-          "file": "commands/extruder/segment-zone-length-default.json",
-          "short_description": "Set the default length of zones on the segment",
-          "syntax": "sketch segment zone-length-default <f>",
           "python_available": false
         },
         {

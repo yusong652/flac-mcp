@@ -3,8 +3,10 @@
   "search_keywords": [
     "path",
     "ends",
+    "parallel",
     "paralle",
     "sketch",
+    "ends-parallel",
     "ends-paralle"
   ],
   "description": "Keep the cross-sections at the ends of the path parallel to the construction plane.",
@@ -13,8 +15,8 @@
   },
   "versions": {
     "9.0": {
-      "command": "sketch path ends-paralle",
-      "syntax": "sketch path ends-paralle <b>",
+      "command": "sketch path ends-parallel",
+      "syntax": "sketch path ends-parallel <b>",
       "keywords": []
     }
   }

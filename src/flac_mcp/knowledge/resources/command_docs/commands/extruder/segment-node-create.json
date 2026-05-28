@@ -14,11 +14,11 @@
   "versions": {
     "9.0": {
       "command": "sketch segment-node create",
-      "syntax": "sketch segment-node create <v3>keyword",
+      "syntax": "sketch segment-node create <v3> [keyword]",
       "keywords": [
         {
-          "name": "merge-tolerance",
-          "syntax": "merge-tolerance <f>",
+          "name": "tolerance-merge",
+          "syntax": "tolerance-merge <f>",
           "description": "The node creation is canceled if there are existing nodes within a tolerance f from the position."
         },
         {
