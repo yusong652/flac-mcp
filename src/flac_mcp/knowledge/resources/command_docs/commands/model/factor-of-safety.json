@@ -101,7 +101,7 @@
         {
           "name": "exclude",
           "syntax": "exclude <s>",
-          "description": "Specify which 3DEC zone properties to change during analysis. The user may include or exclude specific zone properties from the list. By default the list of properties being included is friction , cohesion , joint-cohesion , and joint-friction (the last two referring to ubiquitous joint strength properties). Properties matching s are included. Their values are adjusted in the constitutive model as the target factor of safety is changed. Properties matching s are excluded. Their values will stay the same in the constitutive model as the target factor of safety is changed."
+          "description": "Specify which zone properties to change during analysis. The user may include or exclude specific zone properties from the list. By default the list of properties being included is friction , cohesion , joint-cohesion , and joint-friction (the last two referring to ubiquitous joint strength properties). Properties matching s are included. Their values are adjusted in the constitutive model as the target factor of safety is changed. Properties matching s are excluded. Their values will stay the same in the constitutive model as the target factor of safety is changed."
         },
         {
           "name": "bracket",
@@ -197,7 +197,7 @@
         {
           "name": "exclude",
           "syntax": "exclude <s>",
-          "description": "Specify which 3DEC zone properties to change during analysis. The user may include or exclude specific zone properties from the list. By default the list of properties being included is friction , cohesion , joint-cohesion , and joint-friction (the last two referring to ubiquitous joint strength properties). Properties matching s are included. Their values are adjusted in the constitutive model as the target factor of safety is changed. Properties matching s are excluded. Their values will stay the same in the constitutive model as the target factor of safety is changed."
+          "description": "Specify which zone properties to change during analysis. The user may include or exclude specific zone properties from the list. By default the list of properties being included is friction , cohesion , joint-cohesion , and joint-friction (the last two referring to ubiquitous joint strength properties). Properties matching s are included. Their values are adjusted in the constitutive model as the target factor of safety is changed. Properties matching s are excluded. Their values will stay the same in the constitutive model as the target factor of safety is changed."
         },
         {
           "name": "bracket",
@@ -232,7 +232,7 @@
         {
           "name": "exclude",
           "syntax": "exclude <s>",
-          "description": "Specify which joint properties to change during analysis. This refers for zone joints in FLAC2D and FLAC3D or joints in 3DEC . The user may include or exclude specific joint properties from the list. By default, in 3DEC the list of properties being included is cohesion and friction . By default, in FLAC2D and FLAC3D all zone joint properties are excluded . Properties matching s are included. Their values are adjusted in the constitutive model as the target factor of safety is changed. Properties matching s are excluded. Their values will stay the same in the constitutive model as the target factor of safety is changed."
+          "description": "Specify which joint properties to change during analysis. This refers to zone joints in FLAC2D and FLAC3D. The user may include or exclude specific joint properties from the list. By default, in FLAC2D and FLAC3D all zone joint properties are excluded . Properties matching s are included. Their values are adjusted in the constitutive model as the target factor of safety is changed. Properties matching s are excluded. Their values will stay the same in the constitutive model as the target factor of safety is changed."
         },
         {
           "name": "list",

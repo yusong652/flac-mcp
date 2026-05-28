@@ -17,7 +17,7 @@
     "  - Analyze equilibrium state evolution",
     "Most history quantities are process-specific (mechanical, thermal, creep, dynamic, fluid)",
     "DEPRECATED: mechanical cycle keyword - use cycles-total instead",
-    "3DEC energy quantities: block-kinetic, block-potential, joint-friction, etc.",
+    "Energy quantities (use 'model history energy <name>'): block-kinetic, block-potential, block-strain, joint-friction, joint-strain, etc.",
     "Common usage: track ratio-average to monitor equilibrium convergence",
     "Histories can be exported, plotted, or queried via FISH",
     "See 'history' commands for managing existing histories (export, delete, list, etc.)"
@@ -39,7 +39,7 @@
         {
           "name": "damping",
           "syntax": "damping",
-          "description": "Value of global damping parameter ( 3DEC )"
+          "description": "Value of the global damping parameter."
         },
         {
           "name": "time-total",
@@ -49,7 +49,7 @@
         {
           "name": "total-stored",
           "syntax": "total-stored",
-          "description": "Values associated with energy quantities in 3DEC . The kinetic energy value in 3DEC . The potential energy value in 3DEC . The block strain in 3DEC . The excavated block strain in 3DEC . The fill strain value in 3DEC . The plastic strain value in 3DEC . The excavated block volume in 3DEC . The boundary load in 3DEC . The boundary viscous force in 3DEC . The mass damping value in 3DEC . The joint friction value in 3DEC . The joint strain value in 3DEC . The joint compressive strain value in 3DEC . The joint strain excavated value in 3DEC . The joint strain shear value in 3DEC . The joint strain tensile value in 3DEC . The excavated strain value in 3DEC . The total strain value in 3DEC (joints + zones). The total released energy value in 3DEC . The stored energy value in 3DEC ."
+          "description": "Total stored energy (combined block + joint strain energy). Individual energy components are accessed via 'model history energy <name>'; see the energy keyword sub-commands (block-kinetic, block-potential, block-strain, block-strain-excavated, block-volume-excavated, boundary-load, joint-friction, joint-strain, joint-strain-excavated, joint-strain-shear, joint-strain-tensile)."
         },
         {
           "name": "time-total",
@@ -117,11 +117,11 @@
         },
         {
           "command": "model history energy block-kinetic",
-          "description": "Monitor block kinetic energy in 3DEC"
+          "description": "Monitor block kinetic energy"
         },
         {
           "command": "model history damping",
-          "description": "Track global damping parameter (3DEC)"
+          "description": "Track global damping parameter"
         }
       ]
     },
@@ -205,11 +205,11 @@
         },
         {
           "command": "model history energy block-kinetic",
-          "description": "Monitor block kinetic energy in 3DEC"
+          "description": "Monitor block kinetic energy"
         },
         {
           "command": "model history damping",
-          "description": "Track global damping parameter (3DEC)"
+          "description": "Track global damping parameter"
         }
       ]
     },
@@ -225,7 +225,7 @@
         {
           "name": "damping",
           "syntax": "damping",
-          "description": "Value of global damping parameter ( 3DEC )"
+          "description": "Value of the global damping parameter."
         },
         {
           "name": "time-total",
@@ -235,7 +235,7 @@
         {
           "name": "total-stored",
           "syntax": "total-stored",
-          "description": "Values associated with energy quantities in 3DEC . The kinetic energy value in 3DEC . The potential energy value in 3DEC . The block strain in 3DEC . The excavated block strain in 3DEC . The fill strain value in 3DEC . The plastic strain value in 3DEC . The excavated block volume in 3DEC . The boundary load in 3DEC . The boundary viscous force in 3DEC . The mass damping value in 3DEC . The joint friction value in 3DEC . The joint strain value in 3DEC . The joint compressive strain value in 3DEC . The joint strain excavated value in 3DEC . The joint strain shear value in 3DEC . The joint strain tensile value in 3DEC . The excavated strain value in 3DEC . The total strain value in 3DEC (joints + zones). The total released energy value in 3DEC . The stored energy value in 3DEC ."
+          "description": "Total stored energy (combined block + joint strain energy). Individual energy components are accessed via 'model history energy <name>'; see the energy keyword sub-commands (block-kinetic, block-potential, block-strain, block-strain-excavated, block-volume-excavated, boundary-load, joint-friction, joint-strain, joint-strain-excavated, joint-strain-shear, joint-strain-tensile)."
         },
         {
           "name": "time-total",
@@ -303,11 +303,11 @@
         },
         {
           "command": "model history energy block-kinetic",
-          "description": "Monitor block kinetic energy in 3DEC"
+          "description": "Monitor block kinetic energy"
         },
         {
           "command": "model history damping",
-          "description": "Track global damping parameter (3DEC)"
+          "description": "Track global damping parameter"
         }
       ]
     }
