@@ -20,9 +20,9 @@
       "syntax": "building-blocks edge add-controls keyword [range]",
       "keywords": [
         {
-          "name": "adummy",
+          "name": "count",
           "syntax": "<i>",
-          "description": "Add exactly i control points per each edge ( i must be a positive integer no greater than 20). Added control points will be evenly spaced."
+          "description": "Bare positional integer. Add exactly i control points per each edge ( i must be a positive integer no greater than 20). Added control points will be evenly spaced."
         },
         {
           "name": "use-size",

@@ -15,12 +15,42 @@
   "versions": {
     "9.0": {
       "command": "building-blocks edge id",
-      "syntax": "building-blocks edge id <i>keyword",
+      "syntax": "building-blocks edge id <i> keyword",
       "keywords": [
         {
+          "name": "control-point",
+          "syntax": "control-point keyword",
+          "description": "Modify control points of the edge. Must be followed by an 'add', 'delete', 'move', 'rotate', 'select', or 'translate' sub-keyword."
+        },
+        {
+          "name": "control-point-add",
+          "syntax": "add <v>",
+          "description": "Add a control point at the position defined by vector v . The position v must be on the edge within the tolerance (see building-blocks set tolerance )."
+        },
+        {
+          "name": "control-point-delete",
+          "syntax": "delete index <i>",
+          "description": "Delete the control point defined by index i from the edge. Index i is a positive integer starting from 1 . The 'index' keyword is required."
+        },
+        {
+          "name": "control-point-move",
+          "syntax": "move <v> index <i>",
+          "description": "Move the control point defined by index i to a new position defined by vector v . The vector comes first, then the 'index' keyword and index."
+        },
+        {
+          "name": "control-point-rotate",
+          "syntax": "rotate origin <v1> direction <v2> angle <f> indices <i1> [<i2>] ...",
+          "description": "Rotate control points of the edge defined by indices using an angle of rotation f (in degrees) around the axis of rotation defined by the origin point v_1 and direction vector v_2 . The keyword order is strict: origin, direction, angle, indices."
+        },
+        {
+          "name": "control-point-select",
+          "syntax": "select",
+          "description": "Select the control point(s) on the edge (no further arguments)."
+        },
+        {
           "name": "control-point-translate",
-          "syntax": "translate <v>indices <i1>[<i2>] [<i3>] ...",
-          "description": "Modify control points of the edge. Add a control point at the position defined by vector v . The position v must be on the edge within the tolerance (see building-blocks set tolerance ). Delete the control point defined by index i from the edge. Index i is a positive integer starting from 1 . Move the control point defined by index i to new position defined by vector v . Rotate control points of the edge defined by indices using an angle of rotation f (in degrees) around axis of rotation defined by the origin point v_1 and direction vector v_2 . Translate control points identified by indices by adding v to each position."
+          "syntax": "translate <v> indices <i1> [<i2>] ...",
+          "description": "Translate control points identified by indices by adding v to each position."
         },
         {
           "name": "ratio",
@@ -38,9 +68,24 @@
           "description": "Specify the number of zones on an edge. The value of i must be positive (up to 1000). The default value is 3 . When zones are generated from the building blocks set, all blocks attached to this edge will be have i zones along the direction defined by the edge. Each time size of an edge is changed, the changes are propagated to face-connected opposite edges."
         },
         {
+          "name": "type",
+          "syntax": "type keyword",
+          "description": "Specify the curve-type of the edge. Must be followed by an 'arc', 'polyline', or 'spline' sub-keyword."
+        },
+        {
+          "name": "type-arc",
+          "syntax": "arc",
+          "description": "Specify an arc edge. An arc may have one control point only."
+        },
+        {
           "name": "type-polyline",
           "syntax": "polyline",
-          "description": "Specify the curve-type of the edge. Specify an arc edge. An arc may have one control point only. Specify a spline edge. Specify a polyline edge (this is the default type )."
+          "description": "Specify a polyline edge (this is the default type )."
+        },
+        {
+          "name": "type-spline",
+          "syntax": "spline",
+          "description": "Specify a spline edge."
         }
       ]
     }

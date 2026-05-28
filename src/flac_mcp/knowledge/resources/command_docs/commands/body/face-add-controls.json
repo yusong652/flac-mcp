@@ -20,9 +20,9 @@
       "syntax": "building-blocks face add-controls keyword [no-edges-cp] [range]",
       "keywords": [
         {
-          "name": "adummy",
+          "name": "count",
           "syntax": "<i>",
-          "description": "Add exactly i X i control points (grid) per each face ( i must be a positive integer 0,2,3,…,20). Added control points will be evenly spaced. Also will add i CPs per each internal edge from the list of the faces. If i = 0 control points are removed."
+          "description": "Bare positional integer. Add exactly i X i control points (grid) per each face ( i must be a positive integer 0,2,3,…,20). Added control points will be evenly spaced. Also will add i CPs per each internal edge from the list of the faces. If i = 0 control points are removed."
         },
         {
           "name": "no-edges-cp",
