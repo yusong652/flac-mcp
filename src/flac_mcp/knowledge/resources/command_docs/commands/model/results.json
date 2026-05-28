@@ -5,12 +5,11 @@
     "export",
     "snapshot"
   ],
-  "description": "Perform file operations on results files. Results files are lightweight versions of save files (about 5% of save file size). Importing results files will fully overwrite the model state (as with 'model restore'), but only a small, predetermined portion of the complete model is included. A state imported from a results file cannot be further cycled. Results files are commonly used to export model states at regular intervals — both to allow the creation of a movie later and to make it easy to check the progress of a model during solution. The user controls what information is included in a results file using the 'results' keyword available to many model objects (e.g., 'zone results', 'ball results', 'clump results').",
+  "description": "Perform file operations on results files. Results files are lightweight versions of save files (about 5% of save file size). Importing results files will fully overwrite the model state (as with 'model restore'), but only a small, predetermined portion of the complete model is included. A state imported from a results file cannot be further cycled. Results files are commonly used to export model states at regular intervals — both to allow the creation of a movie later and to make it easy to check the progress of a model during solution.",
   "notes": [
     "Results files are lightweight save files (about 5% of size)",
     "Importing results overwrites model state completely (like 'model restore')",
     "IMPORTANT: States imported from results files CANNOT be further cycled",
-    "User controls included information via object-specific 'results' keywords (e.g., 'zone results', 'ball results', 'clump results')",
     "Common uses:",
     "  - Create movies by exporting states at regular intervals",
     "  - Check model progress during long solutions",
@@ -18,11 +17,8 @@
     "Results file settings are part of model state (saved/restored with model)",
     "Settings reset after 'model new' command",
     "Automatic file naming: prefixXXXX.result (XXXX = 4-digit index with leading zeros)",
-    "Default prefix: 'flac3d' (FLAC3D), 'pfc2d' (PFC2D), 'pfc3d' (PFC3D)",
     "Default index: 1 (auto-increments after each export)",
-    "Default extension: 'f3result' (FLAC3D), 'p2result' (PFC2D), 'p3result' (PFC3D)",
     "Export formats: binary (default) or text (slower, larger, human-readable)",
-    "Interval types: step (cycles), mechanical time, thermal time, creep time, dynamic time, fluid time, wall-clock time",
     "Movie creation: Use 'Generate Movie Frames…' wizard in Tools menu",
     "Options Dialog: 'Results' section controls output interval and values",
     "For loosely coupled analyses: steps are 'super-cycles' (exclude slave process steps)"
@@ -44,12 +40,12 @@
         {
           "name": "export",
           "syntax": "export <s>[text]",
-          "description": "Export the results file to the file s . The default extension is f3result in FLAC3D and { p2result in PFC2D ; p3result in PFC3D }. By default the result is exported in binary format. The option text keyword specifies that it the export is in text format."
+          "description": "Export the results file to the file s . By default the result is exported in binary format. The option text keyword specifies that it the export is in text format."
         },
         {
           "name": "import",
           "syntax": "import <s>| <i>[skip-fish]",
-          "description": "Import the contents of the results file s or the results file with index i . If an integer is given a prospective filename is created given the prefix specified. The assumed default extension is f3result in FLAC3D and { p2result in PFC2D ; p3result in PFC3D }. By default, the FISH state is reset and any FISH variables saved with the results file are imported. The skip-fish keyword specifies that the current FISH state is kept intact and any FISH variables stored in the results file are not imported."
+          "description": "Import the contents of the results file s or the results file with index i . If an integer is given a prospective filename is created given the prefix specified. By default, the FISH state is reset and any FISH variables saved with the results file are imported. The skip-fish keyword specifies that the current FISH state is kept intact and any FISH variables stored in the results file are not imported."
         },
         {
           "name": "index",
@@ -74,7 +70,7 @@
         {
           "name": "prefix",
           "syntax": "prefix <s>",
-          "description": "Specify the prefix used for automatically exported result files. The default prefix is flac3d in FLAC3D and { pfc2d in PFC2D ; pfc3d in PFC3D }."
+          "description": "Specify the prefix used for automatically exported result files."
         },
         {
           "name": "warn",
@@ -100,8 +96,7 @@
           "description": "Import results file (overwrites current state)"
         },
         {
-          "command": "model results import 5",
-          "description": "Import results file with index 5 (e.g., 'pfc3d0005.p3result')"
+          "command": "model results import 5"
         },
         {
           "command": "model results import 'snapshot.p3result' skip-fish",
@@ -120,8 +115,7 @@
           "description": "Export results every 500 cycles"
         },
         {
-          "command": "model results interval clock 30 minutes",
-          "description": "Export results every 30 minutes of real (wall-clock) time"
+          "command": "model results interval clock 30 minutes"
         },
         {
           "command": "model results interval active on",
@@ -134,14 +128,6 @@
         {
           "command": "model results list",
           "description": "Display current results file settings and included values"
-        },
-        {
-          "command": "model results prefix 'movie_frames'\nmodel results index 1\nmodel results interval step 100\nball results active true\nmodel solve ratio 1e-5",
-          "description": "Setup for movie creation: export ball states every 100 cycles during solve"
-        },
-        {
-          "command": "clump results active true\nclump results add-attribute velocity\nmodel results prefix 'clump_motion'\nmodel results interval step 50\nmodel cycle 5000",
-          "description": "Export clump positions and velocities every 50 cycles"
         },
         {
           "command": "model results warn off",
@@ -169,12 +155,12 @@
         {
           "name": "export",
           "syntax": "export <s>",
-          "description": "Export the results file to the file s . The default extension is f3result in FLAC3D and result in PFC ."
+          "description": "Export the results file to the file s ."
         },
         {
           "name": "import",
           "syntax": "import <s>or <i>[skip-fish]",
-          "description": "Import the contents of the results file s or the results file with index i . If an integer is given a prospective filename is created given the prefix specified. The assumed default extension is f3result in FLAC3D and result in PFC . By default, the FISH state is reset and any FISH variables saved with the results file are imported. The skip-fish keyword specifies that the current FISH state is kept intact and any FISH variables stored in the results file are not imported."
+          "description": "Import the contents of the results file s or the results file with index i . If an integer is given a prospective filename is created given the prefix specified. By default, the FISH state is reset and any FISH variables saved with the results file are imported. The skip-fish keyword specifies that the current FISH state is kept intact and any FISH variables stored in the results file are not imported."
         },
         {
           "name": "index",
@@ -199,7 +185,7 @@
         {
           "name": "prefix",
           "syntax": "prefix <s>",
-          "description": "Specify the prefix used for automatically exported result files. The default prefix is flac3d in FLAC3D and { pfc2d in PFC2D ; pfc3d in PFC3D }."
+          "description": "Specify the prefix used for automatically exported result files."
         },
         {
           "name": "warn",
@@ -225,8 +211,7 @@
           "description": "Import results file (overwrites current state)"
         },
         {
-          "command": "model results import 5",
-          "description": "Import results file with index 5 (e.g., 'pfc3d0005.p3result')"
+          "command": "model results import 5"
         },
         {
           "command": "model results import 'snapshot.p3result' skip-fish",
@@ -245,8 +230,7 @@
           "description": "Export results every 500 cycles"
         },
         {
-          "command": "model results interval clock 30 minutes",
-          "description": "Export results every 30 minutes of real (wall-clock) time"
+          "command": "model results interval clock 30 minutes"
         },
         {
           "command": "model results interval active on",
@@ -259,14 +243,6 @@
         {
           "command": "model results list",
           "description": "Display current results file settings and included values"
-        },
-        {
-          "command": "model results prefix 'movie_frames'\nmodel results index 1\nmodel results interval step 100\nball results active true\nmodel solve ratio 1e-5",
-          "description": "Setup for movie creation: export ball states every 100 cycles during solve"
-        },
-        {
-          "command": "clump results active true\nclump results add-attribute velocity\nmodel results prefix 'clump_motion'\nmodel results interval step 50\nmodel cycle 5000",
-          "description": "Export clump positions and velocities every 50 cycles"
         },
         {
           "command": "model results warn off",
@@ -294,12 +270,12 @@
         {
           "name": "export",
           "syntax": "export <s>[text]",
-          "description": "Export the results file to the file s . The default extension is f3result in FLAC3D and { p2result in PFC2D ; p3result in PFC3D }. By default the result is exported in binary format. The option text keyword specifies that it the export is in text format."
+          "description": "Export the results file to the file s . By default the result is exported in binary format. The option text keyword specifies that it the export is in text format."
         },
         {
           "name": "import",
           "syntax": "import <s>| <i>[skip-fish]",
-          "description": "Import the contents of the results file s or the results file with index i . If an integer is given a prospective filename is created given the prefix specified. The assumed default extension is f3result in FLAC3D and { p2result in PFC2D ; p3result in PFC3D }. By default, the FISH state is reset and any FISH variables saved with the results file are imported. The skip-fish keyword specifies that the current FISH state is kept intact and any FISH variables stored in the results file are not imported."
+          "description": "Import the contents of the results file s or the results file with index i . If an integer is given a prospective filename is created given the prefix specified. By default, the FISH state is reset and any FISH variables saved with the results file are imported. The skip-fish keyword specifies that the current FISH state is kept intact and any FISH variables stored in the results file are not imported."
         },
         {
           "name": "index",
@@ -324,7 +300,7 @@
         {
           "name": "prefix",
           "syntax": "prefix <s>",
-          "description": "Specify the prefix used for automatically exported result files. The default prefix is flac3d in FLAC3D and { pfc2d in PFC2D ; pfc3d in PFC3D }."
+          "description": "Specify the prefix used for automatically exported result files."
         },
         {
           "name": "warn",
@@ -350,8 +326,7 @@
           "description": "Import results file (overwrites current state)"
         },
         {
-          "command": "model results import 5",
-          "description": "Import results file with index 5 (e.g., 'pfc3d0005.p3result')"
+          "command": "model results import 5"
         },
         {
           "command": "model results import 'snapshot.p3result' skip-fish",
@@ -370,8 +345,7 @@
           "description": "Export results every 500 cycles"
         },
         {
-          "command": "model results interval clock 30 minutes",
-          "description": "Export results every 30 minutes of real (wall-clock) time"
+          "command": "model results interval clock 30 minutes"
         },
         {
           "command": "model results interval active on",
@@ -384,14 +358,6 @@
         {
           "command": "model results list",
           "description": "Display current results file settings and included values"
-        },
-        {
-          "command": "model results prefix 'movie_frames'\nmodel results index 1\nmodel results interval step 100\nball results active true\nmodel solve ratio 1e-5",
-          "description": "Setup for movie creation: export ball states every 100 cycles during solve"
-        },
-        {
-          "command": "clump results active true\nclump results add-attribute velocity\nmodel results prefix 'clump_motion'\nmodel results interval step 50\nmodel cycle 5000",
-          "description": "Export clump positions and velocities every 50 cycles"
         },
         {
           "command": "model results warn off",

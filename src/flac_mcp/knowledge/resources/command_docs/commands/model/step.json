@@ -4,28 +4,21 @@
     "step"
   ],
   "description": "Execute timesteps. The synonym model cycle may also be used. This is the equivalent of calling model solve with the cycles keyword set to i .",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
       "command": "model step",
-      "syntax": "model step <i>[calm <i2>]",
-      "keywords": [],
-      "examples": []
+      "syntax": "model step <i>[calm <i2>]"
     },
     "7.0": {
       "command": "model step",
-      "syntax": "model step <i>[calm <i2>]",
-      "keywords": []
+      "syntax": "model step <i>[calm <i2>]"
     },
     "9.0": {
       "command": "model step",
-      "syntax": "model step <i>[calm <i2>]",
-      "keywords": [],
-      "examples": []
+      "syntax": "model step <i>[calm <i2>]"
     }
   }
 }

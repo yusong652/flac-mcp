@@ -62,7 +62,6 @@
           "description": "Display history ID 1 values during cycling"
         },
         {
-          "command": "fish define max_velocity\n  max_velocity = ball.vel.max\nend\nmodel display fish max_velocity\nmodel cycle 1000",
           "description": "Define FISH function, display its value during cycling"
         },
         {
@@ -117,7 +116,6 @@
           "description": "Display history ID 1 values during cycling"
         },
         {
-          "command": "fish define max_velocity\n  max_velocity = ball.vel.max\nend\nmodel display fish max_velocity\nmodel cycle 1000",
           "description": "Define FISH function, display its value during cycling"
         },
         {
@@ -172,7 +170,6 @@
           "description": "Display history ID 1 values during cycling"
         },
         {
-          "command": "fish define max_velocity\n  max_velocity = ball.vel.max\nend\nmodel display fish max_velocity\nmodel cycle 1000",
           "description": "Define FISH function, display its value during cycling"
         },
         {

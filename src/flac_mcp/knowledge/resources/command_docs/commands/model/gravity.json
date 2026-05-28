@@ -10,9 +10,7 @@
     "Body force = gravity vector × real mass of object",
     "Shorthand: single scalar f is equivalent to vector (0,0,-f)",
     "Default gravity: (0,0,0) - no gravity unless explicitly set",
-    "Positive z-direction is typically upward in PFC convention",
     "Negative z-component produces downward gravity (standard)",
-    "Gravity applies to all pieces: balls, clumps, walls (if dynamic)",
     "Can be changed at any time during simulation",
     "Non-zero gravity affects equilibrium state"
   ],
@@ -25,7 +23,6 @@
     "7.0": {
       "command": "model gravity",
       "syntax": "model gravity <v3>| <f>",
-      "keywords": [],
       "examples": [
         {
           "command": "model gravity 9.81",
@@ -50,10 +47,6 @@
         {
           "command": "model gravity (1.0,0,-9.81)",
           "description": "Set gravity with both x and z components (e.g., inclined system)"
-        },
-        {
-          "command": "model domain extent -10 10\nball generate number 1000 radius 0.5\nmodel gravity 9.81\nmodel cycle 5000",
-          "description": "Setup domain, generate balls, apply gravity, and cycle"
         },
         {
           "command": "model gravity 9.81\nmodel solve",
@@ -68,7 +61,6 @@
     "6.0": {
       "command": "model gravity",
       "syntax": "model gravity <v3>",
-      "keywords": [],
       "examples": [
         {
           "command": "model gravity 9.81",
@@ -93,10 +85,6 @@
         {
           "command": "model gravity (1.0,0,-9.81)",
           "description": "Set gravity with both x and z components (e.g., inclined system)"
-        },
-        {
-          "command": "model domain extent -10 10\nball generate number 1000 radius 0.5\nmodel gravity 9.81\nmodel cycle 5000",
-          "description": "Setup domain, generate balls, apply gravity, and cycle"
         },
         {
           "command": "model gravity 9.81\nmodel solve",
@@ -111,7 +99,6 @@
     "9.0": {
       "command": "model gravity",
       "syntax": "model gravity <v3>| <f>",
-      "keywords": [],
       "examples": [
         {
           "command": "model gravity 9.81",
@@ -136,10 +123,6 @@
         {
           "command": "model gravity (1.0,0,-9.81)",
           "description": "Set gravity with both x and z components (e.g., inclined system)"
-        },
-        {
-          "command": "model domain extent -10 10\nball generate number 1000 radius 0.5\nmodel gravity 9.81\nmodel cycle 5000",
-          "description": "Setup domain, generate balls, apply gravity, and cycle"
         },
         {
           "command": "model gravity 9.81\nmodel solve",

@@ -4,28 +4,21 @@
     "return"
   ],
   "description": "Return program control.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
       "command": "program return",
-      "syntax": "program return",
-      "keywords": [],
-      "examples": []
+      "syntax": "program return"
     },
     "7.0": {
       "command": "program return",
-      "syntax": "program return",
-      "keywords": []
+      "syntax": "program return"
     },
     "9.0": {
       "command": "program return",
-      "syntax": "program return",
-      "keywords": [],
-      "examples": []
+      "syntax": "program return"
     }
   }
 }

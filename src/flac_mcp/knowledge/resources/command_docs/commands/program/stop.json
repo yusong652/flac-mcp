@@ -4,28 +4,21 @@
     "stop"
   ],
   "description": "Close the program.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
       "command": "program stop",
-      "syntax": "program stop",
-      "keywords": [],
-      "examples": []
+      "syntax": "program stop"
     },
     "7.0": {
       "command": "program stop",
-      "syntax": "program stop",
-      "keywords": []
+      "syntax": "program stop"
     },
     "9.0": {
       "command": "program stop",
-      "syntax": "program stop",
-      "keywords": [],
-      "examples": []
+      "syntax": "program stop"
     }
   }
 }

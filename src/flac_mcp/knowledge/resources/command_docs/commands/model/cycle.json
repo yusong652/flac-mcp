@@ -52,10 +52,6 @@
         {
           "command": "model solve\nmodel cycle 1000\nmodel solve",
           "description": "Solve to equilibrium, run fixed cycles, solve again"
-        },
-        {
-          "command": "ball generate number 1000 radius 0.5\nmodel clean\nmodel cycle 2000",
-          "description": "Generate balls, clean to create contacts, then cycle"
         }
       ]
     },
@@ -89,10 +85,6 @@
         {
           "command": "model solve\nmodel cycle 1000\nmodel solve",
           "description": "Solve to equilibrium, run fixed cycles, solve again"
-        },
-        {
-          "command": "ball generate number 1000 radius 0.5\nmodel clean\nmodel cycle 2000",
-          "description": "Generate balls, clean to create contacts, then cycle"
         }
       ]
     },
@@ -126,10 +118,6 @@
         {
           "command": "model solve\nmodel cycle 1000\nmodel solve",
           "description": "Solve to equilibrium, run fixed cycles, solve again"
-        },
-        {
-          "command": "ball generate number 1000 radius 0.5\nmodel clean\nmodel cycle 2000",
-          "description": "Generate balls, clean to create contacts, then cycle"
         }
       ]
     }

@@ -4,14 +4,14 @@
     "automatic-model-save"
   ],
   "description": "Sets value controlling automatic safe file creating during cycling. This is intended as a safety feature to prevent having to start a lengthy run over in the event of a power failure or program crash.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
-      "available": false
+      "available": false,
+      "reason": "Not listed in the official FLAC3D 6.0 command indexes.",
+      "target_version": "6.0"
     },
     "7.0": {
       "command": "program automatic-model-save",
@@ -53,8 +53,7 @@
           "syntax": "directory <s>",
           "description": "Set the directory the automatically saved file will be placed in. If this is a relative path, this will be relative to the current directory. By default this string is empty, indicating the file will be saved in the current directory."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

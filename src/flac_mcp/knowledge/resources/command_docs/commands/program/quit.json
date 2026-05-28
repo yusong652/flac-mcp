@@ -4,28 +4,21 @@
     "quit"
   ],
   "description": "Close the program.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
       "command": "program quit",
-      "syntax": "program quit",
-      "keywords": [],
-      "examples": []
+      "syntax": "program quit"
     },
     "7.0": {
       "command": "program quit",
-      "syntax": "program quit",
-      "keywords": []
+      "syntax": "program quit"
     },
     "9.0": {
       "command": "program quit",
-      "syntax": "program quit",
-      "keywords": [],
-      "examples": []
+      "syntax": "program quit"
     }
   }
 }
