@@ -14,6 +14,11 @@
       "syntax": "structure results keyword",
       "keywords": [
         {
+          "name": "accelerations",
+          "syntax": "accelerations <b>",
+          "description": "acceleration vectors at nodes"
+        },
+        {
           "name": "active",
           "syntax": "active <b>",
           "description": "controls if any structural element values will be exported"

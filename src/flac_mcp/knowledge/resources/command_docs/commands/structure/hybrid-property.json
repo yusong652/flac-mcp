@@ -46,13 +46,23 @@
         },
         {
           "name": "grout-cohesion",
-          "syntax": "grout-cohesion , <f>",
+          "syntax": "grout-cohesion <f>",
           "description": "grout cohesion (force units) per unit length"
+        },
+        {
+          "name": "grout-cohesion-table",
+          "syntax": "grout-cohesion-table <s>",
+          "description": "name of the table relating grout cohesion to relative shear displacement"
         },
         {
           "name": "grout-friction",
           "syntax": "grout-friction <f>",
           "description": "grout friction angle"
+        },
+        {
+          "name": "grout-friction-table",
+          "syntax": "grout-friction-table <s>",
+          "description": "name of the table relating grout friction angle to relative shear displacement"
         },
         {
           "name": "grout-perimeter",

@@ -25,14 +25,9 @@
           "description": "average axial stress in the element (positive: tension; negative: compression)"
         },
         {
-          "name": "yield-tension",
-          "syntax": "yield-tension [hybridhistoryblock]",
+          "name": "yield",
+          "syntax": "yield [hybridhistoryblock]",
           "description": "tensile yield state of the element. Value {0, 1, 2} denotes never yielded, now yielding, or yielded in the past, respectively."
-        },
-        {
-          "name": "yield-compression",
-          "syntax": "yield-compression [hybridhistoryblock]",
-          "description": "compressive yield state of the element. Value {0, 1, 2} denotes never yielded, now yielding, or yielded in the past, respectively."
         },
         {
           "name": "grout-displacement",
@@ -68,6 +63,11 @@
           "name": "dowel-yield",
           "syntax": "dowel-yield [hybridhistoryblock]",
           "description": "Shear yield state of the dowel. Value {0, 1, 2} denotes never yielded, now yielding, or yielded in the past, respectively."
+        },
+        {
+          "name": "name",
+          "syntax": "name <s>",
+          "description": "assign a name s to the history record (used to reference the history elsewhere)"
         },
         {
           "name": "component-id",
