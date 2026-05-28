@@ -75,6 +75,11 @@
           "description": "plastic shear capacity in Z"
         },
         {
+          "name": "poisson",
+          "syntax": "poisson <f>",
+          "description": "Poisson's ratio, \\(\\nu\\)"
+        },
+        {
           "name": "shear-coefficient",
           "syntax": "shear-coefficient <f>2D ONLY",
           "description": "shear coefficient for transverse shear deformation in the \\(y\\) -direction (Timoshenko beam element only)"
@@ -103,6 +108,11 @@
           "name": "torsion-constant",
           "syntax": "torsion-constant <f>3D ONLY",
           "description": "torsion constant"
+        },
+        {
+          "name": "young",
+          "syntax": "young <f>",
+          "description": "Young's modulus, \\(E\\)"
         }
       ]
     }
