@@ -12,8 +12,13 @@
   "versions": {
     "9.0": {
       "command": "sketch point id",
-      "syntax": "sketch point id <i>keyword",
+      "syntax": "sketch point id <i> keyword",
       "keywords": [
+        {
+          "name": "group",
+          "syntax": "group <s1> [slot <s2>] [remove]",
+          "description": "Assign the group name s1 in slot s2 (if supplied) to the point. The point is removed from the group/slot if remove is present. If the slot keyword is omitted, the slot is set to the slot named Default ."
+        },
         {
           "name": "merge",
           "syntax": "merge [point] <i2>",
@@ -21,7 +26,7 @@
         },
         {
           "name": "move-to",
-          "syntax": "move-to <v>[merge-tolerance <f>]",
+          "syntax": "move-to <v> [merge-tolerance <f>]",
           "description": "Moves the point to location v , 2D coordinate vector ( \\(x,y\\) ). If supplied, merge-tolerance f will be used as a tolerance for merging points during moving."
         }
       ]
