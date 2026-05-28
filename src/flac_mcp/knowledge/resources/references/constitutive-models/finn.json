@@ -39,168 +39,133 @@
           "keyword": "bulk",
           "symbol": "K",
           "description": "elastic bulk modulus, K",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "cohesion",
           "symbol": "c",
           "description": "cohesion, c",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "constant-1",
           "symbol": "C_1",
           "description": "constant, C_1",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "constant-2",
           "symbol": "C_2",
           "description": "constant, C_2",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "constant-3",
           "symbol": "C_3",
           "description": "constant, C_3",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "constant-4",
           "symbol": "C_4",
           "description": "constant, C_4",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "dilation",
           "symbol": "\\psi",
           "description": "dilation angle, \\psi. The default is 0.0.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "flag-switch",
-          "symbol": "",
           "description": "= 0 for Martin et al. formula, and",
-          "type": "BOOL",
-          "default": ""
+          "type": "BOOL"
         },
         {
           "keyword": "friction",
           "symbol": "\\phi",
           "description": "internal angle of friction, \\phi",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "poisson",
           "symbol": "\\nu",
           "description": "Poisson’s ratio, \\nu",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "shear",
           "symbol": "G",
           "description": "elastic shear modulus, G",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "tension",
           "symbol": "\\sigma^t",
           "description": "tension limit, \\sigma^t. The default is 0.0.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "young",
           "symbol": "E",
           "description": "Young’s modulus, E",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "number-latency",
-          "symbol": "",
           "description": "minimum number of timesteps between reversals. The default is 0.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "flag-brittle",
-          "symbol": "",
           "description": "if true, the tension limit is set to 0 in the event of tensile failure. The default is false.",
-          "type": "BOOL",
-          "default": ""
+          "type": "BOOL"
         },
         {
           "keyword": "table-cohesion",
-          "symbol": "",
           "description": "name of the table relating cohesion to plastic shear strain",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "table-dilation",
-          "symbol": "",
           "description": "name of the table relating dilation angle to plastic shear strain",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "table-friction",
-          "symbol": "",
           "description": "name of the table relating friction angle to plastic shear strain",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "table-tension",
-          "symbol": "",
           "description": "name of the table relating tension limit to plastic tensile strain",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "number-count",
-          "symbol": "",
           "description": "number of shear strain reversals (half cycles) detected",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "strain-shear-plastic",
-          "symbol": "",
           "description": "accumulated plastic shear strain",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "strain-tensile-plastic",
-          "symbol": "",
           "description": "accumulated plastic tensile strain",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "strain-volumetric-irrecoverable",
           "symbol": "\\epsilon_{vd}",
           "description": "accumulated irrecoverable volume strain, \\epsilon_{vd}, which is positive in compression, an interval variable used in Martin et al and Byrne formula",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         }
       ]
     }
   ],
-  "typical_applications": [],
-  "notes": [],
   "source": "https://docs.itascacg.com/itasca900/common/models/finn/doc/modelfinn.html",
   "usage": {
     "assign": "zone cmodel assign finn [range ...]",

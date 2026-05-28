@@ -27,22 +27,22 @@ def register(mcp: FastMCP) -> None:
                 "- 'constitutive-models': List all FLAC zone material models\n"
                 "- 'constitutive-models mohr-coulomb': Mohr-Coulomb zone "
                 "property keywords (for 'zone property')\n"
-                "- 'contact-models': List all contact models\n"
-                "- 'contact-models linear': Linear model properties\n"
-                "- 'range-elements': Range elements overview (24 elements)\n"
+                "- 'range-elements': Range filter overview\n"
                 "- 'range-elements position': Position range syntax\n"
-                "- 'plot-items': Plot item types (ball, wall, contact keywords)\n"
-                "- 'plot-items ball': Ball overview + available sub-topics\n"
-                "- 'plot-items ball color-by': Ball color-by keyword details"
+                "- 'boundary-conditions': Boundary-condition keyword families\n"
+                "- 'boundary-conditions mechanical-face': 'zone face apply' "
+                "stress/velocity/reaction keywords\n"
+                "- 'structural-properties cable': 'structure cable property' "
+                "keywords\n"
+                "- 'plot-items zone': Zone plot item keywords"
             ),
         ),
         version: CommandDocVersion = Field(
             CommandDocVersion.V7_0,
             description=(
                 "FLAC documentation version (6.0/7.0/9.0). Defaults to 7.0. "
-                "Filters contact models by version availability; "
-                "constitutive-models, range-elements and plot-items are "
-                "version-agnostic."
+                "Accepted for forward compatibility; all current reference "
+                "content is version-agnostic."
             ),
         ),
     ) -> dict[str, Any]:
@@ -52,22 +52,25 @@ def register(mcp: FastMCP) -> None:
 
         Navigation levels:
         - No topic: All reference categories
-        - Category (e.g., "contact-models"): List items in category
-        - Full path (e.g., "contact-models linear"): Full documentation
+        - Category (e.g., "constitutive-models"): List items in category
+        - Full path (e.g., "constitutive-models mohr-coulomb"): Full documentation
 
         When to use:
         - Need FLAC zone constitutive model property names
           (mohr-coulomb: young/poisson/cohesion/friction/...; cysoil; etc.)
           before a 'zone property' / 'zone cmodel assign' command
-        - Need contact model property names (kn, ks, fric, pb_*)
+        - Need 'zone face apply' boundary-condition keyword families
+          (stress-normal, velocity-x, reaction-*, ...) or gridpoint fixity
+        - Need structural-element property names
+          (cable, beam, pile, shell, geogrid, liner, link)
         - Need range filtering syntax (position, cylinder, group, id)
-        - Need plot item configuration (color-by, cut plane, transparency, legend)
-        - Setting up "contact cmat add model ... property ..." commands
-        - Using range filters in any FLAC command
-        - Configuring "plot item create" commands
+        - Need plot item configuration for zone/gridpoint/structure items
+          (color-by, cut plane, transparency, legend)
+        - Setting up initial conditions, histories, FISH intrinsics, interfaces,
+          imported geometry/data/tables, or sketch / building-blocks workflows
 
         Related tools:
-        - flac_browse_commands: Command syntax (e.g., "ball create")
+        - flac_browse_commands: Command syntax (e.g., "zone create")
         - flac_query_command: Search commands by keywords
         """
         topic_str = normalize_input(topic, lowercase=True)

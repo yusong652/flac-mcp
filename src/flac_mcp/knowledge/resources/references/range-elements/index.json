@@ -1,12 +1,12 @@
 {
   "type": "range_elements",
-  "description": "Range elements are filtering syntax used after the 'range' keyword in PFC commands. They select subsets of objects (balls, walls, contacts, etc.) based on geometric regions, attributes, or logical conditions.",
+  "description": "Range elements are filtering syntax used after the 'range' keyword in FLAC commands. They select subsets of model objects based on geometric regions, attributes, or logical conditions.",
   "usage_pattern": {
     "syntax": "<command> ... range <element1> [params] <element2> [params] ...",
     "examples": [
-      "ball delete range position-x 0 10",
-      "ball attribute density 2650 range group 'sample'",
-      "contact property fric 0.5 range cylinder end-1 0 0 0 end-2 0 0 10 radius 5"
+      "zone group 'core' range position-x 0 10 position-y 0 10",
+      "zone property density 2650 range group 'sample'",
+      "structure node fix velocity range cylinder end-1 0 0 0 end-2 0 0 10 radius 5"
     ],
     "notes": [
       "Multiple range elements create intersection (AND) by default",
@@ -40,13 +40,6 @@
         "id-list",
         "group",
         "named-range"
-      ]
-    },
-    "pfc_specific": {
-      "name": "PFC-Specific Elements",
-      "description": "Elements specific to PFC (balls, walls, contacts)",
-      "elements": [
-        "contact"
       ]
     },
     "user_defined": {
@@ -167,12 +160,6 @@
       "category": "attribute"
     },
     {
-      "name": "contact",
-      "file": "contact.json",
-      "short_description": "Filter contacts by activity state, gap distance, c...",
-      "category": "pfc_specific"
-    },
-    {
       "name": "extra",
       "file": "extra.json",
       "short_description": "Filter by extra variable value at specified index.",
@@ -217,28 +204,23 @@
   ],
   "common_patterns": [
     {
-      "name": "Delete in region",
-      "example": "ball delete range position-x 0 10 position-y 0 10",
-      "description": "Delete balls in XY rectangle"
+      "name": "Group zones in region",
+      "example": "zone group 'core' range position-x 0 10 position-y 0 10",
+      "description": "Assign a group to zones in an XY rectangle"
     },
     {
       "name": "Set property by group",
-      "example": "ball attribute density 2650 range group 'sample'",
-      "description": "Set density for balls in group"
+      "example": "zone property density 2650 range group 'sample'",
+      "description": "Set density for zones in a group"
     },
     {
-      "name": "Cylindrical confining",
-      "example": "wall attribute velocity (0.001,0,0) range cylinder end-1 0 0 0 end-2 0 0 10 radius 5",
-      "description": "Set wall velocity in cylindrical region"
-    },
-    {
-      "name": "Exclude boundary",
-      "example": "ball fix velocity range group 'boundary' not",
-      "description": "Fix all balls except boundary group"
+      "name": "Cylindrical structural-node range",
+      "example": "structure node fix velocity range cylinder end-1 0 0 0 end-2 0 0 10 radius 5",
+      "description": "Fix structural nodes in a cylindrical region"
     },
     {
       "name": "Named range reuse",
-      "example": "model range create 'core' cylinder end-1 0 0 0 end-2 0 0 10 radius 3\nball attribute density 2500 range named-range 'core'",
+      "example": "model range create 'core' cylinder end-1 0 0 0 end-2 0 0 10 radius 3\nzone property density 2500 range named-range 'core'",
       "description": "Create reusable named range"
     }
   ],
@@ -252,5 +234,5 @@
     "model range delete",
     "model range list"
   ],
-  "official_documentation": "https://docs.itascacg.com/pfc700/common/module/doc/manual/range_manual/range_commands/rangephrasereference.html"
+  "official_documentation": "https://docs.itascacg.com/flac3d900/common/module/doc/manual/range_manual/range_commands/rangephrasereference.html"
 }

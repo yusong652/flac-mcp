@@ -42,175 +42,148 @@
           "keyword": "friction",
           "symbol": "\\phi",
           "description": "friction angle, \\phi, The default value is 30 [in degrees]. The recommended input value is the critical-state friction angle rather than a higher value at small strains. Input of a zero value is not allowed.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "kappa-modified",
           "symbol": "\\kappa^*=\\kappa/(1+e)",
           "description": "modified swelling index, or slope of elastic swelling line, \\kappa^*=\\kappa/(1+e), where \\kappa is the swelling index in the Cam-Clay model, and e can be approximately the initial or average void ratio during a swelling path; or \\kappa^* \\approx [(1+2K_0)(1-\\nu)/(1+\\nu)] C_s/[(\\ln{10})(1+e)], where C_s is the 1-D swelling index, \\nu is the Poisson’s ratio and K_0 is the at-rest earth pressure coefficient. Typical value of C_s is C_s \\approx (1/5) \\sim (1/10) C_c. A good estimation is C_s \\approx PI(\\%)/370.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "lambda-modified",
           "symbol": "\\lambda^*=\\lambda/(1+e)",
           "description": "modified compression index, or slope of elastic compression line, \\lambda^*=\\lambda/(1+e), where \\lambda is the compression index in the Cam-Clay model, and e can be approximately the initial or average void ratio during a compression path; or \\lambda^*=C_c/[(\\ln{10})(1+e)], where C_c is the 1-D compression index. Typical value of C_c can be estimated (Terzaphi & Peck 1967) as C_c=0.009(LL-100) for normally consolidated clay where LL is the liquid limit. Based on the modified Cam-Clay model, it can estimated that C_c \\approx PI(\\%)/74, where PI is the plastic index.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "poisson",
           "symbol": "\\nu",
           "description": "Poisson’s ratio, \\nu, The default value is 0.15.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "stress-1-effective",
           "symbol": "\\sigma^0_1",
           "description": "initial minimum effective principal stress, \\sigma^0_1. Only for calculation of the initial moduli, will not be update once assigned.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "stress-2-effective",
           "symbol": "\\sigma^0_2",
           "description": "initial median effective principal stress, \\sigma^0_2. Only for calculation of the initial moduli, will not be update once assigned.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "stress-3-effective",
           "symbol": "\\sigma^0_3",
           "description": "initial maximum effective principal stress, \\sigma^0_3. Only for calculation of the initial moduli, will not be update once assigned.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "coefficient-normally-consolidation",
           "symbol": "K_{nc}",
           "description": "normal consolidation coefficient, K_{nc}. It is not allowed to be less than \\nu / (1-\\nu), a range 0.5 to 0.7 is common. The default is K_{nc} = 1 - \\sin \\phi.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "cohesion",
           "symbol": "c",
           "description": "effective cohesion, c. The default value is 0. Remember that this model is mainly for normally consolidated or slightly over-consolidated soft soils, so c should be zero or a small value, and a large value may be not realistic.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "dilation",
           "symbol": "\\psi",
           "description": "dilation angle, \\psi. The default value is 0 [in degrees]. The zero dilation angle is the standard setting in the SS model.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "flag-brittle",
-          "symbol": "",
           "description": "If true, the tension limit is set to 0 in the event of tensile failure. The default is false.",
-          "type": "BOOL",
-          "default": ""
+          "type": "BOOL"
         },
         {
           "keyword": "over-consolidation-ratio",
           "symbol": "OCR",
           "description": "over consolidation ratio, OCR. The default is 1.0, which corresponds to the normally consolidated soils. The input OCR will be used to determine the initial cap pressure so that p_{c}^0=OCR \\times p_{eq}^0. OCR will be updated during calculation.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "pressure-cutoff",
           "symbol": "p_{cut}",
           "description": "cut-off pressure for cap pressure, p_{cut}. The default value is 1.0 (of the stress unit used in the model). This is the lower-bound of the cap pressure. The actual minimum cap pressure used in the model is max(p_{cut}, c\\cot{\\phi}).",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "ratio-radius",
           "symbol": "M^*",
           "description": "parameter M^*, if not assigned a positive value, it will be calculated internally.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "tension",
           "symbol": "\\sigma^t",
           "description": "tensile strength, \\sigma^t. The default value is 0, which is for most cases.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "void-initial",
           "symbol": "e_{ini}",
           "description": "initial void ratio, e_{ini}. The default is 1.0.",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "bulk",
           "symbol": "K",
           "description": "current elastic bulk modulus, K",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "pressure-cap",
           "symbol": "p_c",
           "description": "current cap (apparent pre-consolidation) pressure, p_c",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "pressure-effective",
           "symbol": "p",
           "description": "current effective pressure, p",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "pressure-equivalent",
           "symbol": "p_{eq}",
           "description": "current equivalent pressure, p_{eq}",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "shear",
           "symbol": "G",
           "description": "current elastic shear modulus, G",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "strain-volume-plastic",
           "symbol": "\\epsilon_v^p",
           "description": "accumulated plastic volumetric strain, \\epsilon_v^p",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "stress-deviatoric-equivalent",
           "symbol": "\\tilde{q}",
           "description": "current equivalent deviatoric stress, \\tilde{q}",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "void",
           "symbol": "e",
           "description": "current void ratio, e",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         }
       ]
     }
   ],
-  "typical_applications": [],
-  "notes": [],
   "source": "https://docs.itascacg.com/itasca900/common/models/softsoil/doc/modelsoftsoil.html",
   "usage": {
     "assign": "zone cmodel assign soft-soil [range ...]",

@@ -1,50 +1,45 @@
 {
   "type": "plot_item_keywords",
-  "description": "Configuration keywords for plot item types created via 'plot item create <type>'. These keywords are appended after the item type to control appearance, coloring, clipping, and legend.",
-
+  "description": "Configuration keywords for FLAC plot item types created via 'plot item create <type>'. Item types and their keyword sets are binary-validated against FLAC2D 9.0.",
   "usage_context": "plot item create <type> <keyword> <keyword> ...",
-
   "items": [
     {
-      "name": "ball",
-      "file": "ball.json",
-      "description": "Ball (particle) visualization with coloring by attribute, arrow shape, and cut planes",
-      "common_use": "Visualize particles colored by velocity, displacement, force, group, etc."
+      "name": "zone",
+      "file": "zone/index.json",
+      "description": "Continuum zone visualization. Use 'contour <attribute>' for scalar/vector field maps, 'label <type>' for categorical labeling (group/state/model/property), and 'color <Color>' for flat coloring.",
+      "common_use": "Visualize continuum grid results: stress, displacement, pore pressure, temperature, model state, groups."
     },
     {
-      "name": "wall",
-      "file": "wall.json",
-      "description": "Wall visualization with transparency, coloring, and cut planes",
-      "common_use": "Visualize boundaries with adjustable transparency and coloring"
+      "name": "gridpoint-fix",
+      "file": "gridpoint-fix/index.json",
+      "description": "Gridpoint fix-condition markers (velocity, pore-pressure, temperature fixity).",
+      "common_use": "Show where boundary fixities are applied. For gridpoint field values (displacement, velocity, pp, temperature) use 'plot item create zone contour <attribute>' instead — zone contour interpolates from gridpoint data."
     },
     {
-      "name": "clump",
-      "file": "clump.json",
-      "description": "Clump (rigid cluster) visualization with coloring by attribute, arrow shape, transparency, and cut planes",
-      "common_use": "Visualize clumps colored by velocity, displacement, volume, group, etc."
-    },
-    {
-      "name": "contact",
-      "file": "contact.json",
-      "description": "Contact visualization with force scaling, property coloring, and cut planes",
-      "common_use": "Visualize contact forces, types, or model properties"
-    },
-    {
-      "name": "rblock",
-      "file": "rblock.json",
-      "description": "Rigid block visualization with coloring by attribute, cut planes, and legend display",
-      "common_use": "Visualize rigid blocks colored by velocity, displacement, volume, group, etc."
+      "name": "structure",
+      "file": "structure/index.json",
+      "description": "Structural-element visualization. Types: structure-beam, structure-cable, structure-liner, structure-pile (beam-family — share keyword set), structure-vector (vector field at nodes).",
+      "common_use": "Visualize structural-element groups, forces/moments/axial via 'contour <attribute>', categorical via 'label <type>'."
     }
   ],
-
   "shared_keywords": {
-    "description": "Keywords common to most plot item types",
-    "list": ["active", "color-by", "color-options", "cut", "legend"]
+    "description": "Top-level keywords accepted by most FLAC plot item types (validated against FLAC2D 9.0).",
+    "list": [
+      "active",
+      "color-list",
+      "contour",
+      "deformation-factor",
+      "hide-null",
+      "label",
+      "legend",
+      "map",
+      "range"
+    ]
   },
-
   "notes": [
-    "Keywords are appended directly after 'plot item create <type>'",
-    "Multiple keywords can be combined in a single command",
-    "These keywords are not officially documented; derived from working patterns"
+    "Plot-item keywords are appended after the item type.",
+    "Some compound settings are easier to apply with 'plot item modify <id> ...' after creating the item.",
+    "Probe the binary live with 'plot item create <type> ?' to see the full keyword set for any type, and 'plot item create <type> <kw> ?' to drill into a keyword.",
+    "Other plot item types (zone-vector, zone-tensor, zone-face, pp-fix, struct-node-fix, etc.) are accepted by FLAC2D 9.0 but not yet documented here."
   ]
 }

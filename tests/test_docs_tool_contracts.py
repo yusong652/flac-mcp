@@ -28,8 +28,7 @@ async def test_browse_commands_root_contract() -> None:
     assert isinstance(data["entries"], list)
     assert data["summary"]["count"] >= 1
     assert data["summary"]["total_commands"] >= 1
-    # flac-mcp targets ITASCA 9.0; the command tools default to 9.0
-    # (legacy PFC remains reachable via explicit version=7.0/6.0).
+    # flac-mcp targets ITASCA 9.0; the command tools default to 9.0.
     assert data["summary"]["version"] == "9.0"
 
 
@@ -37,7 +36,7 @@ async def test_browse_commands_root_contract() -> None:
 async def test_browse_commands_not_found_contract() -> None:
     result = await mcp._tool_manager.call_tool(
         "flac_browse_commands",
-        {"command": "ball not_a_real_command"},
+        {"command": "zone not_a_real_command"},
     )
     payload = _parse_tool_payload(result)
 
@@ -45,7 +44,7 @@ async def test_browse_commands_not_found_contract() -> None:
     assert payload["error"]["code"] == "command_not_found"
     details = payload["error"].get("details") or {}
     assert details["source"] == "commands"
-    assert details["input"]["category"] == "ball"
+    assert details["input"]["category"] == "zone"
     assert details["input"]["command"] == "not_a_real_command"
     assert isinstance(details.get("available_commands"), list)
 
@@ -54,7 +53,7 @@ async def test_browse_commands_not_found_contract() -> None:
 async def test_query_command_contract() -> None:
     result = await mcp._tool_manager.call_tool(
         "flac_query_command",
-        {"query": "ball create", "limit": 5},
+        {"query": "zone create", "limit": 5},
     )
     payload = _parse_tool_payload(result)
     data = payload["data"]
@@ -73,7 +72,7 @@ async def test_query_command_contract() -> None:
 async def test_browse_commands_versioned_contract() -> None:
     result = await mcp._tool_manager.call_tool(
         "flac_browse_commands",
-        {"command": "brick assemble", "version": "6.0"},
+        {"command": "model new", "version": "6.0"},
     )
     payload = _parse_tool_payload(result)
     data = payload["data"]
@@ -81,14 +80,14 @@ async def test_browse_commands_versioned_contract() -> None:
     assert payload["ok"] is True
     assert data["summary"]["version"] == "6.0"
     doc = data["entries"][0]["doc"]
-    assert doc["syntax"] == "brick assemble keyword [range]"
+    assert doc["syntax"] == "model new [force]"
 
 
 @pytest.mark.asyncio
 async def test_browse_category_filters_unavailable_commands_by_version() -> None:
     result = await mcp._tool_manager.call_tool(
         "flac_browse_commands",
-        {"command": "ball", "version": "6.0"},
+        {"command": "model", "version": "6.0"},
     )
     payload = _parse_tool_payload(result)
     data = payload["data"]
@@ -96,14 +95,14 @@ async def test_browse_category_filters_unavailable_commands_by_version() -> None
 
     assert payload["ok"] is True
     assert data["summary"]["version"] == "6.0"
-    assert "accumulate-stress" not in names
+    assert "new" in names
 
 
 @pytest.mark.asyncio
 async def test_query_command_versioned_contract() -> None:
     result = await mcp._tool_manager.call_tool(
         "flac_query_command",
-        {"query": "brick assemble", "limit": 5, "version": "6.0"},
+        {"query": "model new", "limit": 5, "version": "6.0"},
     )
     payload = _parse_tool_payload(result)
     data = payload["data"]
@@ -111,7 +110,7 @@ async def test_query_command_versioned_contract() -> None:
     assert payload["ok"] is True
     assert data["summary"]["version"] == "6.0"
     assert len(data["entries"]) >= 1
-    assert data["entries"][0]["syntax"] == "brick assemble keyword [range]"
+    assert data["entries"][0]["syntax"] == "model new [force]"
 
 
 @pytest.mark.asyncio
@@ -130,9 +129,12 @@ async def test_browse_python_api_root_contract() -> None:
 
 @pytest.mark.asyncio
 async def test_query_python_api_no_results_contract() -> None:
+    # Query must avoid technical single chars (x/y/z/r/n/t) and English word
+    # stems — the BM25 partial matcher otherwise hits substrings like "z" or
+    # "defin" via prefix/substring rules in keyword_matcher.find_partial_matches.
     result = await mcp._tool_manager.call_tool(
         "flac_query_python_api",
-        {"query": "definitelynonexistentkeyword", "limit": 5},
+        {"query": "qqwbflkmp", "limit": 5},
     )
     payload = _parse_tool_payload(result)
     data = payload["data"]

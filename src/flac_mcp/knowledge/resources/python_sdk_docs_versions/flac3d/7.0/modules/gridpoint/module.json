@@ -1,0 +1,48 @@
+{
+  "module": "itasca.gridpoint",
+  "description": "Functions and classes for working with FLAC3D gridpoints.",
+  "import_statement": "import itasca",
+  "source_url": "https://docs.itascacg.com/flac3d700/common/docproject/source/manual/scripting/python/doc/itasca.gridpoint.html",
+  "functions": [
+    {
+      "name": "count",
+      "signature": "itasca.gridpoint. count ( ) → int.",
+      "description": "Get the number of gridpoints.",
+      "returns": {
+        "type": "int."
+      }
+    },
+    {
+      "name": "find",
+      "signature": "itasca.gridpoint. find ( id: int ) → Gridpoint object.",
+      "description": "Get the gridpoint object with the given ID number.",
+      "returns": {
+        "type": "Gridpoint object."
+      }
+    },
+    {
+      "name": "list",
+      "signature": "itasca.gridpoint. list ( ) → Gridpoint iterator object.",
+      "description": "Get a gridpoint iterator object.",
+      "returns": {
+        "type": "Gridpoint iterator object."
+      }
+    },
+    {
+      "name": "maxid",
+      "signature": "itasca.gridpoint. maxid ( ) → int.",
+      "description": "Get the maximum gridpoint ID.",
+      "returns": {
+        "type": "int."
+      }
+    },
+    {
+      "name": "near",
+      "signature": "itasca.gridpoint. near ( point: vec ) → Gridpoint object.",
+      "description": "Find the closest gridpoint to a point.",
+      "returns": {
+        "type": "Gridpoint object."
+      }
+    }
+  ]
+}

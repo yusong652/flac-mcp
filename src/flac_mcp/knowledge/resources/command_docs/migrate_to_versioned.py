@@ -2,7 +2,7 @@
 """Migrate command JSON files from flat schema to versioned schema.
 
 Moves version-specific fields (command, syntax, keywords, examples) into
-a "versions" dict keyed by PFC version string. All other fields remain
+a "versions" dict keyed by FLAC version string. All other fields remain
 at the top level.
 
 Usage:
