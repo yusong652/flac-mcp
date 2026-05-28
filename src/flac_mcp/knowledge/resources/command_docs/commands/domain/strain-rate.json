@@ -18,12 +18,12 @@
       "target_version": "6.0"
     },
     "7.0": {
-      "command": "domain.strain-rate",
-      "syntax": "domain strain-rate <v>"
+      "command": "model domain strain-rate",
+      "syntax": "model domain strain-rate <v>"
     },
     "9.0": {
-      "command": "domain.strain-rate",
-      "syntax": "domain strain-rate <v>"
+      "command": "model domain strain-rate",
+      "syntax": "model domain strain-rate <v>"
     }
   }
 }

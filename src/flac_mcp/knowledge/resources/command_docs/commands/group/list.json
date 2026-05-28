@@ -9,15 +9,15 @@
   },
   "versions": {
     "6.0": {
-      "command": "group.list",
+      "command": "group list",
       "syntax": "group list"
     },
     "7.0": {
-      "command": "group.list",
+      "command": "group list",
       "syntax": "group list"
     },
     "9.0": {
-      "command": "group.list",
+      "command": "group list",
       "syntax": "group list"
     }
   }

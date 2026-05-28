@@ -18,12 +18,12 @@
       "target_version": "6.0"
     },
     "7.0": {
-      "command": "domain.extent",
-      "syntax": "domain extent <fxl><fxu>[<fyl><fyu><fzl><fzu>]"
+      "command": "model domain extent",
+      "syntax": "model domain extent <fxl><fxu>[<fyl><fyu><fzl><fzu>]"
     },
     "9.0": {
-      "command": "domain.extent",
-      "syntax": "domain extent <fxl><fxu>[<fyl><fyu><fzl><fzu>]"
+      "command": "model domain extent",
+      "syntax": "model domain extent <fxl><fxu>[<fyl><fyu><fzl><fzu>]"
     }
   }
 }
