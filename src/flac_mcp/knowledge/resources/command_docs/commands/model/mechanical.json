@@ -288,8 +288,8 @@
           "command": "model mechanical timestep update 10"
         },
         {
-          "command": "model mechanical slave on\nmodel mechanical substep 1000",
-          "description": "Set mechanical mode as slave with max 1000 substeps"
+          "command": "model mechanical follower on\nmodel mechanical substep 1000",
+          "description": "Set mechanical mode as follower with max 1000 substeps"
         },
         {
           "command": "model mechanical timestep automatic\nmodel mechanical timestep safety-factor 0.8\nmodel mechanical timestep maximum 1e-4",
