@@ -9,19 +9,16 @@
   },
   "versions": {
     "6.0": {
-      "command": "group.rename",
-      "syntax": "group rename <sold><snew>",
-      "keywords": []
+      "command": "group rename",
+      "syntax": "group rename <sold><snew>"
     },
     "7.0": {
-      "command": "group.rename",
-      "syntax": "group rename <sold><snew>",
-      "keywords": []
+      "command": "group rename",
+      "syntax": "group rename <sold><snew>"
     },
     "9.0": {
-      "command": "group.rename",
-      "syntax": "group rename <sold><snew>",
-      "keywords": []
+      "command": "group rename",
+      "syntax": "group rename <sold><snew>"
     }
   }
 }

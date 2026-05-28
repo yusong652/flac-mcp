@@ -25,7 +25,7 @@
         {
           "name": "principal",
           "syntax": "principal <vprin><vmax><vint>",
-          "description": "Assign the tensor from the principal axes. Vector vprin is the principal stress magnitudes in maximum, intermediate, and minimum order. [CS: this doc needs to be added for pfc ](See ref-stresssignconventions-.) Vector vmax is the direction of the maximum principal stress, and vector vint is the direction of the intermediate principal stress."
+          "description": "Assign the tensor from the principal axes. Vector vprin is the principal stress magnitudes in maximum, intermediate, and minimum order. Vector vmax is the direction of the maximum principal stress, and vector vint is the direction of the intermediate principal stress."
         },
         {
           "name": "value",
@@ -51,7 +51,7 @@
         {
           "name": "principal",
           "syntax": "principal <vprin><vmax><vint>",
-          "description": "Assign the tensor from the principal axes. Vector vprin is the principal stress magnitudes in maximum, intermediate, and minimum order. [CS: this doc needs to be added for pfc ](See ref-stresssignconventions-.) Vector vmax is the direction of the maximum principal stress, and vector vint is the direction of the intermediate principal stress."
+          "description": "Assign the tensor from the principal axes. Vector vprin is the principal stress magnitudes in maximum, intermediate, and minimum order. Vector vmax is the direction of the maximum principal stress, and vector vint is the direction of the intermediate principal stress."
         },
         {
           "name": "value",
@@ -77,7 +77,7 @@
         {
           "name": "principal",
           "syntax": "principal <vprin><vmax><vint>",
-          "description": "Assign the tensor from the principal axes. Vector vprin is the principal stress magnitudes in maximum, intermediate, and minimum order. [CS: this doc needs to be added for pfc ](See ref-stresssignconventions-.) Vector vmax is the direction of the maximum principal stress, and vector vint is the direction of the intermediate principal stress."
+          "description": "Assign the tensor from the principal axes. Vector vprin is the principal stress magnitudes in maximum, intermediate, and minimum order. Vector vmax is the direction of the maximum principal stress, and vector vint is the direction of the intermediate principal stress."
         },
         {
           "name": "value",

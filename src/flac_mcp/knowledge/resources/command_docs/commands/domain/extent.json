@@ -12,14 +12,12 @@
       "available": false
     },
     "7.0": {
-      "command": "domain.extent",
-      "syntax": "domain extent <fxl><fxu>[<fyl><fyu><fzl><fzu>]",
-      "keywords": []
+      "command": "model domain extent",
+      "syntax": "model domain extent <fxl><fxu>[<fyl><fyu><fzl><fzu>]"
     },
     "9.0": {
-      "command": "domain.extent",
-      "syntax": "domain extent <fxl><fxu>[<fyl><fyu><fzl><fzu>]",
-      "keywords": []
+      "command": "model domain extent",
+      "syntax": "model domain extent <fxl><fxu>[<fyl><fyu><fzl><fzu>]"
     }
   }
 }

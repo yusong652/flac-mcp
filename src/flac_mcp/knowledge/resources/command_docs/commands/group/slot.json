@@ -9,7 +9,7 @@
   },
   "versions": {
     "6.0": {
-      "command": "group.slot",
+      "command": "group slot",
       "syntax": "group slot keyword",
       "keywords": [
         {
@@ -25,7 +25,7 @@
       ]
     },
     "7.0": {
-      "command": "group.slot",
+      "command": "group slot",
       "syntax": "group slot keyword",
       "keywords": [
         {
@@ -41,7 +41,7 @@
       ]
     },
     "9.0": {
-      "command": "group.slot",
+      "command": "group slot",
       "syntax": "group slot keyword",
       "keywords": [
         {

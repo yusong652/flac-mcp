@@ -12,14 +12,12 @@
       "available": false
     },
     "7.0": {
-      "command": "domain.condition",
-      "syntax": "domain condition <sx>[<sy><sz>] <sz>",
-      "keywords": []
+      "command": "model domain condition",
+      "syntax": "model domain condition <sx>[<sy><sz>] <sz>"
     },
     "9.0": {
-      "command": "domain.condition",
-      "syntax": "domain condition <sx>[<sy><sz>] <sz>is 3D only",
-      "keywords": []
+      "command": "model domain condition",
+      "syntax": "model domain condition <sx>[<sy><sz>] <sz>is 3D only"
     }
   }
 }
