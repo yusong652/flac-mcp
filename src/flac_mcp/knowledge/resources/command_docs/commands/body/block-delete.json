@@ -13,8 +13,7 @@
     "9.0": {
       "command": "building-blocks block delete",
       "syntax": "building-blocks block delete [range]",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

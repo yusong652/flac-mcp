@@ -4,29 +4,24 @@
     "tensor-import"
   ],
   "description": "Import tensors from file s . The extension tensor is added if one is not provided. The file format (text or binary) is determined by opening the file and looking for the appropriate header. If the proper header is not found, an error is indicated and no data imported.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
       "command": "data tensor import",
       "syntax": "data tensor import <s>[group <s>[slot <s>]]",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     },
     "7.0": {
       "command": "data tensor import",
       "syntax": "data tensor import <s>[group <s>[slot <s>]]",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     },
     "9.0": {
       "command": "data tensor import",
       "syntax": "data tensor import <s>[group <s>[slot <s>]]",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

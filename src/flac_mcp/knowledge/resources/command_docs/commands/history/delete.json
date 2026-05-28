@@ -4,17 +4,14 @@
     "delete"
   ],
   "description": "All history traces are deleted.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
       "command": "history delete",
       "syntax": "history delete",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     },
     "7.0": {
       "command": "history delete",
@@ -24,8 +21,7 @@
     "9.0": {
       "command": "history delete",
       "syntax": "history delete",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

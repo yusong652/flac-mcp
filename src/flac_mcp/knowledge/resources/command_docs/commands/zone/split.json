@@ -23,8 +23,7 @@
           "syntax": "merge <b>",
           "description": "If set to off , new gridpoints created will not be automatically merged with existing gridpoints. The default is on ."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

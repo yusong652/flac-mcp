@@ -15,8 +15,7 @@
     "9.0": {
       "command": "building-blocks set validate-all",
       "syntax": "building-blocks set validate-all",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

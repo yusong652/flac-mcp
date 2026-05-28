@@ -39,8 +39,7 @@
           "syntax": "global",
           "description": "set the coordinate system in which the force and moment vectors are expressed. The default system is global. If the system is set to local, then in large-strain mode, the force and moment vectors will remain aligned with the local system as it rotates."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

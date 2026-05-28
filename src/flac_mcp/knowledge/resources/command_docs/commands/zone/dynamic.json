@@ -48,8 +48,7 @@
           "syntax": "time-total <f>",
           "description": "Specify the accumulated zone dynamic time, defined as the sum of all the timesteps over which zone dynamic mode is active. Once set, dynamic time will continue to accumulate with subsequent cycles. [DR: please check that all the “see —-” links on this page land where they should]"
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

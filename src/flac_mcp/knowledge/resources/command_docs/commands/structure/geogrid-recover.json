@@ -29,8 +29,7 @@
           "syntax": "surface <v>",
           "description": "The vector v enables a surface coordinate system to be generated for all nodes used by the elements in the optional range. The surface coordinate system, \\(x'y'z'\\) , has the following properties: 1) \\(z'\\) is normal to the surface; 2) \\(x'\\) is the projection of the given vector onto the surface; and 3) \\(y' = z' \\times x'\\) . The \\(z'\\) -direction is found at each node by taking the average normal direction of all elements in the range that use the node. If surface v is aligned with \\(z'\\) at any node, then processing stops and an error message is displayed. To proceed, designate a different v , or restrict the range of elements considered. The surface system at a node automatically becomes invalid under the following conditions: 1) large-strain update; or 2) creation or deletion of a element that uses the node. Validity must be re-established with the command structure geogrid recover surface . The surface coordinate system can be listed with the command structure node list system-surface and queried and set with the FISH function struct.node.system.surface . It can be visualized with the Shell plot item by choosing the System attribute called Surface."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

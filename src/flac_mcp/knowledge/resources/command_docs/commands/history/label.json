@@ -4,10 +4,8 @@
     "label"
   ],
   "description": "Assigns a label sl to history sn . During plotting, this label will appear instead of the default label. If you wish to use the original label again, assign an empty string (“ ”).",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -21,8 +19,7 @@
     "9.0": {
       "command": "history label",
       "syntax": "history label <sl>name <sn>",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

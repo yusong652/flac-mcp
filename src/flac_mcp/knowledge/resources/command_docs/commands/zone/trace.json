@@ -28,8 +28,7 @@
           "syntax": "position <v>",
           "description": "Add a trace at position v , which must fall in or on some zone."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

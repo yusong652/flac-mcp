@@ -4,17 +4,14 @@
     "automatic-create"
   ],
   "description": "Set the FISH symbol automatic creation status. If true, new global variables are created when unrecognized strings (that are valid possible symbol names) are found during code interpretation of FISH expressions. Otherwise, all variables must be declared using local and global keywords in FISH . By default, automatic creation is on .",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
       "command": "fish automatic-create",
       "syntax": "fish automatic-create <b>",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     },
     "7.0": {
       "command": "fish automatic-create",
@@ -24,8 +21,7 @@
     "9.0": {
       "command": "fish automatic-create",
       "syntax": "fish automatic-create <b>",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

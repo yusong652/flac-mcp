@@ -4,10 +4,8 @@
     "debug"
   ],
   "description": "Launch the FISH function s in debug mode. Debugging is discussed FISH Debugging . [CS: given its prevalence in the below, a introduction/definition of the term pseudo-code (or possibly a glossary entry for it) might be nice]",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -59,8 +57,7 @@
           "syntax": "run",
           "description": "Continue execution until a breakpoint is reached, or until the original function ends."
         }
-      ],
-      "examples": []
+      ]
     },
     "7.0": {
       "command": "fish debug",
@@ -162,8 +159,7 @@
           "syntax": "run",
           "description": "Continue execution until a breakpoint is reached, or until the original function ends."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

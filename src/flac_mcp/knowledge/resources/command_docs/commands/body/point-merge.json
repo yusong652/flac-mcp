@@ -13,8 +13,7 @@
     "9.0": {
       "command": "building-blocks point merge",
       "syntax": "building-blocks point merge <i1><i2>",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

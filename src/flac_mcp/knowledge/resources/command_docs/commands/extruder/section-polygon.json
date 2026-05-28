@@ -24,8 +24,7 @@
           "syntax": "control-point <v1><v2>...",
           "description": "List of control-point positions on the polygon."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

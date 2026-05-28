@@ -39,8 +39,7 @@
           "syntax": "polyline",
           "description": "Specify the curve-type of the edge. Specify an arc edge. An arc may have one control point only. Specify a spline edge. Specify a polyline edge (this is the default type )."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

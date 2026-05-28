@@ -184,8 +184,7 @@
           "syntax": "yield-tension <f>",
           "description": "axial tensile yield strength (force unit, only active if rockbolt-flag is on )"
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

@@ -15,8 +15,7 @@
     "9.0": {
       "command": "sketch segment size-default",
       "syntax": "sketch segment size-default <i>",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

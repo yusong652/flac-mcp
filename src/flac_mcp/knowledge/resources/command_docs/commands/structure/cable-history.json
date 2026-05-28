@@ -64,8 +64,7 @@
           "syntax": "position <v>",
           "description": "the particular element is identified by ( v ) coordinates (the nearest element is taken). If this keyword is used, component-id should not be used."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

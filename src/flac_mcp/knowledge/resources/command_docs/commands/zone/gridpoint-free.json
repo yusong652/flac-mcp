@@ -94,8 +94,7 @@
           "syntax": "well",
           "description": "Frees an applied fluid source."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

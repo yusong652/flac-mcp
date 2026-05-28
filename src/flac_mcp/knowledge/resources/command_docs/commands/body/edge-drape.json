@@ -29,8 +29,7 @@
           "syntax": "direction <v>",
           "description": "Set the beam-line as a constant direction vector v ."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

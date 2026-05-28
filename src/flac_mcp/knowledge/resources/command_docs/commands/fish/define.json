@@ -4,17 +4,14 @@
     "define"
   ],
   "description": "Define a new FISH function. The function will be named s , and must be a valid symbol name. Tokens following are assumed to be arguments that the function will take. Please see FISH Scripting Reference . [CS: this needs ‘common-izing for use with PFC] and the ref-basicclifishtutorial.`",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
       "command": "fish define",
       "syntax": "fish define <s>...",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     },
     "7.0": {
       "command": "fish define",
@@ -24,8 +21,7 @@
     "9.0": {
       "command": "fish define",
       "syntax": "fish define <s>...",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

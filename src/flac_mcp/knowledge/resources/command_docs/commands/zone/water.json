@@ -38,8 +38,7 @@
           "syntax": "table keyword [range]",
           "description": "Specify a water table by coordinates. For 2D, it is a table by (x,y) pairs. For 3D, it is a table by (x,z) pairs which will extrude along y-direction."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

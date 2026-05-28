@@ -15,8 +15,7 @@
     "9.0": {
       "command": "sketch mesh target-size",
       "syntax": "sketch mesh target-size <f>",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

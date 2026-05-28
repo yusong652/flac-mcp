@@ -13,8 +13,7 @@
     "9.0": {
       "command": "sketch mesh gradation",
       "syntax": "sketch mesh gradation <f>",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

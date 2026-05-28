@@ -39,8 +39,7 @@
           "syntax": "use-hidden-zones <b>",
           "description": "Include faces that are on currently hidden zones if they are within the range. By default this values is off ."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

@@ -39,8 +39,7 @@
           "syntax": "nodes",
           "description": "IDs for the nodes of the edge(s) are listed."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

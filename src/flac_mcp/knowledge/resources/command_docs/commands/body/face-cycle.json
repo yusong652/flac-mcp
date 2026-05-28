@@ -13,8 +13,7 @@
     "9.0": {
       "command": "building-blocks face cycle",
       "syntax": "building-blocks face cycle [range]",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

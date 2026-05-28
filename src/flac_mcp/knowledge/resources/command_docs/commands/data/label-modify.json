@@ -4,10 +4,8 @@
     "label-modify"
   ],
   "description": "Modify an existing label. The keyword name must be used to identify the existing label to be modified.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -39,8 +37,7 @@
           "syntax": "text <s>",
           "description": "Sets the label’s text to be s . This text will be output to the screen at the location defined by v1 ."
         }
-      ],
-      "examples": []
+      ]
     },
     "7.0": {
       "command": "data label modify",
@@ -71,8 +68,7 @@
           "syntax": "text <s>",
           "description": "Sets the label’s text to be s . This text will be output to the screen at the location defined by v1 ."
         }
-      ],
-      "examples": []
+      ]
     },
     "9.0": {
       "command": "data label modify",
@@ -103,8 +99,7 @@
           "syntax": "text <s>",
           "description": "Sets the label’s text to be s . This text will be output to the screen at the location defined by v1 ."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

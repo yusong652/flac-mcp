@@ -13,8 +13,7 @@
     "9.0": {
       "command": "zone interface permeability",
       "syntax": "zone interface [<s>] permeability <b>[range]",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

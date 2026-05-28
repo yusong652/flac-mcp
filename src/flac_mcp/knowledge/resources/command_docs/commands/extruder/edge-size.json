@@ -13,8 +13,7 @@
     "9.0": {
       "command": "sketch edge size",
       "syntax": "sketch edge size <i>[range]",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

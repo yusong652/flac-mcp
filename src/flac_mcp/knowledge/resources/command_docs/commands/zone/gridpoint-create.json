@@ -24,8 +24,7 @@
           "syntax": "name <s>",
           "description": "The created gridpoint is assigned the name s , for later reference. This name can be used with the point keyword of the zone create (3D) or zone create2d command so that gridpoints can be created ahead of time to mark key points in space. Note that this name is distinct from any and all group assignments that can be made to the gridpoint."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

@@ -39,8 +39,7 @@
           "syntax": "scale-pressure <f>",
           "description": "Scale the pore pressure by multiplying by the scalar f. This scaler operation is performed after the cuttoff operation. The default value is 1.0 ."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

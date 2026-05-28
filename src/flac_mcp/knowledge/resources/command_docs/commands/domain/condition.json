@@ -4,10 +4,8 @@
     "condition"
   ],
   "description": "Set the domain boundary conditions.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -16,14 +14,12 @@
     "7.0": {
       "command": "domain.condition",
       "syntax": "domain condition <sx>[<sy><sz>] <sz>",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     },
     "9.0": {
       "command": "domain.condition",
       "syntax": "domain condition <sx>[<sy><sz>] <sz>is 3D only",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

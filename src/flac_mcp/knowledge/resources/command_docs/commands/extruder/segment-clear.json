@@ -13,8 +13,7 @@
     "9.0": {
       "command": "sketch segment clear",
       "syntax": "sketch segment clear",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

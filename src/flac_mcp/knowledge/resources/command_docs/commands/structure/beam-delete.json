@@ -13,8 +13,7 @@
     "9.0": {
       "command": "structure beam delete",
       "syntax": "structure beam delete [range]",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

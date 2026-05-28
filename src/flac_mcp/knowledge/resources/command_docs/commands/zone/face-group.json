@@ -34,8 +34,7 @@
           "syntax": "thermal",
           "description": "If specified, then the range looks only at surface faces. Zones with a non-null fluid model are scanned to determine the surface faces. Zones with a non-null mechanical model are scanned to determine the surface faces. By default, if more than one mechanical , thermal or fluid keyword is given, then the zone needs to have all of those conditions to determine a surface face. In other words, if both mechanical and thermal were given, then if the zone had a non-null mechanical model and a null thermal model it would be considered outside the surface. If the or keyword is given, then it is considered inside the surface if any of those conditions has a non-null model. Zones with a non-null thermal model are scanned to determine the surface faces. Applies only if internal is not specified."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

@@ -24,8 +24,7 @@
           "syntax": "remove",
           "description": "Remove all nodes in the range from the group named s . If no slot is specified, then that group will be removed from all slots in which it is found."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

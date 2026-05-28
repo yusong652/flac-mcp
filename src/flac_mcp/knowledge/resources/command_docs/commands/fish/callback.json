@@ -4,10 +4,8 @@
     "callback"
   ],
   "description": "Add/remove functions to be executed in response to callback events.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
@@ -24,8 +22,7 @@
           "syntax": "event <s>",
           "description": "Removes a FISH function callback. If no further keywords are specified, the function will be removed wherever it is found. The first callback found at location f in the cycle is removed. If the function has been entered multiple times only one entry will be removed. The first callback found associated with the event s is removed. If the function has been entered multiple times only one entry will be removed."
         }
-      ],
-      "examples": []
+      ]
     },
     "7.0": {
       "command": "fish callback",
@@ -662,8 +659,7 @@
           "syntax": "zone_update_complete",
           "description": "Just after zone geometry update. Done at the start of cycling and in large strain mode every update interval."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

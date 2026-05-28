@@ -39,8 +39,7 @@
           "syntax": "rayleigh <f1><f2>",
           "description": "Rayleigh damping (see Rayleigh Damping ) for all nodes in the range. The stiffness-proportional constant is f1 = beta , and the mass-proportional constant is f2 = alpha . This command must be issued when the dynamic option is configured and turned on."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

@@ -44,8 +44,7 @@
           "syntax": "curve represented by a B-spline",
           "description": "Specify the curve type of the segment. This is the default type (a line)."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

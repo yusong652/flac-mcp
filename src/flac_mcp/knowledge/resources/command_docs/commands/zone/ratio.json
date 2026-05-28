@@ -33,8 +33,7 @@
           "syntax": "convergence",
           "description": "The ratio is defined as the maximum convergence of all the gridpoints in the model, with the convergence of a gridpoint defined as the local ratio divided by the target ratio . The ratio used is scaled by 1e-5 to make it mean approximately the same as average . For the zone thermal process this criteria is the same as local ."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

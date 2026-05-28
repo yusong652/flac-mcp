@@ -18,8 +18,7 @@
           "syntax": "binary",
           "description": "Set exported grid file to binary-format instead of ASCII-format."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

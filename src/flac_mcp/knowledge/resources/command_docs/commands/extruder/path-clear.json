@@ -13,8 +13,7 @@
     "9.0": {
       "command": "sketch path clear",
       "syntax": "sketch path clear keyword",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

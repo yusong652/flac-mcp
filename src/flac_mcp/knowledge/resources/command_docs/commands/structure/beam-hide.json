@@ -24,8 +24,7 @@
           "syntax": "undo",
           "description": "Reverse the operation of the last structure beam hide command. FLAC3D keeps a maximum undo stack of size 12."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

@@ -36,8 +36,7 @@
           "syntax": "information",
           "description": "Print comprehensive node information. This includes: groups, extras, edge IDs, position."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

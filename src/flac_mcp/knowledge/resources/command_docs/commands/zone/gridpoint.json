@@ -33,8 +33,7 @@
           "syntax": "force-reaction-z 3D only",
           "description": "Create reaction forces in z-direction."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

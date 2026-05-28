@@ -15,8 +15,7 @@
     "9.0": {
       "command": "sketch segment-node delete",
       "syntax": "sketch segment-node delete [invalid] [range]",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

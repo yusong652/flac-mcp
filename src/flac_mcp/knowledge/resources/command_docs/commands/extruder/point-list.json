@@ -34,8 +34,7 @@
           "syntax": "information",
           "description": "Print comprehensive point information. This includes: groups, extras, edge IDs, position."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

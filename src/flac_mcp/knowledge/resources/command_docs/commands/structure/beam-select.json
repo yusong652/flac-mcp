@@ -29,8 +29,7 @@
           "syntax": "undo",
           "description": "this will reverse the operation of the last structure beam select command. FLAC keeps a maximum undo stack of size 12."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

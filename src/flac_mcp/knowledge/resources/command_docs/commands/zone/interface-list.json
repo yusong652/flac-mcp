@@ -13,8 +13,7 @@
     "9.0": {
       "command": "zone interface list",
       "syntax": "zone interface [<s>] list information [range]",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

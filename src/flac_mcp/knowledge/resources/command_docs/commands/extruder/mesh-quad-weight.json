@@ -15,8 +15,7 @@
     "9.0": {
       "command": "sketch mesh quad-weight",
       "syntax": "sketch mesh quad-weight <f>",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

@@ -99,8 +99,7 @@
           "syntax": "system-material",
           "description": "element material coordinate system (used if the element has orthotropic or anisotropic elastic material properties)"
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }
