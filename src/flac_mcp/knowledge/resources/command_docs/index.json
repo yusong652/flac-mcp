@@ -323,7 +323,7 @@
           "name": "set-automatic-tolerance",
           "file": "commands/body/set-automatic-tolerance.json",
           "short_description": "Set the auto-tolerance flag for geometric manipulations",
-          "syntax": "building-blocks set auto-tolerance <b>",
+          "syntax": "building-blocks set automatic-tolerance <b>",
           "python_available": false
         },
         {
