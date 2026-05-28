@@ -16,8 +16,8 @@
       "keywords": [
         {
           "name": "normal-axis",
-          "syntax": "normal-axis <v>3D only",
-          "description": "Set the normal axis v (3D vector). This is the direction of extrusion (perpendicular to 2D local \\(x\\) , \\(y\\) )."
+          "syntax": "normal-axis <v3>",
+          "description": "Set the normal axis v3 (3D vector). This is the direction of extrusion (perpendicular to 2D local x, y). 3D only."
         },
         {
           "name": "origin",

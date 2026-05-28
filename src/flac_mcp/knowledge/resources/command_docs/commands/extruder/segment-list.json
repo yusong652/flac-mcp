@@ -16,8 +16,8 @@
       "keywords": [
         {
           "name": "extra",
-          "syntax": "extra <i>",
-          "description": "Print FISH extra information. A valid integer index i must be supplied."
+          "syntax": "extra",
+          "description": "Print FISH extra information for each segment."
         },
         {
           "name": "group",

@@ -5,7 +5,7 @@
     "create",
     "sketch"
   ],
-  "description": "Create a segment or a set of segments.",
+  "description": "Create a segment or a set of segments. Endpoints can be specified either by existing segment-node IDs (by-points) or by positions (by-positions). After endpoint specification, additional properties can be set.",
   "python_sdk_alternative": {
     "available": false
   },
@@ -15,14 +15,64 @@
       "syntax": "sketch segment create keyword",
       "keywords": [
         {
-          "name": "automatic",
-          "syntax": "automatic",
-          "description": "Automatically create segments from a background geometry present in a set. The background geometry usually represents an imported CAD geometry (e.g., a DXF or STL files)."
+          "name": "by-points",
+          "syntax": "by-points <i1> <i2> [keyword ...]",
+          "description": "Create a segment between two existing segment-nodes with IDs i1 and i2. May be followed by group/length/ratio/ratio-reverse/size/type sub-keywords."
         },
         {
-          "name": "by-points-type-spline",
+          "name": "by-positions",
+          "syntax": "by-positions <v1> <v2> [keyword ...]",
+          "description": "Create a segment between two 3D positions v1 and v2. Nodes are created automatically at those positions. May be followed by group/length/ratio/ratio-reverse/size/type sub-keywords."
+        },
+        {
+          "name": "group",
+          "syntax": "group <s1> [slot <s2>]",
+          "description": "Assign the created segment the group name s1 (in slot s2 if provided, in slot Default if not)."
+        },
+        {
+          "name": "length",
+          "syntax": "length <f>",
+          "description": "Set the segment length. Used together with by-points or by-positions when zone sizing should be derived from a target length."
+        },
+        {
+          "name": "ratio",
+          "syntax": "ratio <f>",
+          "description": "Set the ratio f (a number between 0.1 and 10.0), which is used to distribute zone lengths along the segment (each zone will be f of the size of the zone preceding it). This setting automatically propagates across dependent segments of regular blocks while ratio-isolate is false."
+        },
+        {
+          "name": "ratio-reverse",
+          "syntax": "ratio-reverse",
+          "description": "Reverse the ratio direction for the created segment."
+        },
+        {
+          "name": "size",
+          "syntax": "size <i>",
+          "description": "Set the number of zones on the segment. This setting automatically propagates across dependent segments of regular blocks."
+        },
+        {
+          "name": "type",
+          "syntax": "type keyword",
+          "description": "Specify the curve type of the segment. Must be followed by a 'curve', 'polyline', 'simple', or 'spline' sub-keyword."
+        },
+        {
+          "name": "type-curve",
+          "syntax": "curve",
+          "description": "Specify a curve segment represented by a B-spline."
+        },
+        {
+          "name": "type-polyline",
+          "syntax": "polyline",
+          "description": "Specify a polyline segment (piecewise linear through control points)."
+        },
+        {
+          "name": "type-simple",
+          "syntax": "simple",
+          "description": "Specify a simple (straight line) segment. This is the default type."
+        },
+        {
+          "name": "type-spline",
           "syntax": "spline",
-          "description": "Create a segment between two points with the IDs i1 and ID i2 . Assign the created segment the group name s1 (in slot s2 if provided, in the slot named Default if not). Set the ratio f (a number between 0.1 and 10.1 ), which is used to distribute zone lengths along the segment (each zone will be f of the size of the zone preceding it). This setting automatically propagates across dependent segments of regular blocks while Ratio-Isolate is false . The option only applies to the segments which form regular (3- or 4-sided) blocks. Set the flag to control ratio propagation. Ratio settings propagate when false (the default). If set true a ratio assignment on this segment will not propagate to dependent segments. Set the number of zones on the segment. This setting automatically propagates across dependent segments of regular blocks. Specify the curve type of the segment. This is the default type (a line)."
+          "description": "Specify a spline segment."
         }
       ]
     }

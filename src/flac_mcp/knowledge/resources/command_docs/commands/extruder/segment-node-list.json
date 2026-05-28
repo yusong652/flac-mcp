@@ -22,11 +22,6 @@
           "description": "Print segment IDs for each node."
         },
         {
-          "name": "extra",
-          "syntax": "extra <i>",
-          "description": "Print FISH extra information. A valid integer index i must be supplied."
-        },
-        {
           "name": "group",
           "syntax": "group",
           "description": "Print group information."
