@@ -69,8 +69,7 @@
           "syntax": "yield",
           "description": "yield state indicating whether or not the cable has yielded"
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

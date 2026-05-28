@@ -13,8 +13,7 @@
     "9.0": {
       "command": "structure liner delete",
       "syntax": "structure liner delete [range]",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

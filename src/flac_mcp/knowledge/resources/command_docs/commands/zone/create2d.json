@@ -88,8 +88,7 @@
           "syntax": "size <i1>[<i2>... ]",
           "description": "This specifies the number of zones for each shape. Up to three ( i3 ) may be needed for some shapes. The number required is listed in Summary of 2D Mesh Shape Properties above. The entries and their corresponding directions for each shape are shown in the reference images (click any thumbnail above). If not specified, size values default to 10."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

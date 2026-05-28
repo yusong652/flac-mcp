@@ -19,8 +19,7 @@
           "syntax": "information",
           "description": "Print detailed information about all current meshing parameters."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

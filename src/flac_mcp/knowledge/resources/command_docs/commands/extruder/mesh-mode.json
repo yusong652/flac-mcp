@@ -24,8 +24,7 @@
           "syntax": "quad",
           "description": "Use quadrilaterals only to create an unstructured mesh. Under certain conditions, the mesher may fail to create purely quadrilateral mesh (e.g., an odd number of zones per block perimeter). An error will be displayed in this case."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

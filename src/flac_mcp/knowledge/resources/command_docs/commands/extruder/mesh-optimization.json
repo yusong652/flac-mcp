@@ -13,8 +13,7 @@
     "9.0": {
       "command": "sketch mesh optimization",
       "syntax": "sketch mesh optimization <i>",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

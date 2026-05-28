@@ -15,8 +15,7 @@
     "9.0": {
       "command": "sketch edge zone-length",
       "syntax": "sketch edge zone-length <f>[range]",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

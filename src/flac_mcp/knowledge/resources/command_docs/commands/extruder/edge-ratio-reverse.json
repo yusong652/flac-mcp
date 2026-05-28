@@ -15,8 +15,7 @@
     "9.0": {
       "command": "sketch edge ratio-reverse",
       "syntax": "sketch edge ratio-reverse [range]",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

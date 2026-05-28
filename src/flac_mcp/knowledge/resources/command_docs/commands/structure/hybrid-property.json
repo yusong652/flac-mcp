@@ -99,8 +99,7 @@
           "syntax": "young <f>",
           "description": "Young’s modulus"
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

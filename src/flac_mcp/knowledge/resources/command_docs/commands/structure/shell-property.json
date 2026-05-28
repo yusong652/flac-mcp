@@ -29,8 +29,7 @@
           "syntax": "thickness <f>",
           "description": "thickness"
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

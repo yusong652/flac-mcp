@@ -13,8 +13,7 @@
     "9.0": {
       "command": "structure geogrid refine",
       "syntax": "structure geogrid refine <i>[range]",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

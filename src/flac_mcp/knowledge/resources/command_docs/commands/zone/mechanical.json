@@ -38,8 +38,7 @@
           "syntax": "safety-factor <f>",
           "description": "Set a safety factor applied to the gridpoint stiffness calculation, which is done in stability calculations for both static and dynamic mode. The default safety factor is 1.0."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

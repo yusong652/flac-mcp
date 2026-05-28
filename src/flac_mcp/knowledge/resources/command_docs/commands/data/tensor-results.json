@@ -4,29 +4,24 @@
     "tensor-results"
   ],
   "description": "Include tensor data in results files. The default value is off .",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
       "command": "data tensor results",
       "syntax": "data tensor results active <b>",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     },
     "7.0": {
       "command": "data tensor results",
       "syntax": "data tensor results active <b>",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     },
     "9.0": {
       "command": "data tensor results",
       "syntax": "data tensor results active <b>",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

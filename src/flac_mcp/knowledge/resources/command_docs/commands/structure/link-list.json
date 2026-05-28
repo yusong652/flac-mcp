@@ -59,8 +59,7 @@
           "syntax": "target",
           "description": "type (node-to-node or node-to-object) and ID (or component-id of a node) of the link target"
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

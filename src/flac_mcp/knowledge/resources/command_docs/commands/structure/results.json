@@ -53,8 +53,7 @@
           "syntax": "velocities <b>",
           "description": "velocity vectors at nodes"
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

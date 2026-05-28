@@ -39,8 +39,7 @@
           "syntax": "quality",
           "description": "Print a zone quality report for the current sketch set. This includes the number of zones that, when created from the set, may result in “bad geometry” errors."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

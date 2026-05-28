@@ -89,8 +89,7 @@
           "syntax": "zone",
           "description": "List of zones connected to gridpoint."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

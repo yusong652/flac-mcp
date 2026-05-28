@@ -13,8 +13,7 @@
     "9.0": {
       "command": "structure shell delete",
       "syntax": "structure shell delete [range]",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

@@ -4,29 +4,24 @@
     "position"
   ],
   "description": "Substitute the specified (x,y) pair for the stored x- and y-values in the i th entry of table s .",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
       "command": "table position",
       "syntax": "table <s>position <i><v2>",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     },
     "7.0": {
       "command": "table position",
       "syntax": "table <s>position <i><v2>",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     },
     "9.0": {
       "command": "table position",
       "syntax": "table <s>position <i><v2>",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

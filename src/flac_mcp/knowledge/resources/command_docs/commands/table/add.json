@@ -4,29 +4,24 @@
     "add"
   ],
   "description": "Add an entry to the end of table s . The x- and y- values of the entry are the x- and y- components of the two-dimensional vector v2 . Any number of two-dimensional vectors can be specified.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
       "command": "table add",
       "syntax": "table <s>add <v2>...",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     },
     "7.0": {
       "command": "table add",
       "syntax": "table <s>add <v2>...",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     },
     "9.0": {
       "command": "table add",
       "syntax": "table <s>add <v2>...",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

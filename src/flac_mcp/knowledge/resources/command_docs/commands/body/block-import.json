@@ -19,8 +19,7 @@
           "syntax": "position <v>",
           "description": "Import blocks from the file named s . Provide the translational offset (shift) vector for the imported blocks. Provides the position the imported blocks."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

@@ -70,8 +70,7 @@
           "syntax": "aniso-memb-thickness <f>",
           "description": "anisotropic membrane thickness \\(t_m\\) . If this property is not specified, then \\(t_m = t\\) (where \\(t\\) is the thickness specified via the structure shell property thickness (or liner/geogrid) command). The value of \\(t_m\\) should be specified after setting \\(t\\) ."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

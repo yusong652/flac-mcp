@@ -13,8 +13,7 @@
     "9.0": {
       "command": "sketch set delete",
       "syntax": "sketch set delete [<s>]",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

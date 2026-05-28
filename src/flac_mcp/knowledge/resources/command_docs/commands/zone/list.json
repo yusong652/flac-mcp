@@ -218,8 +218,7 @@
           "syntax": "zoneid <i>",
           "description": "Specify the location of the history is at the centroid of zone with ID i ."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

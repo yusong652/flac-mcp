@@ -26,8 +26,7 @@
           "syntax": "use-size",
           "description": "Add a number of control points equal to the number of zones on each edge (see building-blocks edge size )."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

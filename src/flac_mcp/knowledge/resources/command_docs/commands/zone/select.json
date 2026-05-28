@@ -28,8 +28,7 @@
           "syntax": "undo",
           "description": "This will reverse the operation of the last zone select command. FLAC keeps a maximum undo stack of size 12."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

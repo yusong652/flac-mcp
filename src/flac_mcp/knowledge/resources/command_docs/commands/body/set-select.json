@@ -13,8 +13,7 @@
     "9.0": {
       "command": "building-blocks set select",
       "syntax": "building-blocks set select <s>",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

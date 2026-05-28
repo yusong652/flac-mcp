@@ -15,8 +15,7 @@
     "9.0": {
       "command": "building-blocks edge ratio-isolate",
       "syntax": "building-blocks edge ratio-isolate <b>[range]",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

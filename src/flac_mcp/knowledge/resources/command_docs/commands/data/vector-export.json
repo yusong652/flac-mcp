@@ -4,29 +4,24 @@
     "vector-export"
   ],
   "description": "Export vectors to the file with name s . An extension of vector will be added automatically if one is not specified. An ASCII text file is created unless the binary keyword is specified. Any previous file is deleted. The relevant file formats are fully documented in Vector Text File Format and Vector Binary File Format .",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
       "command": "data vector export",
       "syntax": "data vector export <s>[binary] [range]",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     },
     "7.0": {
       "command": "data vector export",
       "syntax": "data vector export <s>[binary] [range]",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     },
     "9.0": {
       "command": "data vector export",
       "syntax": "data vector export <s>[binary] [range]",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

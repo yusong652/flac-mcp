@@ -104,8 +104,7 @@
           "syntax": "torsion-constant <f>3D ONLY",
           "description": "torsion constant"
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

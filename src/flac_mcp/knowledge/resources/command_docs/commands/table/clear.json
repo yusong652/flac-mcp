@@ -4,29 +4,24 @@
     "clear"
   ],
   "description": "Remove all entries of from table s .",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
       "command": "table clear",
       "syntax": "table <s>clear",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     },
     "7.0": {
       "command": "table clear",
       "syntax": "table <s>clear",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     },
     "9.0": {
       "command": "table clear",
       "syntax": "table <s>clear",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

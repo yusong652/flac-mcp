@@ -28,8 +28,7 @@
           "syntax": "time-total <f>",
           "description": "Specify the accumulated zone creep time, defined as the sum of all the timesteps over which zone creep is active. Once set, creep time will continue to accumulate with subsequent cycles."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

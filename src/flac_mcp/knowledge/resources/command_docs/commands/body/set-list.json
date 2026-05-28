@@ -13,8 +13,7 @@
     "9.0": {
       "command": "building-blocks set list",
       "syntax": "building-blocks set list [<s>]",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

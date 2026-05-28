@@ -25,8 +25,7 @@
           "syntax": "poisson <f>",
           "description": "Poisson’s ratio, \\(\\nu\\)"
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

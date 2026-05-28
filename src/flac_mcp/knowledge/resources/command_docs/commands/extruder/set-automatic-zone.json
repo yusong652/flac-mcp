@@ -36,8 +36,7 @@
           "syntax": "total <i>",
           "description": "Auto zoning will assign zone sizes so that the total number of zones created is approximately (but not more than) i ."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

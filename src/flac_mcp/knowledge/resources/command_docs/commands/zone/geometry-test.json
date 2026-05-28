@@ -14,8 +14,7 @@
     "9.0": {
       "command": "zone geometry-test",
       "syntax": "zone geometry-test [range]",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

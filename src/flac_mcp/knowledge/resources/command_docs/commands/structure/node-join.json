@@ -29,8 +29,7 @@
           "syntax": "side <i>",
           "description": "Specify that any links created will be on side i of the element. This applies only to nodes attached to liner elements created with the embedded keyword. By default, links are created on side 1 ."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

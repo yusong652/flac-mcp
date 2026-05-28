@@ -88,8 +88,7 @@
           "syntax": "filename <s>",
           "description": "Specify the name of the vtk file."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

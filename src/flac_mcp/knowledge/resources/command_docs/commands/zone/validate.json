@@ -28,8 +28,7 @@
           "syntax": "surface <b>",
           "description": "If true , the system attempts to determine if an unconstrained direction represents an internal excavation or an external surface, by looking to see if a zone exists in that direction. If no zone is found, it is assumed the unconstrained direction represents a deliberate free surface and it is removed. The default is true ."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

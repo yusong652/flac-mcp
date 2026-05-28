@@ -13,8 +13,7 @@
     "9.0": {
       "command": "structure list information",
       "syntax": "structure list information",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

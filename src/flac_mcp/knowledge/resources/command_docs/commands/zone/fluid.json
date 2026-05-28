@@ -93,8 +93,7 @@
           "syntax": "tortuosity <f>",
           "description": "Specify the tortuosity as f . Tortuosity is the ratio of the straight line path to the actual fluid path through a zone. This factor will be used to multiply track increments calculated from the flow velocity. The value defaults to 1 if not given."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

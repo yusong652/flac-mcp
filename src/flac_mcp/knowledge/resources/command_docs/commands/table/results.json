@@ -4,29 +4,24 @@
     "results"
   ],
   "description": "Determines if the contents of tables are included in any result file export.",
-  "notes": [],
   "python_sdk_alternative": {
-    "available": false,
-    "workaround": ""
+    "available": false
   },
   "versions": {
     "6.0": {
       "command": "table results",
       "syntax": "table results active <b>",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     },
     "7.0": {
       "command": "table results",
       "syntax": "table results active <b>",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     },
     "9.0": {
       "command": "table results",
       "syntax": "table results active <b>",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

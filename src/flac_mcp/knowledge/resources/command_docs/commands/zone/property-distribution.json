@@ -45,8 +45,7 @@
           "syntax": "vary <v>",
           "description": "Apply a linear variation to the property value."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

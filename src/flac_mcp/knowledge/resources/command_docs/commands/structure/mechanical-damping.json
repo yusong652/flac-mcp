@@ -24,8 +24,7 @@
           "syntax": "local <f1>",
           "description": "local damping. This is the default setting for static mode . The local damping factor is f1 with the default value 0.8."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

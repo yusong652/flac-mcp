@@ -14,8 +14,7 @@
     "9.0": {
       "command": "structure geometry-update",
       "syntax": "structure geometry-update <i>",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

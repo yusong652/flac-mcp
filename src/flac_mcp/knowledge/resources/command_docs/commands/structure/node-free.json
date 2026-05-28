@@ -59,8 +59,7 @@
           "syntax": "velocity-z 3D ONLY",
           "description": "translational velocity in \\(z\\) -direction (node-local system)"
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

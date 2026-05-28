@@ -14,8 +14,7 @@
     "9.0": {
       "command": "zone geometry-tolerance",
       "syntax": "zone geometry-tolerance <f>",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

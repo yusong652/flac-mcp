@@ -15,8 +15,7 @@
     "9.0": {
       "command": "sketch segment ratio-reverse",
       "syntax": "sketch segment ratio-reverse [range]",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

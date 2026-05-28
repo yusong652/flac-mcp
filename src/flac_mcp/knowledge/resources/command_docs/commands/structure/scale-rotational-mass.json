@@ -15,8 +15,7 @@
     "9.0": {
       "command": "structure scale-rotational-mass",
       "syntax": "structure scale-rotational-mass [<b>]",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

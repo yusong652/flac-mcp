@@ -13,8 +13,7 @@
     "9.0": {
       "command": "sketch edge clear",
       "syntax": "sketch edge clear",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

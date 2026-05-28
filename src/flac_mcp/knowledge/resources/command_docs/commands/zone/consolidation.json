@@ -23,8 +23,7 @@
           "syntax": "ratio <f>",
           "description": "Set the solution limit based on the current mechanical convergence ratio value, as defined by the various modules that use it. By default this is the same as ratio-average ."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

@@ -34,8 +34,7 @@
           "syntax": "edges",
           "description": "Print IDs for the edges that are connected to the point(s)."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

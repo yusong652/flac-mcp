@@ -38,8 +38,7 @@
           "syntax": "merge <b>",
           "description": "If b is off , then boundary gridpoints of the newly created zones are not automatically merged with previous existing gridpoints. By default merge is on ."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

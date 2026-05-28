@@ -74,8 +74,7 @@
           "syntax": "yield",
           "description": "yield state indicating whether or not the hybrid bolt element has yielded"
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

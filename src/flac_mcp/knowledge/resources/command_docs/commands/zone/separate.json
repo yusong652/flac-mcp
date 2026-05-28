@@ -28,8 +28,7 @@
           "syntax": "range-2 [keyword ...]",
           "description": "Separate zone regions. All grid points connected to zones in range-1 that are also connected to zones in range-2 will be assigned new grid points that are only connected to the zones in range-1 . This can be used to cleanly and completely separate two regions of zones. Note that if this is used to create an internal fault, then the boundaries of the fault will be separated (unlike the by-face keyword above) and the surface will have effectively one face more of separation around the boundary. While both range-1 and range-2 are optional, if range-1 is not specified then no separation will occur, since there will be no zones to separate from. If range-2 is not specified then all zones in range-1 will be separated from all other zones in the model—along the entire boundary of the set of zones in range-1 . By default, an error occurs if any gridpoint that has an attach condition associated with it is found among those to be separated. However, if the clear-attach keyword is supplied, then the separation of gridpoints will occur regardless. In addition, FLAC will remove any attach conditions connected to gridpoints affected. Specify the range used to select zones that will be separated. Any grid points connected to zones in this range that are also connected to zones in range-2 will be separated. Specify the zones that will trigger a separation. If left as the default value (all zones included) then the entire boundary of the set of zones in range-1 will be separated."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

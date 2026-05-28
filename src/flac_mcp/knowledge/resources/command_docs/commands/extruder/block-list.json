@@ -34,8 +34,7 @@
           "syntax": "points",
           "description": "Print point IDs for each block."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

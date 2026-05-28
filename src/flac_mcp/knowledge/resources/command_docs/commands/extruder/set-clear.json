@@ -13,8 +13,7 @@
     "9.0": {
       "command": "sketch set clear",
       "syntax": "sketch set clear",
-      "keywords": [],
-      "examples": []
+      "keywords": []
     }
   }
 }

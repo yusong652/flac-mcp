@@ -94,8 +94,7 @@
           "syntax": "system-local",
           "description": "element local coordinate system"
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }

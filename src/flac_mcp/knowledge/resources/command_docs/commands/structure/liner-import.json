@@ -74,8 +74,7 @@
           "syntax": "segments <i>",
           "description": "Break the element into i equal segments, creating new nodes as needed. The default value is 1 , indicating that only one element will be created."
         }
-      ],
-      "examples": []
+      ]
     }
   }
 }
