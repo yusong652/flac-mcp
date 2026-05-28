@@ -173,29 +173,74 @@
       "syntax": "structure node apply keyword [range]",
       "keywords": [
         {
+          "name": "force",
+          "syntax": "force <v> [add | multiply]",
+          "description": "Apply a force vector v to nodes in the range. Optional sub-keywords add or multiply modify how the applied force combines with any existing applied force."
+        },
+        {
+          "name": "force-add",
+          "syntax": "add",
+          "description": "Add the new force vector to the existing applied force on each node (instead of replacing)."
+        },
+        {
           "name": "force-multiply",
           "syntax": "multiply",
-          "description": "applied force vector (in terms of system defined by the system keyword). You can use one of the following keywords to modify how v is applied to the node: the vector v is added to the existing applied force vector at that node the vector v is multiplied to the existing applied force vector at that node in a component by component multiplication"
+          "description": "Multiply the existing applied force on each node by the supplied force vector component-wise."
         },
         {
           "name": "force-edge",
-          "syntax": "force-edge <v>[add]",
-          "description": "the vector v is added as a force-per-unit-length to all edges that join nodes in the range. The forces assigned due to the edge will be lumped at the two nodes, with each node receiving half. These forces are always in the global system and will set the nodes to the global system as with the structure node apply system global command. These forces will overwrite the previous applied forces at the node; however, the add keyword can be given to add them to those currently present. Note that if this changes the system they were applied under, then the previous forces will not be corrected for the system change."
+          "syntax": "force-edge <v> [add | multiply]",
+          "description": "Apply a force-per-unit-length vector v along the edge between two nodes. Same add/multiply modifiers as `force`."
+        },
+        {
+          "name": "moment",
+          "syntax": "moment <v> [add | multiply]",
+          "description": "Apply a moment vector v to nodes in the range. Optional add/multiply modifiers as for `force`."
+        },
+        {
+          "name": "moment-add",
+          "syntax": "add",
+          "description": "Add the new moment vector to the existing applied moment."
         },
         {
           "name": "moment-multiply",
           "syntax": "multiply",
-          "description": "applied moment vector (value in 2D) (in terms of system defined by the system keyword). The following keywords can be used to modify how v ( f in 2D) is applied to the node: the vector v ( f in 2D) is added to the existing applied moment vector at that node the vector v ( f in 2D) is multiplied to the existing applied moment vector at that node in a component by component multiplication"
+          "description": "Multiply the existing applied moment by the supplied vector component-wise."
+        },
+        {
+          "name": "remove",
+          "syntax": "remove keyword",
+          "description": "Remove an existing applied force/moment from nodes in the range. Sub-keywords: force, moment."
+        },
+        {
+          "name": "remove-force",
+          "syntax": "force",
+          "description": "Remove the applied force from nodes in the range."
         },
         {
           "name": "remove-moment",
           "syntax": "moment",
-          "description": "an applied condition remains in effect until it is removed with this command. The following keywords are available to choose which applied condition is removed: removes any applied force condition on the node removes any applied moment condition on the node"
+          "description": "Remove the applied moment from nodes in the range."
+        },
+        {
+          "name": "system",
+          "syntax": "system keyword",
+          "description": "Set the coordinate system in which the applied force/moment is interpreted. Sub-keywords: local, global."
+        },
+        {
+          "name": "system-local",
+          "syntax": "local",
+          "description": "Applied force/moment is interpreted in the node-local coordinate system."
         },
         {
           "name": "system-global",
           "syntax": "global",
-          "description": "set the coordinate system in which the force and moment vectors are expressed. The default system is global. If the system is set to local, then in large-strain mode, the force and moment vectors will remain aligned with the local system as it rotates."
+          "description": "Applied force/moment is interpreted in the global coordinate system."
+        },
+        {
+          "name": "range",
+          "syntax": "range ...",
+          "description": "Range block selecting which nodes the apply condition is applied to."
         }
       ]
     }

@@ -260,89 +260,89 @@
       "syntax": "structure node list keyword [range]",
       "keywords": [
         {
-          "name": "acceleration-local",
-          "syntax": "local",
-          "description": "translational and rotational acceleration. The following keywords, if present, specify the coordinate system in which these values are expressed. values are expressed in the global system values are expressed in the node-local system. This is the default if no keyword is specified."
+          "name": "acceleration",
+          "syntax": "acceleration",
+          "description": "List translational and rotational acceleration at each node (node-local frame)."
         },
         {
-          "name": "apply-moment",
-          "syntax": "moment",
-          "description": "apply conditions on the node. One of the following keywords can be supplied to specify which apply condition is listed. applied force and system in which it is specified (global or node-local). This is the default if no keyword is specified. applied moment and system in which it is specified (global or node-local)"
+          "name": "apply",
+          "syntax": "apply",
+          "description": "List the applied force/moment condition (if any) on each node."
         },
         {
           "name": "connectivity",
           "syntax": "connectivity",
-          "description": "component-id numbers of all structural elements that are connected to this node"
+          "description": "List which structural elements each node is connected to."
         },
         {
           "name": "damping",
           "syntax": "damping",
-          "description": "damping type (local, combined, Rayleigh or Maxwell) and associated properties"
+          "description": "List the damping type and properties applied at each node."
         },
         {
-          "name": "displacement-local",
-          "syntax": "local",
-          "description": "translational and rotational displacement. The following keywords, if present, specify the coordinate system in which these values are expressed. values are expressed in the global system values are expressed in the node-local system. This is the default if no keyword is specified."
+          "name": "displacement",
+          "syntax": "displacement",
+          "description": "List translational and rotational displacement at each node (node-local frame)."
         },
         {
           "name": "fix-local",
           "syntax": "fix-local",
-          "description": "fixity state of node-local coordinate system (if free, then the system orientation will be set by the structural element that uses the node; if fixed, then the system orientation will remain fixed)."
+          "description": "List whether the node-local coordinate system is fixed (will not be updated automatically by SELs)."
         },
         {
           "name": "fixity",
           "syntax": "fixity",
-          "description": "velocity fixity conditions for each degree of freedom (free, fixed or slaved to velocity of target object)"
-        },
-        {
-          "name": "group",
-          "syntax": "group [slot <s>]",
-          "description": "group assignment(s). If slot is specified, then list the group assignment, if any, in slot s ."
+          "description": "List velocity-fixity conditions (free/fixed/slaved) per DOF for each node."
         },
         {
           "name": "link",
           "syntax": "link",
-          "description": "component-id numbers of any links that are attached to the node"
+          "description": "List the structural links attached to each node."
         },
         {
           "name": "mass",
           "syntax": "mass",
-          "description": "translational and rotational mass expressed in the node-local system"
+          "description": "List translational and rotational mass at each node."
         },
         {
-          "name": "position-reference",
-          "syntax": "reference",
-          "description": "position. There are two different position values; the following keywords (if present) allow you to select which position is listed. By default, the reference position is listed. current position of the node, which is updated from the starting (or reference) position even in small-strain mode reference position of the node, which is updated only in large-strain mode. In small-strain mode, this is the initial location of the node and does not change. The reference position corresponds to the nodal position at the time that the stiffness matrices of all finite elements that use the node were formed."
+          "name": "position",
+          "syntax": "position",
+          "description": "List node positions (reference configuration, global frame), plus hidden/selected flags."
         },
         {
           "name": "ratio-target",
           "syntax": "ratio-target",
-          "description": "target local force ratio that is considered to be converged for mechanical calculations (see the ratio-target keyword in the structure node initialize command)"
+          "description": "List the target convergence ratio applied at each node (if any)."
         },
         {
           "name": "stiffness",
           "syntax": "stiffness",
-          "description": "translational and rotational stiffness expressed in the node-local system"
+          "description": "List translational and rotational stiffness at each node."
         },
         {
           "name": "system-local",
           "syntax": "system-local",
-          "description": "orientation of the node-local coordinate system"
+          "description": "List the node-local coordinate system (x/y/z basis vectors) for each node."
         },
         {
           "name": "system-surface",
-          "syntax": "system-surface 3D ONLY",
-          "description": "orientation of the surface coordinate system"
+          "syntax": "system-surface",
+          "description": "List the surface coordinate system used at each node. (3D only.)"
         },
         {
-          "name": "unbalanced-force-local",
-          "syntax": "local",
-          "description": "unbalanced force and moment (equal to sum of all forces and moments acting on the node). The following keywords, if present, specify the coordinate system in which these values are expressed. values are expressed in the global system values are expressed in the node-local system. This is the default if no keyword is specified."
+          "name": "unbalanced-force",
+          "syntax": "unbalanced-force",
+          "description": "List the out-of-balance force and moment at each node (node-local frame)."
         },
         {
-          "name": "velocity-local",
-          "syntax": "local",
-          "description": "translational and rotational velocity. The following keywords, if present, specify the coordinate system in which these values are expressed. values are expressed in the global system values are expressed in the node-local system. This is the default if no keyword is specified."
+          "name": "velocity",
+          "syntax": "velocity",
+          "description": "List translational and rotational velocity at each node (node-local frame)."
+        },
+        {
+          "name": "group",
+          "syntax": "group [slot <s>]",
+          "description": "List group memberships of each node (optionally restricted to slot s)."
         }
       ]
     }
