@@ -32,19 +32,69 @@
       "syntax": "structure beam cmodel keyword",
       "keywords": [
         {
+          "name": "assign",
+          "syntax": "assign keyword <range>",
+          "description": "Assign the specified constitutive model to all beam elements in the range. If a constitutive model has already been assigned, the existing one is replaced with the new one. If an elastic or plastic model is replaced by an elastic one, the nodal forces acting on the element remain the same. If a plastic model is replaced by another plastic model, both the integration scheme and the stress at each integration point are preserved. Replacing an elastic model with a plastic model is not yet implemented. Properties of the newly assigned constitutive model take their default values and should be set with the structure beam property command. The integration scheme for plastic models is set with the structure beam cmodel plastic-integration command."
+        },
+        {
+          "name": "assign-elastic",
+          "syntax": "elastic",
+          "description": "assign the isotropic elastic model (see the Beam Elastic Constitutive Model description)."
+        },
+        {
+          "name": "assign-mohr-coulomb",
+          "syntax": "mohr-coulomb",
+          "description": "assign the Mohr-Coulomb elasto-plasticity model in one-dimensional mode (see the Mohr-Coulomb model description). Plastic behavior is supported by the Euler-Bernoulli finite element."
+        },
+        {
+          "name": "assign-strain-softening",
+          "syntax": "strain-softening",
+          "description": "assign the strain-softening/hardening Mohr-Coulomb elasto-plasticity model in one-dimensional mode (see the Mohr-Coulomb strain-softening model description). The softening properties vary over the integration points."
+        },
+        {
           "name": "assign-von-mises",
           "syntax": "von-mises",
-          "description": "Assign the specified constitutive model to all elements in the range. If a constitutive model has already been assigned, the command replaces the existing one with the new one. If either an elastic or plastic model is replaced by an elastic one, then the nodal forces acting on the element remain the same. If a plastic model is replaced by another plastic model, then both the integration scheme and the stress at each integration point remain the same. The case of an elastic model being replaced by a plastic model is not yet implemented. The properties of the newly assigned constitutive model will be default values, and should be set with the structure beam property command. The integration scheme for elements with a plastic material model is set with the structure beam cmodel plastic-integration command. Beam Elastic Constitutive Model isotropic elastic model (see the Beam Elastic Constitutive Model description). Beam Elastic-Plastic Constitutive Models Mohr Coulomb elasto-plasticity model in one-dimensional mode (see the Mohr Coulomb model description). Plastic material behavior is supported by the Euler-Bernoulli finite element. Strain-softening/hardening Mohr Coulomb elasto-plasticity model in one-dimensional mode (see the Mohr Coulomb strain softening model description). Plastic material behavior is supported by the Euler-Bernoulli finite element. The softening properties vary over the integration points. von Mises elasto-plasticity model in one-dimensional mode (see the von Mises model description). Plastic material behavior by the Euler-Bernoulli finite element."
+          "description": "assign the Von-Mises elasto-plasticity model in one-dimensional mode (see the Von-Mises model description). Plastic behavior is supported by the Euler-Bernoulli finite element."
+        },
+        {
+          "name": "list",
+          "syntax": "list keyword",
+          "description": "List information about beam constitutive models. Sub-keywords are names, plastic-integration, properties, and states."
+        },
+        {
+          "name": "list-names",
+          "syntax": "names <s>",
+          "description": "Output available beam constitutive model keywords and full names. Output is restricted to the model named s if supplied."
         },
         {
           "name": "list-plastic-integration",
-          "syntax": "plastic-integration [integration-point <ind>] [range] 3D ONLY",
-          "description": "Outputs available beam constitutive model keywords and full names. Output is restricted to the model named s if supplied. Outputs the property list for each beam constitutive model. Output is restricted to the model named s if supplied. Outputs the state flags for each beam constitutive model. Output is restricted to the model named s if supplied. Integration data. Data for all integration points is listed, unless integration-point is specified, in which case the following data for integration point ind is listed. For a beam with rectangular cross section (shown here ): the Gauss abscissae \\(( \\xi, \\eta, \\zeta )\\) and composite weight factor \\(a_x a_y a_z\\) . For a beam with circular cross section (shown here ): the abscissae \\(( \\xi, r, \\theta )\\) and composite weight factor \\(a_x a_r a_\\theta\\) ."
+          "syntax": "plastic-integration <integration-point <ind>> <range>",
+          "description": "Output the plastic-integration data for elements in the range. Data for all integration points is listed unless integration-point <ind> is specified, in which case only the data for integration point ind is listed."
+        },
+        {
+          "name": "list-properties",
+          "syntax": "properties <s>",
+          "description": "Output the property list for each beam constitutive model. Output is restricted to the model named s if supplied."
+        },
+        {
+          "name": "list-states",
+          "syntax": "states <s>",
+          "description": "Output the state flags for each beam constitutive model. Output is restricted to the model named s if supplied."
+        },
+        {
+          "name": "plastic-integration",
+          "syntax": "plastic-integration {cross-section ... layout ...}",
+          "description": "Assign the integration scheme consisting of the cross-sectional shape and size and the integration-point layout. Both sub-keywords cross-section and layout must be specified together. There is no default; this command must be executed before cycling the model. The integration scheme cannot be modified after cycling has occurred. When the integration scheme is set, the beam constitutive-model properties are reset to their defaults, so model properties should be set AFTER setting the integration scheme."
+        },
+        {
+          "name": "plastic-integration-cross-section",
+          "syntax": "cross-section {circular <R> | rectangular <ly> <lz>}",
+          "description": "Specify the cross-sectional shape. circular <R> assigns a circular cross section with radius R. rectangular <ly> <lz> assigns a rectangular cross section with side lengths ly (y-direction) and lz (z-direction)."
         },
         {
           "name": "plastic-integration-layout",
-          "syntax": "layout <i1><i2><i3>",
-          "description": "Assign the integration scheme consisting of the shape and size of the beam cross section and the integration-point layout. Both keywords ( cross-section and layout ) must be specified. There is no default integration scheme; this command must be executed before cycling the model. assign the cross-sectional shape to be circular (as shown here ) with a radius ( \\(R\\) , f ) assign the cross-sectional shape to be rectangular (as shown here ) with a length ( \\(l_y\\) , f1 ) in the \\(y\\) direction, and a length ( \\(l_z\\) , f2 ) in the \\(z\\) direction. number of cross sections along the beam length ( \\(n_x\\) , i1 ). For a beam with rectangular cross section (shown here ): number of integration points in the \\(y\\) direction ( \\(n_y\\) , i2 ) and number of integration points in the \\(z\\) direction ( \\(n_z\\) , i3 ). For a beam with circular cross section (shown here ): number of integration points in the radial direction ( \\(n_r\\) , i2 ) and number of integration points in the circumferential direction ( \\(n_\\theta\\) , i3 ). The allowable values are as follows: \\(n_x = \\{ 1,2,\\dots,12 \\}\\) ; \\(n_y = n_z = \\{ 2,3,\\dots,12 \\}\\) ; \\(n_r = \\{ 2,4,6,8 \\}\\) ; and \\(n_\\theta = \\{ 7,9,11 \\}\\) . Integration-point layouts for the two cross-sectional types are shown in Figures 1 and 2 . There must be at least two integration points along the beam axis \\((n_x \\geq 2)\\) and two integration points across the rectangular cross section \\((n_y \\geq 2, n_z \\geq 2)\\) and seven integration points in the circumferential direction of the circular cross section \\((n_r \\geq 2, n_\\theta \\geq 7)\\) to resist bending deformation. A suggested minimal layout is \\((n_x = n_y = n_z = 2)\\) for a beam with rectangular cross section, and \\((n_x = 2, n_r = 2, n_\\theta = 7)\\) for a beam with circular cross section. Adding more integration points across the cross section will enhance the ability to trace the gradual progression of the bending-induced yielding inward from the outer surfaces. See Beam Plastic Constitutive Models for additional discussion of the integration scheme, and see this Figure for guidance on choosing the integration-point layout. The integration scheme cannot be modified after cycling has occurred. When the integration scheme is set, then the beam constitutive model properties are reset to their default values; thus, the beam constitutive model properties should be set AFTER setting the integration scheme. Plastic integration data can be queried with the structure beam cmodel list plastic-integration command."
+          "syntax": "layout <nx> <i2> <i3>",
+          "description": "Number of integration points along the beam length (nx) and across the cross section. For a rectangular cross section: i2 = ny (integration points in y), i3 = nz (integration points in z). For a circular cross section: i2 = nr (radial integration points), i3 = ntheta (circumferential integration points). Allowable ranges: nx in {1..12}; ny, nz in {2..12}; nr in {2,4,6,8}; ntheta in {7,9,11}. At least two integration points along the element axis and across the rectangular section, or seven in the circumferential direction of the circular section, are required to resist bending. Suggested minimal layout: (nx=ny=nz=2) for rectangular, (nx=2, nr=2, ntheta=7) for circular."
         }
       ]
     }
