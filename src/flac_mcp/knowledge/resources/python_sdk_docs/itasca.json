@@ -1,18 +1,16 @@
 {
   "module": "itasca",
-  "description": "Core PFC Python SDK module providing simulation control, domain management, and state persistence",
   "import_statement": "import itasca",
   "functions": [
     {
       "name": "command",
       "signature": "itasca.command(command: str) -> None",
-      "description": "Issue a PFC command. This is the primary way to access PFC commands not available in Python SDK. Commands are executed immediately.",
+      "description": "Commands are executed immediately.",
       "parameters": [
         {
           "name": "command",
           "type": "str",
-          "required": true,
-          "description": "PFC command string"
+          "required": true
         }
       ],
       "returns": {
@@ -25,7 +23,6 @@
       "name": "cycle",
       "signature": "itasca.cycle() -> int",
       "description": "Get the cycle number. Returns the total number of cycles executed since model initialization.",
-      "parameters": [],
       "returns": {
         "type": "int",
         "description": "Current cycle number"
@@ -35,7 +32,6 @@
       "name": "timestep",
       "signature": "itasca.timestep() -> float",
       "description": "Get the global timestep value used for mechanical calculations.",
-      "parameters": [],
       "returns": {
         "type": "float",
         "description": "Current timestep value"
@@ -45,7 +41,6 @@
       "name": "mech_age",
       "signature": "itasca.mech_age() -> float",
       "description": "Return the accumulated mechanical time (cycle number × timestep).",
-      "parameters": [],
       "returns": {
         "type": "float",
         "description": "Accumulated mechanical time"
@@ -55,7 +50,6 @@
       "name": "dim",
       "signature": "itasca.dim() -> int",
       "description": "Get the code dimensionality (2 for 2D, 3 for 3D).",
-      "parameters": [],
       "returns": {
         "type": "int",
         "description": "Dimensionality (2 or 3)"
@@ -65,7 +59,6 @@
       "name": "gravity",
       "signature": "itasca.gravity() -> vec",
       "description": "Get the gravity vector. Returns a vector object with x, y, z components.",
-      "parameters": [],
       "returns": {
         "type": "vec",
         "description": "Gravity vector"
@@ -75,7 +68,6 @@
       "name": "gravity_x",
       "signature": "itasca.gravity_x() -> float",
       "description": "Get the x-component of gravity.",
-      "parameters": [],
       "returns": {
         "type": "float",
         "description": "X-component of gravity"
@@ -85,7 +77,6 @@
       "name": "gravity_y",
       "signature": "itasca.gravity_y() -> float",
       "description": "Get the y-component of gravity.",
-      "parameters": [],
       "returns": {
         "type": "float",
         "description": "Y-component of gravity"
@@ -95,7 +86,6 @@
       "name": "gravity_z",
       "signature": "itasca.gravity_z() -> float",
       "description": "Get the z-component of gravity.",
-      "parameters": [],
       "returns": {
         "type": "float",
         "description": "Z-component of gravity"
@@ -173,7 +163,6 @@
       "name": "domain_min",
       "signature": "itasca.domain_min() -> vec",
       "description": "Get domain lower bound as vector.",
-      "parameters": [],
       "returns": {
         "type": "vec",
         "description": "Domain lower bound vector"
@@ -183,7 +172,6 @@
       "name": "domain_min_x",
       "signature": "itasca.domain_min_x() -> float",
       "description": "Get the x-component of domain lower bound.",
-      "parameters": [],
       "returns": {
         "type": "float",
         "description": "X-component of domain lower bound"
@@ -193,7 +181,6 @@
       "name": "domain_min_y",
       "signature": "itasca.domain_min_y() -> float",
       "description": "Get the y-component of domain lower bound.",
-      "parameters": [],
       "returns": {
         "type": "float",
         "description": "Y-component of domain lower bound"
@@ -203,7 +190,6 @@
       "name": "domain_min_z",
       "signature": "itasca.domain_min_z() -> float",
       "description": "Get the z-component of domain lower bound.",
-      "parameters": [],
       "returns": {
         "type": "float",
         "description": "Z-component of domain lower bound"
@@ -213,7 +199,6 @@
       "name": "domain_max",
       "signature": "itasca.domain_max() -> vec",
       "description": "Get domain upper bound as vector.",
-      "parameters": [],
       "returns": {
         "type": "vec",
         "description": "Domain upper bound vector"
@@ -223,7 +208,6 @@
       "name": "domain_max_x",
       "signature": "itasca.domain_max_x() -> float",
       "description": "Get the x-component of domain upper bound.",
-      "parameters": [],
       "returns": {
         "type": "float",
         "description": "X-component of domain upper bound"
@@ -233,7 +217,6 @@
       "name": "domain_max_y",
       "signature": "itasca.domain_max_y() -> float",
       "description": "Get the y-component of domain upper bound.",
-      "parameters": [],
       "returns": {
         "type": "float",
         "description": "Y-component of domain upper bound"
@@ -243,7 +226,6 @@
       "name": "domain_max_z",
       "signature": "itasca.domain_max_z() -> float",
       "description": "Get the z-component of domain upper bound.",
-      "parameters": [],
       "returns": {
         "type": "float",
         "description": "Z-component of domain upper bound"
@@ -429,7 +411,6 @@
       "name": "domain_strain_rate",
       "signature": "itasca.domain_strain_rate() -> tens3",
       "description": "Get the domain strain-rate tensor.",
-      "parameters": [],
       "returns": {
         "type": "tens3",
         "description": "Domain strain-rate tensor"
@@ -490,7 +471,6 @@
       "name": "clear_save_variables",
       "signature": "itasca.clear_save_variables() -> None",
       "description": "Clear the list of names of the Python variables to be saved in the save file.",
-      "parameters": [],
       "returns": {
         "type": "None",
         "description": "No return value"
@@ -500,7 +480,6 @@
       "name": "get_save_variables",
       "signature": "itasca.get_save_variables() -> tuple of str",
       "description": "Get the names of the Python variables to be saved in the save file.",
-      "parameters": [],
       "returns": {
         "type": "tuple of str",
         "description": "Tuple of variable names"
@@ -556,7 +535,6 @@
       "name": "state_callbacks",
       "signature": "itasca.state_callbacks() -> dict {any: tuple of str}",
       "description": "Return a dictionary of the currently defined Python new, save and restore callback events. Keys are callback points, values are tuples of Python function names.",
-      "parameters": [],
       "returns": {
         "type": "dict {any: tuple of str}",
         "description": "Dictionary of callback points to function names"
@@ -566,7 +544,6 @@
       "name": "deterministic",
       "signature": "itasca.deterministic() -> bool",
       "description": "Get the deterministic mode. In deterministic mode, all model runs with identical initial conditions result in identical solutions at the cost of >20% performance reduction. In nondeterministic mode, identical initial conditions may lead to divergent solutions due to summation order (all solutions equally valid to machine precision).",
-      "parameters": [],
       "returns": {
         "type": "bool",
         "description": "True if deterministic mode enabled"
@@ -593,7 +570,6 @@
       "name": "threads",
       "signature": "itasca.threads() -> int",
       "description": "Get the number of threads used for parallel computations.",
-      "parameters": [],
       "returns": {
         "type": "int",
         "description": "Number of threads"
@@ -620,7 +596,6 @@
       "name": "fos",
       "signature": "itasca.fos() -> float",
       "description": "Get the factor of safety.",
-      "parameters": [],
       "returns": {
         "type": "float",
         "description": "Factor of safety value"
@@ -664,7 +639,6 @@
       "name": "mainWindow",
       "signature": "itasca.mainWindow() -> QMainWindow",
       "description": "Get the string pointer address of the QMainWindow. Used for GUI integration.",
-      "parameters": [],
       "returns": {
         "type": "QMainWindow",
         "description": "Pointer to QMainWindow"

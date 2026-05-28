@@ -20,42 +20,35 @@
           "keyword": "bulk",
           "symbol": "K",
           "description": "bulk modulus, K",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "poisson",
           "symbol": "v",
           "description": "Poisson’s ratio, v",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "shear",
           "symbol": "G",
           "description": "shear modulus, G",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "young",
           "symbol": "E",
           "description": "Young’s modulus, E",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         },
         {
           "keyword": "viscosity",
           "symbol": "η",
           "description": "dynamic viscosity, η",
-          "type": "FLT",
-          "default": ""
+          "type": "FLT"
         }
       ]
     }
   ],
-  "typical_applications": [],
-  "notes": [],
   "source": "https://docs.itascacg.com/itasca900/common/models/viscous/doc/modelviscous.html",
   "usage": {
     "assign": "zone cmodel assign maxwell [range ...]",

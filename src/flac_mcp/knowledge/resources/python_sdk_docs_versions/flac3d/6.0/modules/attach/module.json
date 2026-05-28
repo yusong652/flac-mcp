@@ -1,0 +1,48 @@
+{
+  "module": "itasca.attach",
+  "description": "Functions and classes for working with FLAC gridpoint attaches.",
+  "import_statement": "import itasca",
+  "source_url": "https://docs.itascacg.com/pfc600/flac3d/docproject/source/options/python/itasca.attach.html",
+  "functions": [
+    {
+      "name": "count",
+      "signature": "itasca.attach. count ( ) → int.",
+      "description": "Get the number of attaches.",
+      "returns": {
+        "type": "int."
+      }
+    },
+    {
+      "name": "create",
+      "signature": "itasca.attach. create ( slave: Gridpoint object , a1: Zone or Gridpoint object , a2=None: Gridpoint object or face index (0-5) ) → int.",
+      "description": "Create a new attach. The first parameter is the slave gridpoint. The number and type of the subsequent argument depends on the type of attach being created. If only one Gridpoint object is given a gridpoint attachment is created. If two Gridpoint objects are given, an edge attachment is created. If a Zone object and a face index (0 to 5) are given, a face attachment is created. Function returns None if the attach cannot be created. Attachment weights are determined automatically based on current geometry, but may be overridden by using the weight_edge or weight_face methods.",
+      "returns": {
+        "type": "int."
+      }
+    },
+    {
+      "name": "find",
+      "signature": "itasca.attach. find ( id: int ) → Attach object.",
+      "description": "Get the attach object with the given ID number.",
+      "returns": {
+        "type": "Attach object."
+      }
+    },
+    {
+      "name": "list",
+      "signature": "itasca.attach. list ( ) → Attach iterator object.",
+      "description": "Get a attach iterator object.",
+      "returns": {
+        "type": "Attach iterator object."
+      }
+    },
+    {
+      "name": "maxid",
+      "signature": "itasca.attach. maxid ( ) → int.",
+      "description": "Get the maximum attach ID.",
+      "returns": {
+        "type": "int."
+      }
+    }
+  ]
+}

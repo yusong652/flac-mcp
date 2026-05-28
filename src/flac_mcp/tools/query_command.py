@@ -23,7 +23,7 @@ def register(mcp: FastMCP) -> None:
             description=(
                 "FLAC documentation version to search. Defaults to 9.0 "
                 "(current ITASCA Software release; covers FLAC continuum + "
-                "structural-element commands). Use 7.0/6.0 for legacy PFC."
+                "structural-element commands)."
             ),
         ),
     ) -> dict[str, Any]:
@@ -33,11 +33,11 @@ def register(mcp: FastMCP) -> None:
 
         When to use:
         - You have keywords but don't know exact command path
-        - Example: "ball create", "contact property", "model solve"
+        - Example: "zone create", "structure cable", "model solve"
 
         Related tools:
         - flac_browse_commands: Get full documentation for a known command path
-        - flac_browse_reference: Browse reference docs (e.g., "contact-models linear")
+        - flac_browse_reference: Browse reference docs (e.g., "constitutive-models mohr-coulomb")
         - flac_query_python_api: Search Python SDK by keywords
         """
         version_value = normalize_command_doc_version(version)
@@ -72,7 +72,7 @@ def register(mcp: FastMCP) -> None:
             categories = sorted(CommandLoader.load_index().get("categories", {}).keys())
             payload["summary"]["hints"] = [
                 "Try broader keywords (for example: create, property, solve).",
-                "Try category + action (for example: ball create, contact property).",
+                "Try category + action (for example: zone create, structure cable, model solve).",
             ]
             payload["summary"]["available_categories"] = categories
 

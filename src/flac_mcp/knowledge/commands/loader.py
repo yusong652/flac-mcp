@@ -24,7 +24,7 @@ class CommandLoader:
     All methods use caching to avoid repeated file I/O.
     """
 
-    DEFAULT_VERSION = "7.0"
+    DEFAULT_VERSION = "9.0"
 
     @staticmethod
     @lru_cache(maxsize=1)
@@ -106,7 +106,7 @@ class CommandLoader:
         Args:
             category: Command category (e.g., "ball", "contact", "model")
             command_name: Command name (e.g., "create", "property", "cycle")
-            version: PFC version string to resolve (defaults to 7.0)
+            version: FLAC version string to resolve (defaults to 9.0)
 
         Returns:
             Command documentation dict with fields:
