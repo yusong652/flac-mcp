@@ -747,62 +747,217 @@
         {
           "name": "active",
           "syntax": "active <b>",
-          "description": "Set the fluid process on or off. The process is on for zones, by default, when the model configure fluid command is given. Specify off to suppress the fluid calculation for zones."
+          "description": "Turn the fluid module computations on or off. Active by default once the fluid process is configured."
         },
         {
           "name": "biot",
           "syntax": "biot <b>",
-          "description": "Set use of the Biot coefficient. If on , the fluid-flow calculation uses the Biot coefficient, \\(α\\) , and the Biot modulus, \\(M\\) . If off , then the fluid modulus, \\(K_f\\) , and porosity, \\(n\\) , are used and \\(α\\) = 1. The default is off . See Biot Coefficient and Biot Modulus ."
-        },
-        {
-          "name": "cmodel-list",
-          "syntax": "list",
-          "description": "Associate a fluid constitutive model with specified zones in the grid. The command also allows querying of properties and states of constitutive models. Assign a fluid model to all zones in the range . This keyword may only be given if the model is configured for fluid calculations (i.e., the command model configure fluid has been issued). Fluid models are described in Grid Configured for Fluid Flow . Assign the anisotropic flow model. Assign the isotropic flow model. Assign the null fluid model. List the available fluid constitutive models and their properties."
+          "description": "Turn biot mode on or off. When on, fluid pore-pressure changes are computed using the Biot effective stress formulation."
         },
         {
           "name": "fastflow",
           "syntax": "fastflow <b>",
-          "description": "Turn the fastflow solution scheme on/off . See Fully Saturated Fast Flow ."
+          "description": "Turn the fastflow solution scheme on or off. Fastflow is an accelerated time-stepping scheme suitable when pore-pressure changes are quasi-static."
         },
         {
           "name": "fastflow-relaxation",
           "syntax": "fastflow-relaxation <f>",
-          "description": "Set the relaxation parameters used in the fastflow solution scheme."
+          "description": "Set the relaxation parameter used in the fastflow solution scheme. Default 0.004."
         },
         {
-          "name": "list-property-rotation",
-          "syntax": "rotation <f>",
-          "description": "Output current configuration settings and status information for the fluid model. Output the values of the specified fluid property in all zones in the range. Biot coefficient (grain compressibility), \\(\\alpha\\) . The default is 1.0. List isotropic hydraulic conductivity, \\(k\\) . This is the conventional hydraulic conductivity in units of [Length/Time]. Non-zero gravity and water density should be set in advance. Hydraulic conductivity must be non-zero if the command zone fluid active on applies. Only one between hydraulic conductivity and permeability is needed. List porosity, \\(n\\) . The default is 0.5. List undrained thermal coefficient, \\(\\beta\\) . List isotropic permeability, \\(k\\) . The permeability used in FLAC is defined as the conventional hydraulic conductivity divided by the unit weight of water. Permeability must be non-zero if the command zone fluid active on applies. Only one between hydraulic conductivity and permeability is needed. List the principal permeability plane dip angle (in degrees). List the principal permeability plane dip direction angle (in degrees). List the principal permeability value. List the principal permeability value. List the principal permeability value. List the xx -component of permeability. List the xy -component of permeability. List the xz -component of permeability. List the yy -component of permeability. List the yz -component of permeability. List the zz -component of permeability. List the principal permeability plane rotation angle (in degrees)."
+          "name": "implicit",
+          "syntax": "implicit <b>",
+          "description": "Turn implicit mode on or off. When on, the fluid solver advances pore-pressure using an implicit timestep (which must be set manually); when off, the solver uses the explicit local-flow timestep. Default off."
         },
         {
-          "name": "property-rotation",
-          "syntax": "rotation <f>",
-          "description": "Assign properties for the fluid flow constitutive models of all zones in the range. Any number of name-value pairs may be assigned. The type of the value a must match the type expected by the property s . Any constitutive model that has a matching property name will be assigned the value. Set the biot coefficient (grain compressibility), \\(\\alpha\\) . The default is 1.0. Set porosity, \\(n\\) . The default is 0.5. Set the undrained thermal coefficient, \\(\\beta\\) . Isotropic Fluid Flow: Set isotropic hydraulic conductivity (units of length/time). Gravity and water density must be defined to use this quanitity. Only one of hydraulic-conductivity or permeability needs to be assigned. Set isotropic permeability, \\(k\\) . The permeability used in FLAC is defined as the conventional hydraulic permeability divided by the unit weight of water. Permeability must be non-zero if the command zone fluid active on applies. Only one of hydraulic-conductivity or permeability needs to be assigned. Anisotropic Fluid Flow: Set the principal permeability plane dip angle (in degrees). Set the principal permeability plane dip direction angle (in degrees). Set the principal hydraulic conductivity value (units of length/time). Set the principal hydraulic conductivity value (units of length/time). Set the principal hydraulic conductivity value (units of length/time). Set the xx -component of hydraulic conductivity (units of length/time). Set the xy -component of hydraulic conductivity (units of length/time). Set the xz -component of hydraulic conductivity (units of length/time). Set the yy -component of hydraulic conductivity (units of length/time). Set the yz -component of hydraulic conductivity (units of length/time). Set the zz -component of hydraulic conductivity (units of length/time). Set the principal permeability value. Set the principal permeability value. Set the principal permeability value. Set the xx -component of permeability. Set the xy -component of permeability. Set the xz -component of permeability. Set the yy -component of permeability. Set the yz -component of permeability. Set the zz -component of permeability. Set the principal permeability plane rotation angle (in degrees)."
-        },
-        {
-          "name": "property-distribution-vary",
-          "syntax": "vary <v>",
-          "description": "Assign a single property name to the fluid flow constitutive models of all zones in the range. The property value may be varied in space by using the following optional keyword values. Add a to the property value. This keyword only applies to float type property values. A gaussian distribution is used to assign the value randomly, with a mean value of a and a standard deviation of f . This keyword only applies to float type property values. A uniform distribution is used to assign the value randomly, with a mean value of a and a standard deviation of f . This keyword only applies to float type property values. Apply a gradient to the property value. This keyword only applies to float type property values. Note the origin keyword is optional, however, the default value (0,0,0) is used if the origin keyword is not included in the command — which may not produce the intended result. Multiply the property value by a . Apply a linear variation to the property value. This keyword only applies to float type property values."
+          "name": "pressure-cutoff",
+          "syntax": "pressure-cutoff <b>",
+          "description": "Turn the pore-pressure cutoff (Pcut) mode on or off. When on, negative pore pressures are clamped at zero (a useful approximation in unsaturated regions)."
         },
         {
           "name": "saturation-tolerance",
           "syntax": "saturation-tolerance <f>",
-          "description": "Specify that the effect of saturation changes to gridpoints is only applied when the accumulated saturation change is greater than this value. This is done for efficiency of calculation. The default value is 1e-3."
+          "description": "Set the saturation convergence tolerance used by the fluid solver. Default 1e-3."
         },
         {
           "name": "time-total",
           "syntax": "time-total <f>",
-          "description": "Specify the accumulated zone fluid time, defined as the sum of all the timesteps over which zone fluid is active. Once set, fluid time will continue to accumulate with subsequent cycles."
-        },
-        {
-          "name": "track-trace",
-          "syntax": "trace [name <s>] <i>",
-          "description": "Place a particle in the grid at the location specified. The particle flows with the fluid and maintains a record of its path over a finite period of time. The grid must be configured for fluid flow (see model configure fluid ), and the zone must have a non-null fluid model in order for a particle to exist in a zone. The particle is not created (and no error message is output) if the location does not map into a zone with these specifications. The particles have no mass and do not influence the flow or mechanical behavior in any way; they are simply carried along by the fluid and record its motion. Several TRACK commands may be given, at different times, if desired. See the data files in One-Dimensional Filling of a Porous Region for an example of particle track usage. Location and keywords are given as follows. Turn particle tracking on/off . track is off by default. Create one or more particles in zones. The location and number of the particles created are controlled by the following keywords. The <[zonefluidblock]> following can be used to specify attributes on the created particles. Place a particle in the grid at the specified location v . For each vector value given, another particle will be created. Add particles to the grid along a line. Specify the start position of the line. The default value is (0,0,0). Specify the end position of the line. The default value is (0,0,0). Specify the line be divided equally into i + 1 segments, causing i particles to be introduced into the grid. The default value is 2. Add particles to the grid along a plane defined by two lines. Specify the shared start point of both lines that will define the plane. The default value is (0,0,0). Specify the end of the first line. The default value is (0,0,0). Specify the end of the second line. The default value is (0,0,0). Divide the first line into i1 + 1 equal segments and divide the second line into i2 + 1 equal segments. i1 x i2 particles will be introduced to the grid on an evenly spaced grid along the plane. The default values of i1 and i2 are 2. Delete particles within the given range . Assign or remove groups to particles in the range. Use of the group logic is described in Groups . Remove the group s from particles within the given range. This does not remove the particles themselves. Assign groups in the given range to the slot named s . By default groups will be assigned to slot Default . List summary information about tracking particles. If the path keyword is omitted, the current particle position information is output. If the path keyword is included, then particle path information is output. Create a location trace (see the trace command) of the particle with ID number i ."
+          "description": "Set the total accumulated fluid-flow time."
         },
         {
           "name": "zone-based-pp",
           "syntax": "zone-based-pp <b>",
-          "description": "Specify that pore-pressures should be retrieved directly from the zone, rather than averaged from the gridpoints. Zone pore pressures must be assigned manually via FISH , using the zone.pp intrinsic."
+          "description": "When on, pore pressures are retrieved directly from the zone (which must have been assigned manually via FISH using zone.pp) rather than averaged from the gridpoints."
+        },
+        {
+          "name": "cmodel",
+          "syntax": "cmodel keyword",
+          "description": "Assign, query, or list the fluid constitutive model for zones in the range. Sub-keywords: assign, list, plus the three model name shortcuts (anisotropic, isotropic, null)."
+        },
+        {
+          "name": "cmodel-assign",
+          "syntax": "assign keyword <range>",
+          "description": "Assign the named fluid constitutive model to all zones in the range. Sub-keywords are anisotropic, isotropic, and null."
+        },
+        {
+          "name": "cmodel-assign-anisotropic",
+          "syntax": "anisotropic",
+          "description": "Assign the anisotropic fluid model (permeabilities can be given along three principal directions or as a 3x3 tensor)."
+        },
+        {
+          "name": "cmodel-assign-isotropic",
+          "syntax": "isotropic",
+          "description": "Assign the isotropic fluid model (single hydraulic-conductivity / permeability scalar)."
+        },
+        {
+          "name": "cmodel-assign-null",
+          "syntax": "null",
+          "description": "Assign the null fluid model (no fluid flow in the zone)."
+        },
+        {
+          "name": "cmodel-list",
+          "syntax": "list",
+          "description": "List the available fluid constitutive models and their property names."
+        },
+        {
+          "name": "list",
+          "syntax": "list",
+          "description": "List current FluidModule settings (configured/active state, accumulated time, implicit/biot/pcut/fastflow flags, saturation tolerance, fastflow relaxation coefficient)."
+        },
+        {
+          "name": "property",
+          "syntax": "property <prop> <f> <range>",
+          "description": "Set a fluid material property. The property name must match a property of the currently-assigned fluid constitutive model (isotropic: hydraulic-conductivity, porosity, biot, permeability, undrained-thermal-coefficient; anisotropic adds dip, dip-direction, hydraulic-conductivity-{1,2,3,xx,xy,xz,yy,yz,zz}, permeability-{1,2,3,xx,xy,xz,yy,yz,zz}, rotation)."
+        },
+        {
+          "name": "property-distributed",
+          "syntax": "property-distributed <prop> <f> <distribution-block> <range>",
+          "description": "Set a fluid material property with an optional spatial distribution. Same property names as property; the optional distribution-block sub-keyword controls how the base value is varied: add, deviation-gaussian, deviation-uniform, gradient, multiply, vary."
+        },
+        {
+          "name": "property-distributed-add",
+          "syntax": "add",
+          "description": "Add the supplied value to the existing property value in each zone."
+        },
+        {
+          "name": "property-distributed-deviation-gaussian",
+          "syntax": "deviation-gaussian <f>",
+          "description": "Apply Gaussian-distributed deviation around the base value with standard deviation f."
+        },
+        {
+          "name": "property-distributed-deviation-uniform",
+          "syntax": "deviation-uniform <f>",
+          "description": "Apply uniformly-distributed deviation around the base value with half-width f."
+        },
+        {
+          "name": "property-distributed-gradient",
+          "syntax": "gradient <v> <origin <v>>",
+          "description": "Apply a linear gradient v to the property value (optionally referenced to the supplied origin)."
+        },
+        {
+          "name": "property-distributed-multiply",
+          "syntax": "multiply",
+          "description": "Multiply the existing property value in each zone by the supplied value."
+        },
+        {
+          "name": "property-distributed-vary",
+          "syntax": "vary <v>",
+          "description": "Apply a linear variation v to the property value across the range."
+        },
+        {
+          "name": "track",
+          "syntax": "track keyword",
+          "description": "Track fluid pathlines (particles). Sub-keywords: active, create, delete, group, list, trace."
+        },
+        {
+          "name": "track-active",
+          "syntax": "active <b>",
+          "description": "Turn tracking on or off. When on, particles advance along the fluid velocity field during cycling."
+        },
+        {
+          "name": "track-create",
+          "syntax": "create keyword ...",
+          "description": "Create new tracking particles. Sub-keywords: line, plane, point."
+        },
+        {
+          "name": "track-create-point",
+          "syntax": "point <v>...",
+          "description": "Create one particle at each supplied position v."
+        },
+        {
+          "name": "track-create-line",
+          "syntax": "line begin <v> end <v> segment <i>",
+          "description": "Create i+1 particles along the line from begin to end."
+        },
+        {
+          "name": "track-create-line-begin",
+          "syntax": "begin <v>",
+          "description": "Start of the line for track create line."
+        },
+        {
+          "name": "track-create-line-end",
+          "syntax": "end <v>",
+          "description": "End of the line for track create line."
+        },
+        {
+          "name": "track-create-line-segment",
+          "syntax": "segment <i>",
+          "description": "Number of segments along the line (i+1 particles will be created)."
+        },
+        {
+          "name": "track-create-plane",
+          "syntax": "plane begin <v> end-1 <v> end-2 <v> segment <i1> <i2>",
+          "description": "Create (i1+1)*(i2+1) particles on a planar grid spanned by the begin point and the two end vectors."
+        },
+        {
+          "name": "track-create-plane-begin",
+          "syntax": "begin <v>",
+          "description": "Origin corner of the plane."
+        },
+        {
+          "name": "track-create-plane-end-1",
+          "syntax": "end-1 <v>",
+          "description": "First edge endpoint of the plane (from begin to end-1)."
+        },
+        {
+          "name": "track-create-plane-end-2",
+          "syntax": "end-2 <v>",
+          "description": "Second edge endpoint of the plane (from begin to end-2)."
+        },
+        {
+          "name": "track-create-plane-segment",
+          "syntax": "segment <i1> <i2>",
+          "description": "Number of segments along the first and second plane edges."
+        },
+        {
+          "name": "track-delete",
+          "syntax": "delete <range>",
+          "description": "Delete particles in the range (or all particles if no range supplied)."
+        },
+        {
+          "name": "track-group",
+          "syntax": "group <s> <slot <s>> <remove> <range>",
+          "description": "Assign group s to particles in the range. Optional slot s places the group in the named slot (default slot name is Default). remove unassigns the group instead."
+        },
+        {
+          "name": "track-group-slot",
+          "syntax": "slot <s>",
+          "description": "Slot the group is assigned to (default 'Default')."
+        },
+        {
+          "name": "track-group-remove",
+          "syntax": "remove",
+          "description": "Remove the named group from particles in the range."
+        },
+        {
+          "name": "track-list",
+          "syntax": "list",
+          "description": "List all currently-tracked particles, their coordinates, tortuosity, containing zone, accumulated path length, and status."
+        },
+        {
+          "name": "track-trace",
+          "syntax": "trace name <s> <i>",
+          "description": "Add a named trace of an individual particle (by id i) so its path can be queried later via the FISH trace API."
         }
       ]
     }

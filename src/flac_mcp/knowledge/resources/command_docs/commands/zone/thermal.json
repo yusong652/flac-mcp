@@ -269,47 +269,202 @@
         {
           "name": "active",
           "syntax": "active <b>",
-          "description": "Set thermal calculations on or off . The default is on after model configure thermal has been specified."
+          "description": "Turn the thermal module computations on or off. Active by default once the thermal process is configured."
         },
         {
-          "name": "analytical-tolerance",
-          "syntax": "tolerance <f>",
-          "description": "Define isothermal boundary layers. For example, the two planes defined by \\(x\\) = 0 and \\(y\\) = 0 are isothermal if the command zone thermal analytical isothermal x y is issued. Note A plane cannot simultaneously be an isothermal boundary and a symmetry plane. Set the thermal conductivity used in the analytical solution. Set the thermal diffusivity used in the analytical solution. Print to the screen information about the thermal analytical analysis. Solve the analytical solution to a time of f . Set general information about the heat source components for sources in the specified range. Specify the component of heat source. Specify the fraction of the initial source strength produced by each component. Specify the decay constants of the components. Delete all sources in the range. Set up a grid of point sources. Source strengths are specified with the strength keyword and the start time is specified with the time-start keyword. These must be provided after the definition of the grid, or, can be given as a separate command with a range. If not provided, the default start time is 0. The source may be outside the FLAC3D grid. Specify the top left corner of the grid. Specify the top right corner of the grid. Specify the bottom right corner of the grid. Set the number of points across the grid from left to right. Set the number of point across the grid from top to bottom. The grid sources are assigned to group s1 when group is used. Group s1 is assigned to slot s2 if the optional slot keyword follows; it is assigned to the slot named Default if not. Use of the group logic is described in the i Group section. Specify the strength of each point source in the grid. Set the start time of all point sources in the grid. Set up a line of point sources. Source strengths are specified with the strength keyword and the start time is specified with the time-start keyword. These must be provided after the definition of the grid, or, can be given as a separate command with a range. If not provided, the default start time is 0. The source may be outside the FLAC3D grid. Specify the line start point. Specify the line end point. Set the number of points along the line. The line sources are assigned to group s1 when group is used. Group s1 is assigned to slot s2 if the optional slot keyword follows; it is assigned to the slot named Default if not. Use of the group logic is described in the i Group section. Specify the strength of each point source in the grid. Set the start time of all point sources in the grid. Print to the screen information about the sources in the specified range. Specify the source strength for all sources in the range. Specify the start time for all sources in the range. This command is used to define thermal symmetry planes. For example, the plane defined by \\(y\\) = 0 is a symmetry plane if the command block thermal symmetry-planes y is issued. Symmetry planes are used to represent adiabatic boundaries. Note A plane cannot simultaneously be an isothermal boundary and a symmetry plane. Set a tolerance for thermal calculations. This tolerance can be thought of as a source radius. If temperatures are calculated at a point closer than f to a gridpoint, the distance from the gridpoint is taken as f . This is necessary because the analytical solution for the temperature due to a point source approaches infinity as the distance from the source approaches zero. (The default is f = 0.1.)"
-        },
-        {
-          "name": "cmodel-list",
-          "syntax": "list",
-          "description": "Associate a thermal constitutive model with specified zones in the grid. It also allows querying of properties and states of constitutive models. Assign a thermal model to all zones in the range . This keyword may only be given if the model is configured for thermal calculations (see model configure thermal and Mathematical Model Description ). Assign advection-conduction model. Assign thermal anisotropic model. Assign thermal hydration model. Assign thermal isotropic model. Assign thermally null model. List the available thermal constitutive models and their properties."
-        },
-        {
-          "name": "implicit-solver-pcg-preserve",
-          "syntax": "preserve",
-          "description": "Turn implicit mode on or off . By default implicit mode is off . Implicit mode requires a manually specified timestep. If no keyword is specified, the implicit logic uses the iterative Jacobi solver. If the Jacobi solver fails to converge to the solution, the logic switches to the preconditioned conjugate gradient solver (see below). The following keywords apply. Use the iterative Jacobi solver based on the local matrix formulation (see Implicit Formulation ). Note that specifying a timestep that is too large can cause the Jacobi solver to fail to converge. If this keyword is specified and the solver diverges, the system will exit with an error message. The benefit of using the Jacobi solver compared to other solvers is that it is usually faster for small implicit timesteps (<< the divergence timestep). Use the direct solver similar to matrix inversion (see Advanced implicit solvers ). This highly efficient solver is able to handle small to medium size models (< 50-100K zones) and it is unconditionally stable for any timestep. Before this solver is called, the global right-hand-side (RHS) vector and global coefficient matrix (M) are formed for the whole model to incorporate contributions from all relevant gridpoints. Then the solver solves a system of linear equations for unknown global vector of temperature changes. The following keyword is available. Specify to preserve the global heat coefficients matrix and only update its diagonal containing timestep-dependent terms. In general, the global matrix M must be re-created each time the implicit solver is called as model parameters, such as geometry, physical properties, implicit timestep, etc., may change. However, if the model parameters do not change during the simulation but user wishes to specify a different implicit timestep (e.g., to gradually increase it every certain number of steps), only the diagonal terms of the global matrix must be updated, which is very efficient. To stop this procedure and form a new global heat coefficients matrix, the command zone thermal implicit has to be issued (this resets implicit solvers settings) Use the preconditioned conjugate gradient iterative solver (see Advanced implicit solvers ). This highly efficient solver is able to handle very large models and it is unconditionally stable for any timestep due to a special technique of matching desired solution accuracy to the number of iterations required to reach this accuracy. Before the solver is called, the global right-hand-side (RHS) vector and heat coefficients matrix (M) are created for the whole model to incorporate contributions from all relevant gridpoints. Then the solver analyses matrix properties (eigenvalues, condition number) and determines the required number of iterations, after which the iterative solution procedure starts. The following keywords are available. Specify error tolerance (solution accuracy) that will determine when to stop iterations. The default tolerance value is 1.e-6. Specify a limit on the number of iterations. By default, the number of iterations is determined based on the analysis of the global matrix properties, such as min/max eigenvalues and the the condition number. This analysis is usually done rather fast, and it assures that the system can be solved to reach the desired solution accuracy. Specifying a limit on the number of iterations skips the global matrix analysis, which may decrease overall solution time, but the risk of this is that the number of iterations specified may be insufficient to reach the desired accuracy. The pcg solver has general limit of 1000 on the number of iterations. Specify to preserve the global heat coefficients matrix and only update its diagonal containing timestep-dependent terms. For a detailed description, see the same option above (for the solver-direct keyword)."
-        },
-        {
-          "name": "list-property",
-          "syntax": "property keyword [range]",
-          "description": "List general information about the zone-specific thermal calculation settings. List the values of all thermal properties matching the property in the range."
-        },
-        {
-          "name": "property",
-          "syntax": "property keyword [range]",
-          "description": "Assign properties for the thermal constitutive models of all zones in the range. Any number of name value pairs may be assigned. Any constitutive model that has a matching property name will be assigned the value. The properties of the Advection-Conduction model are listed here , of the Anisotropic Heat Conduction model are listed here , of the Isotropic Heat Conduction model are listed here , and of the Hydration model are listed here ."
-        },
-        {
-          "name": "property-distribution-vary",
-          "syntax": "vary <v>",
-          "description": "Assigns a single property name to the thermal constitutive models of all zones in the range. The property value may be varied in space by using the following optional keyword values. Add a to the property value. This keyword only applies to float type property values. A Gaussian distribution is used to assign the value randomly, with a mean value of a and a standard deviation of f . This keyword only applies to float type property values. A uniform distribution is used to assign the value randomly, with a mean value of a and a standard deviation of f . This keyword only applies to float type property values. Apply a gradient to the property value. This keyword only applies to float type property values. Note the origin keyword is optional, however, the default value (0,0,0) is used if the origin keyword is not included in the command — which may not produce the intended result. Multiply the property value by a . Apply a linear variation to the property value. This keyword only applies to float type property values."
+          "name": "implicit",
+          "syntax": "implicit <b>",
+          "description": "Turn implicit thermal mode on or off. When on, the thermal solver advances temperature using an implicit timestep (set manually) rather than the explicit conduction timestep. Default off."
         },
         {
           "name": "time-total",
           "syntax": "time-total <f>",
-          "description": "Specifies the accumulated zone thermal time, defined as the sum of all the timesteps over which zone thermal is active. Once set, thermal time will continue to accumulate with subsequent cycles."
+          "description": "Set the total accumulated thermal-flow time."
         },
         {
           "name": "zone-based-temperature",
           "syntax": "zone-based-temperature <b>",
-          "description": "Turns zone-based temperatures on and off. By default temperatures are calculated and stored at gridpoints, and the zone temperature is the average gridpoint value. When this is turned on , the zone temperature is stored in the zone and the gridpoint temperatures are ignored. Temperatures must be set manually using the zone.temp FISH intrinsic."
+          "description": "When on, temperatures are retrieved directly from the zone (which must have been assigned manually via FISH using zone.temp) rather than averaged from the gridpoints."
+        },
+        {
+          "name": "cmodel",
+          "syntax": "cmodel keyword <range>",
+          "description": "Assign, query, or list the thermal constitutive model for zones in the range. Sub-keywords: assign, list, plus the five model name shortcuts (null, isotropic, anisotropic, advection-conduction, hydration)."
+        },
+        {
+          "name": "cmodel-assign",
+          "syntax": "assign keyword <range>",
+          "description": "Assign the named thermal constitutive model to all zones in the range."
+        },
+        {
+          "name": "cmodel-assign-null",
+          "syntax": "null",
+          "description": "Assign the null thermal model (no heat conduction in the zone)."
+        },
+        {
+          "name": "cmodel-assign-isotropic",
+          "syntax": "isotropic",
+          "description": "Assign the isotropic thermal model. Properties: conductivity, expansion, specific-heat."
+        },
+        {
+          "name": "cmodel-assign-anisotropic",
+          "syntax": "anisotropic",
+          "description": "Assign the anisotropic thermal model. Properties: conductivity-{1,2,3,xx,xy,xz,yy,yz,zz}, dip, dip-direction, expansion, rotation, specific-heat."
+        },
+        {
+          "name": "cmodel-assign-advection-conduction",
+          "syntax": "advection-conduction",
+          "description": "Assign the advection-conduction thermal model (coupled heat transport with a prescribed fluid discharge field). Properties: conductivity, conductivity-effective, conductivity-fluid, density-fluid, expansion, expansion-fluid, gradient-{x,y,z}, specific-discharge-{x,y,z}, specific-heat, specific-heat-effective, specific-heat-fluid, temperature-reference."
+        },
+        {
+          "name": "cmodel-assign-hydration",
+          "syntax": "hydration",
+          "description": "Assign the hydration thermal model (cement-hydration heat source). Many properties including activation-energy, age-concrete-effective, conductivity, density-cement, expansion, hydration-grade, specific-heat, temperature-reference, time-hydration."
+        },
+        {
+          "name": "cmodel-list",
+          "syntax": "list",
+          "description": "List the available thermal constitutive models and their property names."
+        },
+        {
+          "name": "list",
+          "syntax": "list keyword",
+          "description": "List thermal module state. Sub-keywords: information (default), property."
+        },
+        {
+          "name": "list-information",
+          "syntax": "information",
+          "description": "List the current Thermal Module settings (configured/active state, accumulated time, time step, implicit mode)."
+        },
+        {
+          "name": "list-property",
+          "syntax": "property <prop> <range>",
+          "description": "List the value of the named thermal property for zones in the range."
+        },
+        {
+          "name": "property",
+          "syntax": "property <prop> <f> <range>",
+          "description": "Set a thermal material property. The property name must match a property of the currently-assigned thermal constitutive model (see zone thermal cmodel list for the full list per model)."
+        },
+        {
+          "name": "property-distribution",
+          "syntax": "property-distribution <prop> <f> <distribution-block> <range>",
+          "description": "Set a thermal material property with an optional spatial distribution. Same property names as property; the optional distribution-block sub-keyword controls how the base value is varied: add, deviation-gaussian, deviation-uniform, gradient, multiply, vary."
+        },
+        {
+          "name": "property-distribution-add",
+          "syntax": "add",
+          "description": "Add the supplied value to the existing property value in each zone."
+        },
+        {
+          "name": "property-distribution-deviation-gaussian",
+          "syntax": "deviation-gaussian <f>",
+          "description": "Apply Gaussian-distributed deviation around the base value with standard deviation f."
+        },
+        {
+          "name": "property-distribution-deviation-uniform",
+          "syntax": "deviation-uniform <f>",
+          "description": "Apply uniformly-distributed deviation around the base value with half-width f."
+        },
+        {
+          "name": "property-distribution-gradient",
+          "syntax": "gradient <v> <origin <v>>",
+          "description": "Apply a linear gradient v to the property value (optionally referenced to the supplied origin)."
+        },
+        {
+          "name": "property-distribution-multiply",
+          "syntax": "multiply",
+          "description": "Multiply the existing property value in each zone by the supplied value."
+        },
+        {
+          "name": "property-distribution-vary",
+          "syntax": "vary <v>",
+          "description": "Apply a linear variation v to the property value across the range."
+        },
+        {
+          "name": "analytical",
+          "syntax": "analytical keyword",
+          "description": "Configure and run the closed-form analytical thermal solver (used for verification and for problems with simple geometry/source layouts). Sub-keywords: isothermal-planes, list, property, solve, source, symmetry-planes, tolerance."
+        },
+        {
+          "name": "analytical-isothermal-planes",
+          "syntax": "isothermal-planes <x> <y> <z>",
+          "description": "Declare which of the global x/y/z planes are isothermal boundaries (each axis takes a boolean)."
+        },
+        {
+          "name": "analytical-symmetry-planes",
+          "syntax": "symmetry-planes <x> <y> <z>",
+          "description": "Declare which of the global x/y/z planes are symmetry planes (each axis takes a boolean)."
+        },
+        {
+          "name": "analytical-tolerance",
+          "syntax": "tolerance <f>",
+          "description": "Set the relative tolerance used by the analytical solver to decide when contributions from individual sources can be truncated."
+        },
+        {
+          "name": "analytical-list",
+          "syntax": "list",
+          "description": "List the current analytical-solver settings (isothermal-planes, symmetry-planes, tolerance, registered sources)."
+        },
+        {
+          "name": "analytical-property",
+          "syntax": "property <prop> <f>",
+          "description": "Set an analytical-solver material property. Recognised properties: conductivity, diffusivity."
+        },
+        {
+          "name": "analytical-solve",
+          "syntax": "solve",
+          "description": "Run the analytical solver, summing contributions from all registered sources to compute temperatures at every gridpoint."
+        },
+        {
+          "name": "analytical-source",
+          "syntax": "source keyword",
+          "description": "Define, list, or delete analytical heat sources. Sub-keywords: components, delete, grid, group, line, list, point, range, strength, time-start."
+        },
+        {
+          "name": "analytical-source-point",
+          "syntax": "point <v>...",
+          "description": "Add a point heat source at each supplied position v."
+        },
+        {
+          "name": "analytical-source-line",
+          "syntax": "line begin <v> end <v> segment <i>",
+          "description": "Add a line heat source discretised into i+1 collocation points between begin and end."
+        },
+        {
+          "name": "analytical-source-grid",
+          "syntax": "grid begin <v> end-1 <v> end-2 <v> end-3 <v> segment <i1> <i2> <i3>",
+          "description": "Add a volumetric (3D grid) heat source spanning the box defined by the begin corner and three edge vectors, discretised into (i1+1)*(i2+1)*(i3+1) collocation points."
+        },
+        {
+          "name": "analytical-source-strength",
+          "syntax": "strength <f>",
+          "description": "Heat strength of the source being added (W per source point)."
+        },
+        {
+          "name": "analytical-source-time-start",
+          "syntax": "time-start <f>",
+          "description": "Time at which the source being added becomes active (default 0)."
+        },
+        {
+          "name": "analytical-source-components",
+          "syntax": "components",
+          "description": "List the individual component (point) entries that make up the most-recently-added source."
+        },
+        {
+          "name": "analytical-source-group",
+          "syntax": "group <s>",
+          "description": "Assign group s to the source(s) being added."
+        },
+        {
+          "name": "analytical-source-list",
+          "syntax": "list",
+          "description": "List all currently-registered analytical sources."
+        },
+        {
+          "name": "analytical-source-delete",
+          "syntax": "delete <range>",
+          "description": "Delete analytical sources matching the range (or all sources if no range supplied)."
         }
       ]
     }
