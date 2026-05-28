@@ -78,6 +78,11 @@
           "name": "scale-pressure",
           "syntax": "scale-pressure <f>",
           "description": "Scale the pore pressure by multiplying by the scalar f. This scaler operation is performed after the cuttoff operation. The default value is 1.0 ."
+        },
+        {
+          "name": "pore-pressure",
+          "syntax": "pore-pressure <s>",
+          "description": "import gridpoint pore-pressure values from the named file s (extension *.mdp or *.csv)"
         }
       ]
     }

@@ -395,6 +395,16 @@
           "name": "vary",
           "syntax": "vary <v>",
           "description": "Apply a linear variation to the scalar-value provided."
+        },
+        {
+          "name": "stress",
+          "syntax": "stress <xx> <yy> <zz> <xy> <xz> <yz>",
+          "description": "initialize the full stress tensor (six components) for zones in the range. Requires a non-null constitutive model assigned beforehand."
+        },
+        {
+          "name": "stress-principal",
+          "syntax": "stress-principal <keyword...>",
+          "description": "initialize zone principal stresses, specified by magnitudes (maximum/intermediate/minimum) and by direction (direction-maximum/direction-intermediate/direction-minimum). At least two principal directions must be specified. Requires a non-null constitutive model assigned beforehand."
         }
       ]
     }

@@ -487,6 +487,11 @@
           "description": "stress ( \\(zz\\) -component, global system) at element centroid for an element with an elastic material model. Uses the depth-factor keyword, and may also use the surface-x keyword."
         },
         {
+          "name": "name",
+          "syntax": "name <s>",
+          "description": "assign a name s to the history record (used to reference the history elsewhere)"
+        },
+        {
           "name": "component-id",
           "syntax": "component-id <ind>",
           "description": "the element with component ID ind is selected."

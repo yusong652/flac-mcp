@@ -148,6 +148,11 @@
           "name": "snap",
           "syntax": "snap [<b>]",
           "description": "Specify that the first and last positions of the element(s) created will attempt to “snap” to the location of the nearest structural node (attached to any element type) within a radius of 1/2 the element length. If only one end is snapped in this manner, then the entire line or ray created will be offset by the difference between the original and snapped positions. Note that a new node is created and snapped to the location of the nearest existing node - the element being created does not use an existing node as one of its end nodes. Use struct node join if you want to join the newly created node to the existing node."
+        },
+        {
+          "name": "by-zone-face",
+          "syntax": "by-zone-face",
+          "description": "create hybrid bolt elements anchored to each zone face in the range"
         }
       ]
     }

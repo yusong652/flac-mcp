@@ -297,6 +297,11 @@
           "name": "size",
           "syntax": "size <i1><i2>",
           "description": "This keyword only applies if the by-quadrilateral option was used. Increases the number of elements created by subdividing the quadrilateral into i1 segments along the first edge and i2 segments along the second. By default, only one quad is created."
+        },
+        {
+          "name": "by-block-face",
+          "syntax": "by-block-face",
+          "description": "create geogrid elements covering each block face in the range (one element per face)"
         }
       ]
     }

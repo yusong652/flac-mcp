@@ -82,6 +82,11 @@
           "name": "information",
           "syntax": "information",
           "description": "For each face in the range, lists the gridpoint ids that it is connected to, the zones on either side, the hide and select status, and any group assignments that exist."
+        },
+        {
+          "name": "apply",
+          "syntax": "apply",
+          "description": "list the apply conditions assigned to faces in the range"
         }
       ]
     }

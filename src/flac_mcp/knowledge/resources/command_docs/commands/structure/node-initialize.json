@@ -416,6 +416,46 @@
           "name": "vary",
           "syntax": "vary <v>",
           "description": "Apply a linear variation to the scalar-value provided."
+        },
+        {
+          "name": "acceleration",
+          "syntax": "acceleration <v>",
+          "description": "initialize the translational acceleration vector at nodes in the range"
+        },
+        {
+          "name": "acceleration-x",
+          "syntax": "acceleration-x <f>",
+          "description": "initialize the x-component of translational acceleration at nodes in the range"
+        },
+        {
+          "name": "acceleration-y",
+          "syntax": "acceleration-y <f>",
+          "description": "initialize the y-component of translational acceleration at nodes in the range"
+        },
+        {
+          "name": "acceleration-z",
+          "syntax": "acceleration-z <f>",
+          "description": "initialize the z-component of translational acceleration at nodes in the range"
+        },
+        {
+          "name": "acceleration-rotational",
+          "syntax": "acceleration-rotational <v>",
+          "description": "initialize the rotational acceleration vector at nodes in the range"
+        },
+        {
+          "name": "acceleration-rotational-x",
+          "syntax": "acceleration-rotational-x <f>",
+          "description": "initialize the x-component of rotational acceleration at nodes in the range"
+        },
+        {
+          "name": "acceleration-rotational-y",
+          "syntax": "acceleration-rotational-y <f>",
+          "description": "initialize the y-component of rotational acceleration at nodes in the range"
+        },
+        {
+          "name": "acceleration-rotational-z",
+          "syntax": "acceleration-rotational-z <f>",
+          "description": "initialize the z-component of rotational acceleration at nodes in the range"
         }
       ]
     }

@@ -202,6 +202,11 @@
           "description": "moment ( \\(z\\) -component, force-moment sign convention)"
         },
         {
+          "name": "name",
+          "syntax": "name <s>",
+          "description": "assign a name s to the history record (used to reference the history elsewhere)"
+        },
+        {
           "name": "component-id",
           "syntax": "component-id <i>",
           "description": "the particular element is identified by the component ID number. If this keyword is used, position should not be used."

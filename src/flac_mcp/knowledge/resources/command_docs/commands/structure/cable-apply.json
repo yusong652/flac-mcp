@@ -87,9 +87,9 @@
       "syntax": "structure cable apply keyword [range]",
       "keywords": [
         {
-          "name": "tension-value",
-          "syntax": "value <f>",
-          "description": "assign a specific axial tension value in the cable element that will be maintained during cycling. Incomplete sentence follows: This is intended as a way to pre-tension cables, but applying the pre-tension force as a tension to the end cable element(s), that are generally ungrouted. [DR: why is this flagged?] Note that this setting will override the normal force-displacement law for the cable element as long as it is active. Removing the condition will not remove the force, but from then on, the cable element forces will evolve naturally. The following keywords are available: make the tensile apply condition active or inactive. If active, the last specified value of tension is used, which is 0.0 by default. set the axial tensile force applied to the element f . This makes the condition active automatically."
+          "name": "tension",
+          "syntax": "tension {active <b> | value <f>}",
+          "description": "assign a specific axial tension value in the cable element that will be maintained during cycling. This is intended as a way to pre-tension cables by applying the pre-tension force to the (generally ungrouted) end cable element(s). This setting will override the normal force-displacement law for the cable element as long as it is active. Removing the condition will not remove the force, but from then on, the cable element forces will evolve naturally. Two sub-keywords are available: active <b> makes the tensile apply condition active or inactive (if active, the last specified value of tension is used, default 0.0); value <f> sets the axial tensile force applied to the element, which makes the condition active automatically."
         }
       ]
     }

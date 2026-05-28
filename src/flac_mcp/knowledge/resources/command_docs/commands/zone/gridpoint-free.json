@@ -178,6 +178,11 @@
           "name": "well",
           "syntax": "well",
           "description": "Frees an applied fluid source."
+        },
+        {
+          "name": "head",
+          "syntax": "head",
+          "description": "free the fluid pore-pressure (head) degree-of-freedom at gridpoints in the range"
         }
       ]
     }

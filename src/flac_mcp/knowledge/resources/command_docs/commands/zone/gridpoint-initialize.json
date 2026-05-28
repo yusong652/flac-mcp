@@ -352,6 +352,26 @@
           "name": "vary",
           "syntax": "vary <v>",
           "description": "Apply a linear variation to the scalar-value provided."
+        },
+        {
+          "name": "force",
+          "syntax": "force <v>",
+          "description": "initialize the applied force vector at gridpoints in the range"
+        },
+        {
+          "name": "force-x",
+          "syntax": "force-x <f>",
+          "description": "initialize the x-component of the applied force at gridpoints in the range"
+        },
+        {
+          "name": "force-y",
+          "syntax": "force-y <f>",
+          "description": "initialize the y-component of the applied force at gridpoints in the range"
+        },
+        {
+          "name": "force-z",
+          "syntax": "force-z <f>",
+          "description": "initialize the z-component of the applied force at gridpoints in the range"
         }
       ]
     }

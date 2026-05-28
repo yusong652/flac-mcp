@@ -89,6 +89,16 @@
           "name": "position",
           "syntax": "position <v>",
           "description": "Add a trace at position v , which must fall in or on some zone."
+        },
+        {
+          "name": "gp",
+          "syntax": "gp <i>",
+          "description": "sample a gridpoint trace by gridpoint number i"
+        },
+        {
+          "name": "name",
+          "syntax": "name <s>",
+          "description": "assign a name s to the trace record. Use together with a location keyword (gp/gridpointid/position/zoneid) that identifies what to trace."
         }
       ]
     }

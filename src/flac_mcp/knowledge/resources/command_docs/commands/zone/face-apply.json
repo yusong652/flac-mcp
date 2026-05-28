@@ -666,6 +666,11 @@
           "name": "vary",
           "syntax": "vary <v>",
           "description": "Apply a linear variation to the scalar-value provided. This is not available if the apply conditions requires two values or a vector value."
+        },
+        {
+          "name": "stress-tensor",
+          "syntax": "stress-tensor <xx> <yy> <zz> <xy> <xz> <yz>",
+          "description": "apply the full stress tensor (six components) as a face traction condition"
         }
       ]
     }
