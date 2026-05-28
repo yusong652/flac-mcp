@@ -6,6 +6,9 @@
     "building-blocks"
   ],
   "description": "Perform an operation on a block (by ID). The operation is performed on block ID i in the current building blocks set.",
+  "notes": [
+    "Requires a current building-blocks set: run 'building-blocks set create <name>' then 'building-blocks set select <name>' before any block/edge/face/point operation; otherwise FLAC rejects the command with 'Unused extra parameter'."
+  ],
   "python_sdk_alternative": {
     "available": false
   },

@@ -6,6 +6,9 @@
     "building-blocks"
   ],
   "description": "Transform and edge (via its points). If < range > is not specified all edges are transformed.",
+  "notes": [
+    "Requires a current building-blocks set: run 'building-blocks set create <name>' then 'building-blocks set select <name>' before any block/edge/face/point operation; otherwise FLAC rejects the command with 'Unused extra parameter'."
+  ],
   "python_sdk_alternative": {
     "available": false
   },

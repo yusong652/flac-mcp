@@ -6,6 +6,9 @@
     "building-blocks"
   ],
   "description": "Import blocks from a file.",
+  "notes": [
+    "Requires a current building-blocks set: run 'building-blocks set create <name>' then 'building-blocks set select <name>' before any block/edge/face/point operation; otherwise FLAC rejects the command with 'Unused extra parameter'."
+  ],
   "python_sdk_alternative": {
     "available": false
   },

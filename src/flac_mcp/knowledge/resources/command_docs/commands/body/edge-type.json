@@ -6,6 +6,9 @@
     "building-blocks"
   ],
   "description": "Specify edge curve-type. Edge(s) in the current < range > are affected, if supplied; all edges are affected if not.",
+  "notes": [
+    "Requires a current building-blocks set: run 'building-blocks set create <name>' then 'building-blocks set select <name>' before any block/edge/face/point operation; otherwise FLAC rejects the command with 'Unused extra parameter'."
+  ],
   "python_sdk_alternative": {
     "available": false
   },

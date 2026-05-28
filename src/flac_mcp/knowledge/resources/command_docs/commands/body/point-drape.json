@@ -6,6 +6,9 @@
     "building-blocks"
   ],
   "description": "Move points onto an external geometric set. The points to be moved are defined by the < range >. Movement of each point is done along the beam-line defined by keyword until it intersects the external geometric set. The < novalidate > option skips validation of all blocks moved as part of the drape operation.",
+  "notes": [
+    "Requires a current building-blocks set: run 'building-blocks set create <name>' then 'building-blocks set select <name>' before any block/edge/face/point operation; otherwise FLAC rejects the command with 'Unused extra parameter'."
+  ],
   "python_sdk_alternative": {
     "available": false
   },

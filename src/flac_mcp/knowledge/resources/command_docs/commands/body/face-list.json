@@ -6,6 +6,9 @@
     "building-blocks"
   ],
   "description": "Print information about faces. If < range > is not supplied, the requested information is listed for all faces in the current building blocks set.",
+  "notes": [
+    "Requires a current building-blocks set: run 'building-blocks set create <name>' then 'building-blocks set select <name>' before any block/edge/face/point operation; otherwise FLAC rejects the command with 'Unused extra parameter'."
+  ],
   "python_sdk_alternative": {
     "available": false
   },
