@@ -64,7 +64,8 @@
           "syntax": "remove",
           "description": "Remove the group name."
         }
-      ]
+      ],
+      "examples": []
     }
   }
 }

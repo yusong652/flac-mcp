@@ -35,7 +35,9 @@
     },
     "9.0": {
       "command": "building-blocks point delete",
-      "syntax": "building-blocks point delete [range]"
+      "syntax": "building-blocks point delete [range]",
+      "keywords": [],
+      "examples": []
     }
   }
 }

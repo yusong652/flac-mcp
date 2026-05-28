@@ -94,7 +94,8 @@
           "syntax": "bi-cubic-spline",
           "description": "Specify the curve-type of the face. Can be non-curved or bi-cubic-spline. Specify non-curved face. Specify a bi-cubic-spline face."
         }
-      ]
+      ],
+      "examples": []
     }
   }
 }

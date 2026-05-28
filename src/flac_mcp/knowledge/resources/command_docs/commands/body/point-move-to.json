@@ -71,7 +71,8 @@
           "syntax": "z",
           "description": "Set the \\(z\\) -component of the point(s)."
         }
-      ]
+      ],
+      "examples": []
     }
   }
 }

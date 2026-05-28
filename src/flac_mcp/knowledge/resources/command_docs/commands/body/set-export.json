@@ -35,7 +35,9 @@
     },
     "9.0": {
       "command": "building-blocks set export",
-      "syntax": "building-blocks set export [<s>] [binary]"
+      "syntax": "building-blocks set export [<s>] [binary]",
+      "keywords": [],
+      "examples": []
     }
   }
 }

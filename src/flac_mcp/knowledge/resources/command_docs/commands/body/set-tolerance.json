@@ -5,7 +5,7 @@
     "tolerance",
     "building-blocks"
   ],
-  "description": "Set the tolerance for geometric manipulations. For instance, if the distance between two points is less than f they will be treated as one point (merged). The tolerance value f must be positive. Invoking the command will set off the auto-tolerance flag (see building-blocks set auto-tolerance ).",
+  "description": "Set the tolerance for geometric manipulations. For instance, if the distance between two points is less than f they will be treated as one point (merged). The tolerance value f must be positive. Invoking the command will set off the auto-tolerance flag (see building-blocks set automatic-tolerance ).",
   "python_sdk_alternative": {
     "available": false
   },
@@ -22,7 +22,7 @@
     "7.0": {
       "command": "building-blocks set tolerance",
       "syntax": "building-blocks set tolerance f",
-      "description": "Set the tolerance for geometric manipulations. For instance, if the distance between two points is less than f they will be treated as one point (merged). The tolerance value f must be positive. Invoking the command will set off the auto-tolerance flag (see building-blocks set auto-tolerance).",
+      "description": "Set the tolerance for geometric manipulations. For instance, if the distance between two points is less than f they will be treated as one point (merged). The tolerance value f must be positive. Invoking the command will set off the auto-tolerance flag (see building-blocks set automatic-tolerance).",
       "legacy_documentation": {
         "availability_verified": true,
         "source": "official FLAC3D 7.0 contents command index",
@@ -35,7 +35,9 @@
     },
     "9.0": {
       "command": "building-blocks set tolerance",
-      "syntax": "building-blocks set tolerance <f>"
+      "syntax": "building-blocks set tolerance <f>",
+      "keywords": [],
+      "examples": []
     }
   }
 }

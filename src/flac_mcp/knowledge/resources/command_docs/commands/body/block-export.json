@@ -91,7 +91,8 @@
           "syntax": "to-geometry-set <s>",
           "description": "Export the blocks to a geometric set named s . It only creates “external” faces of the supplied blocks as a set of polygons (quads or triangles)."
         }
-      ]
+      ],
+      "examples": []
     }
   }
 }

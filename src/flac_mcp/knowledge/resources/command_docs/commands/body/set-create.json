@@ -35,7 +35,9 @@
     },
     "9.0": {
       "command": "building-blocks set create",
-      "syntax": "building-blocks set create <s>"
+      "syntax": "building-blocks set create <s>",
+      "keywords": [],
+      "examples": []
     }
   }
 }

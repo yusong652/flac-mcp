@@ -69,7 +69,8 @@
           "syntax": "remove <s>",
           "description": "Remove the geometric set with name s from the list of geometric sets associated with the current building blocks set."
         }
-      ]
+      ],
+      "examples": []
     }
   }
 }

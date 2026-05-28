@@ -71,7 +71,8 @@
           "syntax": "total <i>",
           "description": "Specify zoning by setting the total number of zones in the set to i ."
         }
-      ]
+      ],
+      "examples": []
     }
   }
 }

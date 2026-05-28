@@ -89,7 +89,8 @@
           "syntax": "translate <v>",
           "description": "Perform a translation — adding v to each coordinate point of the face to be transformed."
         }
-      ]
+      ],
+      "examples": []
     }
   }
 }

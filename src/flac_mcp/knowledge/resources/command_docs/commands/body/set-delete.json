@@ -35,7 +35,9 @@
     },
     "9.0": {
       "command": "building-blocks set delete",
-      "syntax": "building-blocks set delete [<s>]"
+      "syntax": "building-blocks set delete [<s>]",
+      "keywords": [],
+      "examples": []
     }
   }
 }

@@ -89,7 +89,8 @@
           "syntax": "translate <v>",
           "description": "Perform a translation — adding v to each coordinate point of the blocks to be transformed."
         }
-      ]
+      ],
+      "examples": []
     }
   }
 }

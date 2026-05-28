@@ -161,7 +161,8 @@
           "syntax": "status",
           "description": "Validation status for each block is listed."
         }
-      ]
+      ],
+      "examples": []
     }
   }
 }
