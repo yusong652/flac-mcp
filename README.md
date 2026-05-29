@@ -1,5 +1,9 @@
 # flac-mcp
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/yusong652/flac-mcp/assets/header.png" width="70%" alt="flac-mcp — MCP Server for ITASCA FLAC">
+</p>
+
 [English](https://github.com/yusong652/flac-mcp/blob/main/README.md) | [简体中文](https://github.com/yusong652/flac-mcp/blob/main/README.zh-CN.md)
 
 [![PyPI](https://img.shields.io/pypi/v/flac-mcp)](https://pypi.org/project/flac-mcp/)
