@@ -14,6 +14,29 @@ The release will fail to publish if no matching entry is found.
 Description of the release.
 -->
 
+## [0.2.0] - 2026-06-04
+
+### Added
+- `--bridge-port` CLI argument to override the bridge connection port —
+  shorthand for `--bridge-url ws://localhost:PORT`. When a full
+  `--bridge-url` / `FLAC_MCP_BRIDGE_URL` is also supplied, only its port is
+  overridden.
+
+### Changed
+- `flac_execute_task` now submits over the bridge's `execute_task` message
+  (renamed from `pfc_task` so the shared bridge protocol is product-neutral;
+  the bridge keeps `pfc_task` as a deprecated alias). **Requires
+  `itasca-mcp-bridge >= 0.1.5`** — older bridges silently ignore the message
+  and submission times out. If that happens, confirm the bridge version with
+  `flac_execute_code` (`import itasca_mcp_bridge;
+  print(itasca_mcp_bridge.__version__)`) and upgrade by re-running addon.py.
+- Slimmed `flac_check_task_status` pagination to `total_lines` + `line_range`,
+  replacing the heavier pagination object. Output windows are still selected
+  with `skip_newest` / `limit` / `filter_text`.
+- Bumped `itasca-mcp-bridge` to `0.1.5` (submodule pin). Picks up the PySide6
+  Qt task-pump fix so the bridge starts on PFC 9.7+ (Python 3.10 / Qt6) and
+  the `execute_task` protocol rename.
+
 ## [0.1.1] - 2026-06-03
 
 ### Fixed
