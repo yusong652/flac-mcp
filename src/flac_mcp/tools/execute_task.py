@@ -45,6 +45,13 @@ def register(mcp: FastMCP) -> None:
         values and refine live via flac_execute_code as the task
         cycles. For synchronous, inline execution, use
         flac_execute_code directly.
+
+        Submission uses the bridge's `execute_task` protocol message. If
+        a submission times out, the connected bridge may predate it —
+        confirm its version with flac_execute_code (`import
+        itasca_mcp_bridge; print(itasca_mcp_bridge.__version__)`). To
+        upgrade, fetch and follow the bootstrap guide, then resubmit:
+        https://raw.githubusercontent.com/yusong652/flac-mcp/main/docs/agentic/flac-mcp-bootstrap.md
         """
         try:
             client = await get_bridge_client()
