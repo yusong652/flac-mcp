@@ -14,6 +14,18 @@ The release will fail to publish if no matching entry is found.
 Description of the release.
 -->
 
+## [0.5.1] - 2026-06-06
+
+### Fixed
+- Replaced leftover PFC examples in MCP tool descriptions with FLAC
+  equivalents (descriptions only — no behavior change). Affects
+  `flac_browse_python_api` / `flac_query_python_api` (API-path and keyword
+  examples), the shared command/API search-query field descriptions,
+  `flac_browse_commands`, and `flac_execute_code`: e.g.
+  `itasca.ball` / `itasca.wall.facet` → `itasca.zone` / `itasca.interface.node`,
+  `ball create` / `contact force` → `zone create` / `gridpoint velocity`. All
+  new examples verified against the live FLAC3D 9.0 Python API.
+
 ## [0.5.0] - 2026-06-04
 
 ### Added
