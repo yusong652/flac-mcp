@@ -36,7 +36,7 @@
 将以下文本复制给你的 AI 智能体，让它自动完成配置：
 
 ```text
-Fetch and follow this bootstrap guide end-to-end:
+请全程用中文与我交流。然后获取并完整按照这份引导指南执行（指南为英文，照其步骤操作即可）：
 https://raw.githubusercontent.com/yusong652/flac-mcp/main/docs/agentic/flac-mcp-bootstrap.md
 ```
 

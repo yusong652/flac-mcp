@@ -26,12 +26,12 @@ Use this guide when an agent needs to set up `flac-mcp` execution end-to-end on 
 
 Use the client-specific Step 1 profile:
 
-- OpenCode: https://raw.githubusercontent.com/yusong652/flac-mcp/main/docs/agentic/flac-mcp-bootstrap-opencode.md
-- Claude Code: https://raw.githubusercontent.com/yusong652/flac-mcp/main/docs/agentic/flac-mcp-bootstrap-claude.md
-- Codex: https://raw.githubusercontent.com/yusong652/flac-mcp/main/docs/agentic/flac-mcp-bootstrap-codex.md
-- Gemini CLI: https://raw.githubusercontent.com/yusong652/flac-mcp/main/docs/agentic/flac-mcp-bootstrap-gemini.md
-- GitHub Copilot CLI: https://raw.githubusercontent.com/yusong652/flac-mcp/main/docs/agentic/flac-mcp-bootstrap-copilot.md
-- toyoura-nagisa: https://raw.githubusercontent.com/yusong652/flac-mcp/main/docs/agentic/flac-mcp-bootstrap-toyoura-nagisa.md
+- OpenCode: <https://raw.githubusercontent.com/yusong652/flac-mcp/main/docs/agentic/flac-mcp-bootstrap-opencode.md>
+- Claude Code: <https://raw.githubusercontent.com/yusong652/flac-mcp/main/docs/agentic/flac-mcp-bootstrap-claude.md>
+- Codex: <https://raw.githubusercontent.com/yusong652/flac-mcp/main/docs/agentic/flac-mcp-bootstrap-codex.md>
+- Gemini CLI: <https://raw.githubusercontent.com/yusong652/flac-mcp/main/docs/agentic/flac-mcp-bootstrap-gemini.md>
+- GitHub Copilot CLI: <https://raw.githubusercontent.com/yusong652/flac-mcp/main/docs/agentic/flac-mcp-bootstrap-copilot.md>
+- toyoura-nagisa: <https://raw.githubusercontent.com/yusong652/flac-mcp/main/docs/agentic/flac-mcp-bootstrap-toyoura-nagisa.md>
 
 If raw URL fetch is unavailable, use repository-relative paths:
 
@@ -48,7 +48,9 @@ Apply this MCP launch contract in your client's native config format:
 - primary launch command: `uvx flac-mcp`
 - fallback launch command: `uv tool run flac-mcp`
 - enable server in client config
-- prefer workspace-level config by default; use global config only if user explicitly requests it
+- prefer user/global-level config by default; fall back to workspace-level config only if the global config is unavailable or write-blocked
+
+> Rationale: `flac-mcp` bridges a machine-local FLAC GUI over a localhost bridge, so the capability is machine-scoped, not project-scoped. A FLAC working directory is a simulation workspace and is rarely a shared repo, so workspace-scoped config mainly creates a "switch working directory → tool disappears, must re-run bootstrap" footgun. Keep the config global so it survives directory changes; the per-client profile names the exact user-scope target and the preferred CLI where one exists.
 
 When editing MCP config, use this order:
 
@@ -148,6 +150,14 @@ Install/upgrade:
 & "{flac_python}" -m pip install --user --upgrade itasca-mcp-bridge
 ```
 
+If that index is unreachable (PyPI blocked behind a regional network or
+corporate proxy), retry via the Tsinghua mirror -- the same fallback the
+bridge's own self-upgrade performs automatically:
+
+```powershell
+& "{flac_python}" -m pip install --user --upgrade --index-url https://pypi.tuna.tsinghua.edu.cn/simple/ --trusted-host pypi.tuna.tsinghua.edu.cn itasca-mcp-bridge
+```
+
 Verify import and version:
 
 ```powershell
@@ -165,6 +175,9 @@ If websocket dependency errors appear, install the version that matches the embe
 # FLAC 9.0
 & "{flac_python}" -m pip install --user websockets==16.0
 ```
+
+If PyPI is unreachable here too, add the same `--index-url` /
+`--trusted-host` Tsinghua-mirror flags shown above.
 
 ## Step 4 - Start Bridge in FLAC GUI
 
@@ -238,7 +251,8 @@ Success example (shape may vary by client):
     wrong interpreter). Re-run Step 3 against the resolved `flac_python`.
   - One-shot fallback: paste the contents of
     <https://raw.githubusercontent.com/yusong652/flac-mcp/main/addon.py> into the
-    FLAC IPython console -- it installs and starts the bridge in one go.
+    FLAC IPython console -- it installs (with mirror fallback) and starts the
+    bridge in one go.
 - `No module named websockets`:
   - Install `websockets==9.1` for FLAC 6/7 or `websockets==16.0` for FLAC 9 in the embedded Python environment.
 - `status remains pending / plot diagnostic timeout during solve`:

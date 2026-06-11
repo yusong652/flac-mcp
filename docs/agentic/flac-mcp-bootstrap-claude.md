@@ -8,8 +8,9 @@ For Codex, use `docs/agentic/flac-mcp-bootstrap-codex.md` instead.
 
 [AGENT]
 
-Default target: workspace `.mcp.json`.
-Use user-level MCP config only if user explicitly asks for global sharing.
+Default target: user-level MCP config (global, available across all working directories).
+Preferred mechanism: `claude mcp add --scope user flac-mcp -- uvx flac-mcp` (idempotent; handles merge; no need to locate the config file).
+Fall back to workspace `.mcp.json` only if the user-scope config is unavailable or write-blocked.
 
 Add/merge this MCP entry:
 

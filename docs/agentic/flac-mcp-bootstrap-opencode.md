@@ -6,9 +6,14 @@ Use this profile when the client is OpenCode.
 
 [AGENT]
 
-Default target: workspace-level config `<workspace>/opencode.json`.
-Use global config `~/.config/opencode/opencode.json` only if user explicitly asks for global sharing.
-Prefer editing the workspace-relative file `./opencode.json` directly to avoid absolute-path mistakes.
+Edit the global config file directly. Do NOT use the interactive `opencode mcp add` wizard — it is prompt-driven and cannot be agent-automated (and it only offers a scope choice inside a git repo; outside git it silently writes global).
+
+Default target: global config file `opencode.json` under OpenCode's config dir:
+
+- Windows: `%USERPROFILE%\.config\opencode\opencode.json` (NOT `%APPDATA%`)
+- macOS / Linux: `~/.config/opencode/opencode.json`
+
+OpenCode resolves this dir via XDG: if `XDG_CONFIG_HOME` (or `OPENCODE_CONFIG_DIR`) is set, the location changes accordingly. Before writing, confirm the resolved path on the actual machine with `opencode debug paths` (use the `config` value); if an `opencode.jsonc` already exists there, edit that instead. Fall back to workspace-level `./opencode.json` only if the global file is unavailable or write-blocked.
 
 Add/merge this MCP entry:
 

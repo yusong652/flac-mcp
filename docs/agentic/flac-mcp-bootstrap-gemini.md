@@ -6,10 +6,15 @@ Use this profile when the client is Gemini CLI.
 
 [AGENT]
 
-Default target: workspace-level `.gemini/settings.json`.
-Use user-level Gemini config only if the user explicitly requests global sharing.
+**Primary (CLI, user scope):**
 
-Add/merge this MCP entry (command and args must be split):
+```bash
+gemini mcp add --scope user flac-mcp uvx flac-mcp
+```
+
+`--scope user` is REQUIRED. Without it the default scope is `project` (writes only `./.gemini/settings.json`), which reintroduces the "switch working directory → tool disappears" footgun. Requires Gemini CLI >= v0.36; if `mcp add` or the flag is missing, run `gemini mcp add --help` to confirm, then use the fallback.
+
+**Fallback (edit user config file):** `~/.gemini/settings.json` — Windows: `%USERPROFILE%\.gemini\settings.json`. Gemini resolves the home directory directly (no `XDG_*`, no `%APPDATA%`). Add/merge this entry under the top-level `mcpServers` key (command and args must be split):
 
 ```json
 {
@@ -34,6 +39,8 @@ If `uvx` is unavailable, fallback to:
   }
 }
 ```
+
+Last resort: if the user config file itself is unavailable or write-blocked, use a workspace-level `.gemini/settings.json` with the same entry — accepting it will not survive a working-directory change.
 
 [USER ACTION REQUIRED]
 

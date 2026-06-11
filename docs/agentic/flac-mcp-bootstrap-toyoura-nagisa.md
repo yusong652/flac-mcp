@@ -6,8 +6,8 @@ Use this profile when the client is toyoura-nagisa.
 
 [AGENT]
 
-Preferred target: workspace-level `./.nagisa/mcp_servers.json`.
-Use user-level `~/.nagisa/mcp_servers.json` only if the user explicitly requests global sharing.
+Preferred target: user-level `~/.nagisa/mcp_servers.json` (available across all working directories).
+Fall back to workspace-level `./.nagisa/mcp_servers.json` only if the user-scope config is unavailable or write-blocked.
 
 Add/merge this entry under `mcpServers`:
 
