@@ -21,6 +21,7 @@ Notes
 """
 
 import importlib
+import os
 import sys
 
 PACKAGE = "itasca-mcp-bridge"
@@ -89,6 +90,10 @@ def main():
             "        Run this inside FLAC's Python, with network access on "
             "first use, then retry."
         ) from exc
+    # This add-on already handled install/upgrade above; tell start() to skip
+    # its own update check (bridge >= 0.2.0). The env var works across bridge
+    # versions, unlike the start(auto_upgrade=...) kwarg older bridges lack.
+    os.environ["ITASCA_MCP_BRIDGE_AUTO_UPGRADE"] = "0"
     print("[addon] Starting bridge (ws://localhost:9001) ...")
     bridge.start()
 

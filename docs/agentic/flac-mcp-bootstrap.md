@@ -6,7 +6,7 @@ Use this guide when an agent needs to set up `flac-mcp` execution end-to-end on 
 
 1. MCP client is configured to run `flac-mcp`.
 2. `itasca-mcp-bridge` is installed in the correct FLAC embedded Python environment.
-3. Bridge is started in FLAC GUI (via `addon.py` or `itasca_mcp_bridge.start()`).
+3. Bridge is started in FLAC GUI via `itasca_mcp_bridge.start()`.
 4. MCP execution tools are verified with `flac_execute_code`.
 
 ## Agent Execution Rules
@@ -184,38 +184,26 @@ powershell -NoProfile -Command "$procs=Get-CimInstance Win32_Process | Where-Obj
 
 If multiple `flac*_gui.exe` processes are running and the user did not specify, ask which one to target.
 
-Download `addon.py` to a local path the user can easily find (e.g. Desktop or working directory):
-
-```bash
-curl -o addon.py https://raw.githubusercontent.com/yusong652/flac-mcp/main/addon.py
-```
-
-PowerShell form (recommended on Windows shells):
-
-```powershell
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/yusong652/flac-mcp/main/addon.py" -OutFile "addon.py"
-```
-
-Tell the user where the file was saved.
-
 [USER ACTION REQUIRED]
 
-Use one of these two options to start the bridge, then restart the client session before Step 5.
-
-**Option A (recommended):** Open the downloaded `addon.py` in FLAC GUI and execute it, or copy its contents into the FLAC IPython console and run them. The script handles install, upgrade, and startup automatically.
-
-**Option B (manual):** In FLAC GUI Python console:
+Ask the user to run this in the FLAC GUI IPython console (the package was
+already installed in Step 3), then restart the client session before Step 5:
 
 ```python
 import itasca_mcp_bridge
 itasca_mcp_bridge.start()
 ```
 
+On every start the bridge checks PyPI for a newer release and self-upgrades
+before starting, so this same two-liner keeps the install current in later
+sessions. The check is best-effort: offline machines just start the
+installed version.
+
 Expected output includes:
 
-- `FLAC Bridge Server`
+- `Itasca MCP Bridge Server`
 - `ws://localhost:9001`
-- `Bridge started in non-blocking mode`
+- `Task loop running via Qt timer`
 
 ## Step 5 - Verify from MCP Client
 
@@ -246,7 +234,11 @@ Success example (shape may vary by client):
 - `Connection refused`:
   - Bridge not running in FLAC GUI, or port `9001` not available.
 - `No module named itasca_mcp_bridge`:
-  - Bridge package not installed in FLAC embedded Python.
+  - Bridge package not installed in FLAC embedded Python (or installed into the
+    wrong interpreter). Re-run Step 3 against the resolved `flac_python`.
+  - One-shot fallback: paste the contents of
+    <https://raw.githubusercontent.com/yusong652/flac-mcp/main/addon.py> into the
+    FLAC IPython console -- it installs and starts the bridge in one go.
 - `No module named websockets`:
   - Install `websockets==9.1` for FLAC 6/7 or `websockets==16.0` for FLAC 9 in the embedded Python environment.
 - `status remains pending / plot diagnostic timeout during solve`:
