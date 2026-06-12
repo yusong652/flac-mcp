@@ -3,7 +3,7 @@
 # PFC headless dev container.
 #
 # Goal: run the Itasca PFC Linux engine in console (no-GUI) mode plus the
-# pfc-mcp-bridge WebSocket server, so MCP clients on the host can drive PFC
+# itasca-mcp-bridge WebSocket server, so MCP clients on the host can drive PFC
 # without a Windows machine. Demo mode (no license) caps models at 1000
 # balls/clumps -- enough for bridge dev and smoke tests.
 #
@@ -99,8 +99,8 @@ ENV ITASCA_HOME=/opt/itascasoftware/subscription
 ENV ITASCA_PYBIN=${ITASCA_HOME}/python310/bin/python3
 ENV ITASCA_LD_PATHS=${ITASCA_HOME}/python310/bin:${ITASCA_HOME}
 
-WORKDIR /opt/pfc-mcp-bridge
-COPY pfc-mcp-bridge/ ./
+WORKDIR /opt/itasca-mcp-bridge
+COPY itasca-mcp-bridge/ ./
 
 # Editable install so a future bind-mount of the host's source can iterate
 # without rebuilding the image. Using the embedded Python guarantees the
