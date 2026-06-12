@@ -33,12 +33,12 @@ services:
     environment:
       PFC_GUI: "${PFC_GUI:-}"
     ports:
-      - "9001:9001"   # pfc-mcp-bridge WebSocket
+      - "9001:9001"   # itasca-mcp-bridge WebSocket
       - "6080:6080"   # noVNC HTML5 viewer (GUI mode only)
     volumes:
       # Live-edit bridge source: host changes apply immediately, paired with
       # the editable install baked into the image.
-      - ../pfc-mcp-bridge/src/pfc_mcp_bridge:/opt/pfc-mcp-bridge/src/pfc_mcp_bridge
+      - ../itasca-mcp-bridge/src/itasca_mcp_bridge:/opt/itasca-mcp-bridge/src/itasca_mcp_bridge
       # Live-edit the entrypoint without rebuilding -- handy while we are
       # still figuring out the right startup choreography.
       - ./entrypoint.sh:/usr/local/bin/entrypoint.sh:ro
