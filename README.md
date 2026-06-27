@@ -1,5 +1,13 @@
 # flac-mcp
 
+> [!WARNING]
+> **`flac-mcp` is deprecated and frozen.** It is superseded by
+> [**`itasca-mcp`**](https://github.com/yusong652/itasca-mcp) — a single
+> multi-engine MCP server covering FLAC, PFC, 3DEC, MPoint, and MassFlow.
+> Update your MCP client config from `uvx flac-mcp` to `uvx itasca-mcp`
+> (select FLAC docs via the `software` parameter). No further releases are
+> planned here.
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/yusong652/flac-mcp/assets/header.png" width="70%" alt="flac-mcp — MCP Server for ITASCA FLAC">
 </p>

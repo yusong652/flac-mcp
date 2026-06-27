@@ -27,6 +27,12 @@ from flac_mcp.tools import (
 mcp = FastMCP(
     "FLAC MCP Server",
     instructions=(
+        "⚠️ DEPRECATED: the 'flac-mcp' package is superseded by 'itasca-mcp', "
+        "a single multi-engine server covering FLAC, PFC, 3DEC, MPoint, and "
+        "MassFlow. This package is frozen and receives no further updates. "
+        "Please update your MCP client config from `uvx flac-mcp` to "
+        "`uvx itasca-mcp` (FLAC3D docs are selected with the `software` "
+        "parameter). The tools below still work against an itasca-mcp-bridge.\n\n"
         "FLAC3D MCP server. "
         "Provides tools for browsing/searching ITASCA reference documentation "
         "and for executing simulation tasks and managing runs "

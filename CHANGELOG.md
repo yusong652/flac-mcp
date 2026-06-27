@@ -14,6 +14,17 @@ The release will fail to publish if no matching entry is found.
 Description of the release.
 -->
 
+## [0.5.2] - 2026-06-27
+
+### Deprecated
+- **`flac-mcp` is deprecated and frozen in favor of `itasca-mcp`**, a single
+  multi-engine server covering FLAC, PFC, 3DEC, MPoint, and MassFlow. The
+  server `instructions` now lead with a migration notice, so an agent
+  connecting to this server is told to switch. No further releases are planned.
+  Migrate your MCP client config from `uvx flac-mcp` to `uvx itasca-mcp`
+  (select FLAC3D docs via the `software` parameter). This release stays
+  functional against `itasca-mcp-bridge >= 0.4.0`.
+
 ## [0.5.1] - 2026-06-06
 
 ### Fixed
