@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "flac-mcp"
 dynamic = ["version"]
-description = "MCP server for ITASCA FLAC simulation control and documentation"
+description = "DEPRECATED - use itasca-mcp. MCP server for ITASCA FLAC simulation control and documentation"
 requires-python = ">=3.10"
 license = { text = "MIT" }
 authors = [{ name= "Yusong Han", email = "yusong.han.652@gmail.com" }, { name = "Nagisa Toyoura", email = "nagisa.toyoura@gmail.com" }]

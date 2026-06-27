@@ -1,5 +1,12 @@
 # flac-mcp
 
+> [!WARNING]
+> **`flac-mcp` 已废弃并冻结**，由多引擎合一的
+> [**`itasca-mcp`**](https://github.com/yusong652/itasca-mcp) 取代（覆盖
+> FLAC、PFC、3DEC、MPoint、MassFlow）。请把 MCP 客户端配置从
+> `uvx flac-mcp` 改为 `uvx itasca-mcp`（用 `software` 参数选 FLAC 文档）。
+> 本仓不再发布新版本。
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/yusong652/flac-mcp/assets/header.png" width="70%" alt="flac-mcp — MCP Server for ITASCA FLAC">
 </p>
